@@ -410,6 +410,70 @@ momentum: the two constraints are separate.
 
 STATUS = EXACT B_TIER OBSTRUCTION.
 
+7B. TWO-ELECTRON MOMENTUM NECESSARY CONDITION
+----------------------------------------------
+THEOREM GRH-07B: TWO_ELECTRON_EXPECTED_MOMENTUM_MEAN_OBSTRUCTION.
+
+Recall the previously selected finite antisymmetric two-electron
+Pauli sector on the same periodic torus:
+
+  chi_0=V^(-1/2) (1,0),
+  chi_1=V^(-1/2) exp(i k z) (0,1),
+  chi_s=V^(-1/2) exp(i(kz/2+q y)) (1,0),
+
+with k=2 pi n/L nonzero EVEN n and q=2 pi r/L !=0.
+Let
+  Psi=((chi_0+chi_1)/sqrt(2)) wedge chi_s.
+
+The total first-quantized canonical spatial momentum operator
+is
+  Phat=-i*hbar(grad_{x1}+grad_{x2}).
+
+Since all orbitals are plane-wave momentum eigenstates,
+with chi_0/chi_1 having orthogonal spins, one obtains
+
+  <Psi,Phat Psi>
+    =hbar*((k/2)e_z+(k/2)e_z+q e_y)
+    =hbar*(k e_z+q e_y).
+
+This is nonzero for the declared k!=0, q!=0.
+The previously constructed two-determinant dephasing
+does not change diagonal orbital populations, so this
+expectation remains constant under that selected model.
+
+If a semiclassical GR stress/momentum prescription is
+chosen such that the spatial integral of the normal-frame
+source momentum equals this quantum momentum, and no
+additional mechanical/field momentum sources are present,
+then it violates GRH-07's necessary flat-torus ADM condition
+
+  int_M j_total dx=0.
+
+A stationary positive CHARGE background with zero
+mechanical momentum can cancel total electron charge
+but does NOT cancel the electron momentum above.
+
+Therefore:
+  (two-electron semiclassical source alone)
+  + (flat spatial torus)
+  + (periodic smooth extrinsic curvature)
+  + (no opposite total momentum source)
+  is inadmissible as Einstein initial data.
+
+This is a conditional semiclassical source NO-GO.
+Possible repairs are an independently physical
+opposite-momentum field/matter component,
+a different spatial metric/geometry, or
+a noncompact asymptotically charged setting.
+
+No statement assumes that an unrenormalized Pauli
+momentum operator equals the full local gravitating
+Standard Model T_(n,i); that equality is precisely
+one of the named physical-source matching gates.
+
+STATUS = EXACT MOMENTUM EXPECTATION + CONDITIONAL
+GR SOURCE-MATCHING OBSTRUCTION.
+
 8. GR RESPONSE LENGTH AND TIME SCALE
 --------------------------------------
 THEOREM GRH-08: MODE_RESOLVED_GR_SHEAR_RESPONSE.
@@ -533,6 +597,7 @@ A_TIER = NOT ESTABLISHED.
 [x] GRH-05 HELICAL_SOURCE_SUPERPOSITION_AND_GRAM_MATRIX
 [x] GRH-06 RELATIVISTIC_DUST_HELICAL_SOURCE_ADMISSIBILITY
 [x] GRH-07 FLAT_TORUS_MEAN_MOMENTUM_OBSTRUCTION
+[x] GRH-07B TWO_ELECTRON_EXPECTED_MOMENTUM_MEAN_OBSTRUCTION
 [x] GRH-08 MODE_RESOLVED_GR_SHEAR_RESPONSE
 [x] GRH-09 PHYSICAL_COUPLING_GATE
 [x] GRH-10 GR_HELICAL_SOURCED_ADM_CONSTRAINT_WITNESS_ROOT
