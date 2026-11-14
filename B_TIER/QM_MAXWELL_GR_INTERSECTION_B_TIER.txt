@@ -1,0 +1,624 @@
+QM-MAXWELL-GR INTERSECTION
+B-TIER DERIVATION
+=========================
+
+STATUS
+------
+
+MARKER = !
+TIER = CONDITIONAL_B_TIER
+ARTIFACT = QM_MAXWELL_GR_INTERSECTION_B_TIER
+ROOT_ENDPOINT = QM_MAXWELL_GR_INTERSECTION
+SOURCE_BRANCH = b-tier-hull
+LEAN_STATUS = NOT_EMITTED
+A_TIER_STATUS = NOT_ESTABLISHED
+FORMAL_CLOSURE = NOT_ESTABLISHED
+LOCAL_LEAN_EXECUTIONS = 0
+
+This file preserves the exact chain
+
+  stationary QM profile
+  -> relative charge operator
+  -> stationary Maxwell source
+  -> Gaussian transverse scale
+  -> reduced GR symplectic entry
+  -> conditional Planck-kernel endpoint.
+
+The QM-to-Maxwell and Gaussian-scale parts are exact B-tier derivations. The
+GR embedding, GR pullback coefficient, and identification of the same reduced
+orbit remain explicit premises.
+
+
+0. FROZEN DATA
+--------------
+
+Let
+
+  T^3 := (R/Z)^3,
+  |T^3| = 1,
+
+and let
+
+  m > 0,
+  hbar > 0,
+  epsilon0 > 0,
+  G > 0,
+  c > 0,
+  q != 0,
+  epsilon > 0.
+
+Define
+
+  l_P := sqrt(G hbar/c^3),
+  tau_epsilon := epsilon^2/4,
+  a_* := epsilon,
+  l_* := epsilon/2.
+
+Let
+
+  H_m := L^2(T^3; C),
+  e_0(x) := 1.
+
+Fix
+
+  chi in C^infinity(T^3; R),
+  chi(x) > 0,
+  ||chi||_2 = 1.
+
+Let a_dagger be a periodic vector distribution satisfying
+
+  div a_dagger = 0,
+  mean(a_dagger) = 0
+
+in distributions, and define
+
+  a_epsilon := exp(tau_epsilon Delta) a_dagger.
+
+
+1. QUANTUM PROJECTIVE ORBIT
+---------------------------
+
+Assume chi is not a scalar multiple of e_0. After a constant phase choice,
+write
+
+  chi = c_0 e_0 + s_0 xi,
+
+where
+
+  c_0 = <e_0,chi> in (0,1),
+  s_0 = sqrt(1-c_0^2),
+  <e_0,xi> = 0,
+  ||xi||_2 = 1.
+
+Define
+
+  O_chi := P(span_C{e_0,xi}) isomorphic to CP^1.
+
+A normalized chart is
+
+  psi(theta,phi)
+    = cos(theta/2)e_0
+      + exp(i phi) sin(theta/2)xi.
+
+Define
+
+  omega_FS := (1/2) sin(theta) dtheta wedge dphi,
+
+so that
+
+  integral_{O_chi} omega_FS = 2 pi.
+
+Define the Schrödinger action one-form
+
+  Theta_QM := hbar Im <psi,dpsi>.
+
+THEOREM QMGI_QUANTUM_ACTION_ORBIT.
+
+  d Theta_QM = hbar omega_FS.
+
+DERIVATION.
+
+Orthogonality gives
+
+  <psi,dpsi> = i sin^2(theta/2)dphi.
+
+Therefore
+
+  Theta_QM = hbar sin^2(theta/2)dphi
+
+and
+
+  dTheta_QM
+    = (hbar/2)sin(theta)dtheta wedge dphi
+    = hbar omega_FS.
+
+Hence the quantum action cell is
+
+  A_Q := (1/(2pi)) integral_{O_chi} dTheta_QM = hbar.
+
+STATUS = EXACT_B_TIER.
+
+
+2. STATIONARY QUANTUM PROFILE
+-----------------------------
+
+Define the neutralized charge density
+
+  rho_chi := q(chi^2-1).
+
+Since ||chi||_2=1 and |T^3|=1,
+
+  integral_{T^3} rho_chi = 0.
+
+Let Phi_chi be the unique zero-mean periodic solution of
+
+  -epsilon0 Delta Phi_chi = rho_chi.
+
+Define
+
+  E_chi := -grad Phi_chi.
+
+For an arbitrary real lambda define
+
+  W_chi
+    := lambda
+       + (hbar^2/(2m))(Delta chi)/chi
+       - q Phi_chi.
+
+Then
+
+  psi_chi(t,x) := exp(-i lambda t/hbar)chi(x)
+
+satisfies
+
+  i hbar partial_t psi_chi
+    = [-(hbar^2/(2m))Delta + W_chi + q Phi_chi]psi_chi.
+
+Because chi is real,
+
+  J_chi
+    := (q/m) Re(conj(psi_chi)(-i hbar grad)psi_chi)
+    = 0.
+
+Thus
+
+  partial_t |psi_chi|^2 = 0,
+  partial_t rho_chi = 0.
+
+STATUS = EXACT_B_TIER.
+
+
+3. NUMBER-PRESERVING CHARGE OPERATOR
+------------------------------------
+
+On fermionic Fock space define
+
+  C_chi := a^dagger(chi)a(e_0).
+
+On the one-particle sector,
+
+  C_chi = |chi><e_0|,
+  C_chi^dagger = |e_0><chi|,
+
+and therefore
+
+  [C_chi,C_chi^dagger]
+    = P_chi-P_0.
+
+The diagonal of the integral kernel is
+
+  diag(P_chi-P_0)(x)
+    = chi(x)^2-1.
+
+Hence
+
+  rho_chi(x)
+    = q diag([C_chi,C_chi^dagger])(x).
+
+Moreover
+
+  [N_hat,C_chi] = 0.
+
+THEOREM QMGI_QM_TO_CHARGE.
+
+The stationary quantum ray Gamma_chi=P_chi determines the stationary
+neutralized charge rho_chi through a number-preserving profile-transfer
+defect operator.
+
+STATUS = EXACT_B_TIER.
+
+
+4. QUANTUM-TO-MAXWELL ENCODING
+------------------------------
+
+Define
+
+  Enc_M(Gamma_chi)
+    := (rho_chi, Phi_chi, E_chi, B_chi, J_chi),
+
+where
+
+  B_chi := 0,
+  J_chi := 0.
+
+THEOREM QMGI_QM_TO_MAXWELL.
+
+The encoded fields satisfy the stationary Maxwell equations
+
+  div E_chi = rho_chi/epsilon0,
+  div B_chi = 0,
+  curl E_chi = 0,
+  curl B_chi = 0,
+  partial_t E_chi = 0,
+  partial_t B_chi = 0.
+
+DERIVATION.
+
+Gauss law is the defining Poisson equation. The remaining identities follow
+from E_chi=-grad Phi_chi and B_chi=J_chi=0.
+
+The decoding of the positive profile is
+
+  chi
+    = sqrt(1 + (epsilon0/q) div E_chi).
+
+STATUS = EXACT_B_TIER.
+
+SCOPE NOTE.
+
+The decoding uses chi>0. A general complex wavefunction is not recovered from
+charge density alone; only the stationary positive profile ray is represented.
+
+
+5. GAUSSIAN TRANSVERSE SCALE
+----------------------------
+
+THEOREM QMGI_GAUSSIAN_SCALE.
+
+For every epsilon>0,
+
+  a_epsilon = exp((epsilon^2/4)Delta)a_dagger
+
+is smooth. It remains divergence-free and mean-zero.
+
+On physical Fourier wave vector zeta,
+
+  a_epsilon_hat(zeta)
+    = exp(-epsilon^2|zeta|^2/4)a_dagger_hat(zeta).
+
+Therefore the Gaussian kernel convention is exactly
+
+  a_* = epsilon,
+  l_* = epsilon/2,
+  tau_epsilon = l_*^2.
+
+STATUS = EXACT_B_TIER.
+
+Define the scale-carrying Maxwell datum
+
+  M_{chi,epsilon}
+    := (rho_chi,E_chi,a_epsilon).
+
+The first two components encode the stationary matter source. The third is an
+independent transverse scale carrier.
+
+For a static magnetic realization set
+
+  B_{epsilon,lambda} := lambda a_epsilon,
+  A_{epsilon,lambda} := curl(-Delta)_0^(-1)B_{epsilon,lambda}.
+
+A nonzero static spinless realization requires the already isolated external
+current defect. This fact does not alter the scale identity above.
+
+
+6. THE BRIDGE DATUM
+-------------------
+
+Define
+
+  B_{chi,epsilon}
+    := (O_chi,
+        omega_FS,
+        Gamma_chi,
+        rho_chi,
+        Phi_chi,
+        E_chi,
+        a_epsilon).
+
+THEOREM QM_MAXWELL_BRIDGE_DATUM.
+
+For every admissible chi, epsilon, and a_dagger, the datum B_{chi,epsilon} is
+well-defined and satisfies
+
+  quantum action form:
+    Omega_QM = hbar omega_FS;
+
+  stationary charge:
+    rho_chi = q diag(P_chi-P_0);
+
+  Maxwell source law:
+    div E_chi = rho_chi/epsilon0;
+
+  Gaussian scale law:
+    a_epsilon_hat(zeta)
+      = exp(-epsilon^2|zeta|^2/4)a_dagger_hat(zeta).
+
+STATUS = EXACT_B_TIER.
+
+This theorem composes the QM and Maxwell parts without a GR premise.
+
+
+7. GR ENTRY PREMISES
+--------------------
+
+PREMISE GR_REDUCED_PHASE_ENTRY(chi,epsilon).
+
+There exist
+
+  a reduced gravitational phase space P_GR,
+  a symplectic form Omega_GR on P_GR,
+  a map iota_{chi,epsilon}: O_chi -> P_GR.
+
+PREMISE GR_PULLBACK_PROPORTIONAL(chi,epsilon,kappa).
+
+For some kappa>0,
+
+  iota_{chi,epsilon}^*Omega_GR
+    = [kappa c^3 epsilon^2/G] omega_FS.
+
+PREMISE QM_GR_ORBIT_MATCHING(chi,epsilon).
+
+The GR image represents the same reduced orbit as the quantum-Maxwell bridge
+datum and
+
+  iota_{chi,epsilon}^*Omega_GR
+    = Omega_QM.
+
+These premises must specify the GR gauge quotient, reduced variables,
+symplectic normalization, geometric Gaussian family, and the map iota. They
+must be derived without inserting hbar, l_P, or the target relation as input.
+
+STATUS = NAMED_UNRESOLVED_PREMISES.
+
+
+8. QM-MAXWELL-GR INTERSECTION LOCUS
+-----------------------------------
+
+For fixed kappa>0 define
+
+  I_kappa
+    := { B_{chi,epsilon} :
+         GR_REDUCED_PHASE_ENTRY(chi,epsilon),
+         GR_PULLBACK_PROPORTIONAL(chi,epsilon,kappa),
+         QM_GR_ORBIT_MATCHING(chi,epsilon) }.
+
+THEOREM QM_MAXWELL_GR_INTERSECTION.
+
+Every element of I_kappa satisfies
+
+  kappa c^3 epsilon^2/G = hbar,
+
+and therefore
+
+  epsilon = l_P/sqrt(kappa).
+
+DERIVATION.
+
+On O_chi,
+
+  iota^*Omega_GR
+    = [kappa c^3 epsilon^2/G]omega_FS
+
+and
+
+  iota^*Omega_GR
+    = Omega_QM
+    = hbar omega_FS.
+
+Since omega_FS is nonzero, the scalar coefficients are equal. Positivity of
+epsilon and kappa selects the positive square root.
+
+STATUS = CONDITIONAL_B_TIER.
+
+The exact implication from the named premises to the conclusion is complete.
+The existence of an element of I_kappa is not established by the present
+branch.
+
+
+9. PLANCK-KERNEL SPECIALIZATION
+-------------------------------
+
+THEOREM QM_MAXWELL_GR_PLANCK_ENDPOINT.
+
+Assume an element B_{chi,epsilon} lies in I_{1/4}. Then
+
+  epsilon = 2 l_P,
+  a_* = 2 l_P,
+  l_* = l_P,
+  tau_epsilon = l_P^2,
+  c^3 epsilon^2/(4G) = hbar.
+
+STATUS = CONDITIONAL_B_TIER.
+
+The decisive unresolved GR statement is
+
+  GR_COEFFICIENT_ONE_QUARTER:
+
+    iota_{chi,epsilon}^*Omega_GR
+      = [c^3 epsilon^2/(4G)]omega_FS.
+
+
+10. UNIVERSALITY AND NONSELECTION
+---------------------------------
+
+THEOREM QMGI_ORBIT_UNIVERSALITY_GATE.
+
+Suppose a single epsilon>0 matches a family of profiles chi and the pullback
+coefficient is kappa(chi)>0. Then kappa(chi) is constant across that family.
+
+DERIVATION.
+
+Matching gives
+
+  epsilon^2 = l_P^2/kappa(chi).
+
+The left side is fixed, so the right-side coefficient is fixed.
+
+STATUS = EXACT_B_TIER.
+
+
+THEOREM QMGI_COEFFICIENT_NONSELECTION.
+
+If kappa is unspecified, the matching equation cannot select epsilon. Indeed,
+for every epsilon>0,
+
+  kappa_epsilon := l_P^2/epsilon^2
+
+satisfies
+
+  kappa_epsilon c^3 epsilon^2/G = hbar.
+
+STATUS = EXACT_B_TIER.
+
+Thus the physical content is the independent GR computation of kappa, not the
+subsequent scalar matching.
+
+
+11. COMMUTING CHAIN
+-------------------
+
+The preserved chain is
+
+  Gamma_chi=P_chi
+    -> P_chi-P_0
+    -> rho_chi=q(chi^2-1)
+    -> -epsilon0 Delta Phi_chi=rho_chi
+    -> E_chi=-grad Phi_chi
+
+and independently
+
+  a_dagger
+    -> a_epsilon=exp((epsilon^2/4)Delta)a_dagger
+    -> a_*=epsilon, l_*=epsilon/2.
+
+These assemble into B_{chi,epsilon}. The GR premises then give
+
+  B_{chi,epsilon}
+    -> iota_{chi,epsilon}^*Omega_GR
+    -> kappa c^3 epsilon^2/G = hbar
+    -> epsilon=l_P/sqrt(kappa).
+
+For kappa=1/4,
+
+  epsilon=a_*=2l_P,
+  l_*=l_P.
+
+
+12. ENDPOINT REGISTER
+---------------------
+
+[x] QMGI-01  QMGI_QUANTUM_ACTION_ORBIT
+              EXACT_B_TIER
+
+[x] QMGI-02  QMGI_QM_TO_CHARGE
+              EXACT_B_TIER
+
+[x] QMGI-03  QMGI_QM_TO_MAXWELL
+              EXACT_B_TIER
+
+[x] QMGI-04  QMGI_GAUSSIAN_SCALE
+              EXACT_B_TIER
+
+[x] QMGI-05  QM_MAXWELL_BRIDGE_DATUM
+              EXACT_B_TIER
+
+[ ] QMGI-06  GR_REDUCED_PHASE_ENTRY
+              NAMED_UNRESOLVED_PREMISE
+
+[ ] QMGI-07  GR_PULLBACK_PROPORTIONAL
+              NAMED_UNRESOLVED_PREMISE
+
+[ ] QMGI-08  QM_GR_ORBIT_MATCHING
+              NAMED_UNRESOLVED_PREMISE
+
+[x] QMGI-09  QM_MAXWELL_GR_INTERSECTION
+              CONDITIONAL_B_TIER
+
+[x] QMGI-10  QM_MAXWELL_GR_PLANCK_ENDPOINT
+              CONDITIONAL_B_TIER
+
+[x] QMGI-11  QMGI_ORBIT_UNIVERSALITY_GATE
+              EXACT_B_TIER
+
+[x] QMGI-12  QMGI_COEFFICIENT_NONSELECTION
+              EXACT_B_TIER
+
+[ ] QMGI-13  GR_COEFFICIENT_ONE_QUARTER
+              OPEN_DECISIVE_GR_ENDPOINT
+
+
+13. DEPENDENCY SPINE
+--------------------
+
+  PROFILE_TRANSFER_ONE_PARTICLE
+    -> QMGI-02.
+
+  MS_STATIONARY_PROFILE
+    -> QMGI-03.
+
+  MS_FUBINI_STUDY_ACTION_SCALE
+    -> QMGI-01.
+
+  A_DAGGER_HEAT_REGULARIZATION
+  + A_DAGGER_KERNEL_SCALE_IDENTIFICATION
+    -> QMGI-04.
+
+  QMGI-01
+  + QMGI-02
+  + QMGI-03
+  + QMGI-04
+    -> QMGI-05.
+
+  QMGI-05
+  + QMGI-06
+  + QMGI-07
+  + QMGI-08
+    -> QMGI-09.
+
+  QMGI-09
+  + QMGI-13
+    -> QMGI-10.
+
+
+14. ROOT CLASSIFICATION
+-----------------------
+
+EXACT_B_TIER:
+
+  QMGI_QUANTUM_ACTION_ORBIT
+  QMGI_QM_TO_CHARGE
+  QMGI_QM_TO_MAXWELL
+  QMGI_GAUSSIAN_SCALE
+  QM_MAXWELL_BRIDGE_DATUM
+  QMGI_ORBIT_UNIVERSALITY_GATE
+  QMGI_COEFFICIENT_NONSELECTION.
+
+CONDITIONAL_B_TIER:
+
+  QM_MAXWELL_GR_INTERSECTION
+  QM_MAXWELL_GR_PLANCK_ENDPOINT.
+
+UNRESOLVED PREMISES:
+
+  GR_REDUCED_PHASE_ENTRY
+  GR_PULLBACK_PROPORTIONAL
+  QM_GR_ORBIT_MATCHING
+  GR_COEFFICIENT_ONE_QUARTER.
+
+FORMAL STATUS:
+
+  B_TIER only.
+  Lean files are not emitted.
+  A_TIER is not established.
+  FORMAL_CLOSURE is not established.
+  UNCONDITIONAL_CLOSURE is not established.
