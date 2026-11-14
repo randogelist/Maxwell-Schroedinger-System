@@ -1,0 +1,419 @@
+HELICAL TWO-FLUID MAXWELL–NAVIER–STOKES:
+EXACT CLASSICAL ELECTROMAGNETIC BACKREACTION AND GLOBAL REGULARITY
+B-TIER MATHEMATICAL DERIVATION
+====================================================================
+
+STATUS
+------
+ROOT = HELICAL_TWO_FLUID_MAXWELL_NSE_GLOBAL
+MARKER = !
+TIER = B_TIER_MATHEMATICAL
+SOURCE_BRANCH = b-tier-hull
+REFERENCE_SM_ROWS = SM-07 CURRENT CONTINUITY, SM-08 STRESS EXCHANGE
+NO_LOCAL_LEAN_EXECUTION = TRUE
+A_TIER = NOT_ESTABLISHED
+FORMAL_CLOSURE = NOT_ESTABLISHED
+
+PURPOSE
+-------
+Exhibit an exact FINITE-DIMENSIONAL, charge-neutral, self-consistent
+CLASSICAL Maxwell–NSE two-fluid subsystem with:
+  - nontrivial electromagnetic currents and Lorentz interaction;
+  - exact Maxwell equations, including Gauss and Faraday laws;
+  - incompressible viscous NSE for each fluid, with reciprocal drag;
+  - a closed helical ansatz with genuinely nonlinear mean/advection
+    and magnetic-velocity terms;
+  - an exact positive energy identity and global smoothness for all
+    finite initial amplitudes WITHIN THIS ANSATZ.
+
+The model is a classical charged-fluid effective theory, NOT a
+two-electron antisymmetrized quantum state, not QED, and not a
+microscopic derivation of electron collision/relaxation dynamics.
+Arbitrarily large formal velocities are not physically admissible
+under a nonrelativistic continuum approximation.
+
+0. PHYSICAL DATA AND MAXWELL SOURCE ACCOUNTING
+-----------------------------------------------
+M=T_L^3=(R/LZ)^3, V=L^3, L>0, choose integer r!=0,
+  k=2*pi*r/L.
+Let two fluid species have:
+  n0>0 constant number density for each,
+  masses m_1,m_2>0,
+  charges q_1,q_2 in R,
+  mass densities rho_s=m_s*n0>0,
+  dynamic viscosities eta_s>0,
+  kinematic viscosities nu_s=eta_s/rho_s>0.
+Choose reciprocal momentum drag coefficient kappa>=0.
+Choose electromagnetic constants epsilon_0,mu_0>0 with
+  c^2=1/(epsilon_0 mu_0).
+
+The electric charge density of mobile fluids is
+  rho_mobile=n0(q_1+q_2).
+To satisfy the periodic Maxwell Gauss constraint with uniform
+spatial E_z(t), include a STATIONARY UNIFORM COMPENSATING
+BACKGROUND CHARGE
+  rho_bg=-n0(q_1+q_2),
+  J_bg=0.
+
+Thus
+  rho_total=0
+identically. The fixed background has ZERO electrical power
+  integral J_bg·E=0,
+but its mechanical support/recoil and stress must be included if
+one separately asserts full closed TOTAL MOMENTUM conservation.
+
+Two special choices:
+  (A) q_1=-e, q_2=+e: electron–positron-like neutral pair,
+      no compensating background required.
+  (B) q_1=q_2=-e: TWO NEGATIVE CHARGED FLUID LAYERS with
+      compensating rho_bg=+2en0, NOT yet a quantized two-electron
+      state, and with external support reaction for the background.
+
+No assumption of canonical quantization, Pauli exclusion or
+a Standard Model gauge-field operator is made.
+
+1. HELICAL BASIS AND EXACT CLOSURE
+-----------------------------------
+Define smooth real transverse helices
+  h_1(z)=(cos(kz),sin(kz),0),
+  h_2(z)=(-sin(kz),cos(kz),0),
+  e_z=(0,0,1).
+
+They satisfy
+  div h_a=0, mean(h_a)=0, |h_a|=1,
+  h_1·h_2=0,
+  partial_z h_1=k h_2,
+  partial_z h_2=-k h_1,
+  curl h_a=-k h_a,
+  Delta h_a=-k^2 h_a,
+  h_1 cross h_2=e_z,
+  e_z cross h_1=h_2,
+  e_z cross h_2=-h_1.
+
+Make the ANSATZ for each fluid
+  u_s(t,z)=V_s(t)e_z+a_s(t)h_1(z)+b_s(t)h_2(z).
+
+Electromagnetic fields:
+  E(t,z)=E_z(t)e_z+E_1(t)h_1(z)+E_2(t)h_2(z),
+  B(t,z)=B_1(t)h_1(z)+B_2(t)h_2(z).
+
+Hence
+  div u_s=0, div E=0=rho_total/epsilon_0,
+  div B=0.
+
+The curl and cross-product operations preserve this
+finite-dimensional Fourier/vector ansatz.
+Every scalar pressure p_s may be spatially constant.
+
+2. EXACT FULL MAXWELL REDUCTION
+--------------------------------
+The physical Maxwell equations are
+
+  partial_t B=-curl E,
+  partial_t E=c^2 curl B-J/epsilon_0,
+  div E=rho_total/epsilon_0=0,
+  div B=0,
+
+where
+  J=n0 sum_s q_s u_s
+    =n0 sum_s q_s[
+         V_s e_z+a_s h_1+b_s h_2].
+
+The ansatz reduces them EXACTLY to
+
+  dot B_1=k E_1,
+  dot B_2=k E_2,
+
+  dot E_1=-c^2 k B_1-(n0/epsilon_0)sum_s q_s a_s,
+  dot E_2=-c^2 k B_2-(n0/epsilon_0)sum_s q_s b_s,
+  dot E_z=-(n0/epsilon_0)sum_s q_s V_s.
+
+Species continuity:
+  partial_t(q_s n0)+div(q_s n0 u_s)=0,
+because n0 and q_s are constant and div u_s=0.
+
+The stationary compensating background has
+partial_t rho_bg+div J_bg=0 as well.
+
+STATUS = EXACT B_TIER CLASSICAL MAXWELL/CONTINUITY.
+
+3. EXACT CHARGED NSE REDUCTION
+------------------------------
+For each species, impose viscous incompressible NSE with Lorentz
+force and reciprocal interlayer drag:
+
+  rho_s[
+      partial_t u_s+(u_s·grad)u_s
+    ]=-grad p_s+eta_s Delta u_s
+      +q_s n0 (E+u_s cross B)
+      -kappa(u_s-u_t),   t!=s.
+
+Since u_s depends only on z,
+
+  (u_s·grad)u_s
+    =V_s partial_z u_s
+    =k V_s (a_s h_2-b_s h_1).
+
+Furthermore,
+
+  u_s cross B
+    =(-V_s B_2)h_1
+     +(V_s B_1)h_2
+     +(a_s B_2-b_s B_1)e_z.
+
+The full PDE reduces EXACTLY to 3 ODEs per species:
+
+  rho_s (dot a_s-k V_s b_s)
+    =-eta_s k^2 a_s
+      +q_s n0(E_1-V_s B_2)
+      -kappa(a_s-a_t),
+
+  rho_s (dot b_s+k V_s a_s)
+    =-eta_s k^2 b_s
+      +q_s n0(E_2+V_s B_1)
+      -kappa(b_s-b_t),
+
+  rho_s dot V_s
+    =q_s n0[
+         E_z+a_s B_2-b_s B_1
+       ]-kappa(V_s-V_t).
+
+No pressure gradient is required because every displayed
+force/advection component remains in the closed helical-plus-mean
+span. The nonlinear convective and magnetic terms are generically
+NONZERO for V_s*a_s, V_s*b_s and nonaligned u_s,B.
+
+The complete coupled Maxwell–NSE dynamics is a polynomial
+finite ODE for
+  (V_1,a_1,b_1,V_2,a_2,b_2,
+   E_z,E_1,E_2,B_1,B_2).
+
+STATUS = EXACT B_TIER ODE SUBSTITUTION/INVARIANCE.
+
+4. POSITIVE FIELD+FLUID ENERGY AND EXACT WORK TRANSFER
+------------------------------------------------------
+Define total fluid kinetic energy
+
+  E_fl
+   :=(V/2)sum_s rho_s(
+           V_s^2+a_s^2+b_s^2
+        ).
+
+Define electromagnetic field energy
+
+  E_EM
+   :=V/2[
+       epsilon_0 (E_z^2+E_1^2+E_2^2)
+       +(1/mu_0)(B_1^2+B_2^2)
+     ].
+
+The fluid kinetic identity is
+
+  d E_fl/dt
+   = -V sum_s eta_s k^2(a_s^2+b_s^2)
+     -V kappa [
+         (V_1-V_2)^2
+        +(a_1-a_2)^2
+        +(b_1-b_2)^2
+       ]
+     +V n0 sum_s q_s[
+        V_s E_z+a_s E_1+b_s E_2].
+
+Proof:
+  - Coriolis-like advection pieces kV_s exchange a_s,b_s
+    and cancel in a_s*dot a_s+b_s*dot b_s;
+  - magnetic Lorentz force does zero work pointwise,
+    u_s·(u_s cross B)=0;
+  - symmetric reciprocal drag gives a negative square;
+  - viscous dissipation is negative in transverse modes.
+
+From Maxwell Ampere/Faraday ODEs,
+
+  d E_EM/dt
+    =-V n0 sum_s q_s[
+       V_s E_z+a_s E_1+b_s E_2].
+
+All field/fluid work cancels:
+
+  d/dt(E_fl+E_EM)
+     =-V sum_s eta_s k^2(a_s^2+b_s^2)
+       -V kappa [
+          (V_1-V_2)^2
+         +(a_1-a_2)^2
+         +(b_1-b_2)^2
+       ] <=0.                                   (E)
+
+This is exactly the periodic integral Poynting
+theorem plus the charged-fluid kinetic-energy law.
+
+If a thermal/internal reservoir e is defined by
+
+  dot e=
+    V sum_s eta_s k^2(a_s^2+b_s^2)
+    +V kappa [
+        (V_1-V_2)^2
+       +(a_1-a_2)^2
+       +(b_1-b_2)^2
+      ],
+
+then
+  d(E_fl+E_EM+e)/dt=0,
+  dot e>=0.
+
+The reservoir is phenomenological, not a derived quantum
+thermal bath. Its entropy needs an independent temperature law.
+
+STATUS = EXACT B_TIER ENERGY AND CONDITIONAL RESERVOIR.
+
+5. GLOBAL REGULARITY FOR ALL FINITE INITIAL AMPLITUDES
+------------------------------------------------------
+The ODE RHS in Section 3 and Maxwell RHS in Section 2 are
+polynomial in all finite variables, thus locally Lipschitz.
+
+The energy
+  E_fl+E_EM
+is a strictly positive definite quadratic form in all 11
+ODE variables because rho_s,epsilon_0,mu_0,V>0.
+
+By (E), this quadratic form is bounded above by
+its finite initial value for ALL times in the local
+maximal existence interval t>=0.
+
+Thus all ODE variables remain bounded on every finite
+time interval. The finite-dimensional continuation
+criterion for locally Lipschitz vector fields rules out
+finite-time blowup. Hence the ODE solution exists
+globally for all t>=0.
+
+Each spatial field remains a finite combination of
+the smooth h_1,h_2,e_z basis functions. Consequently
+
+  u_s,E,B in C^infty([0,infinity) x T_L^3)
+for every finite smooth initial coefficient tuple.
+
+There is NO upper mathematical energy threshold within
+this exactly invariant charged-fluid Maxwell–NSE sector.
+
+This does NOT prove global regularity for arbitrary 3D
+Maxwell–NSE initial data, quantum two-electron QED,
+or the full Standard Model.
+For ultra-relativistic velocities the model's classical
+nonrelativistic charged-fluid interpretation fails,
+even though the ODE remains mathematically regular.
+
+STATUS = COMPLETE EXACT B_TIER CONSTRUCTIVE REGULARITY.
+
+6. STRESS–ENERGY EXCHANGE / FROZEN SM-08
+----------------------------------------
+Maxwell stress–energy obeys
+
+  partial_mu T_EM^(mu nu)=-F^(nu lambda)J_lambda
+on smooth Maxwell solutions with the declared
+Minkowski/metric/sign convention.
+
+For charged fluid matter its spatial Lorentz force
+density is
+  f_s=q_s n0(E+u_s cross B).
+
+Its mechanical power is
+  f_s·u_s=q_s n0 E·u_s.
+
+The equal/opposite work is verified EXACTLY
+in the energy identity of Section 4.
+
+The viscous and interlayer drag stresses transfer
+kinetic energy into the independently modeled
+reservoir. Hence for the closed WORK ledger,
+the Maxwell field, charged-fluid and reservoir
+terms yield conserved total energy.
+
+CAUTION:
+  - Classical incompressible viscous NSE is not a
+    standalone relativistic perfect-fluid stress
+    tensor; its full Lorentz-covariant stress
+    needs a relativistic hydrodynamic completion.
+  - The fixed compensating charge background
+    requires force/support/recoil bookkeeping
+    for global total momentum conservation.
+  - A full covariant total stress tensor needs
+    the interaction and reservoir stress tensors,
+    not only the integrated energy identity.
+  - Yang–Mills and SM quantum Ward identities
+    require additional gauge/renormalization data.
+
+This model settles a concrete CLASSICAL U(1)
+energy-exchange test, not arbitrary SM-08.
+
+7. RELATION TO SIX REMAINING NCW GATES
+--------------------------------------
+NCW-13:
+  current operator at the quantum SM level remains
+  a regulated/renormalized composite operator.
+  Its classical current/effective-fluid limit is
+  not established by this ODE.
+
+NCW-14:
+  quantum chiral anomalies and nonabelian Ward
+  operator identities remain separate.
+
+NCW-15:
+  microscopic electron-current-to-fluid map remains
+  nonunique; here fluid currents J_s are DECLARED.
+
+NCW-16:
+  CONSTRUCTIVE SUBCLASS DERIVED:
+  a nonzero self-consistent Lorentz force is present,
+  the invariant helical manifold remains globally
+  regular for any finite amplitudes.
+
+NCW-17:
+  CLASSICAL ABELIAN PART DERIVED:
+  Maxwell stress/field work exactly balances
+  charged fluid power, with dissipation accounted
+  for by the reservoir variable. Not a full
+  quantum SM stress Ward theorem.
+
+NCW-18:
+  NO matching external Lean compiler and
+  theorem-level axiom audit; not promoted.
+
+8. ROOT ENDPOINTS
+-----------------
+[x] HMF-01 HELICAL_PERIODIC_BASIS_IDENTITIES
+[x] HMF-02 MAXWELL_GAUSS_AMPERE_FARADAY_ODE_CLOSURE
+[x] HMF-03 CHARGED_NSE_LORENTZ_HELICAL_ODE_CLOSURE
+[x] HMF-04 SPECIES_CHARGE_CONTINUITY_AND_BACKGROUND
+[x] HMF-05 EXACT_FIELD_FLUID_ENERGY_IDENTITY
+[x] HMF-06 POSITIVE_ENERGY_GLOBAL_ODE_REGULARITY
+[x] HMF-07 CLASSICAL_SM08_LORENTZ_WORK_PORT
+[x] HMF-08 RESERVOIR_ENERGY_COMPLETION_CONDITIONAL
+[x] HMF-09 HELICAL_TWO_FLUID_MAXWELL_NSE_GLOBAL_ROOT
+
+[ ] HMF-10 ANTISYMMETRIZED_TWO_ELECTRON_QFT_EMBEDDING
+[ ] HMF-11 MICROSCOPIC_STANDARD_MODEL_FIELD_MATCHING
+[ ] HMF-12 COVARIANT_RELATIVISTIC_STRESS_COMPLETION
+[ ] HMF-13 EXTERNAL_NATIVE_LEAN_COMPILER_AXIOM_AUDIT
+
+CONCLUSION
+----------
+A nontrivial, globally smooth, self-consistent classical Maxwell–
+charged-(NSE)^2 model is available as an exact finite-helical sector.
+
+MARKER = !
+TIER = B_TIER
+PHYSICAL_QED_TWO_ELECTRON_IDENTIFICATION = OPEN
+A_TIER = NOT_ESTABLISHED
+
+REFERENCES
+----------
+Thorne/GR notes, Maxwell stress and Lorentz force:
+https://faculty.washington.edu/seattle/physics544/2011-lectures/thorne-GR.pdf
+
+Guo-Ionescu-Pausader (2016), two-fluid Euler–Maxwell
+global small-data theory in a different three-dimensional regime:
+https://annals.math.princeton.edu/2016/183-2/p01
+
+The present explicit invariant helical class is an
+independent elementary ODE reduction; the cited
+small-data theorem is context, not a claim of source
+equivalence.
