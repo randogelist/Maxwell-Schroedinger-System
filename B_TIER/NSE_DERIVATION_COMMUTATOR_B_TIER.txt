@@ -1,0 +1,429 @@
+NSE DERIVATION COMMUTATOR — FIRST FROZEN STANDARD MODEL MATCH
+B-TIER MATHEMATICAL DERIVATION
+==============================================================
+
+STATUS
+------
+THEOREM = NSE_DERIVATION_COMMUTATOR
+MARKER = !
+MODE = B_TIER_DERIVATION
+SOURCE_BRANCH = b-tier-hull
+REFERENCE_TABLE = FROZEN_SM_NSE_OPERATOR_MATCH_REGISTER_B_TIER
+REFERENCE_ROW = SM-01, FIRST ALGEBRAIC MATCH
+LEAN_STATUS = NOT_EMITTED
+A_TIER = NOT_ESTABLISHED
+FORMAL_CLOSURE = NOT_ESTABLISHED
+LOCAL_LEAN_EXECUTIONS = 0
+
+EXACT SCOPE
+-----------
+This document establishes one operator identity within smooth
+incompressible NSE geometry, plus an optional self-adjoint
+transport-generator realization. It neither embeds the
+Standard Model gauge group into NSE nor constructs an
+electron/field interaction.
+
+Do not conflate:
+ (i) the antisymmetric Lie bracket [u,v],
+(ii) the symmetric NSE cross-convection C(u,v),
+(iii) the gauge-covariant curvature commutator, and
+(iv) the dissipative NSE solution semiflow.
+
+0. DOMAINS AND CONVENTIONS
+-------------------------
+M=T_L^3=(R/LZ)^3, L>0, with periodic Euclidean volume.
+Let
+
+  g_sigma = {u in C^infty(M;R^3): div u=0},
+  g_sigma,0 = {u in g_sigma: integral_M u dx=0}.
+
+For a smooth vector field u, define a derivation
+  D_u:C^infty(M;C)->C^infty(M;C),
+  D_u f = sum_j u^j partial_j f.
+
+Define the vector-field bracket
+  [u,v]^j = sum_i [u^i partial_i v^j
+                     -v^i partial_i u^j].
+
+Let P_sigma denote the full Leray projection onto
+divergence-free vector fields, including spatial
+constant modes.
+
+For u=v the Lie bracket [u,u]=0 regardless of
+the NSE nonlinearity B(u,u)=P_sigma((u dot grad)u).
+
+1. DERIVATIONS CLOSE UNDER COMMUTATOR
+--------------------------------------
+THEOREM NDC-01: TRANSPORT_COMMUTATOR.
+
+For all smooth u,v (even without div-free) and all
+smooth complex-valued f,
+
+  [D_u,D_v] f = D_[u,v] f.
+
+PROOF:
+  D_u D_v f
+    = u^i (partial_i v^j)(partial_j f)
+      + u^i v^j partial_i partial_j f,
+
+  D_v D_u f
+    = v^i (partial_i u^j)(partial_j f)
+      + v^i u^j partial_i partial_j f.
+
+Since the Hessian partial_i partial_j f is symmetric
+in i,j, the second-derivative contractions cancel
+under exchange i<->j. The remainder is
+
+  [D_u,D_v]f
+    = (u^i partial_i v^j-v^i partial_i u^j)
+         partial_j f
+    = D_[u,v] f.
+
+In addition,
+  D_(a u+b v)=aD_u+bD_v
+for real a,b.
+
+STATUS = EXACT B_TIER.
+
+THEOREM NDC-02: DIVERGENCE_FREE_BRACKET_CLOSURE.
+
+For any smooth u,v on the periodic domain,
+
+  div [u,v]
+    =u dot grad(div v)-v dot grad(div u).
+
+Thus for u,v in g_sigma,
+  [u,v] in g_sigma.
+
+Moreover,
+  [u,v]_j
+    =partial_i (u^i v^j-v^i u^j)
+when div u=div v=0.
+
+Periodic integration gives
+  integral_M [u,v] dx=0,
+hence
+  [g_sigma,g_sigma] subset g_sigma,0.
+
+In particular g_sigma,0 is a Lie subalgebra
+and an ideal of g_sigma.
+
+STATUS = EXACT B_TIER.
+
+THEOREM NDC-03: VECTOR_FIELD_JACOBI_VIA_DERIVATIONS.
+
+Operator commutators satisfy
+  [D_u,[D_v,D_w]]+cyclic=0.
+
+By NDC-01 the LHS is
+  D_([u,[v,w]]+[v,[w,u]]+[w,[u,v]]).
+
+The map u->D_u is injective: if D_u f=0 for
+all smooth f, differentiating suitable smooth
+periodic coordinate functions (sine/cosine pairs)
+shows u=0 pointwise.
+
+Thus
+  [u,[v,w]]+[v,[w,u]]+[w,[u,v]]=0.
+
+STATUS = EXACT B_TIER.
+
+2. UNITARY TRANSPORT AND THE HERMITIAN GENERATOR
+-------------------------------------------------
+THEOREM NDC-04: PERIODIC_TRANSPORT_SKEW_SYMMETRY.
+
+Let u be real, smooth and divergence-free.
+For smooth complex f,g,
+
+  <f,D_u g>_L2 = -<D_u f,g>_L2.
+
+Proof:
+  0=integral_M div(u conjugate(f)g) dx
+   =integral_M [conjugate(D_u f)g
+                +conjugate(f)D_u g] dx
+because div u=0 and M is periodic.
+
+Therefore D_u is skew symmetric on the dense
+domain C^infty(M;C).
+
+Let Phi_t be the complete smooth flow generated
+by u on compact M. The measure-preserving
+composition operators
+
+  K_u(t)f=f circle Phi_t
+
+form a strongly continuous unitary group on L2(M).
+Its Stone generator is the skew-adjoint closure
+of the transport derivative, whose action on
+smooth test functions is D_u.
+
+No assertion is made that the FULL viscous NSE
+velocity semiflow is unitary or invertible.
+
+STATUS = EXACT B_TIER WITH STANDARD FLOW/STONE
+FUNCTIONAL-ANALYTIC INPUT.
+
+THEOREM NDC-05: HERMITIAN_LIE_GENERATORS.
+
+On smooth common test functions define
+  T_u:=i hbar D_u,
+  hbar>0.
+
+Since D_u is skew-symmetric,
+T_u is symmetric on this test domain and
+admits the self-adjoint Stone realization
+associated with K_u(t).
+
+The algebraic operator identity is
+
+  [T_u,T_v]
+    =(i hbar)^2[D_u,D_v]
+    =-hbar^2 D_[u,v]
+    =i hbar T_[u,v].
+
+Thus
+  [T_u,T_v]=i hbar T_[u,v].
+
+This is formally identical in SHAPE to
+the standard Hermitian SM generator convention
+  [T_a,T_b]=i hbar f_ab^c T_c.
+
+However, the fluid algebra g_sigma is
+infinite-dimensional, while the standard
+local internal gauge Lie algebra
+  su(3)+su(2)+u(1)
+has finite dimension 12 (at each point).
+
+The equality is a representation of the
+FLUID Lie algebra. It is NOT an isomorphism
+of the fluid algebra with the SM gauge algebra.
+
+CAUTION: unbounded operator commutators are
+established on a common invariant smooth core.
+A theorem about globally defined commutators
+of closed self-adjoint operators would require
+additional domain-invariance conditions.
+
+STATUS = EXACT B_TIER ON SMOOTH COMMON DOMAIN.
+
+3. EXPLICIT NONZERO PERIODIC EXAMPLE
+-------------------------------------
+THEOREM NDC-06: NONTRIVIAL_TWO_MODE_COMMUTATOR.
+
+Let k,l in (2pi/L)Z\{0}. Set
+
+  u(x,y,z)=(sin(kz),0,0),
+  v(x,y,z)=(0,0,sin(lx)).
+
+Then
+  div u=div v=0, mean(u)=mean(v)=0.
+
+Their Lie bracket is
+
+  [u,v]
+    =(-k sin(lx) cos(kz),0,
+       l sin(kz) cos(lx)),
+
+which is nonzero and has zero divergence.
+
+For f(x,y,z)=cos(lx),
+
+  [D_u,D_v]f
+    = k*l sin(lx)^2 cos(kz)
+    = D_[u,v] f.
+
+The nonzero operator match is therefore
+not merely an abstract Jacobi identity.
+
+STATUS = EXACT B_TIER DIRECT DIFFERENTIATION.
+
+4. DISTINCT NSE NONLINEAR INTERACTION OPERATOR
+-----------------------------------------------
+THEOREM NDC-07: COMMUTATOR_VS_CROSS_ADVECTION.
+
+Define
+  B(u,v)=P_sigma((u dot grad)v)
+and the symmetric cross interaction
+  C(u,v)=B(u,v)+B(v,u).
+
+Then
+  [u,v]=B(u,v)-B(v,u)
+for u,v divergence-free, because the bracket
+is divergence-free so P_sigma[u,v]=[u,v].
+
+Hence
+
+  B(u,v)=1/2 (C(u,v)+[u,v]),
+  B(v,u)=1/2 (C(u,v)-[u,v]).
+
+The NSE self-advection B(u,u) is not determined
+by the antisymmetric bracket [u,u]=0.
+If two velocity layers are superposed, the
+symmetric C(u,v) is the interaction term
+in B(u+v,u+v); replacing it by [u,v]
+would be mathematically incorrect.
+
+For complex formal solenoidal Fourier modes
+u=a exp(i k dot x), v=b exp(i l dot x),
+
+  [u,v]
+   =i[(a dot l)b-(b dot k)a] exp(i(k+l)dot x),
+
+  C(u,v)
+   =i P_(k+l)[(a dot l)b+(b dot k)a]
+         exp(i(k+l)dot x),
+
+with P_(0)=I, P_m=I-mm^T/|m|^2 for m!=0.
+
+STATUS = EXACT B TIER.
+
+5. X-FOLD LAYER REPRESENTATION
+-------------------------------
+THEOREM NDC-08: PRODUCT_TRANSPORT_LIE_REPRESENTATION.
+
+Let X={1,...,N} finite. On
+  g_X=g_sigma^N
+and
+  K_X=L2(M;C)^N
+define
+
+  D_U:=direct_sum_i D_(u_i),
+  T_U:=i hbar D_U.
+
+Then
+
+  [D_U,D_V]=D_([U,V]_X),
+  [T_U,T_V]=i hbar T_([U,V]_X)
+
+on smooth test vectors, where the product
+bracket is componentwise.
+
+For X infinite, a direct-sum self-adjoint
+representation requires chosen summability
+and domain conditions; the pointwise algebra
+itself remains well-defined.
+
+A weighted velocity average
+  U -> sum_i w_i u_i
+is NOT in general a Lie algebra map, as proved
+in the frozen NSE_POWER_X_GROUP_STRUCTURE_B_TIER.
+Thus the product representation does not
+manufacture a single internal Standard Model
+gauge field automatically.
+
+STATUS = EXACT FINITE-LAYER B TIER.
+
+6. PRECISE SM MATCH / NONMATCH
+-------------------------------
+THEOREM NDC-09: FROZEN_ROW_SM01_CLASSIFICATION.
+
+Frozen SM-01:
+  [T_a,T_b]=i hbar f_ab^c T_c.
+
+Exact NSE counterpart:
+  [T_u,T_v]=i hbar T_[u,v].
+
+This proves an ABSTRACT Lie operator-representation
+pattern with Jacobi closure and a unitary transport
+realization (for fixed smooth divergence-free u).
+
+It does NOT prove:
+ - the finite-dimensional SM internal gauge algebra
+   is isomorphic to g_sigma;
+ - field-strength curvature is already present in NSE;
+ - fermionic anticommutation/BRST is native to NSE;
+ - conserved SM Noether charge equals NSE kinetic energy;
+ - the NSE nonlinear cross coupling is this commutator;
+ - viscous NSE evolution is a unitary quantum group;
+ - a microscopic electron-to-NSE force/energy match.
+
+The next independent port (NOT PROVED HERE) is
+  [D_u^A,D_v^A]-D_[u,v]^A=rho(F_A(u,v))
+for a DECLARED connection A. Its proof needs a
+representation and a gauge connection not supplied
+by purely hydrodynamic transport.
+
+STATUS = B_TIER STRUCTURAL MATCH ONLY.
+
+7. ROOT
+--------
+THEOREM NSE_DERIVATION_COMMUTATOR.
+
+Assume:
+ H1 flat periodic torus M and smooth real
+    divergence-free u,v;
+ H2 transport operators on smooth complex
+    scalar functions;
+ H3 hbar>0 for the Hermitian normalization.
+
+Then:
+ R1 [D_u,D_v]=D_[u,v];
+ R2 [u,v] is divergence-free and mean-zero;
+ R3 the Jacobi identity holds;
+ R4 T_u=i hbar D_u is a symmetric Lie
+    representation on the smooth common domain;
+ R5 for each fixed u, its measure-preserving
+    smooth complete flow gives a unitary
+    L2 transport group with a self-adjoint
+    Stone generator;
+ R6 the symmetric NSE cross-interaction is
+    distinct from the antisymmetric bracket;
+ R7 finite X inherits the componentwise
+    Lie representation.
+
+Proof: NDC-01..08.
+Classified against frozen SM-01 by NDC-09.
+
+TIER = B_TIER; no Lean/A-tier assertion.
+
+8. INDEX
+--------
+[x] NDC-01 TRANSPORT_COMMUTATOR
+[x] NDC-02 DIVERGENCE_FREE_BRACKET_CLOSURE
+[x] NDC-03 VECTOR_FIELD_JACOBI_VIA_DERIVATIONS
+[x] NDC-04 PERIODIC_TRANSPORT_SKEW_SYMMETRY
+[x] NDC-05 HERMITIAN_LIE_GENERATORS
+[x] NDC-06 NONTRIVIAL_TWO_MODE_COMMUTATOR
+[x] NDC-07 COMMUTATOR_VS_CROSS_ADVECTION
+[x] NDC-08 PRODUCT_TRANSPORT_LIE_REPRESENTATION
+[x] NDC-09 FROZEN_ROW_SM01_CLASSIFICATION
+[x] NDC-10 NSE_DERIVATION_COMMUTATOR_ROOT
+
+[ ] NDC-11 CONNECTION_COVARIANT_CURVATURE_PORT
+[ ] NDC-12 SELECTED_SM_REPRESENTATION_MATCH
+[ ] NDC-13 GAUGE_CURRENT_STRESS_MATCH
+[ ] NDC-14 MICROSCOPIC_PHYSICAL_SM_NSE_COUPLING
+[ ] NDC-15 EXTERNAL_LEAN_AXIOM_AUDIT
+
+9. FUTURE A-TIER PROOF SPINE (PREIDENTIFIED ONLY)
+-------------------------------------------------
+A. Abstract derivations D_u, linearity and commutator.
+B. Jacobi from algebra endomorphism commutator.
+C. Divergence/mean-zero closure, with periodic
+   integration by parts as named analytic premises.
+D. Self-adjoint/unitary flow generator as named
+   analytic endpoints (no fake imported Mathlib
+   theorem names).
+E. Real/complex Fourier mode identity.
+F. Independent symmetric cross-advection edge
+   and contrast to Lie bracket.
+G. Finite X componentwise sum representation.
+H. Deterministic root; external native compiler
+   and theorem-level standard-only axiom audit.
+
+NO LOCAL LEAN RUN. A_TIER NOT ESTABLISHED.
+
+10. LITERATURE
+---------------
+Arnold and Khesin, Topological Methods in Hydrodynamics,
+volume preserving diffeomorphisms and Euler-Arnold.
+Standard Stone theorem for strongly continuous unitary
+groups and generators.
+Previous frozen project artifact:
+  FROZEN_SM_NSE_OPERATOR_MATCH_REGISTER_B_TIER.txt
+
+FINAL:
+  MARKER = !
+  TIER = B_TIER_COMPLETE_EXACT_SCOPED_OPERATOR_IDENTITY
+  A_TIER = NOT_ESTABLISHED
+  SM_EQUIVALENCE = NOT ESTABLISHED
