@@ -613,6 +613,34 @@ gradient or a compensator is introduced.
 Thus a one-way Maxwell RESPONSE does NOT prove
 self-consistent, backreacting Maxwell–NSE coupling.
 
+A sharper local obstruction appears for a STATIC compensating
+charge background with J_bg=0. The spatially averaged
+electron current is nonzero:
+
+  mean(J_e)=(-2e/V)*[U_e e_z+(W/2)e_y].
+
+The mean Maxwell Ampere equation requires
+
+  d/dt mean(E)
+    =-mean(J_e)/epsilon_0
+
+on the periodic torus, because the spatial average
+of curl B vanishes. Thus a solution starting with
+mean(E)=0 develops a nonzero mean electric field
+immediately when U_e or W is nonzero.
+
+If the same charged current is interpreted as
+a dynamically responding fluid, the resulting mean
+electric Lorentz force GENERICALLY changes its
+constant drift. Therefore the unforced NSE
+semiconjugacy above is not also an exact fully
+backreacting Maxwell-NSE solution with this static
+background and no additional force/current support.
+
+A mobile compensating background can cancel mean
+current but then requires its own current,
+mechanical stress and energy accounting.
+
 The earlier frozen
   HELICAL_TWO_FLUID_MAXWELL_NSE_GLOBAL_B_TIER
 is a separate exact CLASSICAL two-way coupled
