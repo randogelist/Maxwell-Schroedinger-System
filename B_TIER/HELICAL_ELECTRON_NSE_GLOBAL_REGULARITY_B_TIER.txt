@@ -1,0 +1,255 @@
+HELICAL ONE-ELECTRON CURRENT: GLOBAL NSE REGULARITY
+B-TIER MATHEMATICAL DERIVATION
+=============================================
+
+STATUS
+------
+MARKER = !
+TIER = B_TIER
+ARTIFACT = HELICAL_ELECTRON_NSE_GLOBAL_REGULARITY_B_TIER
+ROOT_ENDPOINT = HELICAL_ELECTRON_CURRENT_NSE_GLOBAL_REGULAR
+BRANCH = b-tier-hull
+LEAN_STATUS = NOT_EMITTED
+A_TIER_STATUS = NOT_ESTABLISHED
+FORMAL_CLOSURE = NOT_ESTABLISHED
+LOCAL_LEAN_EXECUTIONS = 0
+
+The input function is the initial, divergence-free, mean-zero velocity obtained
+from the full Pauli probability current of a normalized, free, one-electron
+helical spinor by the Leray projection. Its NSE evolution is global and
+explicitly smooth for every amplitude and every viscosity nu>0. This is an
+NSE regularity result for a selected datum, not a self-consistent EMD theorem.
+
+1. DOMAIN AND ELECTRON INPUT
+----------------------------
+
+Let T_L^3 = (R/LZ)^3, L>0, m_e>0, hbar>0, nu>0,
+n in Z\{0}, k = 2*pi*n/L, and alpha in R.
+
+Define the normalized Pauli spinor
+
+  psi_e(z)
+    = [1/sqrt(2 L^3)] * (1, exp(i(kz+alpha)))^T.
+
+Its density is n_e = psi_e^dagger psi_e = L^(-3) and
+
+  integral_{T_L^3} n_e dx = 1.
+
+For vector potential A=0, the full Pauli probability current is
+
+  j_full
+    = (hbar/m_e) Im(psi_e^dagger grad psi_e)
+      + (hbar/(2 m_e)) curl(psi_e^dagger sigma psi_e).
+
+The transport contribution is
+
+  j_tr/n_e = U_e e_3,
+
+and the magnetization contribution is
+
+  j_spin/n_e = -U_e s_alpha,
+
+where
+
+  U_e := hbar*k/(2 m_e),
+  s_alpha(z) := (cos(kz+alpha), sin(kz+alpha), 0).
+
+Let P_{sigma,0} be the L2 orthogonal projection to divergence-free
+mean-zero real vector fields. Since s_alpha is mean zero, solenoidal,
+
+  a_e := P_{sigma,0}(j_full/n_e)
+       = -U_e s_alpha.
+
+Optional Gaussian filtering (not needed for regularity) is
+
+  a_{e,epsilon}
+    := exp((epsilon^2/4) Delta) a_e
+     = exp(-epsilon^2*k^2/4) a_e,
+
+with epsilon>=0. Write
+
+  A_epsilon := -U_e exp(-epsilon^2*k^2/4),
+
+so a_{e,epsilon} = A_epsilon s_alpha.
+
+2. SPATIAL IDENTITIES
+---------------------
+
+For any real amplitude A and k != 0, set
+
+  a(z) := A (cos(kz+alpha), sin(kz+alpha), 0).
+
+Then
+
+  div a = 0,
+  mean(a) = 0,
+  Delta a = -k^2 a,
+  (a dot grad)a = 0,
+  curl a = -k a.
+
+The nonlinear identity holds because a_3=0 and a depends only on z:
+
+  a dot grad = a_1 partial_x + a_2 partial_y,
+  partial_x a = partial_y a = 0.
+
+No smallness condition on A or on ||a||_2 is required.
+
+3. EXACT GLOBAL NSE SOLUTION
+----------------------------
+
+THEOREM HELICAL_ELECTRON_CURRENT_NSE_GLOBAL_REGULAR.
+
+For a=a_{e,epsilon} and every nu>0, define
+
+  u(t,x) := exp(-nu*k^2*t) a(x),  t>=0,
+  p(t,x) := p_0, p_0 constant.
+
+Then
+
+  partial_t u = -nu*k^2 u,
+  Delta u = -k^2 u,
+  (u dot grad)u = 0,
+  div u = 0.
+
+Therefore
+
+  partial_t u + (u dot grad)u + grad p = nu Delta u,
+  u(0)=a.
+
+All spatial and time derivatives exist and are continuous on
+[0,infinity) x T_L^3. In fact each component is a finite Fourier
+combination in z, so the solution is spatially entire for each t>=0.
+
+Hence
+
+  u in C^infty([0,infinity) x T_L^3),
+  Sing_t(u) = empty,
+  T_actual_regularity_gap = 0.
+
+STATUS = EXACT_B_TIER (MATHEMATICAL PROOF).
+
+4. NORM AND DECAY CERTIFICATES
+------------------------------
+
+With the unnormalized physical integral and spatial wave number k,
+
+  ||u(t)||_2^2
+    = L^3 A_epsilon^2 exp(-2 nu*k^2*t),
+
+  ||u(t)||_{dot H^s}^2
+    = L^3 |k|^(2s) A_epsilon^2 exp(-2 nu*k^2*t),
+
+for each s>=0 in the spectral Fourier norm convention. Consequently,
+
+  ||u(t)||_{dot H^s}
+    = L^(3/2) [hbar |k|^(s+1)/(2m_e)]
+      exp(-epsilon^2*k^2/4) exp(-nu*k^2*t).
+
+In particular, the unfiltered value is the formula with epsilon=0.
+With rho_f>0,
+
+  E_fluct(t) = (rho_f/2) L^3 A_epsilon^2 exp(-2 nu*k^2*t),
+
+  dE_fluct/dt = -2 nu*k^2 E_fluct(t).
+
+5. LERAY-HOPF UNIQUENESS
+------------------------
+
+The field u is a classical strong solution for all t>=0. Let v be an
+arbitrary Leray-Hopf solution with the same initial datum a. The
+standard relative-energy estimate on a finite interval [0,T] yields
+
+  ||v(t)-u(t)||_2^2
+   <= ||v(0)-u(0)||_2^2
+      exp(2 integral_0^t ||grad u(s)||_infinity ds)
+
+  = 0,
+
+since grad u is bounded (indeed, exponentially decaying) and the
+initial data coincide. Thus v=u for all t>=0 in the weak-solution
+continuity sense.
+
+This certifies global smoothness for every Leray-Hopf trajectory with
+this selected initial datum, not merely existence of one smooth path.
+
+STATUS = EXACT_B_TIER (WEAK-STRONG UNIQUENESS).
+
+6. OPTIONAL CONSTANT-MEAN/PHASE CLOCK
+--------------------------------------
+
+If the full probability-current velocity is used rather than the
+mean-zero projection, then
+
+  v_e(z) = U_e e_3 + a_e(z).
+
+The corresponding exact NSE solution is
+
+  u_full(t,z)
+    = U_e e_3
+      + exp(-nu*k^2*t) a_e(z-U_e*t),
+
+with constant pressure. The same conclusion of global smoothness
+holds, and the advected phase rate is
+
+  omega_adv = k U_e = hbar*k^2/(2m_e).
+
+For the freely evolving electron spinor,
+
+  psi_e(t,z)
+    = (1/sqrt(2L^3)) *
+      (1, exp(i(kz+alpha-omega_adv*t)))^T,
+
+the projected electron current has the same phase rate but DOES NOT
+have the dissipative amplitude factor exp(-nu*k^2*t).
+
+Therefore the time-dependent equality
+
+  u_NSE(t) = P_{sigma,0}(j_full[psi_e(t)]/n_e(t))
+
+is false for generic t>0 and nu>0. Only the initial profile equality
+and the phase frequency matching are exact. Full coupled dynamical
+EMD-to-NSE semiconjugacy remains open.
+
+7. QFB CUT-OFF IS NON-SHARP FOR THE INPUT
+-----------------------------------------
+
+For a=a_{e,epsilon}, the frozen periodic QFB expression reads
+
+  T_QFB(a,nu) = ||a||_2^4/(8*pi^2*nu^5)
+
+     = L^6*hbar^4*k^4*exp(-epsilon^2*k^2)
+       /(128*pi^2*m_e^4*nu^5).
+
+This quantity is strictly positive for n != 0 and finite epsilon,
+whereas every Leray-Hopf solution with that datum is globally smooth.
+Hence
+
+  T_actual_gap = 0 < T_QFB.
+
+The positive QFB window is a worst-case proof certificate bound, not a
+singular or physically uncertain time window for this example.
+
+8. ROOT ENDPOINT AND LIMITS
+----------------------------
+
+ROOT THEOREM.
+
+For all L>0, nu>0, epsilon>=0, integer n != 0, alpha real, and fixed
+m_e,hbar>0, the Gaussian-filtered projected full Pauli-current velocity
+a_{e,epsilon} above is a global regular NSE initial datum, and every
+Leray-Hopf solution with this datum equals the explicit heat-decaying
+helical NSE solution.
+
+STATUS = B_TIER COMPLETE MATHEMATICAL DERIVATION.
+
+OPEN PHYSICAL CLAIMS:
+
+  - the projected current must be justified as a physical fluid velocity;
+  - no exact sourced Einstein-Maxwell-Dirac solution is constructed;
+  - viscous decay is NSE dynamics, not free-electron unitary dynamics;
+  - a generic electron spinor need not produce this helical eigenprofile;
+  - no general 3D NSE regularity theorem for arbitrary L2 data follows.
+
+A_TIER_CANDIDATE = NOT PREPARED.
+A_TIER = NOT ESTABLISHED; no matching external Lean compiler and
+theorem-level axiom audit are present.
