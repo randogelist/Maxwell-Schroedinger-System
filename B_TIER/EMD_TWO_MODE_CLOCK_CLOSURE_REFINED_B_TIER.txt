@@ -1,0 +1,797 @@
+ONE-ELECTRON EMD / QR CLOCK CLOSURE
+TANGENCY, SIDEBANDS, AND PERSISTENCE — B-TIER DERIVATION
+========================================================
+
+STATUS
+------
+
+SIGNAL = !=! ON THE EXACT DRESSED REDUCED ORBIT
+MARKER = !
+TIER = CONDITIONAL_B_TIER
+ARTIFACT = EMD_TWO_MODE_CLOCK_CLOSURE_REFINED_B_TIER
+ROOT_ENDPOINT = ONE_ELECTRON_EMD_QR_CLOCK_CLOSURE_REFINED
+SOURCE_BRANCH = b-tier-hull
+LEAN_STATUS = NOT_EMITTED
+A_TIER_STATUS = NOT_ESTABLISHED
+FORMAL_CLOSURE = NOT_ESTABLISHED
+LOCAL_LEAN_EXECUTIONS = 0
+
+This document refines the one-electron EMD/QR clock chain by replacing the
+opaque premise FULL_EMD_TWO_MODE_INVARIANCE with explicit geometric and
+spectral conditions.
+
+The principal conclusions are:
+
+  (1) invariance of a proposed two-level EMD manifold is equivalent to
+      tangency of the full EMD evolution vector field;
+
+  (2) on an invariant symplectic CP1 manifold, the complete one-electron clock
+      is determined by the pullback Hamiltonian h(u,phi);
+
+  (3) rigid two-level phase evolution is equivalent to h being affine in the
+      population coordinate and independent of the relative phase;
+
+  (4) a raw two-Fourier-mode ansatz is generically not invariant under
+      self-consistent Maxwell or Einstein backreaction, because bilinear
+      sources generate difference modes and the field-matter coupling then
+      generates sidebands;
+
+  (5) exact physical clock synchronization therefore requires a dressed
+      nonlinear invariant CP1 manifold, not merely a linear span of two free
+      modes;
+
+  (6) leakage and detuning admit explicit finite-time error bounds.
+
+The reduced QR-TT clock theorem remains exact on its frozen reduced orbit.  The
+full sourced Einstein-Maxwell-Dirac realization remains conditional on the
+explicit tangency and dressed-orbit endpoints below.
+
+
+0. FROZEN ONE-ELECTRON SETTING
+------------------------------
+
+Let
+
+  P_EMD
+
+be a sufficiently regular Einstein-Maxwell-Dirac phase space after one fixed
+3+1 gauge choice.  A point contains the gravitational Cauchy data, Maxwell
+Cauchy data, and a Dirac spinor:
+
+  X = (h,K,A,E,Psi).
+
+Let
+
+  F_EMD : P_EMD -> T P_EMD
+
+be the gauge-fixed EMD evolution vector field.  Assume local uniqueness for the
+corresponding evolution equation
+
+  dX/dt = F_EMD(X).
+
+Freeze the one-electron sector by
+
+  N_Sigma[Psi] = 1,
+  Q_Sigma = -e.
+
+Let
+
+  O_1e := CP1
+
+be a proposed reduced one-electron clock manifold, and let
+
+  iota_1e : O_1e -> P_EMD
+
+be a smooth embedding whose image lies in the one-electron constraint surface.
+The embedding is allowed to be nonlinear:
+
+  iota_1e(z)
+    = (h_z,K_z,A_z,E_z,Psi_z).
+
+Thus the metric and electromagnetic fields may depend self-consistently on the
+projective matter coordinate z.
+
+On the standard nonpolar chart use
+
+  u in (0,1),
+  phi in R/(2 pi Z),
+
+and normalize
+
+  omega_FS = du wedge dphi,
+  integral_CP1 omega_FS = 2 pi.
+
+Assume the one-electron pullback symplectic form is
+
+  iota_1e^* Omega_EMD = hbar omega_FS.
+
+
+1. TANGENCY IS EQUIVALENT TO INVARIANCE
+---------------------------------------
+
+Choose a smooth splitting along the embedded manifold
+
+  T_{iota_1e(z)} P_EMD
+    = image(d iota_1e(z)) direct_sum N_z,
+
+and let
+
+  Pi_z^perp
+
+be the projection onto N_z.
+
+Define the normal evolution residual
+
+  R_tan(z)
+    := Pi_z^perp F_EMD(iota_1e(z)).
+
+THEOREM EMD_EMBEDDED_ORBIT_TANGENCY_IFF_INVARIANCE.
+
+Assume local uniqueness of the EMD flow.  Then the following are equivalent:
+
+  (i)  every EMD trajectory beginning in iota_1e(O_1e) remains in that image
+       on its interval of existence;
+
+  (ii) F_EMD is tangent to the image at every point;
+
+  (iii) R_tan(z)=0 for every z in O_1e.
+
+DERIVATION.
+
+If the image is invariant, differentiating an embedded trajectory shows that
+its velocity belongs to image(d iota_1e), hence R_tan=0.  Conversely, if the
+vector field is tangent, it defines a vector field X_1e on O_1e by
+
+  d iota_1e(X_1e)=F_EMD o iota_1e.
+
+The embedded integral curve of X_1e and the ambient EMD integral curve have the
+same initial data and velocity equation.  Local uniqueness makes them equal.
+
+STATUS = EXACT_CONDITIONAL_B_TIER.
+
+The condition is exact but does not itself construct iota_1e or prove the
+required well-posedness class.
+
+
+2. PULLBACK HAMILTONIAN
+-----------------------
+
+Assume P_EMD is symplectic on the reduced gauge-fixed sector, with symplectic
+form Omega_EMD and Hamiltonian H_EMD, and assume the tangency condition above.
+Define
+
+  h_1e := H_EMD o iota_1e.
+
+THEOREM EMD_PULLBACK_HAMILTONIAN_FLOW.
+
+The induced vector field X_1e on O_1e is the Hamiltonian vector field of h_1e
+with respect to
+
+  Omega_1e := iota_1e^*Omega_EMD.
+
+DERIVATION.
+
+For every tangent vector Y on O_1e,
+
+  Omega_1e(X_1e,Y)
+    = Omega_EMD(d iota_1e X_1e,d iota_1e Y)
+    = Omega_EMD(X_{H_EMD},d iota_1e Y)
+    = dH_EMD(d iota_1e Y)
+    = dh_1e(Y).
+
+Nondegeneracy of Omega_1e identifies X_1e with X_{h_1e}.
+
+STATUS = EXACT_CONDITIONAL_B_TIER.
+
+
+3. EXACT POPULATION AND PHASE EQUATIONS
+---------------------------------------
+
+Write
+
+  h_1e = h_1e(u,phi).
+
+With
+
+  Omega_1e = hbar du wedge dphi
+
+and convention
+
+  i_{X_h} Omega_1e = dh,
+
+THEOREM EMD_TWO_MODE_POPULATION_PHASE_EQUATIONS.
+
+The induced EMD clock satisfies
+
+  dot(u)
+    = (1/hbar) partial_phi h_1e,
+
+  dot(phi)
+    = -(1/hbar) partial_u h_1e.
+
+DERIVATION.
+
+For
+
+  X_h = dot(u) partial_u + dot(phi) partial_phi,
+
+one has
+
+  i_{X_h}(hbar du wedge dphi)
+    = hbar dot(u) dphi - hbar dot(phi) du.
+
+Equating this with
+
+  dh_1e
+    = partial_u h_1e du
+      + partial_phi h_1e dphi
+
+gives the formulas.
+
+STATUS = EXACT_B_TIER.
+
+
+4. RIGID TWO-LEVEL CLOCK CRITERION
+----------------------------------
+
+Fix a nonzero target energy gap
+
+  Delta_E := E_1-E_0.
+
+THEOREM EMD_RIGID_CLOCK_AFFINE_HAMILTONIAN_IFF.
+
+On a connected nonpolar chart, the following are equivalent:
+
+  (i)  every induced trajectory has constant population u and the same rigid
+       relative-phase rate
+
+         dot(phi) = -Delta_E/hbar;
+
+  (ii)
+
+         partial_phi h_1e = 0,
+         partial_u h_1e = Delta_E;
+
+  (iii) there exists a constant C such that
+
+         h_1e(u,phi) = C + Delta_E u.
+
+DERIVATION.
+
+Use the exact population and phase equations.  Constant population for every
+point is equivalent to partial_phi h_1e=0.  The common phase rate is equivalent
+to partial_u h_1e=Delta_E.  Integration on a connected chart gives the affine
+form, and the reverse implication is immediate.
+
+STATUS = EXACT_B_TIER.
+
+Thus a nonlinear invariant CP1 manifold may still fail to provide a rigid
+clock if its pullback Hamiltonian is nonlinear in u or depends on phi.
+
+
+5. OPERATOR-LEVEL SUFFICIENT GATE
+---------------------------------
+
+Let
+
+  V := span_C{Psi_0,Psi_1}
+
+with orthogonal projection P and complement projection Q=I-P.  Suppose the
+spinor equation along a reconstructed field configuration has the form
+
+  i hbar partial_t Psi
+    = H_eff[Psi] Psi,
+
+where H_eff[Psi] is self-adjoint on the declared domain.
+
+For Psi in V define the two-by-two matrix
+
+  M_ab(Psi)
+    := <Psi_a,H_eff[Psi]Psi_b>.
+
+THEOREM EMD_OPERATOR_LEAKAGE_DIAGONAL_GAP_GATE.
+
+Assume for every normalized Psi in V:
+
+  (A) Q H_eff[Psi]Psi = 0;
+
+  (B) M_01(Psi)=M_10(Psi)=0;
+
+  (C) M_11(Psi)-M_00(Psi)=Delta_E,
+      independent of Psi.
+
+Then V is invariant for the spinor equation, the modal populations are
+constant, and the relative phase satisfies
+
+  dot(phi)=-Delta_E/hbar.
+
+DERIVATION.
+
+Condition (A) removes normal spinor leakage.  Conditions (B) and self-adjointness
+make the projected coefficient equation diagonal:
+
+  i hbar dot(c_a)=M_aa(Psi)c_a.
+
+Hence |c_a| is constant.  The relative phase derivative is
+
+  -(M_11-M_00)/hbar=-Delta_E/hbar.
+
+STATUS = EXACT_CONDITIONAL_B_TIER.
+
+This theorem controls only the spinor component.  Full EMD invariance also
+requires tangency of the Maxwell and gravitational components of iota_1e.
+
+
+6. RAW TWO-FOURIER-MODE SIDEBAND OBSTRUCTION
+--------------------------------------------
+
+Consider a flat-background Fourier ansatz on a spatial torus:
+
+  Psi(x)
+    = c_0 u_0 exp(i k_0 dot x)
+      + c_1 u_1 exp(i k_1 dot x),
+
+where
+
+  k_0 != k_1,
+  c_0 c_1 != 0.
+
+Set
+
+  d := k_1-k_0 != 0.
+
+The Dirac current is quadratic:
+
+  j^mu
+    = q_e c bar(Psi) gamma^mu Psi.
+
+THEOREM EMD_TWO_FOURIER_MODE_SOURCE_SUPPORT.
+
+The Fourier support of j is contained in
+
+  {0,+d,-d}.
+
+If at least one cross bilinear
+
+  bar(u_0) gamma^mu u_1
+
+is nonzero, then the corresponding current component contains a nonzero mode at
++d and its conjugate mode at -d.
+
+DERIVATION.
+
+Expanding bar(Psi)gamma^mu Psi yields two diagonal terms with zero wave number
+and two cross terms proportional to
+
+  exp(+i d dot x),
+  exp(-i d dot x).
+
+STATUS = EXACT_B_TIER.
+
+Assume the Maxwell response contains corresponding potential modes
+
+  A_{+d} exp(i d dot x),
+  A_{-d} exp(-i d dot x).
+
+THEOREM EMD_TWO_FOURIER_MODE_SIDEBAND_GENERATION.
+
+The product A Psi contains the wave numbers
+
+  k_0,
+  k_1,
+  2 k_0-k_1,
+  2 k_1-k_0.
+
+For k_0!=k_1, the last two are distinct from both k_0 and k_1.  Therefore the
+raw two-mode span is not invariant whenever the corresponding sideband
+coefficients are nonzero.
+
+DERIVATION.
+
+The +d field mode multiplied by the k_1 matter mode gives
+
+  k_1+d=2k_1-k_0.
+
+The -d field mode multiplied by the k_0 matter mode gives
+
+  k_0-d=2k_0-k_1.
+
+The remaining products return k_0 or k_1.
+
+STATUS = EXACT_B_TIER.
+
+The Einstein stress tensor is also bilinear and generates the same difference
+modes.  Metric and spin-connection feedback can therefore create the same
+sideband lattice.
+
+COROLLARY EMD_RAW_TWO_MODE_GENERIC_NONINVARIANCE.
+
+A self-consistent two-Fourier-mode EMD sector is generically noninvariant.
+Exact closure requires at least one of:
+
+  cross-bilinear cancellation;
+  vanishing action of the generated field modes on the sideband amplitudes;
+  a symmetry-protected consistent truncation;
+  an external fixed-field approximation;
+  a nonlinear dressed invariant manifold containing the required harmonics.
+
+STATUS = EXACT_B_TIER_SCOPE_STATEMENT.
+
+The word generic refers to the nonvanishing of the explicitly displayed cross
+and sideband coefficients.  The theorem does not exclude exceptional
+symmetry-protected configurations.
+
+
+7. DRESSED TWO-LEVEL MANIFOLD
+-----------------------------
+
+Define a dressed one-electron clock manifold by a nonlinear embedding
+
+  iota_dress : CP1 -> P_EMD,
+
+  z |-> (h_z,K_z,A_z,E_z,Psi_z),
+
+where the fields and spinor may contain all harmonics required by
+self-consistency, while the reduced physical orbit remains two-dimensional.
+
+THEOREM EMD_DRESSED_TWO_LEVEL_CLOCK_GATE.
+
+Assume:
+
+  D1. iota_dress^*Omega_EMD=hbar omega_FS;
+
+  D2. R_tan(z)=0 for every z;
+
+  D3. H_EMD o iota_dress=C+Delta_E u;
+
+  D4. N_Sigma[Psi_z]=1 and Q_Sigma=-e for every z.
+
+Then the full EMD evolution preserves the dressed manifold and induces the
+complete rigid clock
+
+  u(t)=u(0),
+
+  phi(t)=phi(0)-Delta_E t/hbar
+
+on every common interval of the ambient and reduced flows.
+
+STATUS = EXACT_CONDITIONAL_B_TIER.
+
+This theorem replaces the earlier abstract invariant-two-mode premise by the
+explicit tangency and affine-Hamiltonian obligations D1-D4.
+
+
+8. MATCHING TO THE QR-TT CLOCK
+------------------------------
+
+Let the reduced QR-TT orbit have
+
+  Omega_QR=K_QR omega_FS,
+
+  H_QR=C_QR+K_QR Delta_omega u.
+
+Let
+
+  iota_clock(u,phi)=(u,phi+phi_*).
+
+THEOREM EMD_QR_DRESSED_CLOCK_SYNCHRONIZATION.
+
+Under D1-D4, the following conditions
+
+  K_QR=hbar,
+
+  Delta_omega=Delta_E/hbar,
+
+  phi_QR(t_0)=phi_EMD(t_0)+phi_*
+
+imply
+
+  iota_clock o Phi_t^EMD
+    = Phi_t^QR o iota_clock
+
+on every common interval of existence.
+
+Equivalently,
+
+  phi_QR(t)=phi_EMD(t)+phi_*
+
+modulo 2pi.
+
+STATUS = CONDITIONAL_B_TIER_WITH_EXPLICIT_CLOSURE_GATES.
+
+SIGNAL.
+
+  !=! CLOCKS_SYNCHRONIZED_ON_THE_EXACT_DRESSED_REDUCED_ORBIT.
+
+This statement does not claim that D1-D4 have been discharged for the full
+Einstein-Maxwell-Dirac equations.
+
+
+9. APPROXIMATE TANGENCY AND FINITE-TIME PERSISTENCE
+---------------------------------------------------
+
+Let X(t) be an exact ambient solution
+
+  dot(X)=F_EMD(X),
+
+and let Y(t)=iota_dress(z(t)) be a reduced approximate trajectory with residual
+
+  r(t):=dot(Y)-F_EMD(Y).
+
+Assume on a common tubular neighborhood:
+
+  ||F_EMD(X)-F_EMD(Y)|| <= L ||X-Y||,
+
+  ||r(t)|| <= delta,
+
+and X(0)=Y(0).
+
+THEOREM EMD_APPROXIMATE_TANGENCY_GRONWALL_BOUND.
+
+For L>0,
+
+  ||X(t)-Y(t)||
+    <= (delta/L)(exp(L|t|)-1).
+
+For L=0,
+
+  ||X(t)-Y(t)|| <= delta |t|.
+
+DERIVATION.
+
+The difference Z=X-Y satisfies
+
+  dot(Z)=F_EMD(X)-F_EMD(Y)-r.
+
+Thus
+
+  d||Z||/dt <= L||Z||+delta,
+
+and Gronwall's inequality gives the stated estimate.
+
+STATUS = EXACT_CONDITIONAL_B_TIER.
+
+Let Phi be a phase observable that is C_Phi-Lipschitz on the tubular
+neighborhood, and let the reduced QR/EMD rate detuning satisfy
+
+  |Delta_omega-Delta_E/hbar| <= eta.
+
+COROLLARY EMD_QR_CLOCK_PERSISTENCE_BOUND.
+
+With matched initial phase,
+
+  dist_S1(phi_QR(t),Phi(X(t)))
+
+  <= eta |t|
+     + C_Phi (delta/L)(exp(L|t|)-1)
+
+for L>0, with the evident delta|t| replacement at L=0.
+
+STATUS = EXACT_CONDITIONAL_B_TIER.
+
+Thus exact synchronization corresponds to
+
+  delta=0,
+  eta=0.
+
+Approximate synchronization has a finite tolerance horizon determined by the
+explicit bound.
+
+
+10. REFINED DEFECT FUNCTIONAL
+-----------------------------
+
+Define nonnegative defects
+
+  D_tan
+    := sup_z ||R_tan(z)||^2,
+
+  D_aff
+    := sup_z
+       [ |partial_phi h_1e(z)|^2
+         + |partial_u h_1e(z)-Delta_E|^2 ],
+
+  D_action
+    := |K_QR-hbar|^2/hbar^2,
+
+  D_rate
+    := |Delta_omega-Delta_E/hbar|^2/omega_*^2,
+
+  D_phase
+    := dist_S1(phi_QR(t_0),phi_EMD(t_0)+phi_*)^2.
+
+Define
+
+  D_total
+    := D_tan+D_aff+D_action+D_rate+D_phase.
+
+THEOREM EMD_QR_CLOCK_DEFECT_ZERO_IFF_EXPLICIT_GATES.
+
+  D_total=0
+
+if and only if the tangency, affine-Hamiltonian, action, rate, and initial-phase
+matching gates all hold.
+
+For tau>0,
+
+  Q_tau := exp(-tau D_total)
+
+converges pointwise to 1 on exact synchronized data and to 0 on every fixed
+data set with nonzero defect.
+
+STATUS = EXACT_B_TIER.
+
+This scalar filter is not a quantum projector until a self-adjoint operator
+realization and spectral hypotheses are supplied.
+
+
+11. ROOT ENDPOINT
+-----------------
+
+THEOREM ONE_ELECTRON_EMD_QR_CLOCK_CLOSURE_REFINED.
+
+Assume:
+
+  H1. a locally unique gauge-fixed one-electron EMD evolution;
+
+  H2. a dressed embedding iota_dress:CP1->P_EMD satisfying D1-D4;
+
+  H3. the explicit reduced QR-TT clock orbit;
+
+  H4. action matching K_QR=hbar;
+
+  H5. spectral matching Delta_omega=Delta_E/hbar;
+
+  H6. matched initial phase modulo a fixed offset phi_*.
+
+Then the dressed one-electron EMD orbit is invariant, its induced Hamiltonian
+is a rigid two-level clock, and
+
+  iota_clock o Phi_t^EMD
+    = Phi_t^QR o iota_clock
+
+on every common interval of existence.
+
+A raw linear span of two distinct Fourier modes does not generally satisfy H2,
+because the self-consistent EMD sources generate explicit sidebands.
+
+STATUS = CONDITIONAL_B_TIER.
+
+SIGNAL.
+
+  !=! EXACT_CLOCK_SYNCHRONIZATION_AFTER_DRESSED_TANGENCY_CLOSURE.
+
+
+12. ENDPOINT REGISTER
+---------------------
+
+[x] EMDCLK-01  EMD_EMBEDDED_ORBIT_TANGENCY_IFF_INVARIANCE
+                EXACT_CONDITIONAL_B_TIER
+
+[x] EMDCLK-02  EMD_PULLBACK_HAMILTONIAN_FLOW
+                EXACT_CONDITIONAL_B_TIER
+
+[x] EMDCLK-03  EMD_TWO_MODE_POPULATION_PHASE_EQUATIONS
+                EXACT_B_TIER
+
+[x] EMDCLK-04  EMD_RIGID_CLOCK_AFFINE_HAMILTONIAN_IFF
+                EXACT_B_TIER
+
+[x] EMDCLK-05  EMD_OPERATOR_LEAKAGE_DIAGONAL_GAP_GATE
+                EXACT_CONDITIONAL_B_TIER
+
+[x] EMDCLK-06  EMD_TWO_FOURIER_MODE_SOURCE_SUPPORT
+                EXACT_B_TIER
+
+[x] EMDCLK-07  EMD_TWO_FOURIER_MODE_SIDEBAND_GENERATION
+                EXACT_B_TIER
+
+[x] EMDCLK-08  EMD_RAW_TWO_MODE_GENERIC_NONINVARIANCE
+                EXACT_B_TIER_SCOPE_STATEMENT
+
+[x] EMDCLK-09  EMD_DRESSED_TWO_LEVEL_CLOCK_GATE
+                EXACT_CONDITIONAL_B_TIER
+
+[x] EMDCLK-10  EMD_QR_DRESSED_CLOCK_SYNCHRONIZATION
+                CONDITIONAL_B_TIER_WITH_EXPLICIT_CLOSURE_GATES
+
+[x] EMDCLK-11  EMD_APPROXIMATE_TANGENCY_GRONWALL_BOUND
+                EXACT_CONDITIONAL_B_TIER
+
+[x] EMDCLK-12  EMD_QR_CLOCK_PERSISTENCE_BOUND
+                EXACT_CONDITIONAL_B_TIER
+
+[x] EMDCLK-13  EMD_QR_CLOCK_DEFECT_ZERO_IFF_EXPLICIT_GATES
+                EXACT_B_TIER
+
+[x] EMDCLK-14  ONE_ELECTRON_EMD_QR_CLOCK_CLOSURE_REFINED
+                CONDITIONAL_B_TIER
+
+[ ] EMDCLK-15  DRESSED_EMD_CP1_EMBEDDING_CONSTRUCTION
+                OPEN_DECISIVE
+
+[ ] EMDCLK-16  DRESSED_EMD_TANGENCY_VERIFICATION
+                OPEN_DECISIVE
+
+[ ] EMDCLK-17  DRESSED_EMD_AFFINE_HAMILTONIAN_VERIFICATION
+                OPEN_DECISIVE
+
+[ ] EMDCLK-18  GLOBAL_SOURCED_COMMON_INTERVAL
+                OPEN_ANALYTIC
+
+
+13. DEPENDENCY SPINE
+--------------------
+
+  local uniqueness + embedded manifold
+    -> EMDCLK-01.
+
+  EMDCLK-01 + symplectic Hamiltonian EMD sector
+    -> EMDCLK-02
+    -> EMDCLK-03
+    -> EMDCLK-04.
+
+  projected spinor operator conditions
+    -> EMDCLK-05.
+
+  two Fourier matter modes
+    -> EMDCLK-06
+    -> EMDCLK-07
+    -> EMDCLK-08.
+
+  nonlinear dressed embedding
+  + EMDCLK-01
+  + EMDCLK-04
+    -> EMDCLK-09.
+
+  EMDCLK-09
+  + QR-TT reduced orbit
+  + action/rate/phase matching
+    -> EMDCLK-10
+    -> EMDCLK-14.
+
+  Lipschitz ambient flow + residual bound
+    -> EMDCLK-11
+    -> EMDCLK-12.
+
+  explicit defects
+    -> EMDCLK-13.
+
+
+14. CLOSURE CLASSIFICATION
+--------------------------
+
+EXACT_B_TIER:
+
+  EMD_TWO_MODE_POPULATION_PHASE_EQUATIONS
+  EMD_RIGID_CLOCK_AFFINE_HAMILTONIAN_IFF
+  EMD_TWO_FOURIER_MODE_SOURCE_SUPPORT
+  EMD_TWO_FOURIER_MODE_SIDEBAND_GENERATION
+  EMD_RAW_TWO_MODE_GENERIC_NONINVARIANCE
+  EMD_QR_CLOCK_DEFECT_ZERO_IFF_EXPLICIT_GATES.
+
+EXACT_CONDITIONAL_B_TIER:
+
+  EMD_EMBEDDED_ORBIT_TANGENCY_IFF_INVARIANCE
+  EMD_PULLBACK_HAMILTONIAN_FLOW
+  EMD_OPERATOR_LEAKAGE_DIAGONAL_GAP_GATE
+  EMD_DRESSED_TWO_LEVEL_CLOCK_GATE
+  EMD_QR_DRESSED_CLOCK_SYNCHRONIZATION
+  EMD_APPROXIMATE_TANGENCY_GRONWALL_BOUND
+  EMD_QR_CLOCK_PERSISTENCE_BOUND
+  ONE_ELECTRON_EMD_QR_CLOCK_CLOSURE_REFINED.
+
+OPEN DECISIVE ENDPOINTS:
+
+  DRESSED_EMD_CP1_EMBEDDING_CONSTRUCTION
+  DRESSED_EMD_TANGENCY_VERIFICATION
+  DRESSED_EMD_AFFINE_HAMILTONIAN_VERIFICATION
+  GLOBAL_SOURCED_COMMON_INTERVAL.
+
+FORMAL STATUS:
+
+  B_TIER only.
+  Lean files are not emitted.
+  A_TIER is not established.
+  FORMAL_CLOSURE is not established.
+  UNCONDITIONAL_CLOSURE is not established.
