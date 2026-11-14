@@ -512,6 +512,52 @@ the obstruction GRH-07 applies.
 
 STATUS = EXACT B_TIER SPECTRAL/INITIAL SCALE.
 
+8B. TWO COMMUTING SPATIAL SYMMETRIES
+-------------------------------------
+THEOREM GRH-08B: TWO_KILLING_EINSTEIN_MAXWELL_DEVELOPMENT.
+
+The explicit Einstein–Maxwell constraint data of GRH-04
+depend on z alone:
+  Lie_(partial_x) h=Lie_(partial_y) h=0,
+  Lie_(partial_x) K=Lie_(partial_y) K=0,
+  Lie_(partial_x) E=Lie_(partial_y) E=0,
+  Lie_(partial_x) B=Lie_(partial_y) B=0.
+
+The spatial translations in x and y act by
+commuting T^2 isometries preserving all initial data.
+
+Under standard smooth Einstein–Maxwell Cauchy
+well-posedness and uniqueness up to diffeomorphism,
+each initial-data isometry induces an isometry of
+the maximal globally hyperbolic development
+compatible with the embedded Cauchy surface.
+
+Thus the development can be chosen to have
+two commuting spatial Killing fields,
+corresponding to translations in x and y.
+This is a symmetry statement, NOT a claim
+that the evolving metric stays spatially flat
+or that the spacetime is geodesically complete.
+
+The magnetic field's helical z-dependence
+may generate nontrivial z-dependent metric
+and field components under evolution. The
+two missing x/y directions remain symmetry
+directions if the full matter sources also
+preserve them.
+
+Analogy with NSE:
+The same helical profiles lie in a restricted
+2D3C/one-coordinate-dependent regular NSE
+sector. However, global regularity of a
+specified NSE mode does not imply Einstein–
+Maxwell geodesic completeness or a smooth
+coupled GR/SM/NSE evolution.
+
+STATUS = CONDITIONAL B_TIER ON STANDARD
+EINSTEIN–MAXWELL UNIQUENESS/SYMMETRY
+PROPAGATION THEOREMS.
+
 9. GR CLOCK / ELECTRON / NSE LIMITS
 -----------------------------------
 GRH-09: PHYSICAL_COUPLING_GATE.
@@ -599,6 +645,7 @@ A_TIER = NOT ESTABLISHED.
 [x] GRH-07 FLAT_TORUS_MEAN_MOMENTUM_OBSTRUCTION
 [x] GRH-07B TWO_ELECTRON_EXPECTED_MOMENTUM_MEAN_OBSTRUCTION
 [x] GRH-08 MODE_RESOLVED_GR_SHEAR_RESPONSE
+[x] GRH-08B TWO_KILLING_EINSTEIN_MAXWELL_DEVELOPMENT
 [x] GRH-09 PHYSICAL_COUPLING_GATE
 [x] GRH-10 GR_HELICAL_SOURCED_ADM_CONSTRAINT_WITNESS_ROOT
 
