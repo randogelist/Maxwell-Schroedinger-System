@@ -38,12 +38,48 @@ epsilon = 2 l_P
 
 under same-orbit identification and symplectic matching.
 
+## Exact nonlinear CMC gravity entry
+
+- [`GR_CMC_NONLINEAR_ENTRY_B_TIER.txt`](GR_CMC_NONLINEAR_ENTRY_B_TIER.txt) — explicit circular Maxwell mode, norm-preserving TT lift, exact nonlinear vacuum initial data, mean-curvature backreaction, CMC conformal completion, gauge audit, and nonlinear symplectic-completion gate.
+- [`GR_CMC_NONLINEAR_ENTRY_ENDPOINT_INDEX.md`](GR_CMC_NONLINEAR_ENTRY_ENDPOINT_INDEX.md) — nonlinear-entry endpoint register.
+
+The exact vacuum data are
+
+```text
+g = delta
+K = sigma_epsilon +/- (s_epsilon/sqrt(6))*delta
+```
+
+with
+
+```text
+s_epsilon = s*exp(-epsilon^2 k^2/4)
+tr K = +/-sqrt(3/2)*s_epsilon.
+```
+
+They satisfy the full vacuum constraint equations pointwise.  The explicit family has fixed spatial metric, so its ADM symplectic pullback is zero.  Therefore exact nonlinear constraint existence and nonzero `CP1` action area are distinct endpoints.
+
+The decisive continuation is
+
+```text
+GR_NONLINEAR_SYMPLECTIC_COMPLETION:
+I_epsilon : CP1 -> P_GR^red
+I_epsilon^*Omega_GR^red
+  = kappa_GR*(c^3 epsilon^2/G)*omega_FS.
+```
+
+Only after this endpoint and same-orbit matching does
+
+```text
+epsilon = l_P/sqrt(kappa_GR)
+```
+
+follow.  The historical value `epsilon=2l_P` still requires `kappa_GR=1/4`.
+
 ## Validation and obligations
 
 - [`ENDPOINT_INDEX.md`](ENDPOINT_INDEX.md)
 - [`OBLIGATION_GRAPH.md`](OBLIGATION_GRAPH.md)
 - [`VALIDATION_ENDPOINTS.md`](VALIDATION_ENDPOINTS.md)
 
-The nonlinear Einstein reduction, linearization validity, same-orbit matching,
-and geometric selection of the coefficient `1/4` remain explicit unresolved
-premises. Prepared mathematics does not establish A-tier status.
+The nonlinear reduced symplectic orbit, same-orbit matching, geometric selection of the coefficient `1/4`, general source imports, and cross-adapter `MS_TO_NSE_GERM` remain explicit unresolved premises. Prepared mathematics does not establish A-tier status.
