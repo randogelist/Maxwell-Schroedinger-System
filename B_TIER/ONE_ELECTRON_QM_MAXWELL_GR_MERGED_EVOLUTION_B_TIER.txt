@@ -1,0 +1,718 @@
+ONE-ELECTRON QM-MAXWELL-GR MERGED OPERATOR EVOLUTION
+KOOPMAN-LIOUVILLE GRAPH REDUCTION — B-TIER DERIVATION
+=====================================================
+
+STATUS
+------
+
+SIGNAL = !=! ON THE FROZEN SYNCHRONIZED REDUCED ORBIT
+MARKER = !
+TIER = CONDITIONAL_B_TIER
+ARTIFACT = ONE_ELECTRON_QM_MAXWELL_GR_MERGED_EVOLUTION_B_TIER
+ROOT_ENDPOINT = ONE_ELECTRON_QM_MAXWELL_GR_MERGED_EVOLUTION
+OPERATOR_ENDPOINT = TRISECTOR_KOOPMAN_LIOUVILLIAN
+SOURCE_BRANCH = b-tier-hull
+LEAN_STATUS = NOT_EMITTED
+A_TIER_STATUS = NOT_ESTABLISHED
+FORMAL_CLOSURE = NOT_ESTABLISHED
+LOCAL_LEAN_EXECUTIONS = 0
+
+This document constructs one merged reduced object carrying:
+
+  one-electron quantum matter;
+  the self-consistent Maxwell readout;
+  the reduced gravitational/QR readout;
+  one common time evolution;
+  one Koopman-Liouville generator on observables.
+
+The construction does not identify unlike field types.  The quantum density
+operator, Maxwell two-form, and reduced GR geometry remain distinct readouts of
+one common reduced orbit.  The operator unification occurs on the algebra of
+observables of that orbit.
+
+The exact reduced chain is
+
+  dressed invariant one-electron EMD orbit
+  + reduced QR same-orbit realization
+  + action matching
+  + spectral matching
+  -> common CP1 Hamiltonian flow
+  -> one merged graph orbit
+  -> one Koopman unitary group
+  -> synchronized tri-sector operator subspace.
+
+Construction of the dressed nonlinear EMD orbit and its persistence inside the
+full sourced nonlinear Einstein-Maxwell-Dirac equations remain explicit
+premises.
+
+
+0. FROZEN REDUCED REGIME
+------------------------
+
+Let
+
+  O := CP1.
+
+On the standard nonpolar chart write
+
+  u in (0,1),
+  phi in R/(2 pi Z),
+
+and normalize
+
+  omega_FS := du wedge dphi,
+  integral_O omega_FS = 2 pi.
+
+Freeze the one-electron sector by
+
+  N_Sigma[Psi] = 1,
+  Q_Sigma = -e.
+
+Assume a dressed one-electron EMD embedding
+
+  iota_EMD : O -> P_EMD,
+
+  iota_EMD(z)
+    = (h_z,K_z,A_z,E_z,Psi_z),
+
+whose image lies in the EMD constraint surface and is invariant under the
+chosen gauge-fixed EMD evolution.
+
+Define the three gauge-reduced readouts
+
+  iota_QM(z) := Gamma_z
+              := |Psi_z><Psi_z|,
+
+  iota_M(z)  := F_z := dA_z,
+
+  iota_GR(z) := gamma_z
+              := the selected reduced diffeomorphism class of (h_z,K_z).
+
+The quantum readout uses the rank-one density operator so that a common global
+spinor phase is removed.  The Maxwell readout uses F rather than A so that U(1)
+gauge is removed.  The GR readout is taken after the declared gravitational
+gauge quotient.
+
+Assume the pullback EMD symplectic form and Hamiltonian are
+
+  iota_EMD^* Omega_EMD = hbar omega_FS,
+
+  h := H_EMD o iota_EMD
+     = C + Delta_E u,
+
+with
+
+  Delta_E != 0.
+
+Define
+
+  omega := Delta_E/hbar.
+
+With the convention
+
+  i_{X_h}(hbar omega_FS) = dh,
+
+one obtains
+
+  X_h = -omega partial_phi.
+
+The complete reduced flow is therefore
+
+  Phi_t(u,phi)
+    = (u, phi-omega t)
+
+for every real t.
+
+
+1. MERGED GRAPH OBJECT
+----------------------
+
+Define the merged state-readout map
+
+  Z_merge : O ->
+    Dens_1(H_e) x Maxwell x P_GR^red,
+
+  Z_merge(z)
+    := (Gamma_z,F_z,gamma_z).
+
+Define the merged orbit
+
+  O_merge := image(Z_merge).
+
+THEOREM MERGED_GRAPH_CARRIER.
+
+If each readout separates points of the declared physical reduced orbit jointly,
+then Z_merge identifies O with O_merge.  Every point of O_merge represents one
+and the same reduced physical state through three sector readouts:
+
+  QM      : Gamma_z;
+  Maxwell : F_z;
+  GR/QR   : gamma_z.
+
+STATUS = EXACT_CONDITIONAL_B_TIER.
+
+No equality such as Gamma_z=F_z or F_z=gamma_z is asserted.  The unification is
+the graph relation over the common coordinate z.
+
+
+2. ONE MERGED TIME EVOLUTION
+----------------------------
+
+Assume sector-flow intertwining:
+
+  Gamma_{Phi_t z}
+    = U_QM(t) Gamma_z U_QM(t)^*;
+
+  F_{Phi_t z}
+    = Phi_M^t(F_z);
+
+  gamma_{Phi_t z}
+    = Phi_GR^t(gamma_z).
+
+The first identity is the one-electron projective unitary evolution.  The
+second and third identities are the Maxwell and reduced-GR projections of the
+same dressed EMD trajectory.
+
+Define
+
+  Z_merge(t;z)
+    := Z_merge(Phi_t z).
+
+THEOREM MERGED_SECTOR_EVOLUTION.
+
+Under the invariant dressed-orbit and sector-intertwining premises,
+
+  Z_merge(t;z)
+    = (
+        U_QM(t) Gamma_z U_QM(t)^*,
+        Phi_M^t(F_z),
+        Phi_GR^t(gamma_z)
+      ).
+
+Thus all three sector readouts evolve under one real parameter t and one base
+flow Phi_t.
+
+STATUS = EXACT_CONDITIONAL_B_TIER.
+
+This is the state-level merged object in the frozen reduced regime.
+
+
+3. MERGED OBSERVABLE ALGEBRA
+----------------------------
+
+Let
+
+  A_QM, A_M, A_GR
+
+be selected bounded observable algebras on the three readout spaces.  Pull them
+back to O:
+
+  A_QM^O := {a o iota_QM : a in A_QM},
+
+  A_M^O  := {a o iota_M  : a in A_M},
+
+  A_GR^O := {a o iota_GR : a in A_GR}.
+
+Define the merged observable algebra
+
+  A_merge
+    := alg^*(A_QM^O union A_M^O union A_GR^O),
+
+with C-star completion whenever the chosen observables are bounded.
+
+Define the observable evolution
+
+  alpha_t(f) := f o Phi_t.
+
+THEOREM MERGED_OBSERVABLE_AUTOMORPHISM.
+
+The family alpha_t is a one-parameter group of star-automorphisms of A_merge.
+If each sector readout intertwines its sector flow with Phi_t, then alpha_t
+restricts to the correct Heisenberg/transport evolution on each pulled-back
+sector algebra.
+
+STATUS = EXACT_CONDITIONAL_B_TIER.
+
+Hence QM, Maxwell, and GR observables are evolved by one automorphism group
+without identifying their semantic types.
+
+
+4. COMMON KOOPMAN-LIOUVILLE OPERATOR
+------------------------------------
+
+Let
+
+  mu_FS := omega_FS/(2 pi)
+
+be the normalized symplectic area measure on O, and define
+
+  K := L^2(O,mu_FS).
+
+Since Phi_t is Hamiltonian, it preserves mu_FS.  Define the Koopman operators
+
+  (U_merge(t) f)(z)
+    := f(Phi_t z).
+
+THEOREM TRISECTOR_KOOPMAN_UNITARY_GROUP.
+
+The family U_merge(t) is a strongly continuous unitary group on K.  On the
+smooth invariant core its self-adjoint generator is
+
+  L_merge
+    := i X_h
+     = -i omega partial_phi,
+
+and
+
+  U_merge(t)
+    = exp(-i t L_merge).
+
+DERIVATION.
+
+Measure preservation gives
+
+  ||f o Phi_t||_2 = ||f||_2.
+
+The group law follows from Phi_{t+s}=Phi_t o Phi_s.  Differentiation at t=0
+gives
+
+  d/dt|_0 U_merge(t)f
+    = X_h f
+    = -i L_merge f.
+
+The rotation flow is complete; the closure of -i omega partial_phi on the
+periodic angular variable is self-adjoint on its standard domain.
+
+STATUS = EXACT_B_TIER.
+
+This is the common operator representation of the merged reduced time
+evolution.
+
+IMPORTANT SCOPE.
+
+The Koopman construction represents classical and projective flows by unitary
+operators on observables.  It is not a canonical quantization of the Maxwell
+or GR fields.
+
+
+5. SECTOR READOUT INTERTWINERS
+------------------------------
+
+For s in {QM,M,GR}, let
+
+  K_s
+
+be a Hilbert completion of observables on the corresponding reduced sector
+orbit.  Assume a unitary readout identification
+
+  W_s : K -> K_s
+
+such that
+
+  U_s(t) W_s = W_s U_merge(t).
+
+Then
+
+  L_s W_s = W_s L_merge
+
+on the common invariant generator core.
+
+THEOREM SECTOR_GENERATORS_ARE_UNITARILY_EQUIVALENT.
+
+Under the readout-intertwiner premise,
+
+  U_s(t) = W_s U_merge(t) W_s^*,
+
+  L_s    = W_s L_merge W_s^*.
+
+Therefore each sector generator is one representation of the same reduced
+Liouvillian.
+
+STATUS = EXACT_CONDITIONAL_B_TIER.
+
+The premise does not say that the full unreduced sector phase spaces are
+unitarily equivalent.  It applies only to the chosen synchronized reduced
+orbit and its observable Hilbert space.
+
+
+6. SYNCHRONIZED TRI-SECTOR SUBSPACE
+-----------------------------------
+
+Define the block observable Hilbert space
+
+  K_block := K_QM direct_sum K_M direct_sum K_GR,
+
+with block evolution and generator
+
+  U_block(t)
+    := U_QM(t) direct_sum U_M(t) direct_sum U_GR(t),
+
+  L_block
+    := L_QM direct_sum L_M direct_sum L_GR.
+
+Define the graph isometry
+
+  J : K -> K_block,
+
+  J f
+    := (1/sqrt(3))
+       (W_QM f, W_M f, W_GR f).
+
+Define
+
+  K_sync := range(J),
+
+  P_sync := J J^*.
+
+In block form,
+
+  (P_sync)_{rs}
+    = (1/3) W_r W_s^*,
+
+for r,s in {QM,M,GR}.
+
+THEOREM TRISECTOR_SYNCHRONIZATION_PROJECTOR.
+
+Under the sector intertwining relations,
+
+  U_block(t) J = J U_merge(t),
+
+  L_block J    = J L_merge,
+
+and therefore
+
+  [P_sync,U_block(t)] = 0,
+
+  [P_sync,L_block] = 0
+
+on the common generator domain.
+
+Consequently K_sync is a reducing subspace for the block evolution, and
+
+  U_block(t)|_{K_sync}
+
+is unitarily equivalent through J to the single common group U_merge(t).
+
+STATUS = EXACT_CONDITIONAL_B_TIER.
+
+This is the operator-level merged object.
+
+
+7. LEAKAGE OPERATOR
+-------------------
+
+On a common invariant core define the synchronization-leakage operator
+
+  D_merge
+    := (I-P_sync) L_block P_sync.
+
+THEOREM MERGED_LEAKAGE_ZERO_IFF_GENERATOR_TANGENCY.
+
+Assume the block generators are self-adjoint and P_sync preserves their common
+domain.  Then
+
+  D_merge = 0
+
+is equivalent to invariance of K_sync under the block generator.  Under the
+self-adjointness/domain assumptions this is equivalent to
+
+  [P_sync,L_block]=0,
+
+and hence to invariance under U_block(t).
+
+STATUS = EXACT_CONDITIONAL_B_TIER.
+
+Thus D_merge is the operator analogue of the ambient EMD tangency residual
+
+  R_tan = Pi^perp F_EMD o iota_EMD.
+
+The geometric defect and the operator leakage defect test the same closure at
+two representation levels.
+
+
+8. EXPLICIT COMMON GENERATOR
+----------------------------
+
+For the synchronized two-level regime,
+
+  h(u)=C+Delta_E u,
+
+  omega=Delta_E/hbar.
+
+Hence
+
+  L_merge=-i(Delta_E/hbar) partial_phi.
+
+The spectral action on angular Fourier observables
+
+  f_n(u,phi)=a_n(u) exp(i n phi)
+
+is
+
+  L_merge f_n
+    = n(Delta_E/hbar) f_n.
+
+Therefore
+
+  U_merge(t) f_n
+    = exp[-i n(Delta_E/hbar)t] f_n.
+
+THEOREM MERGED_OPERATOR_SPECTRUM_ON_ANGULAR_MODES.
+
+The common reduced generator has integer-spaced observable frequencies
+
+  n Delta_E/hbar,
+
+n in Z.  The fundamental clock frequency is
+
+  |Delta_E|/hbar.
+
+STATUS = EXACT_B_TIER.
+
+This integer is an angular-observable Fourier index.  It is not electron
+number and is not the QR Chern number.
+
+
+9. MATCH TO THE EXPLICIT QR-TT CLOCK
+------------------------------------
+
+The reduced TT clock has
+
+  Omega_QR = K_QR omega_FS,
+
+  H_QR
+    = C_QR + K_QR Delta_omega u.
+
+The one-electron dressed EMD clock has
+
+  Omega_EMD^O = hbar omega_FS,
+
+  h_EMD = C_EMD + Delta_E u.
+
+THEOREM MERGED_TT_MATCHING_CONDITIONS.
+
+The identity orbit map gives complete reduced flow equivalence if and only if
+
+  K_QR = hbar,
+
+  Delta_omega = Delta_E/hbar.
+
+Under these equations,
+
+  L_QR = L_merge
+
+on the identified observable space, up to the declared phase-origin
+translation.
+
+STATUS = EXACT_B_TIER.
+
+If additionally
+
+  K_QR = kappa_GR c^3 epsilon^2/G,
+
+then
+
+  epsilon = l_P/sqrt(kappa_GR).
+
+For kappa_GR=1/4,
+
+  epsilon=2 l_P.
+
+The scale equation remains independent of the frequency-resonance equation.
+
+
+10. ROOT ENDPOINT
+-----------------
+
+THEOREM ONE_ELECTRON_QM_MAXWELL_GR_MERGED_EVOLUTION.
+
+Assume:
+
+  H1. a gauge-fixed one-electron Einstein-Maxwell-Dirac phase space with local
+      uniqueness;
+
+  H2. a smooth dressed embedding iota_EMD:CP1->P_EMD whose image is tangent to
+      and invariant under the full EMD vector field;
+
+  H3. one-electron normalization N_Sigma=1 and Q=-e on the embedded orbit;
+
+  H4. pullback symplectic and Hamiltonian laws
+
+        iota_EMD^*Omega_EMD=hbar omega_FS,
+
+        H_EMD o iota_EMD=C+Delta_E u;
+
+  H5. gauge-reduced quantum, Maxwell, and GR readouts of the same embedded
+      state;
+
+  H6. reduced QR/GR same-orbit identification with
+
+        K_QR=hbar,
+
+        Delta_omega=Delta_E/hbar;
+
+  H7. one common coordinate-time and reference proper-time normalization;
+
+  H8. sector observable readout intertwiners W_QM,W_M,W_GR.
+
+Then:
+
+  (A) the merged state object
+
+        Z_merge(z)=(Gamma_z,F_z,gamma_z)
+
+      evolves by the single complete flow
+
+        Z_merge(t;z)=Z_merge(Phi_t z);
+
+  (B) the merged observable algebra is evolved by one automorphism group;
+
+  (C) the common Koopman-Liouville generator is
+
+        L_merge=-i(Delta_E/hbar)partial_phi;
+
+  (D) the synchronized tri-sector graph K_sync is reducing for the block
+      operator evolution;
+
+  (E)
+
+        U_block(t)J=J exp(-itL_merge);
+
+  (F) the quantum, Maxwell, and reduced-GR time evolutions are three readouts
+      of one reduced operator evolution.
+
+STATUS = CONDITIONAL_B_TIER_WITH_EXPLICIT_OPERATOR_MODEL.
+
+SIGNAL.
+
+  !=! QM_MAXWELL_GR_MERGED_TIME_EVOLUTION_ON_THE_FROZEN_REDUCED_ORBIT.
+
+
+11. ENDPOINT REGISTER
+---------------------
+
+[x] MERGE-01  MERGED_GRAPH_CARRIER
+               EXACT_CONDITIONAL_B_TIER
+
+[x] MERGE-02  MERGED_SECTOR_EVOLUTION
+               EXACT_CONDITIONAL_B_TIER
+
+[x] MERGE-03  MERGED_OBSERVABLE_AUTOMORPHISM
+               EXACT_CONDITIONAL_B_TIER
+
+[x] MERGE-04  TRISECTOR_KOOPMAN_UNITARY_GROUP
+               EXACT_B_TIER
+
+[x] MERGE-05  SECTOR_GENERATORS_ARE_UNITARILY_EQUIVALENT
+               EXACT_CONDITIONAL_B_TIER
+
+[x] MERGE-06  TRISECTOR_SYNCHRONIZATION_PROJECTOR
+               EXACT_CONDITIONAL_B_TIER
+
+[x] MERGE-07  MERGED_LEAKAGE_ZERO_IFF_GENERATOR_TANGENCY
+               EXACT_CONDITIONAL_B_TIER
+
+[x] MERGE-08  MERGED_OPERATOR_SPECTRUM_ON_ANGULAR_MODES
+               EXACT_B_TIER
+
+[x] MERGE-09  MERGED_TT_MATCHING_CONDITIONS
+               EXACT_B_TIER
+
+[x] MERGE-10  ONE_ELECTRON_QM_MAXWELL_GR_MERGED_EVOLUTION
+               CONDITIONAL_B_TIER_WITH_EXPLICIT_OPERATOR_MODEL
+
+[ ] MERGE-11  DRESSED_EMD_CP1_EMBEDDING_CONSTRUCTION
+               OPEN_DECISIVE
+
+[ ] MERGE-12  DRESSED_EMD_TANGENCY_VERIFICATION
+               OPEN_DECISIVE
+
+[ ] MERGE-13  EMD_GR_PHYSICAL_SAME_ORBIT
+               OPEN_DECISIVE
+
+[ ] MERGE-14  GLOBAL_SOURCED_NONLINEAR_PERSISTENCE
+               OPEN_ANALYTIC
+
+[ ] MERGE-15  SECTOR_READOUT_ISOMETRIES
+               OPEN_FUNCTIONAL_ANALYTIC
+
+
+12. DEPENDENCY SPINE
+--------------------
+
+  dressed EMD embedding
+  + tangency
+    -> MERGE-01
+    -> MERGE-02.
+
+  sector readouts
+  + MERGE-02
+    -> MERGE-03.
+
+  common CP1 Hamiltonian flow
+    -> MERGE-04
+    -> MERGE-08.
+
+  readout isometries
+  + MERGE-04
+    -> MERGE-05
+    -> MERGE-06
+    -> MERGE-07.
+
+  action matching
+  + spectral matching
+    -> MERGE-09.
+
+  MERGE-01
+  + MERGE-02
+  + MERGE-04
+  + MERGE-06
+  + MERGE-09
+    -> MERGE-10.
+
+
+13. CLOSURE CLASSIFICATION
+--------------------------
+
+EXACT_B_TIER:
+
+  TRISECTOR_KOOPMAN_UNITARY_GROUP
+  MERGED_OPERATOR_SPECTRUM_ON_ANGULAR_MODES
+  MERGED_TT_MATCHING_CONDITIONS.
+
+EXACT_CONDITIONAL_B_TIER:
+
+  MERGED_GRAPH_CARRIER
+  MERGED_SECTOR_EVOLUTION
+  MERGED_OBSERVABLE_AUTOMORPHISM
+  SECTOR_GENERATORS_ARE_UNITARILY_EQUIVALENT
+  TRISECTOR_SYNCHRONIZATION_PROJECTOR
+  MERGED_LEAKAGE_ZERO_IFF_GENERATOR_TANGENCY
+  ONE_ELECTRON_QM_MAXWELL_GR_MERGED_EVOLUTION.
+
+OPEN DECISIVE ENDPOINTS:
+
+  DRESSED_EMD_CP1_EMBEDDING_CONSTRUCTION
+  DRESSED_EMD_TANGENCY_VERIFICATION
+  EMD_GR_PHYSICAL_SAME_ORBIT
+  GLOBAL_SOURCED_NONLINEAR_PERSISTENCE
+  SECTOR_READOUT_ISOMETRIES.
+
+INTERPRETATION BOUNDARY:
+
+  The merged operator is a common Koopman-Liouville evolution of observables
+  on a synchronized reduced orbit.
+
+  It is not full QED.
+
+  It does not quantize the Maxwell or GR fields.
+
+  It does not prove existence of the dressed nonlinear EMD orbit.
+
+FORMAL STATUS:
+
+  B_TIER only.
+  Lean files are not emitted.
+  A_TIER is not established.
+  FORMAL_CLOSURE is not established.
+  UNCONDITIONAL_CLOSURE is not established.
