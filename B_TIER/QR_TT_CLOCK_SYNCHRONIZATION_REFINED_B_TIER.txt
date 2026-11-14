@@ -1,0 +1,919 @@
+ONE-ELECTRON EMD / REDUCED TT-GR CLOCK SYNCHRONIZATION
+REFINED B-TIER DERIVATION
+======================================================
+
+STATUS
+------
+
+SIGNAL = !=!
+MARKER = !
+TIER = CONDITIONAL_B_TIER
+ARTIFACT = QR_TT_CLOCK_SYNCHRONIZATION_REFINED_B_TIER
+ROOT_ENDPOINT = ONE_ELECTRON_QR_TT_CLOCKS_SYNCHRONIZED_REFINED
+SOURCE_BRANCH = b-tier-hull
+LEAN_STATUS = NOT_EMITTED
+A_TIER_STATUS = NOT_ESTABLISHED
+FORMAL_CLOSURE = NOT_ESTABLISHED
+LOCAL_LEAN_EXECUTIONS = 0
+
+This document refines the reduced one-electron/TT clock chain by separating
+four logically distinct statements:
+
+  PHASE_SYNC:
+    equality of the two relative-phase clocks;
+
+  ACTION_SYNC:
+    equality of the reduced symplectic action cells;
+
+  FLOW_SYNC:
+    symplectic-Hamiltonian conjugacy of the complete reduced flows;
+
+  PHYSICAL_PERSISTENCE:
+    realization of the reduced conjugacy inside the full nonlinear sourced
+    Einstein-Maxwell-Dirac and nonlinear GR dynamics.
+
+PHASE_SYNC is weaker than FLOW_SYNC.  ACTION_SYNC is independent of the clock
+rate.  The refined reduced flows are explicit and complete for every real
+time.  The full physical persistence statement remains conditional.
+
+
+0. FROZEN CONVENTIONS
+---------------------
+
+Let
+
+  O_QM := CP1,
+  O_QR := CP1.
+
+On the standard nonpolar chart use
+
+  u := sin^2(theta/2) in (0,1),
+  phi in R/(2 pi Z).
+
+The globally normalized Fubini-Study form is represented on this chart by
+
+  omega_FS := du wedge dphi
+            = (1/2) sin(theta) dtheta wedge dphi,
+
+with
+
+  integral_CP1 omega_FS = 2 pi.
+
+The Hamiltonian convention is
+
+  i_{X_H} Omega = dH.
+
+For
+
+  Omega = K du wedge dphi,
+  H = H_0 + Delta_H u,
+
+one obtains
+
+  dot(u) = 0,
+  dot(phi) = -Delta_H/K.
+
+Freeze the one-electron matter sector by
+
+  N_Sigma[Psi] = 1,
+  Q_Sigma = -e.
+
+No positron, pair-creation, or variable-particle-number sector is admitted.
+
+A nontrivial phase clock requires
+
+  0 < u < 1.
+
+At u=0 or u=1 the projective state is an eigenray and the relative phase is
+undefined; these poles are fixed points rather than ticking clocks.
+
+
+1. GLOBAL ONE-ELECTRON TWO-LEVEL FLOW
+-------------------------------------
+
+PREMISE ONE_ELECTRON_TWO_MODE_INVARIANT_SECTOR.
+
+There exists an invariant reduced one-electron sector with orthonormal states
+
+  Psi_0, Psi_1
+
+and an effective self-adjoint Hamiltonian satisfying
+
+  H_1e Psi_a = E_a Psi_a,
+  E_1 != E_0.
+
+Write
+
+  Delta_E := E_1-E_0.
+
+The projective state is
+
+  [Psi(u,phi)]
+    = [ sqrt(1-u) Psi_0
+        + exp(i phi) sqrt(u) Psi_1 ].
+
+The reduced structures are
+
+  Omega_QM = hbar omega_FS,
+
+  H_QM(u)
+    = E_0(1-u)+E_1u
+    = E_0+Delta_E u.
+
+THEOREM ONE_ELECTRON_TWO_LEVEL_GLOBAL_FLOW.
+
+The reduced quantum flow is
+
+  u_QM(t) = u_QM(t0),
+
+  phi_QM(t)
+    = phi_QM(t0)
+      - (Delta_E/hbar)(t-t0)
+
+modulo 2pi, for every t in R.
+
+DERIVATION.
+
+The Hamiltonian vector field is smooth on compact CP1 and therefore complete.
+On the nonpolar chart,
+
+  i_X(hbar du wedge dphi)=Delta_E du
+
+implies
+
+  dot(u)=0,
+  dot(phi)=-Delta_E/hbar.
+
+At the two poles the global flow fixes the eigenrays.
+
+STATUS = EXACT_CONDITIONAL_B_TIER.
+
+The condition N_Sigma=1 is preserved because the complete orbit lies inside
+the frozen one-electron sector.
+
+
+2. GLOBAL REDUCED TWO-MODE TT FLOW
+----------------------------------
+
+PREMISE TT_TWO_MODE_LINEARIZED_SECTOR.
+
+There exist two real TT oscillator modes with canonical coordinates
+
+  (q_a,p_a),  a=0,1,
+
+positive masses M_a, and positive frequencies omega_a, with Hamiltonian
+
+  H_TT
+    = sum_a
+      [ p_a^2/(2M_a)
+        + (M_a omega_a^2/2)q_a^2 ].
+
+Fix S>0 and define
+
+  Q_a := sqrt(M_a omega_a/S) q_a,
+
+  P_a := p_a/sqrt(M_a omega_a S),
+
+  z_a := (Q_a+iP_a)/sqrt(2).
+
+Then
+
+  Omega_TT = S sum_a dQ_a wedge dP_a,
+
+  H_TT = S sum_a omega_a |z_a|^2.
+
+Fix R>0, impose
+
+  |z_0|^2+|z_1|^2=R^2,
+
+and quotient by the common U(1) phase.  The quotient is CP1.  Define
+
+  K_QR := S R^2,
+
+  Delta_omega := omega_1-omega_0.
+
+THEOREM QR_TT_REDUCED_STRUCTURES.
+
+The reduced TT structures are
+
+  Omega_QR = K_QR omega_FS,
+
+  H_QR(u)
+    = K_QR[omega_0(1-u)+omega_1u]
+    = K_QR omega_0+K_QR Delta_omega u.
+
+STATUS = EXACT_CONDITIONAL_B_TIER.
+
+THEOREM QR_TT_REDUCED_GLOBAL_FLOW.
+
+The reduced QR flow is
+
+  u_QR(t)=u_QR(t0),
+
+  phi_QR(t)
+    = phi_QR(t0)
+      - Delta_omega(t-t0)
+
+modulo 2pi, for every t in R.
+
+DERIVATION.
+
+The reduced Hamiltonian is smooth on compact CP1.  On the nonpolar chart,
+
+  i_X(K_QR du wedge dphi)
+    = K_QR Delta_omega du
+
+implies
+
+  dot(u)=0,
+  dot(phi)=-Delta_omega.
+
+STATUS = EXACT_CONDITIONAL_B_TIER.
+
+CONSEQUENCE.
+
+The endpoint
+
+  REDUCED_GLOBAL_SYNCHRONIZED_COMMON_INTERVAL
+
+is discharged: the explicit reduced quantum and QR flows both exist for all
+
+  t in R.
+
+This does not discharge global existence for the full sourced EMD/GR system.
+
+
+3. MINIMAL PHASE-CLOCK SYNCHRONIZATION
+--------------------------------------
+
+Fix a nonpolar population
+
+  u_* in (0,1)
+
+and identify only the phase circles at this fixed population.
+
+Define
+
+  delta_omega
+    := Delta_omega-Delta_E/hbar,
+
+  delta_phi_0
+    := phi_QR(t0)-phi_QM(t0)
+
+modulo 2pi.
+
+THEOREM MINIMAL_PHASE_SYNCHRONIZATION_IFF.
+
+The equality
+
+  phi_QR(t)=phi_QM(t)
+
+modulo 2pi for every t in a nondegenerate real interval is equivalent to
+
+  delta_omega=0,
+  delta_phi_0=0.
+
+DERIVATION.
+
+The explicit flows give
+
+  phi_QR(t)-phi_QM(t)
+    = delta_phi_0-delta_omega(t-t0)
+
+modulo 2pi.
+
+A nonconstant affine function cannot vanish modulo 2pi on a real interval.
+Conversely, both zero conditions give equality for all real t.
+
+STATUS = EXACT_B_TIER.
+
+IMPORTANT SEPARATION.
+
+Minimal phase synchronization does not require
+
+  K_QR=hbar.
+
+Clock-rate equality and action-cell equality are distinct conditions.
+
+
+4. ACTION MATCHING
+------------------
+
+For a constant phase offset phi_* define the orientation-preserving map
+
+  iota_{phi_*}(u,phi)
+    := (u,phi+phi_*).
+
+THEOREM QR_TT_ACTION_MATCHING_IFF.
+
+The map iota_{phi_*} is symplectic if and only if
+
+  K_QR=hbar.
+
+DERIVATION.
+
+  iota_{phi_*}^*Omega_QR
+    = K_QR omega_FS,
+
+whereas
+
+  Omega_QM=hbar omega_FS.
+
+Since omega_FS is nonzero, equality is equivalent to K_QR=hbar.
+
+STATUS = EXACT_B_TIER.
+
+ORIENTATION AUDIT.
+
+The orientation-reversing map
+
+  (u,phi) -> (u,-phi+phi_*)
+
+pulls Omega_QR back to
+
+  -K_QR omega_FS.
+
+It is anti-symplectic for positive K_QR and corresponds to a time-reversal
+variant, not the frozen orientation-preserving synchronization theorem.
+
+
+5. HAMILTONIAN MATCHING
+-----------------------
+
+THEOREM QR_TT_HAMILTONIAN_MATCHING_IFF.
+
+Assume
+
+  K_QR=hbar.
+
+Then the following are equivalent:
+
+  (i)  H_QR o iota_{phi_*}=H_QM+C
+       for some constant C;
+
+  (ii) K_QR Delta_omega=Delta_E;
+
+  (iii) Delta_omega=Delta_E/hbar.
+
+Under these conditions,
+
+  C=hbar omega_0-E_0.
+
+DERIVATION.
+
+Both Hamiltonians are affine in u.  Equality up to a constant is equivalent to
+equality of their u-slopes.
+
+STATUS = EXACT_B_TIER.
+
+CONSTANT-SHIFT AUDIT.
+
+The constant C has no effect on either Hamiltonian vector field and therefore
+has no clock content.
+
+
+6. FULL REDUCED FLOW SYNCHRONIZATION
+------------------------------------
+
+THEOREM REDUCED_CLOCK_FLOW_EQUIVALENCE_IFF.
+
+Assume the two reduced models, an orientation-preserving identification
+
+iota_{phi_*},
+
+and at least one nonpolar state.  Then the following are equivalent:
+
+  (A) iota_{phi_*} is symplectic and conjugates the Hamiltonian flows for all
+      real t;
+
+  (B) K_QR=hbar and
+
+      Delta_omega=Delta_E/hbar.
+
+DERIVATION.
+
+(B) implies action matching and Hamiltonian matching up to a constant, hence
+Hamiltonian vector-field and global-flow intertwining.
+
+Conversely, symplecticity gives K_QR=hbar.  Flow conjugacy at a nonpolar point
+gives equality of the two angular velocities, hence spectral matching.
+
+STATUS = EXACT_CONDITIONAL_B_TIER.
+
+THEOREM ONE_ELECTRON_QR_TT_CLOCKS_SYNCHRONIZED_REFINED.
+
+Assume:
+
+  H1. ONE_ELECTRON_TWO_MODE_INVARIANT_SECTOR;
+
+  H2. TT_TWO_MODE_LINEARIZED_SECTOR;
+
+  H3. Hopf U(1) reduction at radius R;
+
+  H4. orientation-preserving reduced-orbit identification iota_{phi_*};
+
+  H5. action matching
+
+        K_QR=S R^2=hbar;
+
+  H6. spectral matching
+
+        omega_1-omega_0
+          = (E_1-E_0)/hbar;
+
+  H7. initial phases satisfy
+
+        phi_QR(t0)
+          = phi_QM(t0)+phi_*
+
+      modulo 2pi;
+
+  H8. common coordinate-time and one reference-observer proper-time
+      normalization.
+
+Then for every t in R,
+
+  iota_{phi_*} o Phi_t^QM
+    = Phi_t^QR o iota_{phi_*},
+
+and, on every nonpolar orbit,
+
+  phi_QR(t)
+    = phi_QM(t)+phi_*
+
+modulo 2pi.
+
+STATUS = CONDITIONAL_B_TIER_WITH_EXPLICIT_COMPLETE_REDUCED_FLOWS.
+
+SIGNAL.
+
+  !=! REDUCED_CLOCKS_SYNCHRONIZED_REFINED.
+
+SCOPE.
+
+The theorem is exact on the frozen reduced linearized TT model.  Its
+realization as the full nonlinear sourced EMD/GR evolution remains conditional
+on the physical-persistence gates.
+
+
+7. GLOBAL BLOCH-SPHERE AND OBSERVABLE CLOCK
+-------------------------------------------
+
+Define the Bloch coordinates
+
+  X := 2 sqrt(u(1-u)) cos(phi),
+
+  Y := 2 sqrt(u(1-u)) sin(phi),
+
+  Z := 1-2u.
+
+They satisfy
+
+  X^2+Y^2+Z^2=1.
+
+THEOREM GLOBAL_BLOCH_ROTATION.
+
+The quantum and QR reduced flows are rotations around the Z axis with angular
+rates
+
+  Delta_E/hbar,
+  Delta_omega,
+
+respectively.  The two poles are fixed.
+
+STATUS = EXACT_B_TIER.
+
+Let
+
+  Sigma_x := |Psi_0><Psi_1|+|Psi_1><Psi_0|,
+
+  Sigma_y := -i|Psi_0><Psi_1|+i|Psi_1><Psi_0|.
+
+Then
+
+  <Sigma_x>=X,
+  <Sigma_y>=Y.
+
+THEOREM OBSERVABLE_CLOCK_RECONSTRUCTION.
+
+For 0<u<1, the ordered pair
+
+  (<Sigma_x>,<Sigma_y>)
+
+reconstructs the relative phase modulo 2pi.  Therefore reduced phase
+synchronization implies equality of the complete interference-clock signal.
+
+STATUS = EXACT_B_TIER.
+
+GAUGE AUDIT.
+
+A common U(1) phase acting on both one-electron modes cancels from the
+projective coordinate and from the interference observables.  The clock uses
+a relative phase, not an absolute Dirac phase.
+
+
+8. ACTION AND CLOCK GATES ARE INDEPENDENT
+-----------------------------------------
+
+THEOREM ACTION_CLOCK_LOGICAL_INDEPENDENCE.
+
+Neither of the following implications holds without additional hypotheses:
+
+  K_QR=hbar
+    -> Delta_omega=Delta_E/hbar;
+
+  Delta_omega=Delta_E/hbar
+    -> K_QR=hbar.
+
+DERIVATION.
+
+The first equation constrains the symplectic coefficient.  The second equation
+constrains the Hamiltonian spectral gap.  The parameters may be varied
+independently in the reduced model.
+
+STATUS = EXACT_B_TIER.
+
+Thus:
+
+  PHASE_SYNC
+    requires spectral and initial-phase matching;
+
+  FLOW_SYNC
+    requires PHASE_SYNC plus action matching and orbit identification.
+
+
+9. DETUNING LAW AND FINITE-TIME CONTROL
+---------------------------------------
+
+THEOREM CLOCK_DETUNING_IDENTITY.
+
+For arbitrary reduced parameters,
+
+  delta_phi(t)
+    := phi_QR(t)-phi_QM(t)-phi_*
+
+satisfies
+
+  delta_phi(t)
+    = delta_phi(t0)
+      - delta_omega(t-t0)
+
+modulo 2pi.
+
+STATUS = EXACT_B_TIER.
+
+Let d_S1 be the geodesic distance on the phase circle.  Then
+
+  d_S1(delta_phi(t),0)
+    <= d_S1(delta_phi(t0),0)
+       + |delta_omega||t-t0|.
+
+THEOREM FINITE_TIME_CLOCK_ERROR_BOUND.
+
+The displayed inequality is valid on every finite time interval.
+
+STATUS = EXACT_B_TIER.
+
+For fixed u in (0,1), the interference-vector error satisfies
+
+  |(X_QR,Y_QR)-(X_QM,Y_QM)|
+    <= 2 sqrt(u(1-u))
+       d_S1(delta_phi(t),0).
+
+Thus small detuning gives controlled approximate synchronization only for
+finite times of order
+
+  |delta_omega|^{-1}.
+
+
+10. NEUTRAL, NOT ATTRACTIVE, SYNCHRONIZATION
+--------------------------------------------
+
+THEOREM REDUCED_SYNCHRONIZATION_IS_NEUTRAL.
+
+On exact resonance,
+
+  delta_omega=0,
+
+a nonzero initial phase offset remains constant.  Off resonance, the phase
+error drifts linearly.  Therefore the uncoupled reduced synchronization
+manifold is invariant but not asymptotically attractive.
+
+STATUS = EXACT_B_TIER.
+
+CONSEQUENCE.
+
+The current model gives resonance synchronization, not dynamical phase
+locking.  Asymptotic clock locking would require an additional coupling or
+dissipative mechanism.
+
+
+11. COMPACT-TORUS SPECTRAL RESONANCE
+------------------------------------
+
+Let the physical torus have side length L>0.  For TT Fourier labels
+
+  n_0,n_1 in Z^3\{0},
+
+set
+
+  omega_a=2pi c |n_a|/L.
+
+THEOREM TORUS_TT_CLOCK_RESONANCE_REFINED.
+
+The spectral synchronization condition is
+
+  Delta_E
+    = (2pi hbar c/L)
+      (|n_1|-|n_0|).
+
+If
+
+  Delta_E>0,
+  |n_1|>|n_0|,
+
+then it is equivalent to
+
+  L
+    = 2pi hbar c
+      (|n_1|-|n_0|)/Delta_E.
+
+If the two mode norms are equal while Delta_E is nonzero, exact resonance is
+impossible.
+
+STATUS = EXACT_B_TIER.
+
+
+12. SIMULTANEOUS PLANCK-SCALE AND CLOCK LOCUS
+----------------------------------------------
+
+Assume the reduced gravitational action law
+
+  K_QR
+    = kappa_TT c^3 epsilon^2/G,
+
+with kappa_TT>0.
+
+Action matching gives
+
+  epsilon=l_P/sqrt(kappa_TT),
+
+where
+
+  l_P=sqrt(G hbar/c^3).
+
+Combining this with torus spectral resonance gives the simultaneous locus
+
+  epsilon=l_P/sqrt(kappa_TT),
+
+  L
+    = 2pi hbar c
+      (|n_1|-|n_0|)/Delta_E,
+
+  phi_QR(t0)=phi_QM(t0)+phi_*
+    modulo 2pi.
+
+THEOREM SIMULTANEOUS_SCALE_CLOCK_MATCHING_LOCUS.
+
+Under the frozen reduced-sector premises, the three displayed equations are
+necessary and sufficient for simultaneous action-cell matching, phase-rate
+matching, and initial-phase matching.
+
+STATUS = EXACT_CONDITIONAL_B_TIER.
+
+For
+
+  kappa_TT=1/4,
+
+one obtains
+
+  epsilon=2l_P.
+
+The length equation and clock-resonance equation remain independent gates.
+
+
+13. PROPER-TIME AND OBSERVER AUDIT
+----------------------------------
+
+Let one selected observer satisfy
+
+  d tau=N(t)dt,
+  N(t)>0.
+
+THEOREM SAME_OBSERVER_PROPER_TIME_SYNCHRONIZATION.
+
+If the reduced clocks are synchronized in coordinate time and both are read by
+the same observer, then
+
+  dphi_QM/dtau
+    = (1/N)dphi_QM/dt,
+
+  dphi_QR/dtau
+    = (1/N)dphi_QR/dt,
+
+and they remain synchronized in that observer's proper time.
+
+STATUS = EXACT_B_TIER.
+
+This theorem does not identify the proper times of distinct observers.
+Gravitational redshift multiplies both synchronized rates by the same local
+factor only when the same observer and time generator are used.
+
+
+14. SYNCHRONIZATION MANIFOLD
+----------------------------
+
+On the product reduced phase space define the synchronized set
+
+  S_sync
+    := {
+         u_QR=u_QM,
+         phi_QR=phi_QM+phi_*,
+         K_QR=hbar,
+         Delta_omega=Delta_E/hbar
+       }.
+
+THEOREM REDUCED_SYNCHRONIZATION_MANIFOLD_INVARIANT.
+
+For fixed matched parameters, S_sync is invariant under the product reduced
+Hamiltonian flow for all real t.
+
+STATUS = EXACT_CONDITIONAL_B_TIER.
+
+The invariant set is neutral by Section 10.
+
+
+15. REFINED ENDPOINT REGISTER
+-----------------------------
+
+[x] TTCLOCK-R01  ONE_ELECTRON_TWO_LEVEL_GLOBAL_FLOW
+                  EXACT_CONDITIONAL_B_TIER
+
+[x] TTCLOCK-R02  QR_TT_REDUCED_STRUCTURES
+                  EXACT_CONDITIONAL_B_TIER
+
+[x] TTCLOCK-R03  QR_TT_REDUCED_GLOBAL_FLOW
+                  EXACT_CONDITIONAL_B_TIER
+
+[x] TTCLOCK-R04  REDUCED_GLOBAL_SYNCHRONIZED_COMMON_INTERVAL
+                  EXACT_B_TIER_WITHIN_REDUCED_MODEL
+
+[x] TTCLOCK-R05  MINIMAL_PHASE_SYNCHRONIZATION_IFF
+                  EXACT_B_TIER
+
+[x] TTCLOCK-R06  QR_TT_ACTION_MATCHING_IFF
+                  EXACT_B_TIER
+
+[x] TTCLOCK-R07  QR_TT_HAMILTONIAN_MATCHING_IFF
+                  EXACT_B_TIER
+
+[x] TTCLOCK-R08  REDUCED_CLOCK_FLOW_EQUIVALENCE_IFF
+                  EXACT_CONDITIONAL_B_TIER
+
+[x] TTCLOCK-R09  ONE_ELECTRON_QR_TT_CLOCKS_SYNCHRONIZED_REFINED
+                  CONDITIONAL_B_TIER_WITH_EXPLICIT_COMPLETE_REDUCED_FLOWS
+
+[x] TTCLOCK-R10  GLOBAL_BLOCH_ROTATION
+                  EXACT_B_TIER
+
+[x] TTCLOCK-R11  OBSERVABLE_CLOCK_RECONSTRUCTION
+                  EXACT_B_TIER
+
+[x] TTCLOCK-R12  ACTION_CLOCK_LOGICAL_INDEPENDENCE
+                  EXACT_B_TIER
+
+[x] TTCLOCK-R13  CLOCK_DETUNING_IDENTITY
+                  EXACT_B_TIER
+
+[x] TTCLOCK-R14  FINITE_TIME_CLOCK_ERROR_BOUND
+                  EXACT_B_TIER
+
+[x] TTCLOCK-R15  REDUCED_SYNCHRONIZATION_IS_NEUTRAL
+                  EXACT_B_TIER
+
+[x] TTCLOCK-R16  TORUS_TT_CLOCK_RESONANCE_REFINED
+                  EXACT_B_TIER
+
+[x] TTCLOCK-R17  SIMULTANEOUS_SCALE_CLOCK_MATCHING_LOCUS
+                  EXACT_CONDITIONAL_B_TIER
+
+[x] TTCLOCK-R18  SAME_OBSERVER_PROPER_TIME_SYNCHRONIZATION
+                  EXACT_B_TIER
+
+[x] TTCLOCK-R19  REDUCED_SYNCHRONIZATION_MANIFOLD_INVARIANT
+                  EXACT_CONDITIONAL_B_TIER
+
+[ ] TTCLOCK-R20  FULL_EMD_TWO_MODE_INVARIANCE
+                  OPEN_ANALYTIC
+
+[ ] TTCLOCK-R21  NONLINEAR_GR_TT_CLOCK_PERSISTENCE
+                  OPEN_DECISIVE
+
+[ ] TTCLOCK-R22  EMD_QR_PHYSICAL_SAME_ORBIT
+                  OPEN_DECISIVE
+
+[ ] TTCLOCK-R23  FULL_SOURCED_GLOBAL_SYNCHRONIZED_INTERVAL
+                  OPEN_ANALYTIC
+
+
+16. DEPENDENCY SPINE
+--------------------
+
+  ONE_ELECTRON_TWO_MODE_INVARIANT_SECTOR
+    -> TTCLOCK-R01.
+
+  TT_TWO_MODE_LINEARIZED_SECTOR
+  + Hopf reduction
+    -> TTCLOCK-R02
+    -> TTCLOCK-R03
+    -> TTCLOCK-R04.
+
+  explicit phase flows
+    -> TTCLOCK-R05
+    -> TTCLOCK-R13
+    -> TTCLOCK-R14
+    -> TTCLOCK-R15.
+
+  reduced symplectic forms
+    -> TTCLOCK-R06.
+
+  reduced affine Hamiltonians
+    -> TTCLOCK-R07.
+
+  TTCLOCK-R06
+  + TTCLOCK-R07
+    -> TTCLOCK-R08
+    -> TTCLOCK-R09
+    -> TTCLOCK-R19.
+
+  global CP1 representation
+    -> TTCLOCK-R10
+    -> TTCLOCK-R11.
+
+  independent reduced parameters
+    -> TTCLOCK-R12.
+
+  torus TT spectrum
+    -> TTCLOCK-R16.
+
+  QR Gaussian action law
+  + TTCLOCK-R16
+    -> TTCLOCK-R17.
+
+  common observer lapse
+    -> TTCLOCK-R18.
+
+  TTCLOCK-R20
+  + TTCLOCK-R21
+  + TTCLOCK-R22
+  + TTCLOCK-R23
+    -> full nonlinear sourced EMD/GR clock synchronization.
+
+
+17. CLOSURE CLASSIFICATION
+--------------------------
+
+EXACT_B_TIER:
+
+  MINIMAL_PHASE_SYNCHRONIZATION_IFF
+  QR_TT_ACTION_MATCHING_IFF
+  QR_TT_HAMILTONIAN_MATCHING_IFF
+  GLOBAL_BLOCH_ROTATION
+  OBSERVABLE_CLOCK_RECONSTRUCTION
+  ACTION_CLOCK_LOGICAL_INDEPENDENCE
+  CLOCK_DETUNING_IDENTITY
+  FINITE_TIME_CLOCK_ERROR_BOUND
+  REDUCED_SYNCHRONIZATION_IS_NEUTRAL
+  TORUS_TT_CLOCK_RESONANCE_REFINED
+  SAME_OBSERVER_PROPER_TIME_SYNCHRONIZATION.
+
+EXACT_CONDITIONAL_B_TIER:
+
+  ONE_ELECTRON_TWO_LEVEL_GLOBAL_FLOW
+  QR_TT_REDUCED_STRUCTURES
+  QR_TT_REDUCED_GLOBAL_FLOW
+  REDUCED_CLOCK_FLOW_EQUIVALENCE_IFF
+  ONE_ELECTRON_QR_TT_CLOCKS_SYNCHRONIZED_REFINED
+  SIMULTANEOUS_SCALE_CLOCK_MATCHING_LOCUS
+  REDUCED_SYNCHRONIZATION_MANIFOLD_INVARIANT.
+
+DISCHARGED WITHIN THE REDUCED MODEL:
+
+  QR_REDUCED_HAMILTONIAN_REALIZATION
+  REDUCED_GLOBAL_SYNCHRONIZED_COMMON_INTERVAL
+  ABSTRACT_REDUCED_CP1_FLOW_INVARIANCE.
+
+OPEN PHYSICAL-PERSISTENCE ENDPOINTS:
+
+  FULL_EMD_TWO_MODE_INVARIANCE
+  NONLINEAR_GR_TT_CLOCK_PERSISTENCE
+  EMD_QR_PHYSICAL_SAME_ORBIT
+  FULL_SOURCED_GLOBAL_SYNCHRONIZED_INTERVAL.
+
+FORMAL STATUS:
+
+  B_TIER only.
+  Lean files are not emitted.
+  A_TIER is not established.
+  FORMAL_CLOSURE is not established.
+  UNCONDITIONAL_CLOSURE is not established.
