@@ -1,0 +1,359 @@
+ONE-ELECTRON FUNCTION TO QFB NSE NORM ADAPTER
+B-TIER DERIVATION
+=============================================
+
+STATUS
+------
+
+MARKER = !
+TIER = CONDITIONAL_B_TIER
+ARTIFACT = ONE_ELECTRON_QFB_NORM_ADAPTER_B_TIER
+ROOT_ENDPOINT = ONE_ELECTRON_QFB_NORM_ADAPTER
+SOURCE_BRANCH = b-tier-hull
+LEAN_STATUS = NOT_EMITTED
+A_TIER_STATUS = NOT_ESTABLISHED
+FORMAL_CLOSURE = NOT_ESTABLISHED
+LOCAL_LEAN_EXECUTIONS = 0
+
+This document answers whether the one-electron function may be used inside the
+periodic Quasi-Fefferman_B norm ||a||_2.
+
+Direct substitution
+
+  a := Psi
+
+is invalid: Psi is a complex spinor normalized by electron number, while a is
+a real mean-zero divergence-free velocity field.  A declared electron-to-NSE
+adapter is required.
+
+The canonical adapter frozen here is obtained from the electron current,
+followed by the mean-zero Leray projection.
+
+
+0. FROZEN DOMAIN AND ONE-ELECTRON DATA
+-------------------------------------
+
+Let
+
+  T^3 := (R/Z)^3,
+  |T^3|=1,
+  nu>0.
+
+Let
+
+  Psi in H^1(T^3;C^4)
+
+be a Dirac spinor on a selected orthonormal Cauchy frame, normalized by
+
+  integral_{T^3} Psi^dagger Psi dx = 1.
+
+Define the one-electron number density and spatial Dirac number current
+
+  n_Psi(x) := Psi(x)^dagger Psi(x),
+
+  j_Psi(x) := c Psi(x)^dagger alpha Psi(x),
+
+where alpha=(alpha_1,alpha_2,alpha_3) is the usual Dirac velocity matrix.
+
+Assume the nonvanishing-density gate
+
+  n_Psi(x) >= n_* > 0
+
+almost everywhere.  Define the local current velocity
+
+  v_Psi(x) := j_Psi(x)/n_Psi(x).
+
+The Dirac current is causal, hence
+
+  |v_Psi(x)| <= c
+
+almost everywhere.
+
+Let
+
+  P_0
+
+be the L2-orthogonal projection onto real, mean-zero, divergence-free vector
+fields on T^3.  Define
+
+  A_e[Psi] := P_0 v_Psi.
+
+This is the frozen one-electron-to-NSE adapter.
+
+
+1. CARRIER THEOREM
+------------------
+
+THEOREM ONE_ELECTRON_TO_NSE_CARRIER.
+
+Under the frozen assumptions,
+
+  a_Psi := A_e[Psi]
+
+belongs to
+
+  L^2_{sigma,0}(T^3;R^3).
+
+Moreover,
+
+  ||a_Psi||_2 <= ||v_Psi||_2 <= c.
+
+DERIVATION.
+
+The first assertion follows from the definition of P_0.  Orthogonal
+projection is contractive in L2, and |T^3|=1 together with |v_Psi|<=c gives
+
+  ||v_Psi||_2^2 <= c^2.
+
+STATUS = EXACT_B_TIER.
+
+
+2. EXACT ELECTRON-FUNCTION NORM
+-------------------------------
+
+The QFB input norm becomes
+
+  ||a_Psi||_2^2
+    = integral_{T^3}
+        |P_0( c Psi^dagger alpha Psi/(Psi^dagger Psi) )|^2 dx.
+
+Therefore the periodic QFB certificate time associated with the electron
+profile is
+
+  T_QFB^e(Psi,nu)
+    := ||a_Psi||_2^4/(8 pi^2 nu^5)
+
+     = 1/(8 pi^2 nu^5)
+       [ integral_{T^3}
+           |P_0( c Psi^dagger alpha Psi/(Psi^dagger Psi) )|^2 dx
+       ]^2.
+
+THEOREM ONE_ELECTRON_QFB_NORM_ADAPTER.
+
+Assume the frozen periodic QFB admission.  Then every admissible Leray-Hopf
+trajectory with NSE initial datum
+
+  a=a_Psi
+
+is smooth for every
+
+  t>T_QFB^e(Psi,nu).
+
+The endpoint t=T_QFB^e remains uncertified.
+
+STATUS = CONDITIONAL_B_TIER ON THE FROZEN QFB ADMISSION.
+
+
+3. UNIVERSAL DIRAC-CURRENT BOUND
+--------------------------------
+
+Because ||a_Psi||_2<=c on the unit torus,
+
+  0 <= T_QFB^e(Psi,nu)
+       <= c^4/(8 pi^2 nu^5).
+
+STATUS = EXACT_B_TIER.
+
+This upper bound is only an adapter bound.  It is not expected to be sharp for
+a nonrelativistic electron state.
+
+
+4. STATIONARY ZERO-CURRENT SECTOR
+--------------------------------
+
+Suppose the one-electron state has vanishing spatial current,
+
+  j_Psi=0.
+
+Then
+
+  v_Psi=0,
+  a_Psi=0,
+  ||a_Psi||_2=0,
+  T_QFB^e(Psi,nu)=0.
+
+In particular, the earlier scalar stationary profile with constant phase,
+zero vector potential, and no transport current maps to the zero NSE datum.
+
+STATUS = EXACT_B_TIER.
+
+A stationary spinor may possess magnetization current.  Whether that current
+is included in the NSE adapter is a separate semantic choice; the frozen
+Dirac-current adapter includes the complete spatial Dirac current.
+
+
+5. NONRELATIVISTIC PAULI FORM
+-----------------------------
+
+In the Pauli regime write
+
+  psi = sqrt(n) exp(i S/hbar) zeta,
+  zeta^dagger zeta = 1,
+
+with electron kinetic momentum
+
+  Pi_A := -i hbar grad + e A.
+
+The transport velocity is
+
+  v_tr[psi,A]
+    := Re(psi^dagger Pi_A psi)/(m_e n)
+
+     = [grad S + e A - i hbar zeta^dagger grad zeta]/m_e.
+
+Define the transport adapter
+
+  A_e^tr[psi,A] := P_0 v_tr[psi,A].
+
+Then
+
+  T_QFB^{e,tr}(psi,A;nu)
+    := ||A_e^tr[psi,A]||_2^4/(8 pi^2 nu^5).
+
+This is the physically closest adapter when a is intended to represent mass
+transport velocity.
+
+The complete Pauli number current also contains the spin magnetization term
+
+  j_spin
+    = (hbar/(2m_e)) curl(psi^dagger sigma psi).
+
+Using
+
+  (j_tr+j_spin)/n
+
+instead of v_tr produces a full-current adapter, but it is not identical to
+mass transport velocity.
+
+STATUS = EXACT_B_TIER_DECOMPOSITION.
+
+
+6. TWO-LEVEL ELECTRON CLOCK FORM
+-------------------------------
+
+Let
+
+  Psi_phi
+    := c_0 Psi_0 + c_1 exp(i phi) Psi_1,
+
+  |c_0|^2+|c_1|^2=1.
+
+Then
+
+  n_phi
+    = |c_0|^2 Psi_0^dagger Psi_0
+      + |c_1|^2 Psi_1^dagger Psi_1
+      + 2 Re(
+          conjugate(c_0)c_1 exp(i phi)
+          Psi_0^dagger Psi_1
+        ),
+
+and
+
+  j_phi
+    = c |c_0|^2 Psi_0^dagger alpha Psi_0
+      + c |c_1|^2 Psi_1^dagger alpha Psi_1
+      + 2c Re(
+          conjugate(c_0)c_1 exp(i phi)
+          Psi_0^dagger alpha Psi_1
+        ).
+
+Whenever
+
+  n_phi >= n_*>0,
+
+define
+
+  a_phi := P_0(j_phi/n_phi).
+
+Then the phase-dependent QFB time is
+
+  T_QFB^e(phi,nu)
+    = ||a_phi||_2^4/(8 pi^2 nu^5).
+
+Under synchronized one-electron clock evolution
+
+  phi(t)=phi_0-(Delta E/hbar)t,
+
+the adapter norm may vary with phase unless the dressed electron orbit has
+constant current norm.  QFB uses the initial value
+
+  a=a_{phi_0}.
+
+STATUS = EXACT_B_TIER_FORMULA.
+
+
+7. ENERGY FORM
+--------------
+
+Declare an effective fluid density rho_f>0 and define the electron-adapted NSE
+kinetic energy
+
+  E_NSE^e(Psi)
+    := (rho_f/2)||a_Psi||_2^2.
+
+Then
+
+  T_QFB^e(Psi,nu)
+    = [E_NSE^e(Psi)]^2
+      /(2 pi^2 rho_f^2 nu^5).
+
+STATUS = EXACT_B_TIER.
+
+The density rho_f and the semantic identification of this effective energy
+with an electron-sector energy remain physical calibration inputs.
+
+
+8. NODE-SAFE CURRENT-DENSITY ADAPTER
+------------------------------------
+
+If n_Psi may vanish, the quotient j_Psi/n_Psi need not be defined.  On the
+unit-volume one-electron torus the average number density is
+
+  n_bar=1.
+
+Define instead
+
+  A_e^av[Psi] := P_0 j_Psi.
+
+This adapter is node-safe and belongs to L2 whenever j_Psi belongs to L2.  Its
+QFB time is
+
+  T_QFB^{e,av}(Psi,nu)
+    := ||P_0 j_Psi||_2^4/(8 pi^2 nu^5).
+
+It is an average-density velocity representative, not the pointwise local
+velocity.  The local-velocity and average-current adapters must not be silently
+identified.
+
+STATUS = EXACT_B_TIER.
+
+
+9. ROOT CLASSIFICATION
+----------------------
+
+EXACT_B_TIER:
+
+  electron current and density formulas;
+  Leray-projected NSE carrier;
+  exact norm formula;
+  universal Dirac-velocity bound;
+  zero-current endpoint;
+  Pauli transport decomposition;
+  two-level phase-dependent norm;
+  effective-energy translation;
+  node-safe average-current adapter.
+
+CONDITIONAL_B_TIER:
+
+  QFB tail-regularity conclusion for a=A_e[Psi], conditional on the frozen
+  periodic QFB admission;
+  physical interpretation of the adapter as the NSE field of the electron.
+
+NOT ESTABLISHED:
+
+  direct equality a=Psi;
+  unique canonical choice between transport and full-current adapters;
+  full EMD-to-NSE dynamical semiconjugacy;
+  equality of effective NSE energy and physical electron energy;
+  A-tier formalization.
