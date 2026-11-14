@@ -1,0 +1,584 @@
+FROZEN SM-06: NSE AUXILIARY ABELIAN BRST NILPOTENCY
+B-TIER MATHEMATICAL DERIVATION
+=========================================================
+
+STATUS
+------
+ROOT_ENDPOINT = NSE_AUXILIARY_BRST_NILPOTENCY
+MARKER = !
+MODE = B_TIER_DERIVATION
+FROZEN_ROW = SM-06 ONLY
+REFERENCE = FROZEN_SM_NSE_OPERATOR_MATCH_REGISTER_B_TIER
+PREVIOUS = NSE_HODGE_GAUSS_CONSTRAINT_MATCH_B_TIER
+RELATED_BUT_DISTINCT = NSE_EXTERIOR_CAR_OPERATOR_MATCH_B_TIER
+SOURCE_BRANCH = b-tier-hull
+LEAN_SOURCE = NOT_EMITTED
+LOCAL_LEAN_EXECUTIONS = ZERO
+A_TIER = NOT_ESTABLISHED
+FORMAL_CLOSURE = NOT_ESTABLISHED
+
+PURPOSE
+-------
+Derive the exact analogue of the nilpotent BRST operator for the
+finite-dimensional auxiliary gradient-shift REDUNDANCY constructed
+under frozen SM-05, and determine its gauge-fixing, cohomological,
+operator and (NSE)^X implications.
+
+The original frozen SM-06 reference is:
+
+  Q_BRST^2 = 0
+
+for a properly gauge-fixed, anomaly-free Standard Model gauge theory.
+
+THE PRESENT RESULT IS NOT THAT PHYSICAL BRST CHARGE.
+Its ghosts are bookkeeping variables for redundant NSE coefficient
+coordinates, not electrons, spinors, quantized Standard Model ghosts,
+or Yang-Mills matter fields.
+
+0. PREVIOUS EXACT FINITE HODGE MODEL
+-------------------------------------
+Let M=T_L^3 and choose a finite symmetric nonzero Fourier index set.
+Write Q_N for real, mean-zero scalar trigonometric coefficients,
+and V_N for the matching real vector trigonometric coefficients.
+
+Let
+  G:Q_N -> V_N, G(lambda)=grad lambda,
+  C:V_N -> Q_N, C(v)=div v,
+  Delta=C G:Q_N->Q_N.
+
+Delta is negative definite and invertible on Q_N.
+
+Define
+  P_N=I-G Delta^(-1) C.
+
+Then
+  P_N^2=P_N=P_N^*,
+  P_N G=0,
+  range P_N=V_sigma=ker C,
+  V_N=V_sigma direct_sum G(Q_N).
+
+A redundant ambient coefficient v defines the physical velocity
+  u=P_N v.
+
+A gauge parameter lambda in Q_N acts by
+  v -> v+G(lambda).
+
+This is the additive ABELIAN gradient-shift group.
+The quotient V_N/G(Q_N) identifies with V_sigma.
+
+On T*V_N with momentum pi, define
+  G_lambda^mom=<pi,G(lambda)>.
+
+The constraints commute:
+  {G_lambda^mom,G_eta^mom}=0.
+
+This is an auxiliary constrained representation, not a
+native Standard Model Gauss law.
+
+1. GHOST TYPE, PARITY AND BRST RULES
+------------------------------------
+THEOREM NBR-01: ABELIAN_GHOST_EXTENSION.
+
+Choose a real basis q_a (a=1,...,r) of Q_N,
+let g_a=G(q_a) in V_N, and introduce anticommuting
+Grassmann-odd ghost coefficients c^a.
+Write
+  c=sum_a c^a q_a,
+  G(c)=sum_a c^a g_a.
+
+The graded algebra of coefficient functions is
+
+  A_min=C^infty(V_N) tensor Lambda^bullet(Q_N^*),
+
+with ghost number 0 for v functions and +1 for c.
+
+Define an odd graded derivation s by
+  s v=G(c),
+  s c=0,
+and extend by the graded Leibniz rule
+  s(F G)=s(F)G+(-1)^(parity(F))F s(G).
+
+In coordinate notation on A_min,
+
+  s=sum_a c^a (g_a dot grad_v).
+
+The ghost coefficients are FORMAL Grassmann variables
+for gauge shifts; they do not carry physical electron
+charge, spin, or particle number.
+
+STATUS = EXACT B_TIER.
+
+THEOREM NBR-02: OFF_SHELL_BRST_NILPOTENCY.
+
+The vector fields g_a are constant commuting translations:
+  [g_a dot grad_v,g_b dot grad_v]=0.
+
+Then for all F in A_min,
+
+  s^2 F
+   =1/2 sum_ab c^a c^b
+      [g_a dot grad_v,g_b dot grad_v]F
+   =0.
+
+Alternatively, on generators
+  s^2v=G(sc)=0,
+  s^2c=0.
+Since s^2 is an even derivation of the graded algebra,
+nilpotency on generators proves s^2=0 everywhere.
+
+No equations of motion, gauge fixing, or fluid
+regularity assumptions are required.
+
+STATUS = EXACT B_TIER, OFF SHELL.
+
+2. NONMINIMAL ANTIGHOST AND GAUGE FIXING
+----------------------------------------
+THEOREM NBR-03: ANTIGHOST_NAKANISHI_EXTENSION.
+
+Introduce independent anticommuting antighost
+bar c in Q_N (ghost number -1) and commuting
+Nakanishi–Lautrup multiplier B in Q_N (ghost number 0).
+
+Extend s by
+  s bar c=B,
+  s B=0.
+
+Then s^2 bar c=sB=0 and s^2 B=0.
+Therefore s remains nilpotent off shell on the
+full nonminimal graded algebra.
+
+CAUTION: keeping B is important for the simple
+off-shell nilpotency statement; eliminating it
+may alter the off-shell transformation rules.
+
+STATUS = EXACT B_TIER.
+
+THEOREM NBR-04: FINITE_FADDEEV_POPOV_GAUGE_FIXING.
+
+Define the gauge condition
+  C(v)=div v in Q_N.
+
+Because
+  s C(v)=C G(c)=Delta c,
+
+choose an odd gauge-fixing functional
+  Psi_gf=<bar c, C(v)+(alpha/2) B>,
+
+where alpha is a real gauge parameter. For alpha=0,
+B is the strict gauge-fixing multiplier.
+
+By the GRADED Leibniz rule,
+
+  s Psi_gf
+    =<B,C(v)>+(alpha/2)<B,B>
+       -<bar c, Delta c>.
+
+The ghost kinetic operator is Delta, independent
+of the NSE coefficient v, and invertible on Q_N.
+The corresponding finite-dimensional ghost
+determinant is proportional to det(-Delta|Q_N),
+a nonzero gauge-independent constant.
+
+Thus the ghost action decouples from the NSE
+nonlinearity in this ABELIAN redundancy.
+This is NOT a universal feature of nonabelian
+Yang–Mills BRST gauge fixing.
+
+Because s^2=0,
+  s(s Psi_gf)=0,
+so the gauge-fixing term is BRST invariant.
+
+STATUS = EXACT B_TIER.
+
+3. GAUGE-INVARIANT NSE OBSERVABLE COHOMOLOGY
+--------------------------------------------
+THEOREM NBR-05: CONFIGURATION_GHOST_ZERO_COHOMOLOGY.
+
+Restrict first to the MINIMAL complex A_min, so it
+has no negative ghost degrees.
+
+A ghost-number-zero observable is a smooth F(v).
+It is s-closed iff
+
+  sF=sum_a c^a(g_a dot grad_v)F=0,
+
+equivalently
+  g_a dot grad_v F=0 for all a.
+
+Because G(Q_N) is a connected translation orbit,
+F is invariant under every v->v+G(lambda).
+
+The Hodge direct sum implies exactly
+
+  F(v)=f(P_N v)
+
+for a unique smooth f on V_sigma.
+Since A_min has no ghost degree -1, there are
+no degree-zero exact boundaries. Hence
+
+  H^0(A_min,s)~=C^infty(V_sigma).
+
+Adding the nonminimal (bar c,B) BRST doublet does
+not change this smooth configuration-observable
+cohomology when the usual polynomial/contractible
+doublet complex is used.
+
+IMPORTANT SEPARATION:
+A Hamiltonian BFV complex intended to model full
+phase-space reduction needs the constraints G_mom=0,
+their ghost momenta/Koszul–Tate mechanism, and suitable
+reduction. The minimal configuration BRST cohomology
+above is NOT, by itself, a claim that the physical
+Hilbert space of a quantum gauge theory has been built.
+
+STATUS = EXACT B_TIER, PROPERLY SCOPED.
+
+THEOREM NBR-06: DIFFERENCE_FROM_DE_RHAM_NILPOTENCY.
+
+The earlier frozen SM-04 construction used the
+de Rham differential on FULL coefficient space,
+
+  d=sum_i dz^i wedge partial_(v^i),
+  d^2=0.
+
+The present BRST differential instead acts ONLY
+along longitudinal gradient-shift directions,
+
+  s=sum_a c^a(g_a dot grad_v),
+  s^2=0.
+
+Thus
+  H^0(s)=functions of P_Nv,
+whereas on connected affine V_N
+  H^0(d)=locally constant functions
+(ordinary degree-zero de Rham cohomology).
+
+The two nilpotent operators have DIFFERENT
+complexes, geometrical meanings, and cohomology.
+Consequently d^2=0 in SM-04 never by itself
+proved the SM-06 reference identity.
+
+STATUS = EXACT B_TIER NONIDENTIFICATION.
+
+4. CANONICAL BFV BRST CHARGE
+----------------------------
+THEOREM NBR-07: FINITE_ABELELIAN_BFV_CHARGE.
+
+On T*V_N, set the first-class constraints
+  G_a=<pi,g_a>,
+with {G_a,G_b}=0.
+
+Choose canonical odd ghost/momentum variables
+(c^a,P_a) with the standard even graded
+Poisson bracket {c^a,P_b}=delta^a_b and
+all cross-brackets to the (v,pi) variables zero.
+
+Define the odd ghost-number-one BFV charge
+  Omega=sum_a c^a G_a.
+
+Because the G_a commute and have zero Poisson
+brackets with the ghosts,
+
+  {Omega,Omega}=0.
+
+The associated BRST differential
+  s_FBV F={F,Omega}
+
+is nilpotent by the graded Jacobi identity
+(and an even graded Poisson bracket convention).
+
+It gives
+  s_FBV v=G(c),
+  s_FBV pi=0,
+  s_FBV c=0,
+and transforms ghost momenta by the constraints
+(up to chosen sign convention).
+
+The BFV charge has no
+  -(1/2)f_ab^c c^a c^b P_c
+term because the gradient-shift Lie algebra
+is abelian and its structure constants vanish.
+
+STATUS = EXACT B TIER.
+
+THEOREM NBR-08: FINITE_OPERATOR_BRST_SQUARE_ZERO.
+
+On smooth compactly supported wavefunctions on V_N,
+tensored with the finite ghost exterior algebra,
+define the commuting translation generators
+  Ghat_a=-i*hbar(g_a dot grad_v).
+
+Set
+  Qhat_BRST=sum_a c^a Ghat_a,
+where multiplication by c^a is the exterior
+ghost-creation operator.
+
+The c^a anticommute and the Ghat_a commute,
+so on the common invariant test domain
+
+  Qhat_BRST^2
+    =(1/2)sum_ab c^a c^b
+         [Ghat_a,Ghat_b]
+    =0.
+
+This is a direct operator-level formal match to
+the SM-06 nilpotency SHAPE.
+
+It does not claim Qhat is a physical self-adjoint
+Standard Model BRST charge, nor that kernel(Qhat)
+inside the unreduced ambient Lebesgue Hilbert space
+is the correct nontrivial physical state space.
+
+Indeed invariance along a noncompact longitudinal
+translation direction is not normalizable in L2(V_N);
+gauge reduction or rigging must be specified.
+
+STATUS = EXACT B TIER ON SMOOTH GHOST TEST DOMAIN.
+
+5. RESPONSE-ACTION BRST INVARIANCE
+----------------------------------
+THEOREM NBR-09: NSE_LIFTED_RESPONSE_ACTION_INVARIANCE.
+
+Let F_N(u) be the smooth ambient finite Fourier
+acceleration of incompressible NSE, including
+specified forcing and, for finite NSE^X,
+a graph drag built only from projected velocities.
+
+Define an unconstrained lifted variable
+v(t) in V_N, transverse u=P_Nv, momentum response
+pi(t) in V_N, and multiplier theta(t) in Q_N.
+
+The deterministic lift is
+  dot v=F_N(P_Nv)+G(theta).
+
+Consider the finite response action
+  S_0=int dt <pi,
+       dot v-F_N(P_Nv)-G(theta)>.
+
+Extend the BRST rules by
+  s theta=dot c,
+  s pi=0.
+
+Then
+  s dot v=G(dot c),
+  s F_N(P_Nv)=0,
+  s G(theta)=G(dot c).
+
+Therefore the response residual is invariant
+and exactly
+  s S_0=0.
+
+The full gauge-fixed action
+  S_gf=S_0+int dt s Psi_gf
+is BRST-invariant:
+  s S_gf=0.
+
+Variation with respect to pi gives the lifted
+NSE residual; variation with respect to theta
+gives the auxiliary momentum constraint
+  G^*pi=0,
+equivalent to div pi=0.
+The transverse gauge C(v)=0 and its time
+preservation yield the pressure correction
+  theta=-Delta^(-1)C F_N(u).
+
+No claim is made that this deterministic
+response action is a microscopic Standard
+Model action or a unitary quantum theory.
+
+STATUS = EXACT B TIER VARIATIONAL IDENTITY.
+
+6. FINITE NSE^X GRAPH COMPATIBILITY
+------------------------------------
+THEOREM NBR-10: PRODUCT_ABELELIAN_BRST_NSE_POWER_X.
+
+For finite X={1,...,N}, choose independent
+ambient spaces V_(N,i), scalar gauge spaces
+Q_(N,i), gradient maps G_i and projections P_i.
+
+Introduce independent ghosts c_i, antighosts
+bar c_i, multipliers B_i, and compensators
+theta_i. Define
+
+  s v_i=G_i c_i,
+  s c_i=0,
+  s bar c_i=B_i,
+  s B_i=0,
+  s theta_i=dot c_i,
+  s pi_i=0.
+
+Then s^2=0, with all ghosts graded
+anticommuting across distinct fluid layers.
+
+The projected physical velocity in each layer
+  u_i=P_i v_i
+is BRST invariant.
+
+A symmetric graph exchange
+  (L_kappa u)_i=sum_j kappa_ij(u_i-u_j)
+
+is BRST invariant because it depends only on
+the projected u_i.
+Therefore the graph coupling does not spoil
+nilpotency or the auxiliary gauge invariance.
+
+The product gauge group is the direct sum
+of ABELIAN gradient shift groups, not
+the nonabelian internal Standard Model group.
+
+STATUS = EXACT B TIER.
+
+THEOREM NBR-11: REGULARITY_ADMISSION_INDEPENDENT_OF_BRST.
+
+The above BRST complex is an algebraic
+constraint/redundancy representation.
+It does NOT prove global regularity of
+arbitrary 3D NSE or a Standard Model
+interaction.
+
+Regularity of an admitted NSE^X interaction
+still requires independent analytic input:
+  - common 2D3C tangency or Beltrami closure;
+  - critical H^(1/2) forcing budget;
+  - small 3D perturbation of a globally regular
+    reference with exponential stability budget;
+  - or an independently established global
+    strong PDE theorem.
+
+A generic forcing written in ambient v may break
+the gradient-shift redundancy. If the physical
+force factors through P_N v (and is projected),
+it is compatible with this auxiliary BRST
+construction; physical SM gauge symmetry and
+source Ward identities remain separate.
+
+STATUS = EXACT SCOPE.
+
+7. FROZEN SM-06 CLASSIFICATION
+-------------------------------
+THEOREM NBR-12: SM06_EXACT_AUXILIARY_MATCH.
+
+Frozen reference:
+  Q_BRST^2=0
+
+in a regulated, anomaly-free Standard Model
+gauge-fixed BRST complex.
+
+NSE^X analogue:
+  s^2=0,
+  Qhat_BRST^2=0
+
+for the explicit finite auxiliary ABELIAN
+gradient shift gauge system.
+
+Physical identification is NOT obtained:
+  - no nonabelian SU(3)/SU(2) BRST generator;
+  - no SM ghost interactions or gauge anomaly
+    cancellation theorem;
+  - no fermionic electron CAR transfer;
+  - no physical gauge bundle and charge
+    BRST cohomology;
+  - no microscopic NSE-to-SM equivalence.
+
+This is an EXACT AUXILIARY STRUCTURAL
+MATCH to row SM-06 only.
+Previously frozen SM-01..SM-05 are unchanged;
+SM-07 and SM-08 remain untouched.
+
+STATUS = B TIER.
+
+8. ROOT AND DEPENDENCIES
+-------------------------
+THEOREM NSE_AUXILIARY_BRST_NILPOTENCY.
+
+Assume the finite Hodge–Leray decomposition
+and its auxiliary gradient-shift group
+constructed in SM-05, with mean-zero scalar
+gauge parameters and ordinary finite ghost
+exterior algebra.
+
+Then:
+ R1 odd s with s v=grad c, sc=0 is nilpotent;
+ R2 antighost/multiplier BRST doublet preserves
+    off-shell nilpotency;
+ R3 the gauge-fixed action s Psi_gf has constant
+    field-independent Faddeev–Popov Laplacian;
+ R4 H^0 of the minimal configuration BRST
+    complex is the algebra of functions of P_Nv;
+ R5 the canonical Abelian BFV charge and
+    its finite operator realization square to 0;
+ R6 the deterministic lifted NSE response
+    action is BRST invariant;
+ R7 finite NSE^X graph drag constructed from
+    projected velocities preserves the
+    auxiliary BRST complex;
+ R8 the construction does NOT identify the
+    physical Standard Model BRST charge.
+
+PROOF: NBR-01..NBR-12.
+
+TIER = B_TIER COMPLETE OF THE EXACTLY
+SCOPED AUXILIARY ALGEBRA.
+A_TIER NOT ESTABLISHED.
+
+9. ENDPOINT REGISTER
+---------------------
+[x] NBR-01 ABELIAN_GHOST_EXTENSION
+[x] NBR-02 OFF_SHELL_BRST_NILPOTENCY
+[x] NBR-03 ANTIGHOST_NAKANISHI_EXTENSION
+[x] NBR-04 FINITE_FADDEEV_POPOV_GAUGE_FIXING
+[x] NBR-05 CONFIGURATION_GHOST_ZERO_COHOMOLOGY
+[x] NBR-06 DIFFERENCE_FROM_DE_RHAM_NILPOTENCY
+[x] NBR-07 FINITE_ABELIAN_BFV_CHARGE
+[x] NBR-08 FINITE_OPERATOR_BRST_SQUARE_ZERO
+[x] NBR-09 NSE_LIFTED_RESPONSE_ACTION_INVARIANCE
+[x] NBR-10 PRODUCT_ABELIAN_BRST_NSE_POWER_X
+[x] NBR-11 REGULARITY_ADMISSION_INDEPENDENT_OF_BRST
+[x] NBR-12 SM06_EXACT_AUXILIARY_MATCH
+[x] NBR-13 NSE_AUXILIARY_BRST_NILPOTENCY_ROOT
+
+[ ] NBR-14 PHYSICAL_NONABELIAN_SM_BRST
+[ ] NBR-15 CHIRAL_QUANTUM_GAUGE_ANOMALY_AUDIT
+[ ] NBR-16 PHYSICAL_SM_NSE_GAUGE_FORCE_MATCHING
+[ ] NBR-17 BRST_PHYSICAL_HILBERT_AND_UNITARITY
+[ ] NBR-18 EXTERNAL_LEAN_COMPILER_AND_AXIOM_AUDIT
+
+10. FUTURE LEAN PROOF SPINE (NOT EXECUTED)
+------------------------------------------
+A. Finite scalar/vector Fourier grad, div, inverse
+   Laplacian and Hodge projector from SM-05.
+B. Exterior Grassmann ghost generators and
+   graded derivation/Leibniz.
+C. s^2=0 and graded gauge-fixing fermion identity.
+D. Abstract commuting translation constraints
+   and BFV ghost/constraint charge nilpotency.
+E. Exact H^0(s) reduction to functions of Pv,
+   with smooth invariant factorization.
+F. Lifted response-action invariance and
+   finite graph product.
+G. Deterministic scoped root assembly;
+   external compiler and theorem-level axiom
+   audit are required for A-tier promotion.
+
+No local Lean compiler, and no claimed checked
+specific Mathlib/Methlib declaration names.
+
+11. SOURCES
+------------
+Published Abelian BRST transformations:
+  https://link.springer.com/article/10.1140/epjc/s10052-014-2881-8
+
+BFV constraint BRST and cohomology:
+  https://citeseerx.ist.psu.edu/document?doi=f258057e8ab7de57f00e1a09f64a6da607512328&repid=rep1&type=pdf
+
+Frozen predecessor:
+  https://raw.githubusercontent.com/randogelist/Maxwell-Schroedinger-System/b-tier-hull/B_TIER/NSE_HODGE_GAUSS_CONSTRAINT_MATCH_B_TIER.txt
+
+FINAL
+-----
+MARKER = !
+MODE = B_TIER_DERIVATION
+NSE_AUXILIARY_ABELIAN_Q_SQUARED_ZERO = EXACT
+PHYSICAL_STANDARD_MODEL_BRST = OPEN
+SM-07/08 = FROZEN
+A_TIER = NOT_ESTABLISHED
