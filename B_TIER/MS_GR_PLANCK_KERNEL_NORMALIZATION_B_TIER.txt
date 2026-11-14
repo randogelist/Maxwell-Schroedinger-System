@@ -1,0 +1,627 @@
+MAXWELL-SCHROEDINGER / QM-GR NORMALIZATION BRIDGE
+B-TIER DERIVATION
+================================================
+
+STATUS
+------
+
+MARKER = !
+TIER = B_TIER
+ARTIFACT = MS_GR_PLANCK_KERNEL_NORMALIZATION_B_TIER
+PARENT_ENDPOINT = MS_GR_PLANCK_KERNEL_ENDPOINT
+LEAN_STATUS = NOT_EMITTED
+A_TIER_STATUS = NOT_ESTABLISHED
+FORMAL_CLOSURE = NOT_ESTABLISHED
+LOCAL_LEAN_EXECUTIONS = 0
+
+This document isolates the dimensionless normalization coefficient in the
+QM-GR Planck-kernel bridge. It proves that the historical endpoint
+
+  epsilon = a_* = 2 l_P
+
+is equivalent to a gravitational symplectic pullback coefficient equal to
+exactly 1/4 in the frozen Fubini-Study convention.
+
+The mathematical implications below are exact B-tier derivations. No theorem
+below proves the gravitational pullback law itself.
+
+
+0. FROZEN NOTATION
+------------------
+
+Let
+
+  G > 0,
+  c > 0,
+  hbar > 0,
+  epsilon > 0,
+  kappa > 0.
+
+Define
+
+  l_P := sqrt(G hbar/c^3),
+
+  tau_epsilon := epsilon^2/4,
+
+  a_* := epsilon,
+
+  l_* := epsilon/2 = sqrt(tau_epsilon).
+
+Let O be a two-dimensional projective quantum orbit, and let omega_FS be a
+nonzero two-form on O normalized by
+
+  integral_O omega_FS = 2 pi.
+
+The Maxwell-Schrodinger quantum action form is
+
+  Omega_MS = hbar omega_FS.
+
+Define the general gravitational action coefficient
+
+  S_{kappa,epsilon}
+    := kappa c^3 epsilon^2/G.
+
+Define its dimensionless matching ratio and defect
+
+  Xi_{kappa,epsilon}
+    := S_{kappa,epsilon}/hbar
+     = kappa epsilon^2/l_P^2,
+
+  D_{kappa,epsilon}
+    := Xi_{kappa,epsilon}-1.
+
+The historical convention is
+
+  kappa = 1/4,
+
+for which
+
+  S_{1/4,epsilon}
+    = c^3 epsilon^2/(4G)
+    = c^3 tau_epsilon/G.
+
+
+1. GENERAL GR PULLBACK SCALE
+----------------------------
+
+PREMISE GR_PULLBACK_PROPORTIONAL(kappa,epsilon).
+
+There exist a reduced gravitational phase space P_GR, a symplectic form
+Omega_GR, and a map
+
+  iota_epsilon : O -> P_GR
+
+such that
+
+  iota_epsilon^* Omega_GR
+    = S_{kappa,epsilon} omega_FS
+    = [kappa c^3 epsilon^2/G] omega_FS.
+
+PREMISE ACTION_CELL_MATCHING(kappa,epsilon).
+
+The gravitational and Maxwell-Schrodinger action cells agree:
+
+  iota_epsilon^* Omega_GR = Omega_MS.
+
+THEOREM GENERAL_PLANCK_SCALE_FROM_MATCHING.
+
+Under the two premises,
+
+  epsilon = l_P/sqrt(kappa).
+
+DERIVATION.
+
+The premises and Omega_MS=hbar omega_FS give
+
+  [kappa c^3 epsilon^2/G] omega_FS
+    = hbar omega_FS.
+
+Since omega_FS is nonzero,
+
+  kappa c^3 epsilon^2/G = hbar.
+
+Thus
+
+  epsilon^2 = G hbar/(kappa c^3)
+            = l_P^2/kappa.
+
+Positivity gives
+
+  epsilon = l_P/sqrt(kappa).
+
+STATUS = EXACT_CONDITIONAL_B_TIER.
+
+
+2. FACTOR-OF-FOUR CALIBRATION
+-----------------------------
+
+THEOREM FACTOR_FOUR_CALIBRATION.
+
+Under G,c,hbar,epsilon,kappa>0 and the matching equation
+
+  kappa c^3 epsilon^2/G = hbar,
+
+the following are equivalent:
+
+  (i)   epsilon = 2 l_P;
+
+  (ii)  kappa = 1/4;
+
+  (iii) S_{kappa,epsilon} = c^3 epsilon^2/(4G);
+
+  (iv)  tau_epsilon = l_P^2;
+
+  (v)   l_* = l_P.
+
+DERIVATION.
+
+From the general matching theorem,
+
+  epsilon/l_P = 1/sqrt(kappa).
+
+Therefore epsilon/l_P=2 exactly when sqrt(kappa)=1/2, equivalently
+kappa=1/4. Since tau_epsilon=epsilon^2/4 and l_*=epsilon/2, the remaining
+statements are equivalent by direct substitution.
+
+STATUS = EXACT_B_TIER.
+
+CONSEQUENCE.
+
+The factor 2 in
+
+  a_*=epsilon=2 l_P
+
+is not supplied by dimensional analysis. It is exactly the square-root image
+of the dimensionless coefficient 1/4 in the gravitational pullback law.
+
+
+3. ACTION-CELL REDUCTION
+------------------------
+
+Define the quantum action cell
+
+  A_Q
+    := (1/(2 pi)) integral_O Omega_MS.
+
+Define the gravitational action cell
+
+  A_GR(epsilon)
+    := (1/(2 pi)) integral_O iota_epsilon^*Omega_GR.
+
+THEOREM ACTION_CELL_VALUES.
+
+If
+
+  Omega_MS = hbar omega_FS,
+
+  iota_epsilon^*Omega_GR
+    = S_{kappa,epsilon} omega_FS,
+
+then
+
+  A_Q = hbar,
+
+  A_GR(epsilon) = S_{kappa,epsilon}.
+
+DERIVATION.
+
+Use integral_O omega_FS=2pi.
+
+THEOREM ACTION_CELL_MATCHING_EQUIVALENCE.
+
+Under the same proportionality assumptions, the following are equivalent:
+
+  (i)  iota_epsilon^*Omega_GR = Omega_MS;
+
+  (ii) A_GR(epsilon) = A_Q;
+
+  (iii) S_{kappa,epsilon} = hbar;
+
+  (iv) Xi_{kappa,epsilon} = 1;
+
+  (v) D_{kappa,epsilon} = 0.
+
+DERIVATION.
+
+Both forms are scalar multiples of the same nonzero omega_FS. Equality of
+their integrals therefore equals equality of their scalar coefficients, which
+is equivalent to all remaining scalar statements.
+
+STATUS = EXACT_B_TIER.
+
+SCOPE NOTE.
+
+This reduction weakens the matching computation after proportionality has been
+proved: it is sufficient to compare one symplectic area. It does not prove the
+proportionality of the GR pullback to omega_FS.
+
+
+4. HEAT-PARAMETER PLANCK AREA
+-----------------------------
+
+The heat regularization is
+
+  exp((epsilon^2/4) Delta)
+    = exp(tau_epsilon Delta).
+
+THEOREM HEAT_PARAMETER_PLANCK_AREA.
+
+For kappa=1/4, the following are equivalent:
+
+  (i)   S_{1/4,epsilon}=hbar;
+
+  (ii)  c^3 tau_epsilon/G = hbar;
+
+  (iii) tau_epsilon = G hbar/c^3;
+
+  (iv)  tau_epsilon = l_P^2;
+
+  (v)   epsilon=2l_P;
+
+  (vi)  l_*=l_P.
+
+STATUS = EXACT_B_TIER.
+
+INTERPRETATION BOUNDARY.
+
+The quantity tau_epsilon has dimension length squared because Delta is a
+spatial Laplacian. It is a heat-semigroup parameter, not a physical time unless
+an additional diffusion coefficient is supplied.
+
+
+5. PHYSICAL TORUS RESCALING
+---------------------------
+
+Let the physical torus have side length L>0. Write
+
+  x_phys = L x_unit.
+
+Then
+
+  Delta_unit = L^2 Delta_phys.
+
+Define
+
+  epsilon_phys := L epsilon_unit.
+
+THEOREM PHYSICAL_TORUS_SCALE.
+
+The unit-torus and physical-torus regularizations coincide:
+
+  exp((epsilon_unit^2/4) Delta_unit)
+    = exp((epsilon_phys^2/4) Delta_phys).
+
+Therefore the Planck-kernel endpoint is equivalently
+
+  epsilon_phys = 2l_P
+
+or
+
+  epsilon_unit = 2l_P/L.
+
+STATUS = EXACT_B_TIER.
+
+This conversion is required before comparing a dimensionless numerical torus
+parameter with a physical length.
+
+
+6. FUBINI-STUDY NORMALIZATION INVARIANCE
+---------------------------------------
+
+Let r>0 and define another convention
+
+  omega_FS_tilde := r omega_FS.
+
+Then
+
+  Omega_MS = (hbar/r) omega_FS_tilde,
+
+  iota_epsilon^*Omega_GR
+    = (S_{kappa,epsilon}/r) omega_FS_tilde.
+
+THEOREM NORMALIZATION_INVARIANCE.
+
+The matching equation
+
+  S_{kappa,epsilon}=hbar
+
+and the diagnostic
+
+  Xi_{kappa,epsilon}=S_{kappa,epsilon}/hbar
+
+are unchanged by a simultaneous rescaling of the Fubini-Study convention.
+
+STATUS = EXACT_B_TIER.
+
+AUDIT RULE.
+
+A factor-of-two or factor-of-four claim is meaningful only after both the GR
+and QM forms have been expressed in the same Fubini-Study convention.
+
+
+7. PLANCK-MATCHING DEFECT
+-------------------------
+
+THEOREM PLANCK_MATCHING_DEFECT.
+
+For fixed kappa>0,
+
+  D_{kappa,epsilon}
+    = kappa epsilon^2/l_P^2 - 1
+
+is strictly increasing for epsilon>0 and has the unique zero
+
+  epsilon_match = l_P/sqrt(kappa).
+
+Moreover,
+
+  epsilon < epsilon_match  iff D_{kappa,epsilon}<0,
+
+  epsilon = epsilon_match  iff D_{kappa,epsilon}=0,
+
+  epsilon > epsilon_match  iff D_{kappa,epsilon}>0.
+
+For kappa=1/4,
+
+  epsilon_match=2l_P.
+
+STATUS = EXACT_B_TIER.
+
+This supplies a scalar numerical residual for any proposed GR construction.
+
+
+8. ORBIT-UNIVERSALITY GATE
+--------------------------
+
+Let chi range through a family of normalized matter profiles. Suppose the GR
+pullback calculation gives a coefficient kappa(chi)>0:
+
+  iota_{epsilon,chi}^*Omega_GR
+    = [kappa(chi)c^3epsilon^2/G] omega_FS,chi.
+
+THEOREM ORBIT_UNIVERSALITY_GATE.
+
+A single positive epsilon can satisfy action-cell matching for every profile
+chi only if kappa(chi) is constant across the family.
+
+DERIVATION.
+
+Matching at profile chi gives
+
+  epsilon^2=l_P^2/kappa(chi).
+
+If the same epsilon matches two profiles chi_1 and chi_2, then
+
+  kappa(chi_1)=kappa(chi_2).
+
+STATUS = EXACT_B_TIER.
+
+Consequently, a universal Planck-kernel scale requires a profile-independent
+gravitational coefficient. A coefficient depending on chi produces a
+state-dependent smoothing length rather than a universal constant.
+
+
+9. COEFFICIENT NON-SELECTION
+----------------------------
+
+THEOREM COEFFICIENT_NONSELECTION.
+
+For every prescribed epsilon>0, define
+
+  kappa_epsilon := l_P^2/epsilon^2.
+
+Then
+
+  kappa_epsilon c^3 epsilon^2/G = hbar.
+
+Therefore action matching with an unspecified positive proportionality
+coefficient cannot select epsilon.
+
+STATUS = EXACT_B_TIER.
+
+DECISIVE CONTENT.
+
+The physical content of the historical endpoint is not the algebraic matching
+step. It is the independent GR derivation
+
+  kappa = 1/4.
+
+Without that theorem, the matching relation can be satisfied at every positive
+epsilon by choosing a corresponding coefficient.
+
+
+10. STRENGTHENED CONDITIONAL ROOT
+--------------------------------
+
+THEOREM MS_GR_PLANCK_KERNEL_NORMALIZATION_ENDPOINT.
+
+Assume:
+
+  H1. G,c,hbar,epsilon>0;
+
+  H2. Omega_MS=hbar omega_FS and integral omega_FS=2pi;
+
+  H3. the GR pullback is proportional:
+
+        iota_epsilon^*Omega_GR
+          = [kappa c^3epsilon^2/G] omega_FS;
+
+  H4. gravitational and quantum action cells match;
+
+  H5. kappa=1/4.
+
+Then
+
+  epsilon=a_*=2l_P,
+
+  l_*=l_P,
+
+  tau_epsilon=l_P^2,
+
+  S_{1/4,epsilon}=hbar,
+
+  Xi_{1/4,epsilon}=1,
+
+  D_{1/4,epsilon}=0.
+
+DERIVATION.
+
+H2-H4 give epsilon=l_P/sqrt(kappa). H5 gives
+
+epsilon=2l_P. All other conclusions follow from the frozen definitions.
+
+STATUS = CONDITIONAL_B_TIER.
+
+The exact implication is closed at B-tier. The premises H3-H5 are not
+established by the present Maxwell-Schrodinger branch.
+
+
+11. ENDPOINT REGISTER
+---------------------
+
+[x] QMGR-09  GENERAL_PLANCK_SCALE_FROM_MATCHING
+              EXACT_CONDITIONAL_B_TIER
+
+[x] QMGR-10  FACTOR_FOUR_CALIBRATION
+              EXACT_B_TIER
+
+[x] QMGR-11  ACTION_CELL_MATCHING_EQUIVALENCE
+              EXACT_B_TIER
+
+[x] QMGR-12  HEAT_PARAMETER_PLANCK_AREA
+              EXACT_B_TIER
+
+[x] QMGR-13  PHYSICAL_TORUS_SCALE
+              EXACT_B_TIER
+
+[x] QMGR-14  NORMALIZATION_INVARIANCE
+              EXACT_B_TIER
+
+[x] QMGR-15  PLANCK_MATCHING_DEFECT
+              EXACT_B_TIER
+
+[x] QMGR-16  ORBIT_UNIVERSALITY_GATE
+              EXACT_B_TIER
+
+[x] QMGR-17  COEFFICIENT_NONSELECTION
+              EXACT_B_TIER
+
+[x] QMGR-18  MS_GR_PLANCK_KERNEL_NORMALIZATION_ENDPOINT
+              CONDITIONAL_B_TIER
+
+[ ] QMGR-19  GR_COEFFICIENT_ONE_QUARTER
+              OPEN_DECISIVE_GR_ENDPOINT
+
+
+12. VALIDATION PROGRAM
+----------------------
+
+V-NORM-01.
+
+Compute the GR pullback coefficient kappa without using hbar or the target
+Planck relation as input.
+
+V-NORM-02.
+
+Verify kappa=1/4 in the same Fubini-Study convention used by the quantum orbit.
+
+V-NORM-03.
+
+Compute the action-cell defect
+
+  D_{kappa,epsilon}=kappa epsilon^2/l_P^2-1.
+
+V-NORM-04.
+
+Repeat the calculation across multiple profiles chi. Verify that kappa is
+profile-independent before claiming a universal epsilon.
+
+V-NORM-05.
+
+Repeat on physical tori of different side lengths L and verify
+
+  epsilon_unit L = epsilon_phys.
+
+V-NORM-06.
+
+Rescale the Fubini-Study convention and verify that Xi and the matched physical
+length are invariant.
+
+V-NORM-07.
+
+Audit the kernel convention by checking
+
+  tau_epsilon=epsilon^2/4,
+
+  l_*=sqrt(tau_epsilon),
+
+  a_*=2l_*.
+
+
+13. DEPENDENCY SPINE
+--------------------
+
+  MS_FUBINI_STUDY_ACTION_SCALE
+  + GR_PULLBACK_PROPORTIONAL(kappa,epsilon)
+  + ACTION_CELL_MATCHING
+    -> QMGR-09.
+
+  QMGR-09
+  + kappa=1/4
+    -> QMGR-10
+    -> QMGR-18.
+
+  proportionality to omega_FS
+    -> QMGR-11.
+
+  Gaussian kernel convention
+    -> QMGR-12
+    -> QMGR-13.
+
+  shared form normalization
+    -> QMGR-14.
+
+  positivity
+    -> QMGR-15.
+
+  matching across profile family
+    -> QMGR-16.
+
+  unspecified kappa
+    -> QMGR-17.
+
+  independent GR geometry
+    -> QMGR-19.
+
+
+14. CLOSURE CLASSIFICATION
+--------------------------
+
+EXACT_B_TIER:
+
+  FACTOR_FOUR_CALIBRATION
+  ACTION_CELL_VALUES
+  ACTION_CELL_MATCHING_EQUIVALENCE
+  HEAT_PARAMETER_PLANCK_AREA
+  PHYSICAL_TORUS_SCALE
+  NORMALIZATION_INVARIANCE
+  PLANCK_MATCHING_DEFECT
+  ORBIT_UNIVERSALITY_GATE
+  COEFFICIENT_NONSELECTION.
+
+EXACT_CONDITIONAL_B_TIER:
+
+  GENERAL_PLANCK_SCALE_FROM_MATCHING
+  MS_GR_PLANCK_KERNEL_NORMALIZATION_ENDPOINT.
+
+OPEN DECISIVE ENDPOINT:
+
+  GR_COEFFICIENT_ONE_QUARTER.
+
+FORMAL STATUS:
+
+  B_TIER only.
+  Lean files are not emitted.
+  A_TIER is not established.
+  FORMAL_CLOSURE is not established.
+  UNCONDITIONAL_CLOSURE is not established.
