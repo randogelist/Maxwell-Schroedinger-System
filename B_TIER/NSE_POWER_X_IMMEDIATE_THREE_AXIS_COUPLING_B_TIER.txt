@@ -1,0 +1,431 @@
+NSE^X: IMMEDIATE THREE-AXIS NONLINEAR COUPLING WITH GLOBAL REGULARITY
+B-TIER MATHEMATICAL DERIVATION
+====================================================================
+
+STATUS
+------
+THEOREM = NSE_POWER_X_IMMEDIATE_THREE_AXIS_GLOBAL_REGULARITY
+MARKER = !
+MODE = B_TIER_DERIVATION
+SOURCE_BRANCH = b-tier-hull
+PARENTS:
+  NSE_POWER_X_ADMISSIBLE_COMPOSITION_B_TIER
+  NSE_POWER_X_REGULARITY_PRESERVING_INTERACTION_PORT_B_TIER
+  NSE_POWER_X_ROUGH_CORE_FINITE_ENTRY_AND_QFB_REFINEMENT_B_TIER
+LEAN = NOT_EMITTED
+A_TIER = NOT_ESTABLISHED
+FORMAL_CLOSURE = NOT_ESTABLISHED
+LOCAL_LEAN_EXECUTIONS = 0
+
+CENTRAL IMPROVEMENT
+-------------------
+A previous sufficient theorem switched 3D forcing ON AFTER a positive
+entry time t0>0 to accommodate rough L2 2D3C cores.
+
+For SMOOTH large helical cores, there is NO NEED for a positive delay:
+small reciprocal graph coupling may act for all t>=0.
+
+Three independent spatial directions are explicitly mixed into each
+layer at first order in t, and the NSE solenoidal quadratic nonlinearity
+becomes genuinely nonzero. All smooth finite-energy amplitudes are
+allowed, provided the nonzero exchange conductance is sufficiently
+small relative to the reference amplitude.
+
+This is a nontrivial rank-3, nonlinear, globally regular sector of
+FINITE-LAYER NSE^X, not a proof for arbitrary 3D NSE data.
+The coupling represents a mathematical reciprocal fluid drag, NOT
+an already derived physical electron/Coulomb/SM interaction.
+
+0. NORMALIZATION
+----------------
+M=T_L^3, L>0, volume V=L^3. Fix viscosity nu>0, the same in
+each layer; all densities are 1 (or absorbed into time and force
+coefficients). Work with real, smooth, periodic mean-zero
+solenoidal fields and the homogeneous Sobolev norms defined
+through Fourier frequencies (2 pi/L) Z^3.
+
+Let
+  A=-P_sigma Delta,
+  B(u,v)=P_sigma[(u dot grad)v],
+  K_0 = [[2,-1,-1],[-1,2,-1],[-1,-1,2]],
+  L_kappa=kappa K_0, kappa>=0.
+
+The graph matrix is symmetric nonnegative, with eigenvalues
+  {0,3,3} and operator norm lambda_G=3.
+
+1. THREE ORTHOGONAL-PROPAGATION HELICAL BASE PROFILES
+-----------------------------------------------------
+Fix nonzero integer wave numbers n1,n2,n3, with
+  k1=2 pi n1/L, k2=2 pi n2/L, k3=2 pi n3/L,
+and choose k1 != k2; for a concrete rank-3 nonlinear test
+use (n1,n2,n3)=(1,2,3).
+
+Fix nonzero finite amplitudes A1,A2,A3 in R and phases
+alpha1,alpha2,alpha3 in R.
+
+Define
+  a1(x)=A1 (0,cos(k1*x+alpha1),sin(k1*x+alpha1)),
+  a2(y)=A2 (sin(k2*y+alpha2),0,cos(k2*y+alpha2)),
+  a3(z)=A3 (cos(k3*z+alpha3),sin(k3*z+alpha3),0).
+
+For each i:
+  div ai=0,
+  integral ai dx=0,
+  Delta ai=-ki^2 ai,
+  (ai dot grad)ai=0,
+  curl ai=-ki ai.
+
+Thus the UNCOUPLED exact NSE reference is
+  Ui(t)=exp(-nu ki^2 t)ai,
+and U=(U1,U2,U3) is a smooth globally regular product
+NSE solution. No amplitude smallness on Ai is required.
+
+2. IMMEDIATE GRAPH COUPLING
+--------------------------
+Consider the genuinely coupled NSE^3 system
+
+  partial_t ui+B(ui,ui)+nu A ui
+    +kappa sum_{j != i}(ui-uj)=0,      i=1,2,3,
+
+  ui(0)=ai, div ui=0.
+
+For any local smooth solution,
+  partial_t u1(0)
+    =-nu k1^2 a1-kappa(2a1-a2-a3).
+
+Consequently, for kappa>0 and all amplitudes Aj!=0, the
+Fourier coefficients of u1 at the x, y and z wave numbers
+are nonzero at sufficiently small positive times:
+  u1(t)
+    =a1+t[-nu k1^2 a1-kappa(2a1-a2-a3)]+O(t^2)
+in every smooth Sobolev space on a local existence
+interval. The O(t^2) terms are smooth.
+
+Therefore the individual first layer immediately acquires
+genuine rank-3 Fourier dependence for t>0 small enough.
+A common invariant 2D3C direction does NOT exist for the
+combined three-axis family.
+
+For general positive times, global rank-3 persistence of
+each individual Fourier coefficient is not asserted;
+the theorem only needs rank-3 nontriviality near t=0.
+
+STATUS: EXACT_B_TIER TAYLOR/FOURIER ARGUMENT.
+
+3. NONZERO SOLENOIDAL CROSS ADVECTION
+-------------------------------------
+Let
+  hx(x)=(0,cos(k1*x+alpha1),sin(k1*x+alpha1)),
+  hy(y)=(sin(k2*y+alpha2),0,cos(k2*y+alpha2)).
+
+The symmetric convection cross-term is
+  f12=(a1 dot grad)a2+(a2 dot grad)a1.
+
+Its z component is
+  (f12)_z
+    =A1*A2*(k1-k2)
+       cos(k1*x+alpha1)*sin(k2*y+alpha2).
+
+As f12 depends only on x,y, the pressure projection
+P_sigma modifies only the x,y components of its
+Fourier modes: for x,y wave vectors, the projection
+P_(kx,ky,0) leaves the z component unchanged.
+
+Thus for k1 != k2 and A1*A2 !=0,
+
+  P_sigma f12 !=0.
+
+Expanding B(u1,u1) around a1 in the coupled solution
+shows
+
+  B(u1(t),u1(t))
+   =kappa*t*[B(a1,a2)+B(a2,a1)
+              +B(a1,a3)+B(a3,a1)]
+       +O(t^2).
+
+The contribution at Fourier mode (k1,k2,0) has a
+nonzero z component above, while the a1/a3
+cross-term has Fourier mode (k1,0,k3).
+They cannot cancel.
+
+Therefore
+  B(u1(t),u1(t)) !=0
+for all sufficiently small positive t.
+
+This is real nonlinear NSE interaction in a
+genuinely rank-3 layer, not a Beltrami cancellation.
+
+STATUS: EXACT_B_TIER.
+
+4. PERTURBATION EQUATION ABOUT THE LARGE REGULAR PRODUCT
+---------------------------------------------------------
+Write
+  ui=Ui+wi,
+  w(0)=0.
+
+The coupled equations become
+
+  partial_t wi+nu A wi+(L_kappa w)i
+   +B(Ui,wi)+B(wi,Ui)+B(wi,wi)
+      =hi,
+
+where the forcing is exactly
+  h=-L_kappa U=-kappa K_0 U.
+
+This is an algebraic decomposition of the AUTONOMOUS,
+UNFORCED, COUPLED PDE; h is not an additional external force.
+
+Define
+  H_w(t)=sum_i||wi(t)||_(dot H^(1/2))^2,
+  D_w(t)=sum_i||wi(t)||_(dot H^(3/2))^2,
+  F(t)=sum_i||hi(t)||_(dot H^(-1/2))^2.
+
+Let C_NL>0 be a valid 3D critical trilinear constant,
+and C_mix>0 a valid mixed bilinear constant such that
+
+  |<Lambda^(1/2)B(wi,wi),Lambda^(1/2)wi>|
+    <=C_NL||wi||_(dot H^(1/2))
+             ||wi||_(dot H^(3/2))^2,
+
+  ||B(Ui,wi)+B(wi,Ui)||_(dot H^(-1/2))
+    <= C_mix ||Ui||_(W^(2,infinity))
+                   ||wi||_(dot H^(1/2)).
+
+These are standard smooth-background Sobolev product
+inequalities. Constants depend on the specified Fourier
+normalization and torus geometry.
+
+Let
+  M_U(t)^2=sum_i||Ui(t)||_(W^(2,infinity))^2.
+
+Since the positive graph commutes with spatial Fourier
+multipliers, the critical energy inequality is
+
+  (1/2) H_w' +nu D_w
+     +kappa sum_{i<j}||wi-wj||_(dot H^(1/2))^2
+  <= C_NL sqrt(H_w) D_w
+     +C_mix M_U sqrt(H_w) sqrt(D_w)
+     +sqrt(F) sqrt(D_w).
+
+Fix
+  delta=nu/(4C_NL).
+
+On the bootstrap interval sqrt(H_w)<=delta, the
+critical nonlinearity is <=nu/4 D_w.
+Two Young estimates with budget nu/4 each give
+
+  H_w' <=beta_U(t) H_w+(2/nu) F(t),
+
+  beta_U(t)
+     =(2C_mix^2/nu) M_U(t)^2.
+
+Let
+  B_U=int_0^infty beta_U(t)dt.
+
+Each Ui is an exponentially decaying smooth single
+Fourier eigenmode, hence B_U<infinity for EVERY
+finite A1,A2,A3 and every nu>0.
+
+Since H_w(0)=0, Gronwall yields
+
+  sup_{t>=0}H_w(t)
+    <=exp(B_U)*(2/nu)*int_0^infty F(t)dt
+
+whenever the right side is strictly less than delta^2.
+This closes the bootstrap and global critical strong
+continuation. Smooth data and no external nonsmooth
+forcing yield global smooth solutions on [0,infinity).
+
+STATUS: COMPLETE CONDITIONAL_B_TIER UNDER STANDARD
+CRITICAL H^(1/2) LOCAL WELL-POSEDNESS/CONTINUATION.
+
+5. EXPLICIT GRAPH-COUPLING ADMISSION
+-------------------------------------
+Because K0 is a real symmetric 3x3 graph matrix with
+  ||K0||_op=lambda_G=3,
+
+and its action commutes with Lambda, one has
+
+  ||h(t)||_(dot H^(-1/2),X)^2
+   <=kappa^2*lambda_G^2
+      sum_i ||Ui(t)||_(dot H^(-1/2))^2.
+
+For the pure helical modes,
+
+  ||Ui(t)||_(dot H^(-1/2))^2
+   =V*Ai^2/|ki| *exp(-2nu ki^2 t).
+
+Thus
+
+  integral_0^infinity ||h(t)||_(dot H^(-1/2),X)^2 dt
+   <=kappa^2*lambda_G^2/(2nu)*
+      [V*sum_i Ai^2/|ki|^3].
+
+Define the EXACT positive finite weighted spectral sum
+
+  S_m3 :=V*sum_{i=1}^3 Ai^2/|ki|^3 >0.
+
+A sufficient strict admissibility condition is
+
+  exp(B_U)*
+       [kappa^2*lambda_G^2*S_m3/nu^2]
+    < nu^2/(16 C_NL^2).
+
+Equivalently,
+
+  0<kappa<kappa_crit,
+
+  kappa_crit
+    := nu^2/(4 C_NL*lambda_G*sqrt(S_m3))
+       *exp(-B_U/2).
+
+For the complete graph lambda_G=3:
+
+  kappa_crit
+    =nu^2/[12 C_NL sqrt(S_m3)]
+       *exp(-B_U/2).
+
+This is strictly positive for every fixed finite
+amplitude vector Ai, nonzero wave numbers, and nu>0.
+
+If E0=V*sum_i Ai^2 and k_min=min_i |ki|,
+then S_m3 <=E0/k_min^3; a more conservative
+sufficient parameter restriction is
+
+  0<kappa<
+  [nu^2*k_min^(3/2)/(12 C_NL sqrt(E0))]
+    *exp(-B_U/2).
+
+For a W^(2,infinity) convention with
+||Ai h_i||_W2infty<=|Ai| C_i,
+and C_i finite (bounded by suitable combinations
+of 1,|ki|,|ki|^2), the explicit upper bound
+
+  B_U <=(C_mix^2/nu^2)*
+             sum_i Ai^2*C_i^2/ki^2
+
+may be used in the threshold instead of integrating
+the known exponential reference numerically.
+
+STATUS: EXACT_B_TIER COUPLING THRESHOLD CONDITIONAL
+ON THE NAMED SOBOLEV PRODUCT CONSTANTS.
+
+6. ENERGY IDENTITY AND NONLINEAR 3D REGULARITY
+-----------------------------------------------
+For the actual coupled solution,
+
+  E_X(t)=1/2 sum_i||ui(t)||_2^2,
+
+  dE_X/dt
+    =-nu sum_i||grad ui(t)||_2^2
+     -kappa sum_{i<j}||ui(t)-uj(t)||_2^2
+    <=0.
+
+Thus the graph coupling is physically dissipative
+at the level of the abstract multifluid model.
+It preserves mean-zero total momentum and does not
+supply energy to the nonlinear interaction.
+
+The critical perturbation theorem shows smoothness
+in spite of the rank-3 nonlinear Fourier transfer,
+not because the quadratic NSE term vanishes.
+
+By weak-strong uniqueness, the constructed smooth
+solution is the unique Leray-Hopf trajectory from
+the same smooth initial three-layer datum, under
+the standard finite graph system energy inequality.
+
+THEOREM:
+
+For every nu>0, finite nonzero Ai, nonzero ki with
+k1 != k2, and complete 3-vertex graph, there exists
+a strict positive kappa_crit such that for all
+0<kappa<kappa_crit the smooth coupled NSE^3
+trajectory is GLOBAL, genuinely rank-3 for small
+positive time in each layer and has nonzero projected
+quadratic interaction for small positive time.
+
+In particular, for arbitrarily large finite initial
+energy E0, one may choose a sufficiently small BUT
+STRICTLY POSITIVE kappa to preserve global regularity.
+The allowed kappa generally shrinks as E0 increases;
+the result does not say that any large kappa is safe
+for arbitrary rank-3 interacting data.
+
+STATUS: COMPLETE CONDITIONAL_B_TIER.
+
+7. RELATION TO ROUGH CORE AND STANDARD MODEL GATES
+--------------------------------------------------
+The previous rough L2 2D3C theorem requires t0>0
+for completely uncontrolled 3D leakage. The present
+instantaneous theorem avoids t0 by assuming the
+uncoupled base U is already globally smooth at t=0,
+which supplies the finite stability integral B_U(0).
+
+It does NOT imply the same immediate coupling from
+an arbitrary rough L2 2D3C core, because the near-zero
+background W2infty stability integral may diverge.
+
+The mathematical graph conductance kappa is an
+interlayer viscous-exchange coefficient, NOT a
+derived electromagnetic electron-electron scattering
+coupling or Standard Model gauge parameter.
+
+Attaching a physical field Lagrangian requires:
+  (a) a gauge-covariant force/current/stress port,
+  (b) conservation of total field/fluid/reservoir
+      energy including residual electron currents,
+  (c) a quantitative bound on the actual coupling's
+      off-core H^(-1/2) size or a tangent cancellation,
+  (d) a no-double-counting microscopic matching,
+  (e) proper renormalization/quantum structure.
+
+All are outside the present pure NSE^3 theorem.
+
+8. ROOT AND ENDPOINT REGISTER
+------------------------------
+ROOT = NSE_POWER_X_IMMEDIATE_THREE_AXIS_GLOBAL_REGULARITY
+
+[x] I3D-01 THREE_HELICAL_AXIS_INITIAL_PROFILES
+[x] I3D-02 GRAPH_IMMEDIATE_RANK_THREE_TRANSFER
+[x] I3D-03 NONZERO_PROJECTED_CROSS_ADVECTION
+[x] I3D-04 EXACT_COUPLED_MINUS_UNCOUPLED_PERTURBATION
+[x] I3D-05 CRITICAL_LARGE_REFERENCE_BOOTSTRAP
+[x] I3D-06 GRAPH_FORCE_H_MINUS_HALF_INTEGRAL
+[x] I3D-07 EXPLICIT_POSITIVE_KAPPA_ADMISSION
+[x] I3D-08 GLOBAL_ENERGY_AND_WEAK_STRONG_UNIQUENESS
+[x] I3D-09 IMMEDIATE_THREE_AXIS_GLOBAL_REGULARITY_ROOT
+
+[ ] I3D-10 ROUGH_L2_IMMEDIATE_THREE_AXIS_ADMISSION
+[ ] I3D-11 LARGE_KAPPA_GENERAL_RANK3_REGULARITY
+[ ] I3D-12 PHYSICAL_ELECTRON_GAUGE_MATCHING
+[ ] I3D-13 A_TIER_EXTERNAL_COMPILER_AND_AXIOM_AUDIT
+
+9. FUTURE LEAN SPINE
+--------------------
+A. Exact single Fourier profile and curl/Laplacian identities.
+B. Three-node graph positivity, eigenvalues and operator norm.
+C. Independent Fourier-mode support and rank-3 Taylor transfer.
+D. Explicit nonzero projected NSE cross advection.
+E. Abstract product Sobolev critical estimate signatures.
+F. Gronwall/continuation scalar inequality and positive kappa.
+G. Conditional root assembly and theorem-level external audit.
+
+No local Lean was executed and no Mathlib/Methlib declarations
+were asserted imported/verified. No A-tier certification is claimed.
+
+REFERENCE
+---------
+Iftimie, D., 1999, "The 3D Navier-Stokes equations seen as a
+perturbation of the 2D Navier-Stokes equations",
+Bull. Soc. Math. France 127:473-517,
+DOI 10.24033/bsmf.2358.
+This is a historical stability precedent, NOT a verbatim
+statement of the three-layer graph theorem above.
+
+CLASSIFICATION
+--------------
+! B_TIER
+A_TIER=NOT_ESTABLISHED
+FORMAL_CLOSURE=NOT_ESTABLISHED
+PHYSICAL_SM_EQUIVALENCE=OPEN
