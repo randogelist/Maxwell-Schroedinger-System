@@ -1,0 +1,548 @@
+NSE^X ADMISSIBLE COMPOSITION — SECOND-STAGE DERIVATION
+B-TIER MATHEMATICAL THEOREM
+====================================================
+
+STATUS
+------
+ROOT = NSE_POWER_X_ADMISSIBLE_COMPOSITION
+MARKER = !
+MODE = B_TIER_DERIVATION
+BRANCH = b-tier-hull
+DEPENDS ON = NSE_POWER_X_GROUP_STRUCTURE_B_TIER
+A_TIER = NOT_ESTABLISHED
+FORMAL_CLOSURE = NOT_ESTABLISHED
+LEAN_FILES = NOT_PREPARED
+NO_LOCAL_LEAN_EXECUTION = TRUE
+
+SCOPE
+-----
+Give exact rules for turning X separately indexed NSE degrees
+of freedom into one coupled NSE^X SYSTEM without incorrectly
+asserting that velocities, solution flows, or gauge field actions
+multiply as group elements.
+
+The first exact full theorem is for a FINITE nonempty layer set
+X. Infinite X receives an algebraic product identity and a
+separate explicit analytic-conditions register, not a false
+unconditional infinite-network PDE theorem.
+
+0. BASE
+-------
+M=T_L^3, periodic flat 3-torus, volume V=L^3.
+X finite, nonempty, individual layers a in X.
+
+For each a choose:
+  rho_a>0 (constant mass density),
+  eta_a>0 (dynamic viscosity),
+  nu_a=eta_a/rho_a>0,
+  u_a(t) smooth, div u_a=0, pressure p_a(t).
+
+For each a!=b choose reciprocal symmetric conductance
+  kappa_ab=kappa_ba>=0, kappa_aa=0.
+
+Choose a smooth external/matched force density f_a.
+
+The group base is
+
+  G_X=SDiff(M)^X,
+  g_X=X_sigma(M)^X,
+
+with componentwise bracket. Common spatial physical diffeomorphisms
+are diagonal, while the independently relabeled material maps
+are distinct degrees of freedom. This is a configuration group,
+not an active symmetry of the fixed flat Laplacian under EVERY
+volume-preserving diffeomorphism.
+
+1. COUPLING IS NOT VELOCITY SUPERPOSITION
+------------------------------------------
+THEOREM NXC-01: PRODUCT_CONFIGURATIONS_VS_COUPLED_FLOW.
+
+Direct product of independent solution semigroups would mean
+  S_t^product(u_a)=(S_t^{NSE,a}u_a)_a.
+
+When kappa !=0 or a nontrivial common field force is present,
+the coupled flow instead obeys its own system
+  S_t^coupled != S_t^product
+in general. The time-zero derivatives differ by the force/drag term.
+
+Neither the sum of two arbitrary 3D NSE solutions nor the weighted
+mean of their velocities is generically a NSE solution; cross
+advection produces P[(u_a dot grad)u_b+
+                     (u_b dot grad)u_a].
+The symbol NSE^X is an INDEXED PRODUCT OF STATE TYPES followed
+by a separately declared interaction, not a free superposition
+operation on PDE solutions.
+
+STATUS = EXACT_B_TIER.
+
+2. MINIMAL ALLOWED EXCHANGE MODEL
+----------------------------------
+THEOREM NXC-02: RECIPROCAL_GRAPH_LAPLACIAN.
+
+Define the graph Laplacian on fluid layer families by
+  (L_kappa u)_a := sum_b kappa_ab(u_a-u_b).
+
+Then
+  sum_a <u_a,(L_kappa u)_a>_L2
+    = sum_{unordered {a,b}} kappa_ab||u_a-u_b||_2^2>=0.
+
+Also,
+  sum_a (L_kappa u)_a = 0
+as a vector field at each spatial position, because
+each reciprocal edge cancels between its endpoints.
+
+If the undirected conductance graph is connected,
+  ker L_kappa = {u_a=u_common for all a}.
+
+For X={1,2}, this operator is
+  kappa * [[1,-1],[-1,1]],
+eigenvalues 0 and 2*kappa as an unweighted layer matrix.
+
+STATUS = EXACT_B_TIER.
+
+THEOREM NXC-03: MULTILAYER_VISCOUS_NSE.
+
+Declare the actual coupled PDE system:
+
+  rho_a (partial_t u_a+(u_a dot grad)u_a)
+    = -grad p_a+eta_a Delta u_a
+      -sum_b kappa_ab(u_a-u_b)+f_a,
+
+  div u_a=0.
+
+Equivalently, by full Leray projection,
+
+  partial_t u_a
+    =-P[(u_a dot grad)u_a]
+     +nu_a Delta u_a
+     -rho_a^(-1)(L_kappa u)_a
+     +rho_a^(-1)P f_a.
+
+For variable densities the simple projection with a scalar
+rho_a^(-1) is no longer the correct pressure elimination;
+constant positive densities are an explicit premise.
+
+STATUS = EXACT B_TIER PDE DEFINITIONS/PROJECTION.
+
+3. ENERGY AND TOTAL MOMENTUM
+-----------------------------
+THEOREM NXC-04: FINITE_NSE_POWER_X_KINETIC_ENERGY_LAW.
+
+Define total kinetic energy
+
+  E_X(t)
+    :=1/2 sum_a rho_a ||u_a(t)||_2^2.
+
+For smooth periodic solutions of NXC-03,
+
+  dot E_X
+    =-sum_a eta_a||grad u_a||_2^2
+     -sum_{a<b}kappa_ab||u_a-u_b||_2^2
+     +sum_a <u_a,f_a>.
+
+Proof:
+Multiply the a-th equation by u_a, integrate over M,
+sum over a. Incompressibility kills individual advection
+and pressure terms; periodic integration by parts gives
+the viscous negative squares; exchange edges give the
+graph Dirichlet form from NXC-02. There is no claim of
+energy positivity for an arbitrary additional field
+action without an independent stress-energy audit.
+
+STATUS = EXACT_B_TIER.
+
+THEOREM NXC-05: GLOBAL_MOMENTUM_TRANSFER_CANCELLATION.
+
+Define fluid total momentum
+  P_X(t)=sum_a rho_a integral_M u_a(t,x) dx.
+
+Then
+  dot P_X(t)=sum_a integral_M f_a dx.
+
+The viscosity, pressure, individual self-advection and
+pairwise graph exchange integrate to zero on the torus.
+Hence unforced exchange conserves total integrated momentum,
+even though each layer mean velocity may change.
+
+STATUS = EXACT_B_TIER.
+
+THEOREM NXC-06: RECIPROCAL_FIELD_POWER_AND_RESERVOIR.
+
+Let a common field sector have energy E_field and
+matching force port f_a with
+  dot E_field=-sum_a <u_a,f_a>,
+with all other electromagnetic/matter currents and
+stress contributions either included or assigned to
+explicit residual sectors.
+
+Define
+  D_X =sum_a eta_a||grad u_a||_2^2
+        +sum_{a<b}kappa_ab||u_a-u_b||_2^2>=0,
+
+and reservoir law
+  dot E_res=D_X.
+
+Then
+  dot (E_X+E_field+E_res)=0.
+
+This is a conditional algebraic law. For full
+electron-to-NSE projection the missing current
+  J_res=J_e-rho_q u_NSE
+requires its signed power to be accounted for separately;
+it is not automatically viscous heat.
+
+STATUS = CONDITIONAL_B_TIER ON RECIPROCAL MATCHING.
+
+4. VARIATIONAL CONSERVATIVE COMPOSITION
+----------------------------------------
+THEOREM NXC-07: SPD_CROSS_INERTIA_EULER_POINCARE.
+
+Let C=(C_ab) be a real constant symmetric positive
+definite |X|x|X| matrix. For u_a in g_sigma, set
+
+  ell_C(u)=1/2 sum_{a,b} C_ab <u_a,u_b>_L2.
+
+Define conjugate momenta
+  m_a=delta ell_C/delta u_a=sum_b C_ab u_b.
+
+For variations induced independently by fluid
+configuration paths in G_X,
+
+  delta u_a=partial_t xi_a +[u_a,xi_a],
+
+the Euler–Poincare equations are
+
+  partial_t m_a=ad_{u_a}^dagger m_a,
+
+where by the frozen Lie-bracket convention
+  ad_u^dagger m
+    =-P[(u dot grad)m+(grad u)^T m].
+
+Proof: Vary ell_C and integrate the first term
+by parts. The coefficient of arbitrary xi_a is
+  -partial_t m_a+ad_{u_a}^dagger m_a.
+
+The conservative cross-inertia energy satisfies
+
+  dot ell_C
+    =sum_a <u_a,partial_t m_a>
+    =sum_a <m_a,[u_a,u_a]>
+    =0.
+
+For C diagonal with C_aa=rho_a>0, the equations
+reduce to ordinary independent incompressible Euler.
+
+For nondiagonal C, the system is a distinct
+cross-inertia Euler–Poincare MULTIFLUID MODEL;
+do not label it ordinary independently advecting
+NSE without its modified momentum-velocity relation.
+
+This demonstrates how genuine cross-layer
+Lagrangian coupling may be added WITHOUT falsifying
+the product Lie algebra or its Jacobi identity.
+
+STATUS = EXACT_B_TIER FOR SMOOTH VARIATIONS.
+
+5. DIRECT SUM AND ASSOCIATIVE GRAPH GLUING
+-------------------------------------------
+THEOREM NXC-08: DISJOINT_UNION_COMPOSITION.
+
+For finite disjoint index sets X,Y,
+
+  G_(X disjoint_union Y) is naturally isomorphic to G_X x G_Y.
+
+With no cross edges, no shared fields and no extra
+interaction action, the total fluid energy and action
+are additive, and the PDE is just a direct product.
+
+When cross edges are added, define the complete
+conductance graph on X disjoint_union Y. The
+dissipation is
+  D_graph= sum_over_unordered_edges kappa_ab
+           ||u_a-u_b||_2^2.
+
+The value depends on the final set of weighted edges,
+not on the order in which disjoint groups were first
+parenthesized and then glued. Graph gluing with
+DECLARED cross edges is associative at the level of
+indexing and final Dirichlet energy.
+
+There is NO canonical interaction generated by the
+group product alone; the edges and coefficients are
+external constitutive data.
+
+STATUS = EXACT_B_TIER.
+
+6. GUARANTEED REGULAR COMPOSITION SECTOR
+----------------------------------------
+THEOREM NXC-09: COMMON_2D3C_GRAPH_COUPLED_GLOBAL_REGULARITY.
+
+Suppose X is FINITE and every layer's smooth
+divergence-free initial velocity is independent
+of the same torus coordinate, for example y:
+
+  partial_y u_a(0)=0 for every a.
+
+Assume f_a=0, eta_a>0, rho_a>0, kappa_ab symmetric
+nonnegative and finite.
+
+Because viscosity, individual nonlinearity, pressure
+and pointwise drag respect y translations, the
+coupled PDE preserves partial_y u_a=0.
+
+Write
+  u_a=(w_a^1,b_a,w_a^2), with
+  w_a=(u_a^x,u_a^z), b_a=u_a^y,
+  grad_2=(partial_x,partial_z), div_2 w_a=0.
+
+Then
+  rho_a (partial_t w_a+w_a dot grad_2 w_a)
+    =-grad_2 p_a+eta_a Delta_2 w_a
+     -sum_b kappa_ab(w_a-w_b),
+
+  rho_a (partial_t b_a+w_a dot grad_2 b_a)
+    =eta_a Delta_2 b_a
+     -sum_b kappa_ab(b_a-b_b).
+
+Define planar vorticity zeta_a=curl_2 w_a.
+The vorticity system is
+
+  rho_a(partial_t zeta_a+w_a dot grad_2 zeta_a)
+    =eta_a Delta_2 zeta_a
+     -sum_b kappa_ab(zeta_a-zeta_b).
+
+Multiply each by zeta_a and integrate/sum:
+
+  (d/dt) 1/2 sum_a rho_a||zeta_a||_2^2
+    =-sum_a eta_a||grad_2 zeta_a||_2^2
+     -sum_{a<b}kappa_ab||zeta_a-zeta_b||_2^2<=0.
+
+These weighted vorticity and kinetic-energy bounds,
+the finite coupled 2D parabolic regularity argument,
+and the passively transported/diffusing b_a
+provide global smooth evolution from smooth periodic
+data. In particular, no amplitude smallness is needed.
+
+By the standard weak-strong relative-energy argument,
+every Leray–Hopf solution of this finite system with
+the same smooth data coincides with the global strong
+solution, assuming the usual energy inequality.
+
+Thus the exact finite graph-coupled model has a
+regularity-guaranteed sector of arbitrary finite
+energy, provided the SAME invariant direction is
+shared by all layers.
+
+This assertion is NOT extended to arbitrary
+3D-dependent field forces or an arbitrary added
+nonlinear interspecies advection law.
+
+STATUS = B_TIER COMPLETE MATHEMATICAL DERIVATION
+using standard coupled parabolic regularity.
+
+7. SPECTRAL RANK RULE FOR NSE^X LAYERINGS
+------------------------------------------
+THEOREM NXC-10: COMMON_FOURIER_LATTICE_CONDITION.
+
+Let initial layer a have Fourier support in
+an additive subgroup Gamma_a of (2pi/L)Z^3.
+
+Let
+  Gamma_total=span_Z(union_a Gamma_a).
+
+The self-advection and graph exchange of NXC-03,
+the Laplacian, and Leray projection preserve
+Gamma_total. Individual layer supports generally
+grow under mixing and need not remain in Gamma_a.
+
+If rank_R(Gamma_total)<=2, all layers share a
+translation-invariant spatial direction, hence the
+NXC-09 2D3C theorem applies.
+
+If rank_R(Gamma_total)=3, no general 3D regularity
+conclusion follows solely from the group structure.
+Additional Beltrami/axis constraints, smallness,
+or a separate regularity certificate may still apply.
+
+For a shared Standard Model field, its force spectrum
+must ALSO lie in Gamma_total to preserve this sector.
+Gauge covariance alone does not force that spectral
+restriction.
+
+STATUS = EXACT_B_TIER FOR THE SPECIFIED MODEL.
+
+8. STANDARD MODEL FIELD ADAPTER COMPOSITION GATES
+---------------------------------------------------
+THEOREM NXC-11: GAUGE_COMPATIBLE_SHARED_FIELD_INSERTION.
+
+To add a SINGLE physical Standard Model gauge field
+and matter action to NSE^X, declare:
+
+ (i) one principal gauge bundle P over spacetime Y;
+ (ii) a common base-space gauge/coordinate action, with
+      material relabelings kept independent;
+(iii) associated-bundle representations and one
+      gauge-invariant action S_SM;
+ (iv) a declared interaction/coarse-graining map
+      producing layer force densities f_a;
+  (v) source-current and stress Ward identities;
+ (vi) a partition ensuring charge and energy are not
+      counted once in microscopic matter and again
+      in the effective fluid without subtraction;
+(vii) a current residual for electron-current
+      projections (if used);
+(viii) reservoir or field channels that receive
+      dissipated kinetic energy.
+
+Then the reciprocal field work plus NXC-04 and the
+reservoir law give NXC-06.
+
+A naive (SDiff(M)^X) semidirect Gau(P) with a
+shared gauge connection transformed by the weighted
+average of independent layer diffeomorphisms is
+generally INVALID: the weighted average is not a
+Lie-algebra homomorphism (NXG-05).
+
+Neither this interface nor the group structure
+determines transport coefficients (viscosities,
+graph conductances), which require constitutive or
+microscopic derivation.
+
+STATUS = CONDITIONAL_B_TIER.
+
+9. INFINITE X: REQUIRED ANALYTIC EXTENSION
+------------------------------------------
+THEOREM NXC-12: INFINITE_NETWORK_FORMAL_EXTENSION.
+
+For countable X with rho_a>0, define the weighted
+fluid Hilbert energy space
+
+  H_X={u:
+    sum_a rho_a||u_a||_2^2<infinity}.
+
+Let kappa_ab=kappa_ba>=0, eta_a>=0, and define
+the graph quadratic form
+
+  Q_kappa(u)=sum_{unordered {a,b}}
+                  kappa_ab||u_a-u_b||_2^2.
+
+To obtain a closed densely defined positive graph
+operator and justify an energy identity, one must
+choose conditions such as finite row conductances
+(or a suitable closed Dirichlet form), density
+weight bounds, sufficient layerwise NSE regularity,
+and convergence of all sums. The abstract group
+G_X alone does not provide any of these.
+
+For a measured continuous index space (X,mu_X)
+with symmetric nonnegative kernel kappa(x,y), the
+formal graph dissipation becomes
+
+  Q_kappa(u)
+    =1/2 int_X int_X kappa(x,y)
+       ||u(x)-u(y)||_2^2 dmu_X(x)dmu_X(y).
+
+A natural state space is the Bochner space
+  L2(X, rho(x)dmu_X; L2_sigma(M)).
+
+For example, bounded symmetric measurable kappa
+and finite mu_X, with rho bounded above and away
+from zero, suffice to make the graph operator
+bounded on the corresponding L2 space.
+Well-posedness and global smoothness of the
+infinite nonlinear PDE remain independent tasks.
+
+STATUS = EXACT FORMAL QUADRATIC IDENTITIES,
+NOT UNCONDITIONAL INFINITE-NSE PDE EXISTENCE.
+
+10. STRUCTURAL ADMISSIBILITY CHECKLIST
+--------------------------------------
+An NSE^X composition is admitted by this B-tier
+construction only if it specifies:
+
+ C1. layer index set X and finite/infinite analytic regime;
+ C2. the SDiff(M)^X configuration group and Lie algebra;
+ C3. rho_a>0, eta_a>=0 and PDE force types;
+ C4. reciprocal kappa_ab=kappa_ba>=0, or a separately
+     audited nonreciprocal interaction sector;
+ C5. exact pressure/divergence constraints;
+ C6. gauge-covariant source/current/stress port for
+     any field-sector insertion;
+ C7. no-double-counting source partition and signed
+     residual work;
+ C8. total-energy/reservoir identity if closed-system
+     conservation is claimed;
+ C9. spectral-support preservation if a shared 2D3C
+     regularity guarantee is claimed;
+C10. analytic convergence for infinite families;
+C11. no unsupported claim that NSE solution maps
+     or weighted velocity averages are group maps.
+
+These are SUFFICIENT conditions for the stated
+model's structural identities; they are not a
+classification of every conceivable multifluid
+or nonlocal interaction theory.
+
+11. ROOT THEOREM
+----------------
+THEOREM NSE_POWER_X_ADMISSIBLE_COMPOSITION.
+
+For a finite nonempty X, smooth periodic divergence-free
+layers with positive constant densities and viscosities,
+symmetric nonnegative layer conductances, and declared
+smooth forcing, the coupled PDE NXC-03 satisfies:
+
+ R1 a valid product SDiff configuration group;
+ R2 a well-defined reciprocal graph coupling;
+ R3 the exact kinetic-energy identity NXC-04;
+ R4 exact cancellation of internal momentum exchange;
+ R5 conditional closed total energy with reciprocal
+    field power and reservoir;
+ R6 a legitimate independent cross-inertia variational
+    Euler–Poincare generalization if C is SPD;
+ R7 global smoothness for the unforced finite
+    common-2D3C sector of arbitrary finite amplitude;
+ R8 no general regularity claim for rank-3 dependence;
+ R9 infinite-index extensions require analytically
+    declared function spaces and closed forms.
+
+DERIVATION: NXC-01..12.
+
+STATUS = COMPLETE B_TIER OF THIS EXACTLY SCOPED
+MATHEMATICAL IMPLICATION. NOT A_TIER.
+
+12. ENDPOINT REGISTER
+---------------------
+[x] NXC-01 PRODUCT_CONFIGURATIONS_VS_COUPLED_FLOW
+[x] NXC-02 RECIPROCAL_GRAPH_LAPLACIAN
+[x] NXC-03 MULTILAYER_VISCOUS_NSE
+[x] NXC-04 FINITE_NSE_POWER_X_KINETIC_ENERGY_LAW
+[x] NXC-05 GLOBAL_MOMENTUM_TRANSFER_CANCELLATION
+[x] NXC-06 RECIPROCAL_FIELD_POWER_AND_RESERVOIR
+[x] NXC-07 SPD_CROSS_INERTIA_EULER_POINCARE
+[x] NXC-08 DISJOINT_UNION_COMPOSITION
+[x] NXC-09 COMMON_2D3C_GRAPH_COUPLED_GLOBAL_REGULARITY
+[x] NXC-10 COMMON_FOURIER_LATTICE_CONDITION
+[x] NXC-11 GAUGE_COMPATIBLE_SHARED_FIELD_INSERTION
+[x] NXC-12 INFINITE_NETWORK_FORMAL_EXTENSION
+[x] NXC-13 NSE_POWER_X_ADMISSIBLE_COMPOSITION
+
+[ ] NXC-14 INFINITE_X_NONLINEAR_WELL_POSEDNESS
+[ ] NXC-15 ACTUAL_SM_MICROSCOPIC_MATCHING
+[ ] NXC-16 FULL_3D_MULTILAYER_GLOBAL_REGULARITY
+[ ] NXC-17 EXTERNAL_LEAN_AXIOM_AUDIT
+
+LITERATURE:
+Holm, Marsden, Ratiu 1998 Euler–Poincare + semidirect products,
+https://www.sciencedirect.com/science/article/pii/S0001870898917212
+Classical Euler–Arnold/SDiff configuration interpretation,
+https://www.math.toronto.edu/khesin/papers/amshydro.pdf
+Atiyah bundle automorphisms:
+https://www.math.toronto.edu/mein/teaching/moduli.pdf
+
+FINAL CLASSIFICATION:
+  MARKER=!
+  TIER=B_TIER with named field and analytic premises
+  SM_TO_NSE_EQUIVALENCE=OPEN
+  A_TIER=NOT_ESTABLISHED
+  NO_LOCAL_LEAN_EXECUTION.
