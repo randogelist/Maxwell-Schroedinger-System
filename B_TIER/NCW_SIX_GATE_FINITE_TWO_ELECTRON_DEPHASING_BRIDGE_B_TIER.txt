@@ -1,0 +1,830 @@
+NCW SIX-GATE CLOSURE ATTEMPT:
+FINITE TWO-ELECTRON OPEN-SYSTEM CURRENT -> EXACT NSE,
+COULOMB PHASE SLIP, CLASSICAL WARD/STRESS, AND CERTIFICATION BOUNDARY
+B-TIER MATHEMATICAL DERIVATION — v0.1
+========================================================================
+
+STATUS
+------
+ROOT = NCW_FINITE_TWO_ELECTRON_DEPHASING_NSE_SEMICONJUGACY
+MARKER = !
+MODE = B_TIER_DERIVATION
+SOURCE_BRANCH = b-tier-hull
+REFERENCE_GATES = NCW-13, NCW-14, NCW-15, NCW-16, NCW-17, NCW-18
+DEPENDENCIES =
+  NCW_SIX_OPEN_GATES_SM08_COMPLETION_B_TIER
+  HELICAL_TWO_FLUID_MAXWELL_NSE_GLOBAL_B_TIER
+  NSE_POWER_X_REGULARITY_PRESERVING_INTERACTION_PORT_B_TIER
+  TWO_ELECTRON_ENERGY_OPERATOR_NSE_MULTICLOCK_B_TIER
+
+LEAN_EXECUTION = NONE (USER'S NO_LOCAL_LEAN)
+A_TIER = NOT ESTABLISHED
+FORMAL_CLOSURE = NOT ESTABLISHED
+FULL_QUANTUM_STANDARD_MODEL = NOT ESTABLISHED
+
+SCOPE / RESULT
+--------------
+A fully explicit TWO-ELECTRON antisymmetric Hilbert-space state,
+a finite 2x2 particle-number-preserving, completely positive
+trace-preserving dephasing evolution, and an exact projected
+Pauli one-body current operator are constructed.
+
+For a fixed equal-population two-determinant state family, the
+classical velocity obtained from the mixed two-electron number
+current is EXACTLY a globally smooth solution of the UNFORCED
+incompressible Navier-Stokes equation if and only if the assigned
+dephasing and viscous rates agree:
+  gamma = nu*k^2.
+
+This is a SELECTED FINITE OPEN-QUANTUM MODEL semiconjugacy.
+It is not the full untruncated Coulomb two-electron evolution,
+nor the physical SM-to-fluid coarse-graining, because gamma
+is freely ASSIGNED and is not microscopically derived.
+
+Projected Coulomb gives a nonzero computable phase shift;
+that shift generally obstructs the unforced NSE current match.
+An explicitly constructible *tangent external NSE force*
+can restore the map, but has not been derived as a true
+Maxwell/Coulomb force.
+
+The six original fully physical NCW gates are not all closed.
+
+0. TWO ELECTRON ORBITAL AND GEOMETRY DATA
+-----------------------------------------
+Take M=T_L^3 with volume V=L^3, L>0, electron
+mass m_e>0, hbar>0, charge q_e=-e, e>0.
+
+Fix nonzero integer r and nonzero EVEN integer n:
+  k=2*pi*n/L !=0, q=2*pi*r/L !=0.
+
+The condition n even guarantees k/2 is a periodic
+wave number on the torus.
+
+Let h=L^2(M;C^2) be the Pauli one-electron Hilbert
+space. Define orthonormal orbitals
+
+  chi_0=V^(-1/2) * (1,0)^T,
+  chi_1=V^(-1/2) * exp(i k z)*(0,1)^T,
+  chi_s=V^(-1/2) * exp(i(k z/2+q y))*(1,0)^T.
+
+Orthogonality:
+  <chi_0,chi_1>=0 by spin,
+  <chi_1,chi_s>=0 by spin,
+  <chi_0,chi_s>=0 by nonzero y Fourier q.
+
+Define normalized antisymmetric Slater determinants
+
+  D0 =chi_0 wedge chi_s,
+  D1 =chi_1 wedge chi_s.
+
+They are orthonormal in wedge^2 h.
+
+Define the normalized initial 2-electron state
+
+  Psi_0=(D0+D1)/sqrt(2)
+       =[(chi_0+chi_1)/sqrt(2)] wedge chi_s.
+
+Total electron number =2, with a FIXED spectator orbital
+chi_s and an active two-level spin/momentum superposition.
+
+1. EXACT FREE TWO-ELECTRON HAMILTONIAN
+---------------------------------------
+The free Pauli Hamiltonian at A=0 is
+
+  h0 = -hbar^2/(2m_e)*Delta
+
+and the free two-electron restriction is
+
+  H0 = h0^(1)+h0^(2) on wedge^2 h.
+
+The orbitals above are plane-wave h0 eigenstates with
+
+  E_chi0=0,
+  E_chi1=DeltaE=hbar^2*k^2/(2m_e),
+  E_s=hbar^2*((k/2)^2+q^2)/(2m_e).
+
+The determinant subspace D=span{D0,D1} is
+EXACTLY INVARIANT under the free two-particle H0:
+
+  H_D=diag(E_s,E_s+DeltaE).
+
+Set omega=DeltaE/hbar=hbar*k^2/(2m_e).
+No Coulomb interaction is assumed in H_D at this stage.
+
+STATUS = EXACT FINITE TWO-ELECTRON QUANTUM MECHANICS.
+
+2. NUMBER-PRESERVING DEPHASING MASTER EQUATION
+----------------------------------------------
+Write Z=diag(1,-1) on D.
+For arbitrary chosen gamma>=0, define
+
+  dot rho= -(i/hbar)[H_D,rho]
+           +(gamma/2)*(Z rho Z-rho).
+
+This is the GKSL form with one bounded jump operator
+  L=sqrt(gamma/2)*Z.
+
+It is trace preserving, completely positive,
+preserves positivity, and maps the 2-electron
+determinant subspace into itself.
+
+For
+  rho(0)=|Psi_0><Psi_0|
+
+its unique exact solution, in basis (D0,D1), is
+
+  rho(t)=1/2 * [
+     1              exp(-gamma*t+i omega*t)
+     exp(-gamma*t-i omega*t)         1
+   ].
+
+Check:
+  eigenvalues of rho(t) are
+    (1+exp(-gamma*t))/2,
+    (1-exp(-gamma*t))/2,
+  both nonnegative and sum=1.
+  The relative phase rotates at omega;
+  the off-diagonal coherence modulus
+  decays as exp(-gamma t).
+
+The mean microscopic quantum energy is constant:
+
+  Tr(rho(t) H_D)=E_s+DeltaE/2.
+
+There is quantum DEPHASING, not necessarily energy
+relaxation. The jump operator Z commutes with H_D.
+
+This is an ADDED MARKOVIAN ENVIRONMENT MODEL,
+not a derivation of gamma from the Coulomb interaction.
+
+STATUS = EXACT FINITE GKSL OPERATOR DYNAMICS.
+
+3. SELECTED 2-ELECTRON PAULI CURRENT OPERATOR
+----------------------------------------------
+Let the one-body PAULI NUMBER current for a
+density operator Gamma on h in A=0 gauge be
+
+  j_tr(x) = (hbar/m_e)Im
+                [grad_{x'} Gamma(x,x')]_(x'=x)
+             (with equivalent symmetric derivative),
+
+  j_spin(x)=(hbar/(2m_e))*curl S(x),
+
+  S(x) =tr_spin[sigma*Gamma(x,x)].
+
+A precise symmetric one-body current distribution is
+  j_tr^a(x) =
+    (hbar/(2m_e i))
+    [(partial_{x^a}-partial_{x'^a})
+      Gamma(x,x')]_(x'=x)
+for the convention Gamma(x,x')
+   =<psi^dagger(x')psi(x)>.
+
+The physical electric current is
+  J_e(x)=q_e(j_tr(x)+j_spin(x)).
+
+For the two-determinant rho, the one-body density
+matrix has the exact decomposition
+
+  Gamma^(1)(rho)=Gamma_active(rho)
+                   +|chi_s><chi_s|,
+
+where Gamma_active has trace 1 on span{chi_0,chi_1}.
+Thus the total NUMBER density is
+
+  n_2(x)=tr_spin Gamma^(1)(x,x)=2/V
+
+for all t and all density matrices on the
+two-determinant subspace with the same two orbital
+basis. This is independent of coherence.
+
+The active Pauli spin density for the equal
+population state is
+
+  S_active(t,z)
+    =(1/V)*exp(-gamma*t)*
+        (cos(kz-omega*t),sin(kz-omega*t),0).
+
+The spectator spin density is
+  S_s=(1/V)*e_z
+with zero curl. Therefore
+
+  j_spin(t,z)
+    =-(1/V) U_e exp(-gamma*t) s_t(z),
+
+where
+  U_e=hbar*k/(2m_e),
+  s_t(z)=(cos(kz-omega*t),
+          sin(kz-omega*t),0).
+
+The transport number current is
+
+  j_tr=(1/V)[2 U_e e_z+W e_y],
+
+where
+  W=hbar*q/m_e
+arises from the spectator's transverse y plane wave.
+
+Consequently the FULL Pauli number current is
+
+  j_num(t,z)
+   =(1/V)[2U_e e_z+W e_y
+          -U_e exp(-gamma*t)s_t(z)].
+
+The corresponding number-current velocity is
+  v_rho=j_num/n_2:
+
+  v_rho(t,z)
+   =U_e e_z+(W/2)e_y
+     -(U_e/2)exp(-gamma*t)s_t(z).                (V)
+
+The physical ELECTRIC current is
+  J_e=q_e*n_2*v_rho.
+
+This current is an exact selected two-electron
+observable readout; no charge-current operator
+ordering ambiguity remains in the finite model.
+
+ALTERNATIVE FINITE MATRIX FORMULA:
+Use Pauli matrices X,Y acting on D.
+Set C(z)=cos(kz)X-sin(kz)Y,
+    S(z)=sin(kz)X+cos(kz)Y.
+
+Then
+  vhat(z)
+   =U_e e_z+(W/2)e_y
+     -(U_e/2)[C(z)e_x+S(z)e_y],
+
+  jhat_num(z)=(2/V)*vhat(z),
+  Jhat_e(z)=q_e*jhat_num(z).
+
+For the stated rho(t),
+  Tr[rho(t) vhat(z)]=v_rho(t,z).
+
+This is a 2x2 Hermitian operator-valued CURRENT on the
+two-determinant space, not the full renormalized 4D
+Standard Model composite current operator.
+
+STATUS = EXACT B_TIER SELECTED NOETHER/PAULI CURRENT
+UNDER FREE GAUGE A=0 AND FINITE-MODE REGULATION.
+
+4. EXACT OPEN QUANTUM -> NSE CURRENT SEMICONJUGACY
+---------------------------------------------------
+Fix any positive effective NSE viscosity nu>0 and assign
+the dephasing rate
+
+  gamma=nu*k^2.
+
+Write
+  U:=U_e e_z+(W/2)e_y,
+  a(z):=-(U_e/2)*s_0(z).
+
+Then v_rho has the form
+
+  v_rho(t,z)=U+exp(-nu*k^2*t) a(z-U_e*t).
+
+Since a depends only on z and has no z component,
+  div v_rho=0,
+  (a dot grad)a=0,
+  (U dot grad)a=U_e partial_z a,
+  Delta a=-k^2 a.
+
+Also omega=k*U_e, exactly.
+
+Therefore the field (V) is an EXACT unforced
+incompressible Navier–Stokes solution
+  partial_t v_rho+(v_rho dot grad)v_rho
+     =nu Delta v_rho,
+  div v_rho=0,
+  p=constant.
+
+It is smooth for all t>=0 with finite initial data.
+
+Define D_eq the closed Bloch disk of normalized
+2x2 density matrices with diagonal entries 1/2.
+The GKSL evolution preserves D_eq. For rho in D_eq,
+the velocity readout C(rho):=Tr(rho vhat(.))
+is a constant mean U plus a single transverse
+helical mode, with amplitude/phase set by the
+off-diagonal coherence. Its exact GKSL time
+evolution gives the advected, decaying NSE mode.
+
+Thus for all rho in D_eq and t>=0,
+
+  C(GKSL_t rho) = S_t^NSE(C(rho)).                (SC)
+
+This is a mathematically exact SEMICONJUGACY
+between two finite-dimensional dissipative
+semigroups, not a microscopic SM/QED equivalence.
+
+The rate relation gamma=nu k^2 is a REQUIRED
+CALIBRATION PREMISE, not a consequence of
+fundamental electron self-interaction.
+
+In the closed unitary limit gamma=0, the
+transverse current amplitude does not decay:
+only the Euler/nu=0 sector is matched.
+
+STATUS = COMPLETE EXACT B_TIER SELECTED OPEN-SYSTEM MATCH.
+
+5. NSE CURRENT ENERGY VERSUS QUANTUM ENERGY OPERATOR
+-----------------------------------------------------
+Declare effective fluid mass density
+  rho_f=2m_e/V,
+consistent with the total mass of two electrons
+distributed uniformly over volume V. This is
+a CHOSEN fluid density convention.
+
+The fluctuation kinetic energy is
+
+  E_fluct(t)
+   =(rho_f/2)int_M |v_rho(t)-U|^2 dx
+   = m_e*U_e^2/4 *exp(-2gamma*t)
+   = (DeltaE/8)*exp(-2gamma*t).
+
+The active two-level purity is
+
+  P(t)=Tr(rho(t)^2)
+      =1/2[1+exp(-2gamma*t)].
+
+Hence the exact readout identity is
+
+  E_fluct(t)=(DeltaE/4)*(P(t)-1/2).
+
+This reflects decaying COHERENCE, not loss of
+the quantum mean energy Tr(rho H_D).
+
+On the equatorial Bloch disk with
+r_x=Tr(rho X), r_y=Tr(rho Y), one has
+
+  E_fluct(rho)
+    =(DeltaE/8)*(r_x^2+r_y^2).
+
+This is nonlinear in the quantum density matrix.
+It can be represented as the expectation of a
+two-COPY Hermitian observable
+
+  Ehat_fluct^(2)
+    =(DeltaE/8)*(X tensor X+Y tensor Y),
+
+because
+  Tr[(rho tensor rho)Ehat_fluct^(2)]
+    =E_fluct(rho).
+
+The two copies are mathematical replicas of the
+ENTIRE two-electron state; they are not two
+additional physical electrons.
+The two-copy operator is not positive on arbitrary
+correlated two-copy states, although its expectation
+on rho tensor rho is nonnegative.
+
+The microscopic Hermitian two-electron H_D energy
+remains constant under pure dephasing, whereas
+the current-derived NSE kinetic energy decays.
+They are DISTINCT physical/mathematical quantities.
+
+STATUS = EXACT B_TIER ENERGY-OPERATOR CORRECTION.
+
+6. FINITE PERIODIC COULOMB EXCHANGE SHIFT
+------------------------------------------
+Add the background-subtracted periodic Coulomb
+pair potential
+
+  V_C(x_1-x_2)=(e^2/epsilon_0) G_L(x_1-x_2),
+
+  -Delta G_L=delta_0-1/V,
+  integral_M G_L=0.
+
+Define the spectator momentum
+  p_s=(0,q,k/2),
+  |p_s|^2=q^2+k^2/4>0.
+
+Let P_D project to span{D0,D1}.
+Because Coulomb is spin independent, the matrix
+element <D0,V_C D1> vanishes by spin conservation:
+D0 has two spin-up electrons, while D1 has
+one spin-up and one spin-down electron.
+
+With uniform orbital densities, the direct
+Hartree expectation is zero in this zero-mean
+Green-function convention.
+
+In D0 both occupied spins are up, so the
+Slater exchange contribution is
+
+  <D0,V_C D0>
+    =-e^2/[epsilon_0 V(q^2+k^2/4)].
+
+In D1 the occupied spins are opposite, so
+their exchange overlap vanishes:
+
+  <D1,V_C D1>=0.
+
+Set
+  Delta_C=e^2/[epsilon_0 V(q^2+k^2/4)]>0.
+
+The projected Coulomb Hamiltonian is therefore
+
+  H_D^C
+    =diag(E_s-Delta_C,
+          E_s+DeltaE).
+
+Its relative gap is
+
+  DeltaE_C=DeltaE+Delta_C.
+
+The microscopic projected rotating phase has
+  omega_C=(DeltaE+Delta_C)/hbar.
+
+But the current's constant z transport velocity
+remains U_e, with NSE advective frequency
+
+  omega_NSE=k U_e=DeltaE/hbar.
+
+The unavoidable relative angular-rate slip is
+
+  delta_omega=omega_C-omega_NSE=Delta_C/hbar.
+
+Thus the previous EXACT UNFORCED current-to-NSE
+semiconjugacy generally FAILS after this projected
+Coulomb interaction is inserted without adjusting
+the momentum equation or the state/current map.
+
+IMPORTANT:
+The full Coulomb Hamiltonian generally couples
+D0,D1 to many other two-electron Fourier Slater
+states. The 2x2 projected Hamiltonian H_D^C is a
+GALERKIN / FROZEN FINITE-ORBITAL approximation,
+not an invariant exact full Coulomb evolution.
+This is a substantive OPEN microscopic gate.
+
+The negative exchange relative to the compensated
+periodic zero-mean reference does NOT mean the
+bare electron-electron Coulomb force is attractive.
+
+STATUS = EXACT B_TIER FINITE COULOMB MATRIX/PHASE OBSTRUCTION.
+
+7. AN EXPLICIT REGULARITY-PRESERVING PHASE-PORT FORCE
+-----------------------------------------------------
+Let the post-Coulomb phase be
+  theta_C(t,z)=kz-omega_C t.
+
+Take the current readout in the Coulomb-projected
+dephasing model as
+
+  v_C(t,z)
+    =U-(U_e/2)*exp(-gamma*t)*
+         (cos theta_C,sin theta_C,0),
+
+with gamma=nu*k^2 as before.
+
+Then direct differentiation shows
+
+  partial_t v_C+(v_C dot grad)v_C
+    =nu Delta v_C+f_slip,
+
+where the solenoidal force acceleration is
+
+  f_slip(t,z)
+    =(U_e/2)*delta_omega*exp(-gamma*t)*
+      (-sin theta_C,cos theta_C,0).
+
+It has:
+  div f_slip=0,
+  Fourier support only at +/-k e_z,
+  no new spatial direction,
+  |f_slip(t,x)|=(|U_e delta_omega|/2)*exp(-gamma*t).
+
+Its exact homogeneous force norm is
+
+  int_0^infinity
+     ||f_slip(t)||_(dot H^(-1/2))^2 dt
+    = V*U_e^2*delta_omega^2/
+      [8*gamma*|k|].
+
+Because the forced field is explicitly helical,
+it is smooth globally for every finite Delta_C,
+U_e, nu>0. This force is tangent to the
+known global 2D3C regularity sector and does
+NOT require a small critical forcing inequality.
+
+It is a MATHEMATICAL TAILORED NSE FORCE matching
+the projected Coulomb phase slip, NOT a derivation
+that the actual Maxwell Lorentz force equals it.
+A physical field/current/stress calculation must
+validate the force law independently.
+
+STATUS = EXACT B_TIER CONDITIONAL FORCE PORT.
+
+8. CHARGE/WARD/ANOMALY GATE
+---------------------------
+The two-electron number density is 2/V, so physical
+electric charge density is -2e/V, constant in time.
+The source current J_e=q_e*n_2*v_rho satisfies
+
+  partial_t rho_charge+div J_e=0
+
+because the density is constant and v_rho is
+divergence-free. This is the exact Abelian Ward-form
+classical continuity identity.
+
+On a compact torus the net -2e charge violates
+source-only Maxwell Gauss law. Introduce a
+physically declared compensating +2e/V charge
+background, or change to a noncompact geometry.
+Any background support, recoil, current and stress
+must be included in the total ledger.
+
+The electromagnetic U(1) vector current of a
+Dirac electron is free of perturbative CHIRAL
+gauge anomaly; this selected finite Pauli model
+also preserves its global particle number.
+
+For the full minimal SM generation, the usual
+left-handed hypercharges and multiplicities give
+the exact arithmetic cancellations
+
+  A_SU3^2Y proportional to 2*(1/6)-2/3+1/3=0,
+  A_SU2^2Y proportional to 3*(1/6)-1/2=0,
+  A_grav^2Y =
+    6*(1/6)+3*(-2/3)+3*(1/3)
+     +2*(-1/2)+1=0,
+  A_Y^3 =
+    6*(1/6)^3+3*(-2/3)^3+3*(1/3)^3
+     +2*(-1/2)^3+1=0.
+
+These arithmetic tests do NOT establish
+all global anomalies, a fully renormalized
+quantum Ward operator audit or any physically
+unique transport coefficient.
+
+Finite Fourier truncation is not preserved by
+arbitrary LOCAL U(1) gauge transformations.
+The selected 2x2 model is exact under GLOBAL
+charge-phase transformations; local gauge
+covariance requires a compatible regulator
+and covariant derivative including A.
+
+STATUS = EXACT FINITE CLASSICAL CONTINUITY /
+         SELECTED U1 VECTOR NO-ANOMALY STRUCTURE.
+FULL NCW-14 QUANTUM AUDIT = OPEN.
+
+9. MAXWELL STRESS/POWER AND RESIDUAL GATE
+------------------------------------------
+Let J_phys(t,x) be the selected two-electron
+electric current readout and fix a neutralizing
+background source with charge +2e/V.
+Assume Maxwell's equations hold for the declared
+TOTAL source. Then the exact Poynting theorem is
+
+  dE_EM/dt=-int_M E dot J_total dx.
+
+For J_total=J_fluid+J_res, and NSE fluid force
+  f_Lorentz=rho_charge E+J_fluid cross B,
+
+the smooth fluid kinetic energy obeys
+
+  dE_NSE/dt
+   =-D_visc +int_M E dot J_fluid dx
+
+for the specified Lorentz forcing and the
+usual incompressible assumptions.
+
+Then
+  d(E_EM+E_NSE)/dt
+    =-D_visc-int_M E dot J_res dx.
+
+A formal reservoir ledger with
+  dE_heat/dt=D_visc,
+  dE_extra/dt=int_M E dot J_res dx
+makes the total energy constant.
+
+The J_res-power may have either sign;
+it is not automatically positive heat.
+
+IMPORTANT NO-GO:
+The current-matched open-system NSE evolution of
+Section 4 is an UNFORCED exact NSE evolution.
+Solving Maxwell equations with its current as
+source gives a Maxwell field, but the same
+fluid velocity need not solve a Lorentz-FORCED
+NSE equation unless that force is a pure
+gradient or a compensator is introduced.
+Thus a one-way Maxwell RESPONSE does NOT prove
+self-consistent, backreacting Maxwell–NSE coupling.
+
+The earlier frozen
+  HELICAL_TWO_FLUID_MAXWELL_NSE_GLOBAL_B_TIER
+is a separate exact CLASSICAL two-way coupled
+Maxwell–NSE test (with declared fluid source);
+it does NOT microscopically derive the source
+from the antisymmetric state.
+
+For any selected fermionic source current, a
+fully renormalized SM T^{mu nu} and closed
+quantum-field/reservoir energy-stress tensor
+remain open. The present identities are
+conditional classical Ward/Poynting power laws.
+
+STATUS = EXACT CONDITIONAL CLASSICAL LEDGER /
+         FULL SM STRESS OPERATOR OPEN.
+
+10. NUMERICAL WITNESS AT DECLARED PARAMETERS
+----------------------------------------------
+Set
+  L=1.0e-9 m,
+  n=2 (k=4*pi/L),
+  r=1 (q=2*pi/L),
+  nu=hbar/(2m_e) [OPTIONAL CALIBRATION].
+
+Then approximately:
+
+  U_e=7.2738951e5 m/s,
+  W=7.2738951e5 m/s,
+  gamma=9.1406462e15 s^-1,
+  T_amp=1/gamma=1.0940146e-16 s,
+
+  DeltaE_free=6.0164826 eV,
+  Delta_C=0.22917748 eV,
+
+  delta_omega=Delta_C/hbar
+              about 3.481e14 s^-1,
+
+  delta_phi over T_amp
+      =delta_omega*T_amp
+      about 0.0380916 rad,
+
+  E_fluct(0)=DeltaE_free/8
+              about 0.7520603 eV.
+
+These calculations use fixed physical parameters,
+periodic background reference and chosen viscosity.
+They are an illustration of finite formulas, not
+predicted experimental electron collision times.
+Nonrelativistic speeds remain below c here.
+
+11. SIX-GATE STATUS
+--------------------
+NCW-13 PHYSICAL_SM_NOETHER_CURRENT_OPERATOR:
+  PROGRESS:
+    exact finite projected two-electron Pauli
+    current operator Jhat_e(z) as 2x2 matrix;
+    number density and current evaluated.
+  OPEN:
+    full renormalized quantum Standard Model
+    composite current with local gauge covariance.
+
+NCW-14 NONABELIAN_QUANTUM_WARD_ANOMALY_AUDIT:
+  PROGRESS:
+    exact selected Abelian continuity,
+    vector U1 anomaly-free representation,
+    canonical one-generation rational sums.
+  OPEN:
+    full renormalized/gauge-global BRST/Ward
+    operator-level anomaly audit.
+
+NCW-15 MICROSCOPIC_TO_FLUID_CURRENT_MATCHING:
+  PROGRESS:
+    EXACT DYNAMICAL SEMICONJUGACY for the
+    selected two-electron, two-determinant
+    Markovian dephasing model on the equal
+    population density-matrix disk.
+  OPEN:
+    derive dephasing rate gamma=nu k^2
+    from microscopic Coulomb/SM environment;
+    extend beyond finite selected orbitals
+    and meet full local gauge covariance.
+
+NCW-16 BACKREACTION_REGULARITY:
+  PROGRESS:
+    selected Coulomb phase-slip force has
+    explicit tangent regularity-preserving
+    helical NSE realization;
+    previous exact classical Maxwell–NSE
+    globally regular helical two-fluid sector.
+  OPEN:
+    prove PHYSICAL quantum/current-based
+    electromagnetic Lorentz force equals the
+    mathematical slip/graph force and remains
+    within admissible regularity class.
+
+NCW-17 FULL_MAXWELL_STRESS_WARD_SM08:
+  PROGRESS:
+    exact selected charge continuity,
+    classical Poynting/work/residual ledger;
+    microscopic-vs-current-energy distinction.
+  OPEN:
+    full renormalized 4D SM field/matter/
+    environment stress and reciprocal action.
+
+NCW-18 EXTERNAL_LEAN_COMPILER_THEOREM_AXIOM_AUDIT:
+  PROGRESS:
+    exact subtheorems isolated for subsequent
+    candidate Lean endpoint file: anomaly
+    arithmetic, graph exchange, residual,
+    positive quadratic inequality.
+  OPEN:
+    matching native external Lean compiler
+    and theorem-level axiom audit for
+    the exact NCW root and its physical
+    analytic premises; not available.
+
+NO GATE IS HERE CLAIMED TO HAVE A FULLY
+UNCONDITIONAL SM-TO-NSE PHYSICAL CLOSURE.
+
+12. ROOT MATHEMATICAL THEOREM
+-----------------------------
+THEOREM NCW_FINITE_TWO_ELECTRON_DEPHASING_NSE_SEMICONJUGACY.
+
+ASSUME:
+  H1. The explicit three orthonormal Pauli
+      orbitals with n even and q !=0.
+  H2. Two-electron antisymmetry and the
+      selected two-determinant subspace.
+  H3. Free two-electron Hamiltonian H_D,
+      and dephasing GKSL generator with
+      assigned gamma>0.
+  H4. Critical rate match nu=gamma/k^2.
+  H5. Pauli number-current spin-curl
+      prescription at A=0.
+
+THEN:
+  R1. GKSL evolution preserves two-electron
+      number, positivity and trace.
+  R2. Full Pauli one-body current yields a
+      divergence-free classical velocity
+      of constant mean plus rotating,
+      exponentially decaying transverse helix.
+  R3. The current readout semiconjugates
+      the GKSL semigroup on the equatorial
+      density-matrix disk to the unforced
+      NSE semigroup on the corresponding
+      helical velocity manifold.
+  R4. The velocity is globally smooth.
+  R5. Microscopic mean H_D energy is
+      constant while current-derived NSE
+      fluctuation energy decays exactly
+      with the qubit purity.
+  R6. Adding projected periodic Coulomb
+      produces nonzero phase slip
+      Delta_C/hbar and obstructs the
+      same unforced NSE identity unless
+      a corrective force/modified mapping
+      is specified.
+  R7. The corrective helical forcing is
+      explicitly smooth and globally regular,
+      but not physically derived from Maxwell.
+  R8. The six NCW physical/quantum/Lean
+      root gates are not all discharged.
+
+PROOF: sections 0–11.
+
+STATUS:
+  ! B_TIER exact finite mathematical semiconjugacy
+  CONDITIONAL_B_TIER physical interpretation.
+  A_TIER = NOT_ESTABLISHED.
+  FORMAL_CLOSURE = NOT_ESTABLISHED.
+
+ENDPOINTS
+---------
+[x] NCWQ-01 TWO_ELECTRON_ORTHONORMAL_SLATER_SECTOR
+[x] NCWQ-02 FREE_TWO_DETERMINANT_HAMILTONIAN
+[x] NCWQ-03 NUMBER_PRESERVING_GKSL_DEPHASING
+[x] NCWQ-04 FINITE_PAULI_CURRENT_OPERATOR
+[x] NCWQ-05 EXACT_OPEN_QUANTUM_NSE_SEMICONJUGACY
+[x] NCWQ-06 COHERENCE_NSE_ENERGY_TWO_COPY_OPERATOR
+[x] NCWQ-07 COULOMB_EXCHANGE_PHASE_SLIP
+[x] NCWQ-08 SMOOTH_PHASE_SLIP_NSE_FORCE_PORT
+[x] NCWQ-09 ABELIAN_CHARGE_CONTINUITY_AND_ANOMALY_SUMS
+[x] NCWQ-10 CLASSICAL_MAXWELL_STRESS_POWER_RESIDUAL
+[x] NCWQ-11 SIX_GATE_STATUS_ASSESSMENT
+[x] NCWQ-12 FINITE_TWO_ELECTRON_BRIDGE_ROOT
+
+[ ] NCWQ-13 MICROSCOPIC_DERIVATION_OF_GAMMA
+[ ] NCWQ-14 FULL_TWO_ELECTRON_COULOMB_INVARIANT_SECTOR
+[ ] NCWQ-15 LOCAL_GAUGE_COVARIANT_REGULATOR
+[ ] NCWQ-16 QUANTUM_SM_STRESS_WARD_AND_ANOMALY
+[ ] NCWQ-17 ACTUAL_MAXWELL_BACKREACTION_MATCH
+[ ] NCWQ-18 EXTERNAL_LEAN_COMPILER_THEOREM_AUDIT
+
+13. SOURCE ANCHORS
+------------------
+GKSL pure dephasing:
+https://anulum.github.io/scpn-quantum-control/lindblad/
+https://www.nature.com/articles/s41534-025-01044-7
+
+Pauli current and spin magnetization:
+https://arxiv.org/abs/physics/9807019
+
+Standard Model one-generation anomaly arithmetic:
+https://qft.org/gauge-theories-standard-model/standard-model-assembly-consistency/standard-model-anomaly-cancellation/
+
+Two-electron antisymmetry / one-body density matrix:
+https://kthpanor.github.io/echem/reduced-density/
+
+FINAL:
+  MARKER=!
+  TIER=CONDITIONAL_B_TIER
+  NEW_EXACT_MATHEMATICAL_BRIDGE=YES
+  ALL_SIX_PHYSICAL_GATES_CLOSED=NO
+  A_TIER=NO
