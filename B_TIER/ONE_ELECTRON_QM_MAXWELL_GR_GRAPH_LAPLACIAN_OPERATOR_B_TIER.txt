@@ -1,0 +1,771 @@
+ONE-ELECTRON QM-MAXWELL-GR GRAPH-LAPLACIAN MERGED OPERATOR
+B-TIER DERIVATION
+==========================================================
+
+STATUS
+------
+
+SIGNAL = !=! ON THE FROZEN SYNCHRONIZED REDUCED ORBIT
+MARKER = !
+TIER = CONDITIONAL_B_TIER
+ARTIFACT = ONE_ELECTRON_QM_MAXWELL_GR_GRAPH_LAPLACIAN_OPERATOR_B_TIER
+ROOT_ENDPOINT = TRISECTOR_GRAPH_LAPLACIAN_MERGED_OPERATOR
+SOURCE_BRANCH = b-tier-hull
+LEAN_STATUS = NOT_EMITTED
+A_TIER_STATUS = NOT_ESTABLISHED
+FORMAL_CLOSURE = NOT_ESTABLISHED
+LOCAL_LEAN_EXECUTIONS = 0
+
+This document refines the merged one-electron QM-Maxwell-GR operator model.
+It replaces the previously assumed sector readout isometries by canonical
+unitaries obtained from pushforward measures on the three reduced readout
+orbits.  It then constructs an exact graph Laplacian whose kernel is the
+synchronized tri-sector subspace.
+
+The exact reduced chain is
+
+  common reduced CP1 orbit
+  + injective gauge-reduced sector readouts
+  -> canonical sector orbit measures
+  -> canonical unitary readout maps
+  -> common sector Koopman generators
+  -> tri-sector graph Laplacian
+  -> exact synchronization projector
+  -> compressed common generator
+  -> synchronization rigging semigroup
+  -> quantitative leakage bound away from exact closure.
+
+This construction remains restricted to the frozen reduced orbit.  It does
+not construct the dressed nonlinear Einstein-Maxwell-Dirac orbit and does not
+quantize Maxwell or General Relativity.
+
+
+0. FROZEN COMMON ORBIT
+----------------------
+
+Let
+
+  O := CP1
+
+with normalized Fubini-Study measure
+
+  mu := omega_FS/(2 pi).
+
+Let
+
+  Phi_t : O -> O
+
+be the complete synchronized reduced flow
+
+  Phi_t(u,phi) = (u,phi-omega t),
+
+  omega := Delta_E/hbar.
+
+Define the common observable Hilbert space
+
+  K := L2(O,mu).
+
+The Koopman group and its generator are
+
+  (U(t)f)(z) := f(Phi_t z),
+
+  L := -i omega partial_phi,
+
+  U(t) = exp(-itL).
+
+Freeze the one-electron sector by
+
+  N_Sigma[Psi] = 1,
+  Q_Sigma = -e.
+
+Let the three gauge-reduced readout maps be
+
+  iota_Q : O -> O_Q,
+  iota_M : O -> O_M,
+  iota_G : O -> O_G,
+
+where
+
+  iota_Q(z) = Gamma_z,
+  iota_M(z) = F_z,
+  iota_G(z) = gamma_z.
+
+Here Gamma_z is the rank-one one-electron density operator, F_z is the
+Maxwell curvature two-form, and gamma_z is the selected reduced GR/QR
+geometry class.
+
+PREMISE REDUCED_READOUT_EMBEDDINGS.
+
+Each iota_s is a Borel isomorphism from O onto its image O_s, for
+
+  s in {Q,M,G}.
+
+Equivalently, each readout separates points of the frozen physical orbit and
+has a measurable inverse on its image.
+
+This premise concerns only the selected reduced orbit.  It does not assert
+injectivity of the full unreduced field maps.
+
+
+1. CANONICAL SECTOR HILBERT SPACES
+----------------------------------
+
+Define the pushforward measure
+
+  mu_s := (iota_s)_* mu
+
+on O_s and the sector observable Hilbert space
+
+  K_s := L2(O_s,mu_s).
+
+Define
+
+  W_s : K -> K_s
+
+by
+
+  (W_s f)(x) := f(iota_s^{-1}(x)).
+
+THEOREM CANONICAL_READOUT_UNITARY.
+
+Under REDUCED_READOUT_EMBEDDINGS, W_s is unitary.
+
+DERIVATION.
+
+By the definition of pushforward measure,
+
+  ||W_s f||_{K_s}^2
+    = integral_{O_s} |f(iota_s^{-1}(x))|^2 dmu_s(x)
+    = integral_O |f(z)|^2 dmu(z)
+    = ||f||_K^2.
+
+Thus W_s is an isometry.  For every g in K_s, the function
+
+  f := g o iota_s
+
+belongs to K and satisfies W_s f = g almost everywhere.  Therefore W_s is
+surjective and hence unitary.
+
+STATUS = EXACT_CONDITIONAL_B_TIER.
+
+This discharges the former abstract endpoint SECTOR_READOUT_ISOMETRIES at the
+reduced-orbit level, conditional only on the explicit readout-embedding
+premise.
+
+
+2. CANONICAL SECTOR FLOWS AND GENERATORS
+----------------------------------------
+
+Define the sector flow on O_s by conjugation:
+
+  Phi_s^t := iota_s o Phi_t o iota_s^{-1}.
+
+Define the sector Koopman group
+
+  (U_s(t)g)(x) := g(Phi_s^t x).
+
+THEOREM CANONICAL_SECTOR_INTERTWINING.
+
+For every real t,
+
+  U_s(t) W_s = W_s U(t).
+
+Consequently,
+
+  U_s(t) = W_s U(t) W_s^*,
+
+and the self-adjoint sector generator is
+
+  L_s = W_s L W_s^*.
+
+DERIVATION.
+
+For x in O_s,
+
+  (U_s(t)W_s f)(x)
+    = f(iota_s^{-1}(Phi_s^t x))
+    = f(Phi_t(iota_s^{-1}x))
+    = (W_sU(t)f)(x).
+
+The generator identity follows from uniqueness of the self-adjoint generator
+of a strongly continuous unitary group.
+
+STATUS = EXACT_CONDITIONAL_B_TIER.
+
+No independent sector-clock assumption is required after the common reduced
+flow and the readout embeddings are fixed.
+
+
+3. TRI-SECTOR GRAPH ISOMETRY
+----------------------------
+
+Define the block Hilbert space
+
+  K_blk := K_Q direct_sum K_M direct_sum K_G.
+
+Define the block unitary
+
+  W_blk := diag(W_Q,W_M,W_G)
+
+from K direct_sum K direct_sum K onto K_blk.
+
+Define the diagonal isometry
+
+  D : K -> K direct_sum K direct sum K,
+
+  Df := (f,f,f)/sqrt(3).
+
+Define the physical graph isometry
+
+  J := W_blk D,
+
+so that
+
+  Jf
+    = (W_Q f,W_M f,W_G f)/sqrt(3).
+
+Define
+
+  K_sync := range(J),
+
+  P_sync := J J^*.
+
+THEOREM EXPLICIT_SYNCHRONIZATION_PROJECTOR.
+
+P_sync is the orthogonal projector onto K_sync.  Its block entries are
+
+  (P_sync)_{rs}
+    = (1/3) W_r W_s^*,
+
+for r,s in {Q,M,G}.
+
+For g=(g_Q,g_M,g_G) in K_blk, set
+
+  x_s := W_s^* g_s in K.
+
+Then
+
+  J^*g = (x_Q+x_M+x_G)/sqrt(3),
+
+and
+
+  (P_sync g)_r
+    = W_r(x_Q+x_M+x_G)/3.
+
+STATUS = EXACT_B_TIER.
+
+Thus projection onto the merged object means: pull every sector observable
+back to the common orbit, average the three representatives, and push the
+average forward into every sector.
+
+
+4. TRI-SECTOR GRAPH LAPLACIAN
+-----------------------------
+
+Let the complete-graph Laplacian on three vertices be
+
+  L_K3 :=
+    [ [ 2,-1,-1 ],
+      [ -1,2,-1 ],
+      [ -1,-1,2 ] ].
+
+Define the tri-sector graph Laplacian
+
+  Delta_tri
+    := W_blk (L_K3 tensor I_K) W_blk^*.
+
+THEOREM GRAPH_LAPLACIAN_DISAGREEMENT_IDENTITY.
+
+For g in K_blk and x_s=W_s^*g_s,
+
+  <g,Delta_tri g>
+    = ||x_Q-x_M||_K^2
+      + ||x_M-x_G||_K^2
+      + ||x_G-x_Q||_K^2.
+
+Consequently,
+
+  Delta_tri >= 0,
+
+and
+
+  ker(Delta_tri) = K_sync.
+
+DERIVATION.
+
+The standard quadratic form of the complete-graph Laplacian is the sum of
+squared differences over its three edges.  Unitarity of W_blk transfers this
+identity to K_blk.  The quadratic form vanishes exactly when
+
+  x_Q=x_M=x_G,
+
+which is exactly the graph condition defining range(J).
+
+STATUS = EXACT_B_TIER.
+
+THEOREM GRAPH_LAPLACIAN_PROJECTOR_IDENTITY.
+
+One has
+
+  Delta_tri = 3(I-P_sync),
+
+and hence
+
+  P_sync = I-(1/3)Delta_tri.
+
+DERIVATION.
+
+On K^3,
+
+  L_K3 = 3I - 1 1^T
+       = 3(I-D D^*).
+
+Conjugating by W_blk gives the stated identity.
+
+STATUS = EXACT_B_TIER.
+
+The spectrum of Delta_tri is contained in
+
+  {0,3}.
+
+The eigenvalue 0 is the synchronized graph sector and the eigenvalue 3 is its
+orthogonal disagreement sector.
+
+
+5. COMMON BLOCK GENERATOR AND COMPRESSION
+-----------------------------------------
+
+Define
+
+  L_blk := L_Q direct sum L_M direct sum L_G,
+
+  U_blk(t) := U_Q(t) direct sum U_M(t) direct sum U_G(t).
+
+By the canonical sector identities,
+
+  L_blk
+    = W_blk (I_3 tensor L) W_blk^*,
+
+  U_blk(t)
+    = W_blk (I_3 tensor U(t)) W_blk^*.
+
+THEOREM GRAPH_LAPLACIAN_COMMUTES_WITH_TIME_EVOLUTION.
+
+On the natural block generator domain,
+
+  [Delta_tri,L_blk] = 0,
+
+  [P_sync,L_blk] = 0,
+
+and for every real t,
+
+  [Delta_tri,U_blk(t)] = 0,
+
+  [P_sync,U_blk(t)] = 0.
+
+DERIVATION.
+
+On K^3, L_K3 tensor I commutes with I_3 tensor L and I_3 tensor U(t).
+Conjugation by W_blk preserves the commutators.
+
+STATUS = EXACT_CONDITIONAL_B_TIER.
+
+THEOREM SYNCHRONIZED_COMPRESSED_GENERATOR.
+
+The restriction of L_blk to K_sync is self-adjoint and
+
+  L_sync
+    := L_blk restricted to K_sync
+     = J L J^*.
+
+Moreover,
+
+  U_blk(t) restricted to K_sync
+    = J U(t) J^*.
+
+STATUS = EXACT_CONDITIONAL_B_TIER.
+
+Hence the entire synchronized tri-sector time evolution is one copy of the
+single common generator.
+
+
+6. PENALIZED MASTER GENERATOR
+-----------------------------
+
+Let Omega_pen be a real frequency parameter and define
+
+  L_pen
+    := L_blk + Omega_pen Delta_tri.
+
+THEOREM GRAPH_PENALTY_MASTER_GENERATOR.
+
+L_pen is self-adjoint on the domain of L_blk and
+
+  exp(-itL_pen)
+    = U_blk(t)
+      [ P_sync + exp(-i 3 Omega_pen t)(I-P_sync) ].
+
+On K_sync,
+
+  L_pen = L_blk,
+
+so the physical synchronized evolution is unchanged.  On the disagreement
+sector, the spectrum is shifted by 3 Omega_pen.
+
+DERIVATION.
+
+Delta_tri is bounded, self-adjoint, and commutes with L_blk.  The functional
+calculus therefore factorizes.  Use
+
+  Delta_tri P_sync = 0,
+
+  Delta_tri(I-P_sync)=3(I-P_sync).
+
+STATUS = EXACT_CONDITIONAL_B_TIER.
+
+INTERPRETATION BOUNDARY.
+
+The unitary penalty separates synchronized and asynchronous spectra.  It does
+not dynamically attract asynchronous data toward K_sync.
+
+
+7. SYNCHRONIZATION RIGGING SEMIGROUP
+------------------------------------
+
+For tau>=0 define
+
+  R_tau := exp(-tau Delta_tri).
+
+THEOREM EXACT_GRAPH_RIGGING_FILTER.
+
+One has
+
+  R_tau
+    = P_sync + exp(-3tau)(I-P_sync),
+
+and therefore
+
+  ||R_tau-P_sync|| = exp(-3tau).
+
+In particular,
+
+  R_tau -> P_sync
+
+in operator norm as tau->infinity.
+
+Moreover,
+
+  [R_tau,U_blk(t)] = 0
+
+for every t.
+
+STATUS = EXACT_B_TIER.
+
+Thus the graph heat semigroup is an exact, exponentially convergent
+synchronization filter.  It is a representation-level rigging operation, not
+a physical dissipative law unless separately inserted into the dynamics.
+
+
+8. APPROXIMATE CLOSURE AND LEAKAGE BOUND
+---------------------------------------
+
+Let
+
+  L_tilde_blk
+
+be a self-adjoint block generator for an approximate or imperfect tri-sector
+model.  Assume P_sync preserves its domain and that
+
+  [L_tilde_blk,P_sync]
+
+extends to a bounded operator.
+
+Define the normal leakage operator
+
+  D_tilde
+    := (I-P_sync)L_tilde_blk P_sync.
+
+THEOREM EXACT_LEAKAGE_CRITERION.
+
+The following are equivalent:
+
+  (i)  D_tilde=0;
+
+  (ii) [L_tilde_blk,P_sync]=0;
+
+  (iii) K_sync reduces L_tilde_blk;
+
+  (iv) K_sync is invariant under exp(-itL_tilde_blk) for every real t.
+
+DERIVATION.
+
+For self-adjoint L_tilde_blk,
+
+  D_tilde^* = P_sync L_tilde_blk(I-P_sync),
+
+and
+
+  [L_tilde_blk,P_sync]
+    = D_tilde-D_tilde^*.
+
+Thus D_tilde=0 if and only if the commutator vanishes.  The equivalence with
+reduction and unitary invariance follows from the spectral theorem.
+
+STATUS = EXACT_CONDITIONAL_B_TIER.
+
+THEOREM FINITE_TIME_SYNCHRONIZATION_LEAKAGE_BOUND.
+
+For every real t,
+
+  ||(I-P_sync) exp(-itL_tilde_blk) P_sync||
+    <= |t| ||[L_tilde_blk,P_sync]||
+    <= 2 |t| ||D_tilde||.
+
+DERIVATION.
+
+The Duhamel commutator identity gives
+
+  [P_sync,exp(-itL_tilde_blk)]
+    = i integral_0^t
+        exp(-i(t-s)L_tilde_blk)
+        [L_tilde_blk,P_sync]
+        exp(-isL_tilde_blk) ds.
+
+Taking norms and using unitarity gives the first bound.  Since
+
+  (I-P_sync)exp(-itL_tilde_blk)P_sync
+    = (I-P_sync)[exp(-itL_tilde_blk),P_sync]P_sync,
+
+the same bound applies.  Finally,
+
+  [L_tilde_blk,P_sync]=D_tilde-D_tilde^*
+
+implies the factor 2 estimate.
+
+STATUS = EXACT_CONDITIONAL_B_TIER.
+
+This supplies a quantitative finite-time error estimate when exact merged
+closure fails weakly.
+
+
+9. EXPLICIT COMMON SPECTRUM
+---------------------------
+
+For
+
+  L = -i omega partial_phi,
+
+and angular modes
+
+  f_n(u,phi)=a_n(u) exp(i n phi),
+
+one has
+
+  L f_n = n omega f_n.
+
+Therefore the synchronized block vectors
+
+  J f_n
+
+satisfy
+
+  L_blk Jf_n = n omega Jf_n,
+
+  Delta_tri Jf_n = 0,
+
+  L_pen Jf_n = n omega Jf_n.
+
+The asynchronous copies have the shifted penalized frequencies
+
+  n omega + 3 Omega_pen.
+
+STATUS = EXACT_B_TIER.
+
+The integer n is an observable angular Fourier index.  It is neither electron
+number nor the QR Chern number.
+
+
+10. ROOT ENDPOINT
+-----------------
+
+THEOREM TRISECTOR_GRAPH_LAPLACIAN_MERGED_OPERATOR.
+
+Assume:
+
+  H1. the frozen complete common orbit (O,mu,Phi_t);
+
+  H2. the one-electron synchronized reduced flow with
+
+        L=-i(Delta_E/hbar)partial_phi;
+
+  H3. gauge-reduced readout embeddings
+
+        iota_Q,iota_M,iota_G;
+
+  H4. the three sector flows are induced from Phi_t by conjugation.
+
+Then:
+
+  (A) the pushforward measures canonically produce unitary readout maps W_s;
+
+  (B) all sector Koopman generators are canonical unitary copies of L;
+
+  (C) the tri-sector graph Laplacian satisfies
+
+        Delta_tri=3(I-P_sync);
+
+  (D)
+
+        ker Delta_tri=K_sync;
+
+  (E) K_sync reduces the block time evolution;
+
+  (F) the compressed generator is
+
+        L_sync=J L J^*;
+
+  (G) the exact rigging filter is
+
+        exp(-tau Delta_tri)
+          = P_sync+exp(-3tau)(I-P_sync);
+
+  (H) for an imperfect generator, the off-graph leakage is controlled by
+
+        ||(I-P)exp(-itL_tilde)P||
+          <= 2|t|||D_tilde||.
+
+STATUS = CONDITIONAL_B_TIER_WITH_EXPLICIT_GRAPH_OPERATOR.
+
+SIGNAL.
+
+  !=! TRISECTOR_GRAPH_OPERATOR_CLOSED_ON_THE_FROZEN_SYNCHRONIZED_ORBIT.
+
+
+11. ENDPOINT REGISTER
+---------------------
+
+[x] GRAPH-01  CANONICAL_READOUT_UNITARY
+               EXACT_CONDITIONAL_B_TIER
+
+[x] GRAPH-02  CANONICAL_SECTOR_INTERTWINING
+               EXACT_CONDITIONAL_B_TIER
+
+[x] GRAPH-03  EXPLICIT_SYNCHRONIZATION_PROJECTOR
+               EXACT_B_TIER
+
+[x] GRAPH-04  GRAPH_LAPLACIAN_DISAGREEMENT_IDENTITY
+               EXACT_B_TIER
+
+[x] GRAPH-05  GRAPH_LAPLACIAN_PROJECTOR_IDENTITY
+               EXACT_B_TIER
+
+[x] GRAPH-06  GRAPH_LAPLACIAN_COMMUTES_WITH_TIME_EVOLUTION
+               EXACT_CONDITIONAL_B_TIER
+
+[x] GRAPH-07  SYNCHRONIZED_COMPRESSED_GENERATOR
+               EXACT_CONDITIONAL_B_TIER
+
+[x] GRAPH-08  GRAPH_PENALTY_MASTER_GENERATOR
+               EXACT_CONDITIONAL_B_TIER
+
+[x] GRAPH-09  EXACT_GRAPH_RIGGING_FILTER
+               EXACT_B_TIER
+
+[x] GRAPH-10  EXACT_LEAKAGE_CRITERION
+               EXACT_CONDITIONAL_B_TIER
+
+[x] GRAPH-11  FINITE_TIME_SYNCHRONIZATION_LEAKAGE_BOUND
+               EXACT_CONDITIONAL_B_TIER
+
+[x] GRAPH-12  TRISECTOR_GRAPH_LAPLACIAN_MERGED_OPERATOR
+               CONDITIONAL_B_TIER_WITH_EXPLICIT_GRAPH_OPERATOR
+
+[ ] GRAPH-13  DRESSED_EMD_CP1_EMBEDDING_CONSTRUCTION
+               OPEN_DECISIVE
+
+[ ] GRAPH-14  DRESSED_EMD_TANGENCY_VERIFICATION
+               OPEN_DECISIVE
+
+[ ] GRAPH-15  EMD_GR_PHYSICAL_SAME_ORBIT
+               OPEN_DECISIVE
+
+[ ] GRAPH-16  GLOBAL_SOURCED_NONLINEAR_PERSISTENCE
+               OPEN_ANALYTIC
+
+
+12. DEPENDENCY SPINE
+--------------------
+
+  reduced readout embeddings
+    -> GRAPH-01
+    -> GRAPH-02.
+
+  GRAPH-01
+    -> GRAPH-03
+    -> GRAPH-04
+    -> GRAPH-05.
+
+  GRAPH-02
+  + GRAPH-05
+    -> GRAPH-06
+    -> GRAPH-07
+    -> GRAPH-08
+    -> GRAPH-09.
+
+  approximate block generator
+    -> GRAPH-10
+    -> GRAPH-11.
+
+  GRAPH-01 through GRAPH-11
+    -> GRAPH-12.
+
+
+13. CLOSURE CLASSIFICATION
+--------------------------
+
+EXACT_B_TIER:
+
+  EXPLICIT_SYNCHRONIZATION_PROJECTOR
+  GRAPH_LAPLACIAN_DISAGREEMENT_IDENTITY
+  GRAPH_LAPLACIAN_PROJECTOR_IDENTITY
+  EXACT_GRAPH_RIGGING_FILTER
+  explicit synchronized spectral formulas.
+
+EXACT_CONDITIONAL_B_TIER:
+
+  CANONICAL_READOUT_UNITARY
+  CANONICAL_SECTOR_INTERTWINING
+  GRAPH_LAPLACIAN_COMMUTES_WITH_TIME_EVOLUTION
+  SYNCHRONIZED_COMPRESSED_GENERATOR
+  GRAPH_PENALTY_MASTER_GENERATOR
+  EXACT_LEAKAGE_CRITERION
+  FINITE_TIME_SYNCHRONIZATION_LEAKAGE_BOUND
+  TRISECTOR_GRAPH_LAPLACIAN_MERGED_OPERATOR.
+
+DISCHARGED RELATIVE TO THE PREVIOUS MERGED MODEL:
+
+  SECTOR_READOUT_ISOMETRIES
+
+is replaced by the explicit pushforward construction, conditional on
+REDUCED_READOUT_EMBEDDINGS.
+
+OPEN DECISIVE ENDPOINTS:
+
+  DRESSED_EMD_CP1_EMBEDDING_CONSTRUCTION
+  DRESSED_EMD_TANGENCY_VERIFICATION
+  EMD_GR_PHYSICAL_SAME_ORBIT
+  GLOBAL_SOURCED_NONLINEAR_PERSISTENCE.
+
+INTERPRETATION BOUNDARY:
+
+  Delta_tri is a graph-consistency operator on three representations of one
+  reduced orbit.  It is not a physical spacetime Laplacian and does not make
+  Maxwell or GR quantum theories.
+
+FORMAL STATUS:
+
+  B_TIER only.
+  Lean files are not emitted.
+  A_TIER is not established.
+  FORMAL_CLOSURE is not established.
+  UNCONDITIONAL_CLOSURE is not established.
