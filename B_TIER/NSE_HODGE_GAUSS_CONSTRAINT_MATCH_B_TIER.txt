@@ -1,0 +1,547 @@
+FROZEN SM-05: NSE HODGE PROJECTION, AUXILIARY GAUSS-LIKE GENERATORS,
+CANONICAL CONSTRAINT PAIR, AND PRESSURE GAUGE FIXING
+B-TIER MATHEMATICAL DERIVATION — v0.1
+===================================================================
+
+STATUS
+------
+ROOT_ENDPOINT = NSE_HODGE_GAUSS_CONSTRAINT_MATCH
+MARKER = !
+MODE = B_TIER_DERIVATION
+REFERENCE_ROW = SM-05 ONLY
+REFERENCE = FROZEN_SM_NSE_OPERATOR_MATCH_REGISTER_B_TIER
+PREVIOUS = NSE_DERIVATION_COMMUTATOR_B_TIER
+           NSE_CONNECTION_COVARIANT_CURVATURE_PORT_B_TIER
+           NSE_KOOPMAN_HEISENBERG_FORM_B_TIER
+           NSE_EXTERIOR_CAR_OPERATOR_MATCH_B_TIER
+SOURCE_BRANCH = b-tier-hull
+LEAN_STATUS = NOT_EMITTED
+A_TIER = NOT_ESTABLISHED
+FORMAL_CLOSURE = NOT_ESTABLISHED
+LOCAL_LEAN_EXECUTIONS = ZERO
+
+PURPOSE
+-------
+Compare the Standard Model first-class quantum Gauss constraint algebra
+
+  [Ghat_a,Ghat_b] ~ i*hbar*f_ab^c*Ghat_c
+
+to the NATIVE incompressibility and pressure constraint mechanism.
+
+The exact structural match is not "div u = Yang-Mills Gauss law."
+Rather, a finite NSE coefficient space admits a mathematically
+precise AUXILIARY ABELIAN REDUNDANT LIFT:
+
+  unconstrained vector variable v
+     -> physical velocity u=P_sigma v;
+  v -> v+grad chi
+     leaves u invariant;
+  on T^*V_N, the momentum map G_chi=<pi,grad chi> generates this shift;
+  {G_chi,G_eta}=0;
+  div v=0 is a compatible GAUGE FIXING, not G_chi=0;
+  {div v,G_chi} involves Delta chi;
+  reduction produces the Leray projector.
+
+The physical incompressible NSE equation is recovered in the gauge-fixed
+slice, with pressure as the gradient compensation. A response-field
+canonical Hamiltonian is available, but is NOT a microscopic SM energy
+operator or positive NSE kinetic Hamiltonian.
+
+The generated gauge group is a finite-dimensional ADDITIVE vector
+group of gradient shifts, not automatically compact U(1), SU(2), SU(3),
+or the physical Standard Model internal gauge group.
+
+0. EXACT FINITE PERIODIC FRAME
+------------------------------
+Let M=T_L^3=(R/LZ)^3, L>0.
+Let K_N be a chosen nonempty finite symmetric set of nonzero
+Fourier wave numbers in (2*pi/L)Z^3; choose it so that all real
+vector fields are represented by conjugate-symmetric coefficients.
+
+Let
+  Q_N = real mean-zero scalar trigonometric polynomials
+        supported on K_N,
+  V_N = real vector trigonometric polynomials
+        supported on K_N in each component.
+
+Then grad:Q_N->V_N, div:V_N->Q_N and
+Delta=div grad:Q_N->Q_N have the usual finite Fourier meaning.
+Delta is NEGATIVE DEFINITE and invertible on Q_N.
+
+The ambient V_N is NOT yet the NSE solenoidal state space.
+Define
+  V_N,sigma := ker(div|V_N).
+
+Use the unnormalized L2(M) inner products and identify
+V_N with its Euclidean dual for finite canonical formulas.
+
+1. EXACT HODGE CONSTRAINT / ORTHOGONAL SPLIT
+--------------------------------------------
+NGA-01 FINITE_HELMHOLTZ_DECOMPOSITION.
+
+Define
+
+  P_N := I - grad Delta^(-1) div.
+
+For every v in V_N, let
+  chi := Delta^(-1)div v in Q_N,
+  u := P_N v.
+
+Then
+  v=u+grad chi,
+  div u=0.
+
+The decomposition is unique because V_N,sigma is L2 orthogonal
+to grad Q_N, and the only mean-zero harmonic scalar is zero.
+
+Hence
+  P_N^2=P_N=P_N^*,
+  ran(P_N)=V_N,sigma,
+  ker(P_N)=grad Q_N.
+
+For every lambda in Q_N,
+  P_N(v+grad lambda)=P_N v.
+
+STATUS = EXACT B_TIER FOURIER/HODGE IDENTITY.
+
+NGA-02 AUXILIARY_GRADIENT_SHIFT_GROUP.
+
+Let
+  G_grad := (Q_N,+)
+act on ambient v by
+  g_lambda(v)=v+grad lambda.
+
+Then
+  g_lambda g_eta=g_(lambda+eta),
+  g_0=id, inverse g_(-lambda).
+
+The action is faithful on mean-zero scalar parameters and
+is abelian. The quotient V_N/G_grad canonically identifies
+with V_N,sigma via [v] -> P_N v.
+
+This is a REDUNDANCY OF AN AUXILIARY REPRESENTATION.
+It is NOT a gauge symmetry acting nontrivially on the
+physical NSE velocity u. Its global Lie group is the
+additive real vector group Q_N, not compact U(1).
+
+STATUS = EXACT B_TIER.
+
+2. CANONICAL FIRST-CLASS ABELIAN GENERATORS
+--------------------------------------------
+NGA-03 MOMENT_MAP_TRANSLATION_GENERATORS.
+
+On the auxiliary canonical phase space
+  T^*V_N ~= V_N x V_N^*
+choose standard finite Poisson brackets
+  {v^a,pi_b}=delta^a_b.
+
+For lambda in Q_N define
+  G_lambda(v,pi)=<pi,grad lambda>.
+
+These functions generate the shifts:
+
+  {v,G_lambda}=grad lambda,
+  {pi,G_lambda}=0,
+  {P_N v,G_lambda}=P_N grad lambda=0.
+
+Since G_lambda depends on pi alone,
+  {G_lambda,G_eta}=0.
+
+Thus the G_lambda constitute an ABELIAN FIRST-CLASS
+CONSTRAINT ALGEBRA if one DECLARES the constraint surface
+  G_lambda=0 for all lambda.
+
+Equivalently, G_lambda=0 for all lambda is
+  div pi=0
+(on the chosen Fourier modes), by integration by parts.
+
+CAUTION:
+This is the auxiliary momentum constraint on pi,
+NOT the original fluid incompressibility div u=0.
+Its first-class structure is created by the redundant
+canonical lift; it is not intrinsic to the viscous NSE PDE.
+
+STATUS = EXACT B_TIER CANONICAL PB IDENTITY.
+
+NGA-04 INCOMPRESSIBILITY_GAUGE_FIXING_PAIR.
+
+For phi in Q_N define
+  C_phi(v) := <phi,div v>=-<grad phi,v>.
+
+Then
+  {C_phi,C_eta}=0,
+  {C_phi,G_lambda}
+     =<phi,Delta lambda>
+     =-<grad phi,grad lambda>.
+
+On Q_N the matrix of {C_phi,G_lambda} is invertible
+because Delta has no zero eigenvalue after removal of
+the scalar constant mode.
+
+Thus
+  G_lambda=0 (first-class auxiliary momentum constraint)
+together with
+  C_phi=0 (the divergence-free gauge fixing)
+form a SECOND-CLASS pair under the standard finite
+Dirac gauge fixing procedure.
+
+In particular C_phi is NOT itself the same as G_phi.
+
+The exact relationship is analogous to using
+the transverse/Coulomb gauge condition together
+with an Abelian Gauss momentum constraint in
+canonical electrodynamics, but the physical meaning
+of the canonical variables is completely different.
+
+STATUS = EXACT B_TIER.
+
+NGA-05 REDUCED_DIRAC_TRANSVERSE_BRACKET.
+
+The symplectic reduction of
+  T^*V_N
+at G=0, with gauge fixing C=0, removes the
+longitudinal canonical coordinate and momentum.
+
+It identifies with
+  T^*(V_N,sigma).
+
+For the reduced canonical coordinate u=P_N v
+and reduced momentum pi_sigma=P_N pi, one has
+
+  {u^a,(pi_sigma)_b}_red=(P_N)^a_b.
+
+Equivalently, in ambient notation the Dirac bracket
+of constrained representatives is
+
+  {v^a,pi_b}_D=(P_N)^a_b.
+
+This is an exact finite-dimensional counterpart of
+the transverse projector appearing in Coulomb-gauge
+Hamiltonian reduction. It follows directly from the
+orthogonal splitting V_N=V_N,sigma direct_sum grad Q_N.
+
+STATUS = EXACT B_TIER.
+
+3. QUANTUM OPERATOR COMMUTATOR (AUXILIARY)
+------------------------------------------
+NGA-06 AUXILIARY_TRANSLATION_QUANTIZATION.
+
+On L2(V_N,dv) use the natural finite-dimensional
+Lebesgue measure and smooth compactly supported
+functions as a common test domain.
+
+Define the differential operator
+
+  Ghat_lambda
+    :=-i*hbar <grad lambda,nabla_v>,
+
+where grad lambda is a FIXED VECTOR IN V_N.
+
+Each Ghat_lambda has the self-adjoint realization
+generating unitary translations in the ambient
+configuration variable v.
+
+For all parameters lambda,eta,
+
+  [Ghat_lambda,Ghat_eta]=0.
+
+Moreover, for every bounded smooth function
+F:V_N,sigma->C, the physical multiplication
+observable M_(F(P_N v)) commutes with Ghat_lambda:
+
+  [Ghat_lambda,M_(F(P_N v))]=0.
+
+Thus an exact ABELIAN operator constraint algebra
+is realized on the auxiliary space.
+
+SUBTLETY:
+Demanding Ghat_lambda Psi=0 for ALL gradient
+translations makes Psi independent of noncompact
+longitudinal directions. If grad Q_N has positive
+dimension, such nonzero constant-longitudinal
+wavefunctions do not belong to ambient L2(V_N).
+A nontrivial physical Hilbert space must therefore
+be obtained by reduction/rigging, for example
+  L2(V_N,sigma),
+not by pretending a normalizable ambient
+zero-generator eigenstate exists.
+
+STATUS = EXACT FINITE OPERATOR IDENTITY WITH
+STANDARD UNITARY TRANSLATION THEORY.
+
+4. PRESSURE AS GAUGE-SLICE COMPENSATOR
+---------------------------------------
+NGA-07 PRESSURE_PROJECTION_VELOCITY_FLOW.
+
+Let u=P_N v and let F_N(u) be the ambient Galerkin
+momentum acceleration, including the separately
+chosen projected Fourier support of
+  F(u)= -(u dot grad)u +nu Delta u+f.
+
+Then the solenoidal NSE coefficient ODE is
+
+  dot u=P_N F_N(u)
+       =F_N(u)-grad p_N(u),
+
+where
+  p_N(u):=Delta^(-1)div F_N(u).
+
+The mean-zero scalar p_N is uniquely determined
+by the divergence-free constraint.
+
+This is the exact pressure Poisson/Helmholtz-Leray
+identity in finite periodic Fourier approximation.
+
+STATUS = EXACT B TIER.
+
+NGA-08 TIME_DEPENDENT_LIFT_AND_GAUGE_SLICE.
+
+Define an UNCONSTRAINED lifted flow
+
+  dot v=F_N(P_N v)+grad theta,
+
+where theta(t) in Q_N is an auxiliary compensator.
+
+Under the time-dependent gradient shift
+  v -> v+grad lambda(t)
+  theta -> theta+dot lambda(t),
+
+the physical velocity u=P_N v is invariant and
+the lifted equation remains covariant.
+
+Fix the transverse gauge
+  div v(t)=0  for all t.
+
+Then
+  0=div dot v
+    =div F_N(u)+Delta theta,
+
+hence
+  theta=-Delta^(-1)div F_N(u)=-p_N(u).
+
+Therefore the gauge-fixed lifted evolution is
+  dot v=F_N(v)-grad p_N(v),
+which is precisely the solenoidal NSE equation.
+
+This is an auxiliary CONSTRAINT-AND-GAUGE
+representation of the pressure correction.
+The pressure still has its ordinary physical
+meaning in the original NSE momentum equation;
+this lift does not prove it is a Standard Model
+gauge potential.
+
+STATUS = EXACT B TIER.
+
+5. RESPONSE HAMILTONIAN AND FIRST-CLASS PRESERVATION
+-----------------------------------------------------
+NGA-09 AUXILIARY_CANONICAL_RESPONSE_HAMILTONIAN.
+
+On T^*V_N define
+
+  H_resp(v,pi)
+    := <pi,b_N(P_N v)>,
+
+where
+  b_N(u):=P_N F_N(u)
+is the NSE solenoidal Galerkin vector field.
+
+Then Hamilton's first equation gives
+  dot v = d_(pi) H_resp=b_N(P_N v),
+so physical projected motion satisfies
+  dot u=P_N dot v=b_N(u).
+
+The auxiliary gauge generator satisfies
+  {G_lambda,H_resp}=0,
+
+because H_resp depends on v only through
+u=P_N v and the gradient shifts leave u
+fixed, while pi is fixed by the gauge shifts.
+
+This proves preservation of the declared
+Abelian first-class momentum constraint under
+this PARTICULAR response Hamiltonian.
+
+The associated conjugate momentum pi evolves
+by the linearized adjoint NSE Galerkin equation;
+it is not an electron momentum variable.
+
+H_resp is linear in pi, generally unbounded below,
+and is NOT the physical fluid kinetic energy nor
+the self-adjoint Standard Model quantum Hamiltonian.
+
+STATUS = EXACT B_TIER, AUXILIARY RESPONSE DYNAMICS.
+
+6. FINITE (NSE)^X GRAPH COMPOSITION
+------------------------------------
+NGA-10 PRODUCT_AUXILIARY_GAUSS_ALGEBRA.
+
+For finite layer labels X, take
+  V_X=direct_sum_i V_(N,i),
+  Q_X=direct_sum_i Q_(N,i),
+  P_X=direct_sum_i P_(N,i).
+
+For each layer i and scalar parameter lambda,
+define
+  G_(i,lambda)=<pi_i,grad lambda>.
+
+Then all first-class moment-map constraints commute:
+
+  {G_(i,lambda),G_(j,eta)}=0
+for every pair (i,j), including i!=j.
+
+For symmetric graph drag depending ONLY on projected
+velocities u_i=P_N v_i,
+
+  (L_kappa u)_i=sum_j kappa_ij(u_i-u_j),
+
+the graph interaction is invariant under ALL
+independent auxiliary gradient shifts in v_i.
+
+The graph-conductance matrix remains a separate
+symmetric dissipative operator. It is not a
+nonabelian gauge structure constant.
+
+The canonical product response Hamiltonian
+  H_resp^X
+   =sum_i <pi_i,b_i(P_X v)>
+with b_i containing symmetric graph drag
+is invariant under the auxiliary shift group.
+Therefore {G_(i,lambda),H_resp^X}=0.
+
+STATUS = EXACT B_TIER.
+
+7. FROZEN SM-05 MATCH CLASSIFICATION
+-------------------------------------
+NGA-11 SM05_MATCH_AND_NONMATCH.
+
+FROZEN STANDARD MODEL SM-05:
+  [Ghat_a,Ghat_b]~i*hbar*f_ab^c Ghat_c,
+with nonabelian local gauge structure, first-class
+quantum constraints, possible anomaly/boundary
+corrections and physical state conditions.
+
+NSE NATIVE:
+  div u=0;
+  P_N=I-grad Delta^(-1)div;
+  p_N=Delta^(-1)div F_N(u).
+
+AUXILIARY EXACT MATCH:
+  G_lambda=<pi,grad lambda>,
+  {G_lambda,G_eta}=0,
+  [Ghat_lambda,Ghat_eta]=0,
+  {C_phi,G_lambda}=<phi,Delta lambda>,
+  {v,pi}_Dirac=P_N.
+
+This is an exact ABELIAN GAUSS-LIKE CANONICAL
+constraint-and-gauge-fixing representation.
+
+It is NOT a physical equivalence of pressure,
+incompressibility and a Yang-Mills Gauss law.
+There is no native SU(3) or SU(2) structure
+constant, no derived color/weak gauge generator,
+and no fermionic/BRST/quantized physical-state
+construction.
+
+The frozen SM-02 auxiliary connection
+a_NSE=u^flat-b dt is DIFFERENT from the present
+gradient-shift redundant lift v+grad lambda.
+They must not be silently identified.
+
+SM-06/07/08 remain FROZEN.
+
+STATUS = EXACT ALGEBRAIC MATCH, PHYSICAL OPEN.
+
+8. ROOT
+-------
+THEOREM NSE_HODGE_GAUSS_CONSTRAINT_MATCH.
+
+Given a finite symmetric periodic Fourier frame,
+the Hodge/Leray map P_N, auxiliary canonical
+pair (v,pi), and optionally the response
+Hamiltonian H_resp, the following hold:
+
+ R1 exact Helmholtz decomposition and P_N properties;
+ R2 an auxiliary additive gradient-shift group;
+ R3 commuting Abelian moment-map generators G_lambda;
+ R4 divergence-free C_phi=0 is a gauge fixing with
+    invertible Laplacian bracket pairing to G_lambda;
+ R5 the Dirac-reduced canonical bracket is P_N;
+ R6 finite operator realization has commuting
+    self-adjoint translation generators and
+    invariant observables F(P_N v);
+ R7 pressure is the unique transverse-slice
+    compensating gradient for the NSE acceleration;
+ R8 an auxiliary response Hamiltonian reproduces
+    the physical NSE projected velocity equation
+    and commutes with the auxiliary generators;
+ R9 finite NSE^X graph interactions preserve this
+    auxillary gradient redundancy;
+ R10 there is no claim of nonabelian physical
+    Standard Model Gauss constraint equivalence.
+
+STATUS = COMPLETE B_TIER OF THE EXPLICIT
+FINITE-DIMENSIONAL ALGEBRAIC STATEMENTS.
+NO LEAN COMPILER OR THEOREM-LEVEL AXIOM AUDIT.
+
+9. ENDPOINT INDEX
+-----------------
+[x] NGA-01 FINITE_HELMHOLTZ_DECOMPOSITION
+[x] NGA-02 AUXILIARY_GRADIENT_SHIFT_GROUP
+[x] NGA-03 MOMENT_MAP_TRANSLATION_GENERATORS
+[x] NGA-04 INCOMPRESSIBILITY_GAUGE_FIXING_PAIR
+[x] NGA-05 REDUCED_DIRAC_TRANSVERSE_BRACKET
+[x] NGA-06 AUXILIARY_TRANSLATION_QUANTIZATION
+[x] NGA-07 PRESSURE_PROJECTION_VELOCITY_FLOW
+[x] NGA-08 TIME_DEPENDENT_LIFT_AND_GAUGE_SLICE
+[x] NGA-09 AUXILIARY_CANONICAL_RESPONSE_HAMILTONIAN
+[x] NGA-10 PRODUCT_AUXILIARY_GAUSS_ALGEBRA
+[x] NGA-11 SM05_MATCH_AND_NONMATCH
+[x] NGA-12 NSE_HODGE_GAUSS_CONSTRAINT_MATCH_ROOT
+
+[ ] NGA-13 ACTUAL_SM_NONABELIAN_GAUSS_GENERATOR_MATCH
+[ ] NGA-14 PHYSICAL_GAUGE_BUNDLE_AND_CONNECTION_IDENTIFICATION
+[ ] NGA-15 QUANTUM_GAUSS_AND_BRST_PHYSICAL_HILBERT_AUDIT
+[ ] NGA-16 SM_WARD_CHARGE_STRESS_MATCH
+[ ] NGA-17 NSE_FORCE_REGULARITY_AND_MICROSCOPIC_MATCH
+[ ] NGA-18 EXTERNAL_LEAN_COMPILER_AND_THEOREM_AXIOM_AUDIT
+
+10. FUTURE A-TIER PROOF SPINE (NOT EXECUTED)
+--------------------------------------------
+A. Finite complex/real Fourier spaces: grad, div,
+   Delta and inverse on nonzero periodic modes.
+B. Hodge idempotence, self-adjoint, image/kernel.
+C. Canonical finite symplectic/Poisson brackets
+   and gradient translation moment maps.
+D. Laplacian bracket pairing and direct-sum
+   transverse/longitudinal canonical reduction.
+E. Abstract finite linear Koopman differential
+   translation generators and multiplication
+   commutators.
+F. Pressure as transverse-slice projection and
+   response Hamiltonian invariance under grad shifts.
+G. Finite layer graph decomposition.
+H. Deterministic SM-05 scoped root; external
+   native Lean and theorem-level axiom audit.
+
+No actual Mathlib/Methlib declaration names are
+claimed verified, and NO LOCAL LEAN execution
+was performed.
+
+11. LITERATURE / BACKGROUND
+---------------------------
+Helmholtz/Leray pressure projection on periodic domains:
+  https://www.math.ntnu.no/preprint/numerics/2011/N7-2011.pdf
+
+Canonical Gauss/Coulomb constraints and transverse Dirac bracket:
+  https://adscft.org/gr/hamiltonian-constraints/
+
+No appeal is made to a nonperturbative Standard
+Model quantization for this finite structural theorem.
+
+FINAL
+-----
+MARKER = !
+MODE = B_TIER_DERIVATION
+SM05 = EXACT_AUXILIARY_ABELIAN_CONSTRAINT_MATCH
+PHYSICAL_NONABELIAN_GAUSS = NOT_DERIVED
+A_TIER = NOT_ESTABLISHED
