@@ -1,0 +1,804 @@
+GR T²-SYMMETRIC EINSTEIN–DIRAC–MAXWELL EVOLUTION JET:
+HELIX-SOURCED GEOMETRY, ELECTROMAGNETIC TURN-ON,
+AND THE GKSL STRESS-CONSERVATION OBSTRUCTION
+B-TIER MATHEMATICAL DERIVATION — GR STAGE 5
+===================================================================
+
+STATUS
+------
+ROOT = GR_T2_EINSTEIN_DIRAC_NSE_EVOLUTION_JET
+MARKER = !
+MODE = B_TIER_DERIVATION
+BRANCH = b-tier-hull
+PARENTS =
+  GR_TWO_ELECTRON_DIRAC_HELICAL_STRESS_ADM_B_TIER
+  GR_HELICAL_SOURCED_ADM_CONSTRAINT_WITNESS_B_TIER
+  GR_NSE_POWER_X_SM_COVARIANT_JOIN_B_TIER
+  NCW_SIX_GATE_FINITE_TWO_ELECTRON_DEPHASING_BRIDGE_B_TIER
+
+LOCAL_LEAN_EXECUTION = NONE
+LEAN_SOURCE = NOT_PREPARED
+A_TIER = NOT_ESTABLISHED
+FORMAL_CLOSURE = NOT_ESTABLISHED
+FULL_PHYSICAL_STANDARD_MODEL_GR_NSE = OPEN
+
+GOAL
+----
+Replace the misleading family of independent ADM constraint
+surfaces by the first genuinely required TIME-EVOLUTION
+coefficients of any locally smooth Einstein–Dirac–Maxwell–
+charged-dust development matching the previously constructed
+classical source data.
+
+This root proves exact INITIAL TAYLOR JET identities
+conditional on the existence of such a smooth development.
+It does not invent that development.
+
+New separate result: adding Markovian dephasing to a free
+two-electron stress readout preserves its U(1) electric-current
+continuity but GENERICALLY BREAKS stress–energy conservation.
+Therefore that effective NSE-matching GKSL evolution cannot be
+used as a standalone Einstein source; a physical reservoir
+stress or a genuine covariant microscopic interaction is essential.
+
+0. EXACT INITIAL DATA AND NOTATION
+-----------------------------------
+Take M=T_L^3 with periodic spin structure, volume V=L^3.
+Natural units c=hbar=epsilon_0=mu_0=1.
+Let k=2pi n/L, n a nonzero even integer, p=k/2, m>0,
+E_p=sqrt(m^2+p^2)>0.
+
+Let kappa_G=8pi G>0, Lambda>=0.
+
+Use the previously constructed two positive-energy
+counterpropagating electron modes plus a zero-momentum
+rest spectator, represented as a selected normalized
+two-electron antisymmetric Fock state in flat free theory.
+
+The corresponding FREE, normal-ordered one-body source
+bilinears on the flat initial slice are
+
+  rho_e=(E_p+m)/V,
+  j_e,grav(z)=(p/(2V))*h_-(z),
+  h_-(z)=(cos(kz),-sin(kz),0),
+
+  n_e=2/V,
+  rho_charge,e=-2e/V,
+  J_e,space(z)= -e*p/(E_p*V)*h_-(z).
+
+Their spatial mean momentum and current are zero,
+although local transverse momentum/current are nonzero.
+
+For a DECLARED classical charge-compensating dust with
+  charge density +2e/V,
+  energy density rho_bg>0,
+  spatial velocity zero initially,
+take initial electromagnetic fields
+  E(0)=B(0)=0.
+
+Total initial normal energy and momentum:
+  rho_0=(E_p+m)/V+rho_bg,
+  j_0=(p/(2V))*h_-(z).
+
+Take initial gravitational ADM data
+  h_ij(0)=delta_ij,
+  w(z)=(kappa_G/(4V))*(sin(kz),cos(kz),0),
+  Sigma_ij=e_z,i*w_j+w_i*e_z,j,
+  K_ij(0)=H*delta_ij+Sigma_ij.
+
+Select either real sign of H:
+  H^2=(kappa_G/3)*rho_0
+       +Lambda/3
+       +kappa_G^2/(48V^2).
+
+Then all four Einstein/Maxwell INITIAL constraints hold,
+under the stated classical initial source identification.
+The Fock stress is not automatically the
+renormalized curved-spacetime quantum source.
+
+IMPORTANT TYPES:
+  K_ij = gravitational extrinsic curvature,
+  H = its isotropic coefficient,
+  tr K = 3H,
+  Sigma_ij = offdiagonal gravitational shear,
+  tau = h^ij T_ij = physical matter spatial stress trace.
+The helical flow u_NSE is NOT itself an ADM velocity
+or an Einstein metric component.
+
+1. FIRST TRUE METRIC EVOLUTION JET
+-----------------------------------
+GTE-01: FORCED_INITIAL_METRIC_TIME_DERIVATIVE.
+
+Assume that a smooth Einstein-matter development exists
+and choose Gaussian normal gauge near its initial slice:
+  lapse N(t,x)=1,
+  shift beta(t,x)=0.
+
+The ADM metric equation is
+  partial_t h_ij=-2N K_ij+Lie_beta h_ij.
+
+Hence EXACTLY on the initial slice
+
+  partial_t h_ij|_0
+    =-2H delta_ij -2Sigma_ij(z).
+
+Thus the required Taylor expansion is
+
+  h_ij(t,z)
+    =delta_ij-2t(H delta_ij+Sigma_ij(z))+O(t^2).
+
+The first transverse mixed components are
+
+  partial_t h_xz|0=-(kappa_G/(2V))*sin(kz),
+  partial_t h_yz|0=-(kappa_G/(2V))*cos(kz).
+
+The diagonal entries initially satisfy
+  partial_t h_xx|0=
+  partial_t h_yy|0=
+  partial_t h_zz|0=-2H.
+
+These are forced by the exact initial K data,
+not an arbitrary assignment of the metric's time derivative.
+
+The remainder O(t^2) requires at least a C^2
+time-smooth development; no globally convergent
+Taylor series or whole-future solution is asserted.
+
+STATUS = COMPLETE EXACT B_TIER ADM NECESSARY JET.
+
+GTE-02: VOLUME_FORM_AND_NORMAL_EXPANSION.
+
+For any smooth h_t in this gauge,
+  partial_t log sqrt(det h_t)=-tr_(h_t) K_t.
+
+At t=0, tr K=3H is spatially constant, so
+
+  partial_t sqrt(det h_t)|0=-3H,
+  d/dt Vol_h(M)|0=-3H V.
+
+For H>0, the chosen time normal initially contracts
+the spatial volume; H<0 gives initial expansion.
+
+This is the geometric volume dynamics excluded
+by the previous fixed-flat-metric ADM track.
+
+STATUS = EXACT B_TIER.
+
+2. MATTER STRESS TRACE WITHOUT FALSE K-INDEPENDENT TENSOR CLAIM
+----------------------------------------------------------------
+GTE-03: DIRAC_STRESS_TRACE_AND_CLASSICAL_BACKGROUND.
+
+For an on-shell classical Dirac field on a
+smooth curved spacetime, the 3+1 stress trace
+obeys (with sign conventions matched to positive
+normal energy)
+
+  tau_D = rho_D - m*bar(psi)*psi.
+
+This identity is intrinsic to the Dirac stress and
+is discussed in Alcubierre (2025), Eq. (VIII.114).
+
+For the two selected initial normalized free Dirac
+orbital data, the spinor scalar bilinear sum is
+
+  sum_occupied bar(phi) phi
+    =(m/E_p+1)/V,
+
+and the normal initial energy density is
+  rho_e=(E_p+m)/V,
+
+provided the adapted 3+1 spinor stress/source
+matching of Stage 4 is used.
+
+Therefore the initial spatial stress TRACE is
+  tau_e=rho_e-m*(m/E_p+1)/V
+       =p^2/(E_p V).
+
+The compensating charged dust at rest has
+  tau_bg=0 initially.
+
+Since initial EM E=B=0, its initial stress is zero:
+  tau_EM=0.
+
+Thus for this classical source model
+  tau_0=p^2/(E_p V).
+
+CAUTION:
+The FULL spatial Dirac stress T_ij in curved 3+1
+coordinates may contain explicit K_ij and spin
+contributions, as in Alcubierre Eq. (VIII.108).
+This result establishes the TRACE tau_0, not
+  T_ij=diag(0,0,tau_0)
+as an unqualified curved-spacetime statement.
+
+The selected normal-ordered quantum Fock source
+still lacks a general curved Hadamard/renormalized
+vacuum stress prescription. For a true semiclassical
+source, rho_0 and tau_0 may receive additional
+curvature/vacuum terms not discharged here.
+
+STATUS = EXACT CLASSICAL 3+1 TRACE UNDER DECLARED
+SOURCE MATCH; QUANTUM RENORMALIZED TRACE OPEN.
+
+3. EXACT EXTRINSIC CURVATURE AND VOLUME SECOND JET
+----------------------------------------------------
+GTE-04: INITIAL_K_TRACE_EVOLUTION.
+
+Write the physical total spatial stress as
+  P_ij=T_ij spatial, tau=tr_h P.
+The ADM K_ij evolution in N=1, beta=0 gauge is
+
+  partial_t K_ij =
+     R_ij+(tr K)K_ij-2 K_i^l K_lj
+      -kappa_G*[P_ij-(1/2)h_ij(tau-rho)]
+      -Lambda h_ij.
+
+On the initially FLAT h(0)=delta, R_ij(0)=0.
+The full initial tensor derivative is therefore
+
+  (partial_t K_ij)|0
+    =[H^2-Lambda+(kappa_G/2)(tau_0-rho_0)]delta_ij
+       -H Sigma_ij
+       -2 (Sigma^2)_ij
+       -kappa_G P_ij(0),
+
+where
+  (Sigma^2)_ij=w_i w_j+|w|^2 e_z,i e_z,j.
+
+The trace equation for the ACTUAL moving metric
+(note that differentiating h^ij also contributes) is
+
+  partial_t(tr_h K)
+    =|K|_h^2+(kappa_G/2)(rho+tau)-Lambda.
+
+Here
+  |Sigma|^2=2|w|^2=kappa_G^2/(8V^2),
+  |K|^2=3H^2+kappa_G^2/(8V^2).
+
+Consequently
+
+  partial_t(tr_h K)|0
+    =3H^2 +kappa_G^2/(8V^2)
+       +(kappa_G/2)(rho_0+tau_0)-Lambda.
+
+Substitute rho_0,tau_0 from the classical
+Dirac+charged-dust source for an explicit constant.
+It remains a necessary jet, conditional on a
+smooth, correctly sourced Einstein development.
+
+Quadratic Sigma^2 terms carry Fourier
+harmonics 0 and +/-2k; possible matter-stress
+cancellations must be checked before asserting
+that the TOTAL metric acceleration necessarily
+has a nonzero 2k harmonic. Thus the original
+finite single-helix truncation is not
+automatically dynamically invariant under GR.
+
+STATUS = EXACT B_TIER ADM SECOND-JET IDENTITY.
+
+GTE-05: EXPLICIT_SECOND_VOLUME_DERIVATIVE.
+
+Let V_h(t)=int_M sqrt(det h_t) dx.
+In N=1,beta=0 gauge,
+
+  V_h'(0)=-3H V,
+
+  V_h''(0)/V
+   =(tr K)^2|0
+      -(partial_t tr K)|0.
+
+Using the ADM K-trace equation, the Hamiltonian
+constraint and |Sigma|^2 values gives the
+UNEXPECTED EXACT CANCELLATION
+
+  V_h''(0)/V
+     =(kappa_G/2)(3rho_0-tau_0)+3Lambda.
+
+The anisotropic shear contribution disappears
+explicitly from this SECOND VOLUME DERIVATIVE,
+although shear changes H and the local tensor
+metric evolution separately.
+
+For the classical Dirac/dust initial source,
+  rho_0=(E_p+m)/V+rho_bg,
+  tau_0=p^2/(E_p V),
+
+so
+
+  V_h''(0)/V
+   =(kappa_G/2)*[
+        3(E_p+m)/V+3rho_bg
+         -p^2/(E_p V)
+     ] +3Lambda.
+
+Therefore the exact initial volume Taylor jet is
+
+  V_h(t)= V*[
+     1-3H t
+     +(t^2/2)*
+       ((kappa_G/2)(3rho_0-tau_0)+3Lambda)
+     +O(t^3)
+  ].
+
+O(t^3) requires smooth enough time regularity.
+Neither positivity of this second coefficient
+nor local existence provides global geodesic
+completeness.
+
+STATUS = COMPLETE EXACT B_TIER.
+
+4. ELECTROMAGNETIC INDUCTION FROM THE ACTUAL TWO-ELECTRON CURRENT
+------------------------------------------------------------------
+GTE-06: FIRST_MAXWELL_RESPONSE_JET.
+
+In the locally chosen N=1,beta=0 gauge,
+the spatial Maxwell evolution uses normal
+electric/magnetic fields. At the initial
+slice E=B=0, curvature coefficients
+multiplying E/B vanish.
+
+The only nonzero initial Ampere source is
+the free two-electron spatial electric current
+
+  J_e(0,z)=-e*p/(E_p V)*h_-(z),
+
+while the compensating charged dust is at rest,
+so J_bg(0)=0.
+
+The Maxwell equations imply
+
+  partial_t E|0=-J_total(0)
+    =+e*p/(E_p V)*h_-(z),
+
+  partial_t B|0=-curl E(0)=0.
+
+The helix satisfies
+  curl h_-=+k h_-.
+
+Differentiating Faraday once more, using
+E(0)=B(0)=partial_t B(0)=0, gives
+
+  partial_t^2 B|0
+    =-curl(partial_t E|0)
+    =-e*p*k/(E_p V)*h_-(z).
+
+Thus the Maxwell field cannot remain zero
+during a smooth Einstein–Dirac–Maxwell
+development with this nonzero transverse
+electron current. It switches on as
+
+  E(t,z)
+    =t*(e*p/(E_p V))*h_-(z)+O(t^2),
+
+  B(t,z)
+    =-(t^2/2)*(e*p*k/(E_p V))*h_-(z)+O(t^3).
+
+These formulas are INITIAL JETS only, not
+a closed helical Maxwell ODE in the changing
+curved spacetime. Higher Fourier harmonics,
+metric transport and spin couplings may emerge.
+
+STATUS = EXACT B_TIER WITH MAXWELL SOURCE PORT.
+
+GTE-07: FIRST_CHARGE_CONSERVATION_AND_VOLUME_COMPENSATION.
+
+Let q_e=-2e/V, q_bg=+2e/V denote the
+initial normal-frame charge densities.
+
+A consistent covariant U(1) matter model
+obeys for each species
+  nabla_mu J_s^mu=0.
+
+In N=1,beta=0 coordinates, this becomes
+  partial_t(sqrt h q_s)
+   +partial_i(sqrt h J_s^i)=0.
+
+At t=0, sqrt h=1 and the electron current
+is divergence free; the background current
+vanishes. Hence
+
+  partial_t q_e|0=3H q_e,
+  partial_t q_bg|0=3H q_bg.
+
+These are not constant densities when
+the gravitational volume changes.
+
+They obey
+
+  partial_t(q_e+q_bg)|0=0,
+
+so the compensated net charge remains zero
+through FIRST ORDER. Maxwell Gauss constraint
+propagation beyond first order requires the
+complete covariant coupled field equations.
+
+This is an exact source-conservation repair
+to the previous fixed-density geometric NSE
+model and avoids the false claim that
+constant normal charge density remains
+physically conserved in expanding/contracting
+spatial volume.
+
+STATUS = EXACT B_TIER CONDITIONAL ON ON-SHELL
+COVARIANT CURRENT CONSERVATION.
+
+5. T² SPATIAL SYMMETRY INHERITANCE
+-----------------------------------
+GTE-08: TWO_SPATIAL_KILLING_EVOLUTION_PORT.
+
+The initial gravitational metric/extrinsic
+curvature, classical Dirac spinors, charged
+dust fields and Maxwell E/B data depend
+on z alone, in a translation-equivariant
+tetrad/gauge.
+
+The group T² of spatial translations
+  (x,y) -> (x+a,y+b)
+preserves all initial data.
+Under a WELL-POSED, UNIQUE local coupled
+Einstein–Dirac–Maxwell–charged-dust
+development (including compatible gauge
+fixing and spin lifts), uniqueness implies
+the full development preserves this group
+up to the corresponding spin/gauge lift.
+
+One may then represent the coupled PDE
+in 1+1 coordinates (t,z), with all tensor
+and spinor components retaining their
+proper transformation laws.
+
+This reduces the spatial dependence,
+NOT the gravitational degrees of freedom
+to a finite ODE or a single Fourier helix.
+
+Important: existing literature proves
+various relevant local systems separately:
+Einstein–Dirac in specific settings;
+Einstein–Maxwell–charged dust;
+Maxwell–Dirac on backgrounds.
+These sources do not, without a further
+combined-hyperbolicity proof, certify the
+EXACT all-components + dephasing system
+requested here.
+
+This endpoint is an implication from a
+NAMED LOCAL_WELLPOSED_COUPLED_SYSTEM
+hypothesis and a uniqueness theorem.
+
+STATUS = CONDITIONAL B_TIER.
+
+6. CRUCIAL GKSL STRESS/BIANCHI OBSTRUCTION
+------------------------------------------
+GTE-09: GKSL_WARD_WITHOUT_STRESS_CONSERVATION.
+
+Consider the previous two-determinant
+free Dirac density-matrix dephasing
+on FIXED FLAT spacetime, with
+  gamma>0,
+  j_0(z)=p/(2V)*h_-(z).
+
+It produces the normal-ordered
+effective stress readouts
+  T^{00}(t,z)=rho_e=(E_p+m)/V,
+  T^{0i}(t,z)=T^{i0}(t,z)
+       =exp(-gamma*t)*j_0^i(z).
+
+For the selected opposite-momentum
+free orbitals the spatial stress is
+  T^{zz}=p^2/(E_p V),
+  T^{iz}=T^{zi}=0, i=x,y,
+  T^{xx}=T^{yy}=T^{xy}=0.
+
+These components are independent of
+time and their spatial divergence is zero.
+
+Therefore for i=x,y:
+
+  partial_mu T^{mu i}
+   =partial_t T^{0i}
+       +partial_j T^{ji}
+   =-gamma exp(-gamma*t)*j_0^i(z) !=0.
+
+For nu=0 (energy component),
+  partial_mu T^{mu0}=0
+because rho_e is time-independent
+and div j_0=0.
+
+Meanwhile the ELECTRIC CHARGE continuity
+remains exact:
+  partial_mu J_e^mu=0
+because the electron number density
+is constant and the transverse current
+is divergence free even after dephasing.
+
+Thus:
+  current Ward identity holds,
+  but stress–energy conservation FAILS.
+
+This is the precise obstruction to using
+an arbitrarily dephased TWO-ELECTRON stress
+as the entire source of Einstein equations
+without a physical bath/reservoir/interaction
+stress.
+
+STATUS = EXACT FINITE-FLOCK/CLASSICAL-FLAT
+B_TIER NO-GO FOR THE ASSIGNED GKSL MODEL.
+
+GTE-10: NECESSARY_RESERVOIR_STRESS_TRANSFER.
+
+The Einstein contracted Bianchi identity
+requires
+  nabla_mu T_total^{mu nu}=0
+for a genuinely coupled Einstein source.
+
+In the fixed-flat dephasing illustration,
+the necessary compensating reservoir
+momentum equation is
+
+  partial_mu T_bath^{mu i}
+    =+gamma exp(-gamma*t)*j_0^i(z).
+
+One purely ALGEBRAIC divergence completion is
+  T_bath^{0i}=T_bath^{i0}
+      =(1-exp(-gamma*t))*j_0^i(z),
+  T_bath^{ij}=0,
+  T_bath^{00}=0.
+
+Then
+  partial_mu T_bath^{mu i}
+    =+gamma exp(-gamma*t)*j_0^i,
+and
+  partial_mu T_bath^{mu0}
+    =div[(1-exp(-gamma*t))*j_0]=0.
+
+Hence
+  partial_mu(T_e+T_bath)^{mu nu}=0
+as an EXACT algebraic flat-space identity.
+
+CAUTION:
+The displayed bath tensor is a divergence
+witness, NOT an acceptable standalone
+physical stress; it carries nonzero
+momentum with zero energy density and
+does not satisfy suitable positive-energy
+conditions. A real causal, positive-energy,
+gauge-consistent reservoir must have
+a derived physical constitutive law and
+its own conserved matter/charge content.
+Adding such a reservoir also changes
+the Einstein constraints and the
+corresponding initial source data.
+
+Therefore Bianchi consistency provides
+a separate, concrete CLOSED-LEDGER GATE
+beyond the helical NSE viscosity match
+gamma=nu k^2.
+
+STATUS = EXACT ALGEBRA + PHYSICAL RESERVOIR OPEN.
+
+7. LOCAL EVOLUTION VERSUS GLOBAL REGULARITY
+-------------------------------------------
+GTE-11: COUPLED_LOCAL_DEVELOPMENT_CONDITIONAL.
+
+Introduce the NAMED premise
+
+  EDMD_LOCAL_WELLPOSED:
+    Smooth compatible classical initial data
+    for the specified Einstein–Dirac–Maxwell–
+    charged-dust system admit a unique smooth
+    solution on some (-epsilon,epsilon)
+    in a suitable hyperbolic gauge.
+
+This premise includes:
+  * Dirac spin structure and chosen
+    two-classical-spinor source model;
+  * Maxwell Lorenz/gauge constraints;
+  * charged dust current, rest-energy and
+    Lorentz force, as a genuine evolved
+    matter sector;
+  * the standard Einstein constraints;
+  * compatible stress/current conservation;
+  * locally fixed Gaussian normal time
+    and a translation-equivariant tetrad.
+
+Given EDMD_LOCAL_WELLPOSED and the explicit
+initial data from Stage 4, the developed
+fields satisfy every initial jet GTE-01..08
+and inherit T² spatial symmetry locally.
+
+This is genuine local-time Einstein metric
+evolution, not merely a freely selected
+family of constraint surfaces.
+
+In contrast, an independent GKSL dephasing
+of the two-electron quantum source does
+NOT satisfy EDMD_LOCAL_WELLPOSED unless its
+physical bath/energy-momentum exchange is
+specified and included. Sections 6's
+stress no-go persists.
+
+No claim is made of a global-in-time
+solution, geodesic completeness,
+unconditional quantum Einstein sourcing,
+or a general NSE^X regularity transfer.
+
+STATUS = CONDITIONAL B_TIER IMPROVEMENT.
+
+8. NSE LINK: WHAT CAN AND CANNOT BE PRESERVED
+----------------------------------------------
+GTE-12: ADM_GEOMETRIC_NSE_MATCHING_LIMIT.
+
+The initial selected fluid readout of
+Stage 4 is
+  u_0(z)=j_0(z)/rho_e
+         =p/[2(E_p+m)]*h_-(z).
+
+It is a smooth divergence-free Beltrami
+eigenfield for the INITIAL flat h_0.
+
+But as h_t evolves,
+  div_(h_t)u_0 generally differs
+from the original flat divergence,
+the Hodge star/curl/Laplacian depend on h_t,
+and Dirac stress/current evolution is
+governed by the evolving spin connection.
+
+Therefore the fixed flat viscous evolution
+  e^(-nu k^2 t)u_0
+does NOT automatically solve a geometric
+or relativistic NSE equation on h_t,
+even if a separate GKSL model still
+produces that coefficient law.
+
+Needed separate geometric port:
+  S_t: ker div_(h_t) -> H_sigma,0(flat),
+  exact source/metric residual g_GR+g_SM,
+  analytic H^(-1/2) control or tangency
+  to a common symmetry sector.
+
+T² invariance provides a promising spatial
+reduction for this port, but not its
+automatic closure.
+
+STATUS = EXACT TYPE SEPARATION /
+CONDITIONAL FUTURE GEOMETRIC ADMISSION.
+
+9. EXACT ROOT CLASSIFICATION
+-----------------------------
+THEOREM GR_T2_EINSTEIN_DIRAC_NSE_EVOLUTION_JET.
+
+For the explicitly sourced Stage 4 classical
+initial data, assume a smooth Einstein–
+Dirac–Maxwell–charged-dust development
+satisfying the declared classical normal
+energy, charge and momentum source relations
+and choose N=1,beta=0 locally.
+
+THEN:
+ (R1) the time derivative of the spatial
+      metric is -2(Hdelta+Sigma);
+ (R2) the initial gravitational volume
+      derivative is -3HV;
+ (R3) the initial Dirac stress trace is
+      tau_0=p^2/(E_p V) under the adapted
+      classical source prescription;
+ (R4) the exact K-trace and second
+      spatial-volume derivatives are
+      given by GTE-04 and GTE-05;
+ (R5) the two-electron electric current
+      generates a nonzero Maxwell E time
+      derivative and B second derivative;
+ (R6) charge continuity forces expanding/
+      contracting normal number densities,
+      even while total charge remains zero
+      to first order;
+ (R7) under coupled local uniqueness,
+      the development preserves T² symmetry;
+ (R8) selected GKSL dephasing by itself
+      violates electron stress conservation,
+      though electric-current continuity
+      remains valid;
+ (R9) any Einstein source completion
+      requires an independent physical,
+      energy-positive reservoir/backreaction
+      stress or a new microscopic dynamics;
+ (R10) global GR and geometric NSE
+       regularity remain unresolved.
+
+This is a COMPLETE B_TIER derivation of
+the exact conditional first/second initial
+evolution jets and the flat GKSL stress
+obstruction; it is NOT a theorem of
+unconditional full coupled local PDE
+existence or global regularity.
+
+MARKER = !
+TIER = CONDITIONAL_B_TIER
+A_TIER = NOT_ESTABLISHED
+FORMAL_CLOSURE = NOT_ESTABLISHED
+
+10. ENDPOINT INDEX
+-------------------
+[x] GTE-01 FORCED_INITIAL_METRIC_TIME_DERIVATIVE
+[x] GTE-02 VOLUME_FORM_AND_NORMAL_EXPANSION
+[x] GTE-03 DIRAC_STRESS_TRACE_AND_CLASSICAL_BACKGROUND
+[x] GTE-04 INITIAL_K_TRACE_EVOLUTION
+[x] GTE-05 EXPLICIT_SECOND_VOLUME_DERIVATIVE
+[x] GTE-06 FIRST_MAXWELL_RESPONSE_JET
+[x] GTE-07 FIRST_CHARGE_CONSERVATION_AND_VOLUME_COMPENSATION
+[x] GTE-08 TWO_SPATIAL_KILLING_EVOLUTION_PORT [conditional]
+[x] GTE-09 GKSL_WARD_WITHOUT_STRESS_CONSERVATION
+[x] GTE-10 NECESSARY_RESERVOIR_STRESS_TRANSFER
+[x] GTE-11 COUPLED_LOCAL_DEVELOPMENT_CONDITIONAL
+[x] GTE-12 ADM_GEOMETRIC_NSE_MATCHING_LIMIT
+[x] GTE-13 GR_T2_EINSTEIN_DIRAC_NSE_EVOLUTION_JET_ROOT
+
+[ ] GTE-14 EDMD_LOCAL_WELLPOSED
+[ ] GTE-15 FULL_CLASSICAL_CURVED_DIRAC_SPATIAL_STRESS_TENSOR
+[ ] GTE-16 FULL_CAUSAL_POSITIVE_ENERGY_DISSIPATION_RESERVOIR
+[ ] GTE-17 MAXWELL_DIRAC_DUST_DYNAMIC_BACKREACTION_WITH_GAUGE
+[ ] GTE-18 GEOMETRIC_SOLENOIDAL_NSE_TRANSFER_AND_CRITICAL_NORM
+[ ] GTE-19 GLOBAL_EINSTEIN_MATTER_REGULARITY_OR_EXTENSION
+[ ] GTE-20 SEMICLASSICAL_RENORMALIZED_QUANTUM_STRESS_MATCH
+[ ] GTE-21 EXTERNAL_LEAN_COMPILER_AND_THEOREM_AXIOM_AUDIT
+
+11. NEXT LEAN/ANALYTIC PROOF SPINE
+-----------------------------------
+A. Helical functions and Sigma: explicit
+   derivative, trace, matrix square, norm.
+B. Exact ADM metric first jet.
+C. ADM trace K evolution with named
+   rho,tau Einstein matter source endpoints.
+D. Spatial volume derivative and Hamiltonian
+   cancellation of shear at second order.
+E. Maxwell Ampere/Faraday first/second jet.
+F. Free two-Dirac normal stress trace,
+   including compatibility with classical
+   curved spinor initial data.
+G. Finite GKSL matrix dephasing and explicit
+   nonconserved stress divergence.
+H. Formal reservoir divergence witness
+   and physical stress-energy admission.
+I. Conditional coupled local Cauchy theorem;
+   independent Mathlib/Methlib source mapping.
+J. External Windows native Lean compiler
+   and theorem-level axiom audit.
+No local Lean run; no claim that the
+full root has matching compiler evidence.
+
+12. EXTERNAL REFERENCE ANCHORS
+--------------------------------
+Miguel Alcubierre, "The Dirac equation in
+general relativity and the 3+1 formalism"
+(2025), normal stress and trace VIII.94,
+VIII.105, VIII.108, VIII.114:
+https://link.springer.com/article/10.1007/s10714-025-03460-8
+
+ADM extrinsic curvature evolution with
+matter and Lambda, sign conventions:
+https://blackhole.org/reference/equations/adm-constraints-evolution/
+
+GR local Cauchy development general background:
+https://link.springer.com/article/10.12942/lrr-2002-6
+
+Charged dust on curved spacetime,
+Maxwell-Lorentz strong hyperbolicity:
+https://doi.org/10.1088/1751-8113/43/44/445502
+
+Einstein–Maxwell charged dust local existence:
+https://academic.oup.com/book/56195/chapter/443489113
+
+Einstein–Dirac local theory,
+specific classes (not combined all-component proof):
+https://www.sciencedirect.com/science/article/abs/pii/S039304400200133X
+
+FINAL
+-----
+MARKER = !
+TIER = CONDITIONAL_B_TIER
+TRUE_INITIAL_GR_EVOLUTION_JETS = DERIVED
+NONZERO_MAXWELL_RESPONSE = DERIVED
+GKSL_UNCOMPENSATED_STRESS_BIANCHI_OBSTRUCTION = DERIVED
+FULL_COUPLED_LOCAL_EXISTENCE = NAMED_OPEN_PREMISE
+FULL_PHYSICAL_QUANTUM_EINSTEIN_NSE = OPEN
+A_TIER = NOT_ESTABLISHED
