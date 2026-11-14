@@ -1,0 +1,490 @@
+NSE EXTERIOR CAR OPERATORS: FROZEN STANDARD MODEL ROW SM-04
+B-TIER DERIVATION, EXACT ALGEBRA AND PHYSICAL NONIDENTIFICATION
+================================================================
+
+STATUS
+------
+ROOT = NSE_EXTERIOR_CAR_OPERATOR_MATCH
+MARKER = !
+MODE = B_TIER_DERIVATION
+FROZEN_ROW = SM-04 (fermionic canonical anticommutation)
+SOURCE_BRANCH = b-tier-hull
+PARENTS =
+  FROZEN_SM_NSE_OPERATOR_MATCH_REGISTER_B_TIER
+  NSE_KOOPMAN_HEISENBERG_FORM_B_TIER
+  NSE_POWER_X_GROUP_STRUCTURE_B_TIER
+NO_LOCAL_LEAN_EXECUTION = TRUE
+LEAN_SOURCE = NOT_EMITTED
+A_TIER = NOT_ESTABLISHED
+FORMAL_CLOSURE = NOT_ESTABLISHED
+
+EXACT CLAIM
+-----------
+A finite NSE coefficient space has a canonical EXTERIOR CALCULUS.
+Creation by wedge and annihilation by contraction on its complexified
+cotangent exterior algebra obey the same finite-dimensional CAR
+relations as fermionic creation/annihilation operators.
+The NSE vector field acts on the graded algebra through the natural
+Lie derivative and linearized Jacobian.
+
+THE INTERPRETATION IS MATHEMATICAL:
+- the degree of a differential form is NOT electron particle number;
+- exterior calculus does not produce electrons, spin-1/2, electric charge,
+  a Standard Model spinor representation, or a Fock vacuum dynamics;
+- the pullback of a dissipative classical flow is not a *-preserving
+  unitary fermion dynamics on this exterior algebra;
+- a physical CAR representation requires the genuine fermionic
+  one-particle Hilbert space and a separately specified comparison map.
+
+SM-01/02/03 remain frozen; SM-05/06/07/08 are not matched or promoted.
+
+0. FINITE GALERKIN COEFFICIENT SPACE
+------------------------------------
+Take the previous smooth periodic divergence-free NSE or finite NSE^X
+Fourier Galerkin model
+
+  dot z = b_N(z),   z=(z^1,...,z^d) in V_N=R^d,
+
+where b_N is a smooth polynomial vector field consisting of
+projected NSE convection, positive Stokes dissipation, and
+possibly a symmetric nonnegative layer graph. The present
+exterior construction only needs smoothness of b_N.
+
+At a coefficient-space point z, choose the cotangent basis
+  e^i=dz^i
+and form the finite-dimensional complex exterior algebra
+
+  F_z=Lambda^bullet(T_z^* V_N tensor C)
+      ~=Lambda^bullet(C^d),
+  dim_C F_z=2^d.
+
+Equip F_z with the Hilbert structure in which the ordered wedge
+monomials e^{i1} wedge ... wedge e^{ip}, i1<...<ip, are orthonormal.
+
+A globally trivial coefficient cotangent bundle gives a common
+fiber representation F=Lambda^bullet(C^d) for all z. These are
+FORMS ON THE NSE COEFFICIENT SPACE, not antisymmetric two-electron
+wavefunctions on the physical spatial torus.
+
+1. EXACT CANONICAL ANTICOMMUTATION RELATIONS
+---------------------------------------------
+THEOREM NEC-01: WEDGE_CONTRACTION_CAR.
+
+For i=1,...,d, define on F
+
+  c_i^dagger omega := e^i wedge omega,
+  c_i omega := interior_(partial / partial z^i)(omega).
+
+Then for all i,j,
+
+  c_i c_j + c_j c_i = 0,
+  c_i^dagger c_j^dagger + c_j^dagger c_i^dagger=0,
+  c_i c_j^dagger + c_j^dagger c_i=delta_ij I.
+
+Proof: the wedge product is alternating, contractions anticommute,
+and the graded Leibniz formula gives
+
+  i_(e_i)(e^j wedge omega)
+     =delta_ij omega-e^j wedge i_(e_i)omega.
+
+Rearrangement yields the mixed CAR. The standard exterior Hilbert
+inner product makes
+  (c_i)^*=c_i^dagger.
+
+Thus these are bounded finite-dimensional operators and furnish
+an exact CAR representation.
+
+STATUS = EXACT B_TIER, NO PDE OR PHYSICAL PREMISES.
+
+THEOREM NEC-02: SMEARED_FINITE_CAR.
+
+For f,g in C^d, take
+  c^dagger(g)=sum_i g_i c_i^dagger,
+  c(f)=sum_i conjugate(f_i)c_i.
+
+Then
+  {c(f),c^dagger(g)}=<f,g> I,
+  {c(f),c(g)}=0,
+  {c^dagger(f),c^dagger(g)}=0,
+
+where <f,g>=sum_i conjugate(f_i)g_i
+is linear in the second argument.
+
+This is the regularized finite analogue of frozen SM-04:
+  {psi_alpha(x),psi_beta^dagger(y)}
+    =delta_alpha beta delta(x-y).
+
+It is NOT an identification of physical spinor field indices
+alpha,beta with NSE Fourier-mode labels i,j.
+
+STATUS = EXACT B_TIER.
+
+2. GRADED DIFFERENTIAL AND NSE TRANSPORT
+-----------------------------------------
+THEOREM NEC-03: EXTERIOR_DERIVATIVE_SQUARE_ZERO.
+
+On smooth coefficient-space differential forms Omega^bullet(V_N)
+write
+
+  d =sum_i c_i^dagger partial_(z^i).
+
+Then d raises exterior degree by 1 and satisfies
+  d^2=0
+
+because mixed partial derivatives commute and creation operators
+anticommute. This is the DE RHAM differential, NOT the Standard
+Model BRST differential or gauge-fixing charge.
+
+STATUS = EXACT B_TIER.
+
+THEOREM NEC-04: CARTAN_NSE_LIE_DERIVATIVE.
+
+Define the interior contraction with the NSE coefficient flow:
+
+  i_b=sum_i b_N^i(z)c_i.
+
+Then
+
+  Lie_b =d i_b+i_b d
+
+(Cartan's homotopy formula) and explicitly
+
+  Lie_b
+   =sum_i b_N^i(z)partial_(z^i)
+     +sum_(i,j)(partial_(z^j)b_N^i(z)) c_j^dagger c_i.
+
+Proof: on a scalar f, the operator is b_N dot grad f.
+On basis one-forms e^i, it is d(b_N^i)
+  =sum_j (partial_j b_N^i)e^j.
+Both sides are degree-zero derivations of the full exterior
+algebra; agreement on generators gives the identity.
+
+Hence the zero-form restriction is exactly the frozen
+classical NSE Koopman generator
+  Lie_b|_(Omega^0)=L_N=b_N dot grad.
+
+On one-forms it also includes the derivative/Jacobian of
+the fluid coefficient ODE. It is a natural representation of
+LINEARIZED NSE COEFFICIENT MOTION, not quantum electron dynamics.
+
+STATUS = EXACT B_TIER.
+
+THEOREM NEC-05: CARTAN_CHAIN_COMPATIBILITY.
+
+The identities
+  [Lie_b,d]=0,
+  [Lie_b,Lie_c]=Lie_[b,c]
+
+hold on all smooth coefficient-space differential forms,
+with [b,c]=b dot grad c-c dot grad b.
+
+The first follows from d^2=0 and the Cartan identity; the
+second from naturality of differential forms under flows or
+direct derivation on functions and exact one-forms.
+
+This is an additional graded calculus of classical NSE flow.
+The fact that d^2=0 resembles the FORM of BRST nilpotency is
+not a proof of SM-06. SM-06 remains FROZEN and UNMATCHED.
+
+STATUS = EXACT B TIER.
+
+3. MULTILAYER NSE^X GRADED COMPOSITION
+---------------------------------------
+THEOREM NEC-06: PRODUCT_LAYER_GRADED_TENSOR.
+
+Let a finite family of NSE layer Galerkin coefficient spaces
+  V_X=direct_sum_(a in X) V_(N,a),
+  dim V_X =d=sum_a d_a.
+
+The exterior-algebra factorization is
+
+  Lambda^bullet(V_X^* tensor C)
+    ~= graded_tensor_(a in X)
+       Lambda^bullet(V_(N,a)^* tensor C).
+
+Creation operators from DIFFERENT layers anticommute because
+the correct tensor product is GRADED, not the naive ungraded
+tensor product without Koszul signs.
+
+In particular,
+  {c_(a,i),c_(b,j)^dagger}
+     =delta_ab delta_ij I.
+
+The NSE graph coupling is NOT the CAR anticommutation law; it
+appears inside the generator through the actual coefficient
+Jacobian. The graded tensor factorization is kinematic and
+does not assume any physical fermionic charge per layer.
+
+STATUS = EXACT B_TIER.
+
+THEOREM NEC-07: GRAPH_JACOBIAN_FERMION_BILINEAR.
+
+Suppose the finite layer coefficient ODE has
+  b_N(z)=-B_N(z,z)-R_N z,
+
+where
+  R_N=nu A_N+L_(kappa,N)
+is a symmetric nonnegative Stokes/graph matrix.
+
+Then
+  partial_j b_N^i
+    =-[D B_N(z,z)]_(i j)-(R_N)_(i j).
+
+Therefore the degree-preserving Lie derivative
+splits exactly into
+
+  Lie_b
+    =b_N dot grad_z
+      -sum_(i,j) [D B_N(z,z)]_(i j) c_j^dagger c_i
+      -sum_(i,j) (R_N)_(i j)c_j^dagger c_i.
+
+The last term is a quadratic operator in the abstract CAR
+generators. Interlayer graph edges appear as off-diagonal
+terms when the graph couples distinct layer coefficients.
+
+This is an EXACT ALGEBRAIC interaction in the exterior
+calculus representation of the NSE coefficient dynamics.
+
+IMPORTANT:
+The full Lie derivative is not generally skew-adjoint in
+the standard fiber/phase-space L2 pairing. This CAR
+representation is not thereby a unitary physical
+fermion Hamiltonian, and the graph coefficient kappa
+is not a measured Standard Model fermion coupling.
+
+STATUS = EXACT B_TIER.
+
+4. HELICAL DISSIPATION TEST
+----------------------------
+THEOREM NEC-08: HELICAL_CAR_CARTAN_EXAMPLE.
+
+For two real helical NSE coefficients z=(a,b) with
+  dot z=-gamma z,
+  gamma=nu k^2>0,
+
+one has
+  Lie_b
+    =-gamma(a partial_a+b partial_b)
+      -gamma(c_1^dagger c_1+c_2^dagger c_2).
+
+Let
+  N_form=c_1^dagger c_1+c_2^dagger c_2.
+
+Then
+  Lie_b=-gamma(z dot grad_z+N_form),
+and
+  [Lie_b,d]=0.
+
+The exterior degree generator N_form takes values 0,1,2
+on the finite wedge algebra and is mathematical FORM DEGREE,
+not the number of physical electrons.
+
+For fixed z-independent c_i^dagger/c_i,
+  [Lie_b,c_i^dagger]=-gamma c_i^dagger,
+  [Lie_b,c_i]=+gamma c_i.
+
+These opposite scalings preserve algebraic CAR but do NOT
+preserve the Hilbert-adjoint relation c_i^* = c_i^dagger
+under a naive dissipative flow. Thus this flow is NOT a
+physical *-automorphism of a fermionic observable algebra.
+
+STATUS = EXACT B_TIER WITH PRECISE UNITARITY OBSTRUCTION.
+
+5. RELATION TO FROZEN SM-03 HALF-DENSITY
+-----------------------------------------
+THEOREM NEC-09: ZERO_ONE_TOP_AND_HALF_DENSITY_RELATION.
+
+On 0-forms
+  Lie_b^(0)f=b_N dot grad f=L_N f.
+
+On top forms
+  Lie_b^(d)(f dz^1 wedge...wedge dz^d)
+   =(b_N dot grad f+(div b_N)f)
+     dz^1 wedge...wedge dz^d.
+
+On complex half-densities the corresponding
+Lie-derivative expression is
+  Lie_b^(1/2)=b_N dot grad+(1/2)div b_N.
+
+Hence the self-adjoint NSE Koopman half-density
+generator frozen at SM-03 is
+  K_N=-i hbar Lie_b^(1/2).
+
+These three operators share the SAME classical
+coefficient vector field b_N, but act on different
+tensor-density types. In particular the self-adjoint
+half-density realization does not automatically
+make Lie_b acting on ALL differential forms unitary.
+
+STATUS = EXACT B_TIER GEOMETRIC CONNECTION TO SM-03.
+
+6. WHAT A PHYSICAL ELECTRON CAR MAP WOULD REQUIRE
+---------------------------------------------------
+THEOREM NEC-10: PHYSICAL_CAR_ISOMETRY_GATE.
+
+Let h_e be a selected finite-dimensional physical
+one-electron subspace, e.g. a regulator-selected
+subspace of
+  L2(T_L^3;C^2) for a Pauli electron.
+
+Its physical fermionic CAR operators a_e(f),
+a_e^dagger(g) act on
+  F_-(h_e)=Lambda^bullet h_e
+and satisfy
+  {a_e(f),a_e^dagger(g)}=<f,g>_(h_e)I.
+
+Choose a LINEAR candidate map
+  W:h_e -> C^d.
+
+Map putatively
+  a_e(f) -> c(Wf),
+  a_e^dagger(g) -> c^dagger(Wg).
+
+The images satisfy
+
+  {c(Wf),c^dagger(Wg)}
+    =<Wf,Wg>
+    =<f,W^*Wg>.
+
+Thus the SM-04 CAR relations are preserved exactly
+FOR ALL selected physical modes f,g if and only if
+  W^*W=I_(h_e).
+
+This is the necessary and sufficient ISOMETRY GATE.
+
+For the whole infinite-dimensional one-electron Hilbert space
+and finite Galerkin C^d no such isometry can exist.
+
+The previously built electron->NSE current map
+  psi -> P_sigma,0(j_psi/n_psi)
+is NONLINEAR and many-to-one (even global phase is lost);
+it is not an inner-product preserving linear W and cannot
+by itself satisfy this CAR-isometry gate.
+
+An isometric W on a deliberately matched FINITE physical
+electron-mode truncation can be chosen mathematically,
+but no canonical microscopic W is derived from NSE.
+
+STATUS = EXACT B_TIER NECESSARY/SUFFICIENT GATE AND NO-GO.
+
+7. THE EXACT FROZEN SM-04 MATCH
+--------------------------------
+THEOREM NEC-11: SM04_MATCH_SCOPE.
+
+Frozen SM-04:
+  {psi_alpha(x),psi_beta^dagger(y)}
+      =delta_alpha beta delta(x-y)
+after appropriate smearing and quantum regulation.
+
+NSE intrinsic coefficient-fiber analogue:
+  {c_i,c_j^dagger}=delta_ij I
+in exterior algebra over finite Galerkin coefficient-space
+cotangent fibers.
+
+The identity is algebraically EXACT and
+naturally extends to NSE dynamics through Cartan calculus.
+However:
+  - coefficient-form degree != particle number;
+  - no electron spin, charge, color, weak isospin, or
+    physical Pauli exclusion has been derived;
+  - no SM equal-time field distribution is constructed;
+  - no physical W preserving CAR arises from NSE current;
+  - no physical quantum Hamiltonian follows from
+    the classical Cartan Lie derivative;
+  - de Rham d^2=0 does not settle SM-06 BRST.
+
+This is a MATHEMATICAL STRUCTURAL MATCH at SM-04,
+not a physical fermion realization.
+
+STATUS = EXACT B_TIER ALGEBRA / PHYSICAL OPEN.
+
+8. ROOT THEOREM
+----------------
+THEOREM NSE_EXTERIOR_CAR_OPERATOR_MATCH.
+
+For a fixed finite real NSE or NSE^X Galerkin
+coefficient space V_N=R^d, smooth coefficient
+vector field b_N, and standard exterior Hilbert
+structure on Lambda^bullet(C^d):
+
+ R1 wedge/contraction satisfies finite CAR;
+ R2 d=sum c_i^dagger partial_i is nilpotent;
+ R3 Cartan Lie_b=d i_b+i_b d carries the NSE
+    zero-form Koopman generator to the complete
+    differential-form complex;
+ R4 [Lie_b,d]=0 and Lie commutator Jacobi hold;
+ R5 finite NSE^X layer products combine by
+    GRADED exterior tensor, with off-layer CAR;
+ R6 graph/Stokes coupling enters Lie_b as a
+    bilinear CAR operator through Db_N;
+ R7 the dissipative helical model is an exact
+    witness and shows lack of physical
+    *-automorphism for raw form transport;
+ R8 SM-03 half-density and SM-04 exterior
+    constructions are related but distinct;
+ R9 a proposed physical electron CAR transfer
+    requires W^*W=I on its selected physical
+    one-particle subspace.
+
+PROOF = NEC-01 through NEC-10.
+
+CLASSIFICATION:
+  B_TIER EXACT MATHEMATICAL FORMALISM,
+  STANDARD_MODEL_PHYSICAL_CAR_IDENTIFICATION = OPEN.
+  LEAN A_TIER = NOT ESTABLISHED.
+
+9. ENDPOINTS
+-------------
+[x] NEC-01 WEDGE_CONTRACTION_CAR
+[x] NEC-02 SMEARED_FINITE_CAR
+[x] NEC-03 EXTERIOR_DERIVATIVE_SQUARE_ZERO
+[x] NEC-04 CARTAN_NSE_LIE_DERIVATIVE
+[x] NEC-05 CARTAN_CHAIN_COMPATIBILITY
+[x] NEC-06 PRODUCT_LAYER_GRADED_TENSOR
+[x] NEC-07 GRAPH_JACOBIAN_FERMION_BILINEAR
+[x] NEC-08 HELICAL_CAR_CARTAN_EXAMPLE
+[x] NEC-09 ZERO_ONE_TOP_HALF_DENSITY_RELATION
+[x] NEC-10 PHYSICAL_CAR_ISOMETRY_GATE
+[x] NEC-11 SM04_MATCH_SCOPE
+[x] NEC-12 NSE_EXTERIOR_CAR_OPERATOR_MATCH_ROOT
+
+[ ] NEC-13 PHYSICAL_ELECTRON_MODE_ISOMETRY_FROM_NSE
+[ ] NEC-14 PHYSICAL_SPIN_CHARGE_COLOR_GRADED_REPRESENTATION
+[ ] NEC-15 GAUGE_CONSISTENT_QUANTUM_CAR_DYNAMICS
+[ ] NEC-16 NEXT_SM05_GAUSS_CONSTRAINT_MATCH
+[ ] NEC-17 SM06_BRST_GAUGE_NILPOTENCY_MATCH
+[ ] NEC-18 EXTERNAL_LEAN_COMPILER_THEOREM_LEVEL_AXIOM_AUDIT
+
+10. FUTURE LEAN SPINE (NOT EXECUTED)
+------------------------------------
+A. Finite exterior algebra over complex Hilbert coefficient space.
+B. Independent wedge and contraction anticommutator identities.
+C. Graded tensor product / layer Koszul sign conventions.
+D. Finite polynomial derivation and coefficient Lie transport.
+E. Cartan d, contraction, Lie and nilpotency relations.
+F. Graph matrix Jacobian and exact helical test.
+G. Finite linear isometry W^*W=I iff CAR preservation.
+H. Scoped root; external native Lean compilation and
+   theorem-level axiom audit, no local Lean execution.
+
+No specific Mathlib or Methlib declaration is asserted
+verified without inspecting imported source.
+
+11. REFERENCES
+--------------
+Fermion CAR on exterior Fock:
+  https://www.cambridge.org/core/journals/forum-of-mathematics-sigma/article/scattering-and-pairing-by-exchange-interactions/4928A5A12CE298247EC796258ED5E68E
+
+Exterior differential, Cartan formula:
+  https://androma.org/theorems/1535
+
+Dynamical forms / classical mechanics ghosts:
+  https://arxiv.org/abs/hep-th/9903136
+
+LAST LINE
+---------
+MARKER = !
+TIER = B_TIER
+SM04_EXACT_MATHEMATICAL_CAR_ANALOGUE = YES
+PHYSICAL_SM_ELECTRON_CAR = NOT DERIVED
+A_TIER = NOT ESTABLISHED
