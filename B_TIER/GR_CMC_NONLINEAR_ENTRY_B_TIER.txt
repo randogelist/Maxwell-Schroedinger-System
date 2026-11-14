@@ -1,0 +1,868 @@
+QM-MAXWELL TO NONLINEAR GENERAL RELATIVITY
+CMC / CIRCULAR-TT ENTRY — B-TIER DERIVATION
+============================================
+
+STATUS
+------
+
+MARKER = !
+TIER = CONDITIONAL_B_TIER
+ARTIFACT = GR_CMC_NONLINEAR_ENTRY_B_TIER
+ROOT_ENDPOINT = QM_MAXWELL_GR_CMC_NONLINEAR_ENTRY
+SOURCE_BRANCH = b-tier-hull
+LEAN_STATUS = NOT_EMITTED
+A_TIER_STATUS = NOT_ESTABLISHED
+FORMAL_CLOSURE = NOT_ESTABLISHED
+LOCAL_LEAN_EXECUTIONS = 0
+
+This document continues the chain
+
+  stationary quantum profile
+  -> Maxwell transverse datum
+  -> Gaussian heat scale
+  -> transverse-traceless gravitational seed
+  -> exact nonlinear vacuum constraint data
+  -> nonlinear reduced-GR symplectic completion gate.
+
+The principal new result is an explicit exact vacuum initial-data family on
+T^3.  It resolves the flat-torus second-order energy obstruction by adjoining
+the homogeneous mean-curvature mode required by the nonlinear Hamiltonian
+constraint.
+
+The exact family is a genuine nonlinear GR constraint solution.  Its pullback
+of the canonical ADM symplectic form is nevertheless zero, because its spatial
+metric is fixed.  Therefore it supplies a nonlinear GR solution entry, but it
+does not by itself discharge the nonzero CP1 symplectic-area endpoint required
+for the Planck-kernel matching.
+
+
+0. FROZEN CONVENTIONS
+---------------------
+
+Let
+
+  Sigma := T^3 = (R/Z)^3,
+  |Sigma| = 1,
+
+with flat metric delta_ij and coordinates x=(x1,x2,z).
+
+Let
+
+  G>0,
+  c>0,
+  hbar>0,
+  epsilon>0,
+
+and define
+
+  l_P := sqrt(G hbar/c^3),
+  tau_epsilon := epsilon^2/4,
+  a_* := epsilon,
+  l_* := epsilon/2.
+
+The Maxwell-Schrodinger quantum orbit carries
+
+  Omega_QM = hbar omega_FS,
+  integral_CP1 omega_FS = 2 pi.
+
+The Gaussian transverse regularization is
+
+  a_epsilon := exp(tau_epsilon Delta) a_dagger.
+
+The present document constructs a special explicit smooth transverse mode and
+maps it to exact 3+1-dimensional vacuum GR initial data.  It is not the
+five-dimensional GR germ sector of the separate NSE-GR adapter.
+
+
+1. VACUUM ADM CONSTRAINTS
+-------------------------
+
+For a Riemannian metric g_ij and second fundamental form K_ij on Sigma, define
+
+  tr_g K := g^{ij}K_ij,
+
+  |K|_g^2 := g^{ik}g^{jl}K_ij K_kl.
+
+The vacuum constraints are
+
+  H(g,K)
+    := R(g) + (tr_g K)^2 - |K|_g^2
+     = 0,
+
+  M_i(g,K)
+    := nabla^j K_ij - partial_i(tr_g K)
+     = 0.
+
+These equations are the only GR equations used in the exact construction
+below.
+
+
+2. A CIRCULAR TRANSVERSE MAXWELL MODE
+-------------------------------------
+
+Fix
+
+  n in Z, n != 0,
+  k := 2 pi n,
+  s>0,
+  alpha in R/(2 pi Z).
+
+Define
+
+  a_{s,alpha,n}(x)
+    := s ( cos(k z + alpha),
+           sin(k z + alpha),
+           0 ).
+
+THEOREM CIRCULAR_MAXWELL_MODE.
+
+The field a_{s,alpha,n} satisfies
+
+  div a_{s,alpha,n} = 0,
+  mean(a_{s,alpha,n}) = 0,
+  Delta a_{s,alpha,n} = -k^2 a_{s,alpha,n},
+  |a_{s,alpha,n}(x)| = s
+
+for every x.
+
+DERIVATION.
+
+The field depends only on z and has zero third component, so its divergence
+vanishes.  Nonzero Fourier frequency gives zero mean.  Two z derivatives give
+-k^2, and cos^2+sin^2=1 gives constant pointwise norm.
+
+STATUS = EXACT_B_TIER.
+
+
+THEOREM CIRCULAR_HEAT_REGULARIZATION.
+
+For epsilon>0,
+
+  a_{epsilon;s,alpha,n}
+    := exp((epsilon^2/4)Delta) a_{s,alpha,n}
+
+has the explicit form
+
+  a_{epsilon;s,alpha,n}
+    = s_epsilon
+      ( cos(k z + alpha),
+        sin(k z + alpha),
+        0 ),
+
+where
+
+  s_epsilon
+    := s exp(-epsilon^2 k^2/4).
+
+Consequently
+
+  |a_{epsilon;s,alpha,n}(x)| = s_epsilon
+
+is constant.
+
+STATUS = EXACT_B_TIER.
+
+This is the same Gaussian convention used by the Planck-kernel chain:
+
+  multiplier = exp(-epsilon^2 |xi|^2/4).
+
+
+3. VECTOR-TO-TT LIFT
+--------------------
+
+For every vector field a=(a1,a2,0) depending only on z, define the symmetric
+2-tensor TT(a) by
+
+  TT(a)_ij
+    := (1/sqrt(2))
+       [ [ a1,  a2, 0 ],
+         [ a2, -a1, 0 ],
+         [  0,   0, 0 ] ].
+
+THEOREM FIXED_AXIS_VECTOR_TO_TT.
+
+For every such a,
+
+  trace_delta TT(a) = 0,
+  partial^j TT(a)_ij = 0,
+  |TT(a)|_delta^2 = |a|^2.
+
+DERIVATION.
+
+The diagonal entries cancel.  All tensor entries with a z index vanish, while
+the remaining entries depend only on z, so the divergence is zero.  Direct
+Frobenius contraction gives
+
+  (1/2)(a1^2+a2^2+a2^2+a1^2)
+    = a1^2+a2^2.
+
+STATUS = EXACT_B_TIER.
+
+Define
+
+  sigma_epsilon
+    := TT(a_{epsilon;s,alpha,n}).
+
+Then
+
+  sigma_epsilon is TT,
+  |sigma_epsilon|_delta = s_epsilon
+
+pointwise on T^3.
+
+
+4. EXACT NONLINEAR VACUUM INITIAL DATA
+--------------------------------------
+
+Define two signs
+
+  eta in {+1,-1}
+
+and set
+
+  g_epsilon := delta,
+
+  K_epsilon^eta
+    := sigma_epsilon
+       + eta (s_epsilon/sqrt(6)) delta.
+
+THEOREM CIRCULAR_TT_EXACT_VACUUM_DATA.
+
+For every epsilon>0, s>0, n!=0, alpha, and eta in {+1,-1},
+
+  H(g_epsilon,K_epsilon^eta)=0,
+  M(g_epsilon,K_epsilon^eta)=0.
+
+Hence
+
+  (T^3,g_epsilon,K_epsilon^eta)
+
+is exact smooth vacuum Einstein initial data.
+
+DERIVATION.
+
+Because g_epsilon=delta,
+
+  R(g_epsilon)=0.
+
+The TT property gives
+
+  tr_delta sigma_epsilon = 0,
+  div_delta sigma_epsilon = 0.
+
+The trace is constant:
+
+  tr_delta K_epsilon^eta
+    = eta 3 s_epsilon/sqrt(6)
+    = eta sqrt(3/2) s_epsilon.
+
+Orthogonality of trace and tracefree parts gives
+
+  |K_epsilon^eta|_delta^2
+    = |sigma_epsilon|^2
+      + |eta(s_epsilon/sqrt(6))delta|^2
+
+    = s_epsilon^2
+      + 3 s_epsilon^2/6
+
+    = (3/2)s_epsilon^2.
+
+Also
+
+  (tr_delta K_epsilon^eta)^2
+    = (3/2)s_epsilon^2.
+
+Therefore H=0 pointwise.  The momentum constraint vanishes because
+sigma_epsilon is divergence-free and the trace term is spatially constant.
+
+STATUS = EXACT_B_TIER.
+
+
+COROLLARY EXACT_MEAN_CURVATURE_BACKREACTION.
+
+The exact mean curvature is
+
+  tau_epsilon^eta
+    := tr K_epsilon^eta
+     = eta sqrt(3/2)
+       s exp(-epsilon^2 k^2/4).
+
+Thus the nonlinear GR trace mode is not optional in this exact flat-metric
+family.  It is fixed by the transverse amplitude.
+
+STATUS = EXACT_B_TIER.
+
+
+5. RELATION TO FLAT-TORUS LINEARIZATION STABILITY
+-------------------------------------------------
+
+Introduce an amplitude parameter r>=0 and a unit-norm circular TT tensor
+sigma_hat with
+
+  |sigma_hat|=1.
+
+Define
+
+  g_r := delta,
+
+  K_r^eta
+    := r sigma_hat
+       + eta (r/sqrt(6))delta.
+
+Then every r gives exact vacuum constraint data and
+
+  (g_r,K_r^eta) -> (delta,0)
+
+as r->0.
+
+The tangent at r=0 is
+
+  dot g = 0,
+  dot K = sigma_hat + eta delta/sqrt(6).
+
+THEOREM TRACE_MODE_RESOLVES_ENERGY_OBSTRUCTION.
+
+The nonzero homogeneous trace component eta delta/sqrt(6) exactly balances the
+positive TT quadratic contribution in the Hamiltonian constraint.
+
+If the trace component is deleted while the flat metric is held fixed, the
+second-order integrated Hamiltonian constraint has the positive form
+
+  integral_T3
+    [ |p_TT|^2
+      + (1/4)|partial gamma_TT|^2 ] dx
+    = 0,
+
+under the standard flat-torus ADM perturbation convention.  It therefore
+forces
+
+  p_TT=0,
+  partial gamma_TT=0.
+
+For mean-zero TT perturbations this implies triviality.
+
+STATUS.
+
+  Exact balance in the displayed family: EXACT_B_TIER.
+
+  General second-order Brill-Deser formula: SOURCE_ANCHORED_B_TIER_INPUT.
+
+The exact family gives a constructive realization of the global trace/volume
+rate variable required to pass the flat-torus nonlinear integrability test.
+
+
+6. CMC CONFORMAL FORMULATION
+----------------------------
+
+Let sigma be a smooth TT tensor on the flat torus and let tau be a nonzero
+constant.  For a positive scalar phi define
+
+  g_bar := phi^4 delta,
+
+  K_bar
+    := phi^(-2) sigma
+       + (tau/3) g_bar.
+
+The vacuum constraints reduce to the Lichnerowicz equation
+
+  Delta phi
+    = -(1/8)|sigma|^2 phi^(-7)
+      + (1/12)tau^2 phi^5.
+
+THEOREM CONSTANT_NORM_CMC_COMPLETION.
+
+If
+
+  |sigma|_delta = s0 > 0
+
+is constant and tau!=0, then the positive constant
+
+  phi
+    = [ 3 s0^2/(2 tau^2) ]^(1/12)
+
+solves the Lichnerowicz equation.  The reconstructed pair
+
+  (g_bar,K_bar)
+
+therefore satisfies the exact vacuum constraints.
+
+DERIVATION.
+
+For constant phi, Delta phi=0.  The equation reduces to
+
+  -(1/8)s0^2 phi^(-7)
+  + (1/12)tau^2 phi^5
+  = 0,
+
+which is equivalent to
+
+  phi^12 = 3s0^2/(2tau^2).
+
+STATUS = EXACT_B_TIER.
+
+The explicit data of Section 4 are the normalized subcase
+
+  phi=1,
+  tau^2=(3/2)s0^2.
+
+
+THEOREM YAMABE_ZERO_CMC_SIGN_GATE.
+
+On the flat torus:
+
+  (a) if sigma is not identically zero and tau=0, no positive solution of the
+      Lichnerowicz equation exists;
+
+  (b) if sigma=0 and tau!=0, no positive solution exists.
+
+DERIVATION.
+
+Integrate the Lichnerowicz equation over T^3.  The integral of Delta phi is
+zero.  In case (a) the remaining right-hand side is strictly negative; in case
+(b) it is strictly positive.
+
+STATUS = EXACT_B_TIER.
+
+GENERAL CMC SOURCE ENDPOINT.
+
+For Yamabe-zero compact three-manifolds, nonzero TT seed sigma and nonzero
+constant tau belong to the solvable CMC class; the positive solution is unique
+under the standard conformal-method hypotheses.
+
+STATUS = NAMED_LITERATURE_ENDPOINT.
+
+The explicit constant-norm construction above does not depend on this general
+existence theorem.
+
+
+7. GAUGE AND ORBIT AUDIT
+------------------------
+
+The phase alpha in
+
+  a_{s,alpha,n}(z)
+
+satisfies
+
+  a_{s,alpha,n}(z)
+    = a_{s,0,n}(z+alpha/k).
+
+THEOREM CIRCULAR_PHASE_IS_TRANSLATION.
+
+Changing alpha is generated by a spatial translation of T^3.  Therefore the
+alpha-circle is gauge-equivalent after quotienting by the connected torus
+translation isometries, unless a marking, boundary datum, or distinguished
+origin is retained.
+
+STATUS = EXACT_B_TIER.
+
+Consequently, the explicit circular family is an exact nonlinear GR solution
+entry but is not automatically the physical CP1 quantum orbit.
+
+
+8. SYMPLECTIC PULLBACK OF THE EXPLICIT FAMILY
+---------------------------------------------
+
+On ADM phase space, the canonical form is
+
+  Omega_ADM
+    = integral_T3 delta pi^{ij} wedge delta g_ij dx.
+
+For the exact family of Section 4,
+
+  g_epsilon = delta
+
+is constant over the parameters (s,alpha,eta) at fixed epsilon.
+
+THEOREM EXPLICIT_CMC_FAMILY_IS_ISOTROPIC.
+
+The pullback of Omega_ADM to the explicit circular-TT family is zero.
+
+DERIVATION.
+
+Every tangent vector to the family has
+
+  delta g = 0.
+
+Therefore every term in
+
+  integral delta pi wedge delta g
+
+vanishes.
+
+STATUS = EXACT_B_TIER.
+
+INTERPRETATION.
+
+The explicit family discharges nonlinear vacuum constraint existence, but it
+cannot carry the nonzero quantum area
+
+  integral_CP1 hbar omega_FS = 2 pi hbar.
+
+A distinct nonlinear family containing conjugate metric and momentum modes is
+required for the symplectic Planck-kernel bridge.
+
+
+9. NONLINEAR SYMPLECTIC COMPLETION GATE
+---------------------------------------
+
+Define the exact vacuum constraint surface
+
+  C_vac
+    := { (g,pi) : H(g,pi)=0 and M(g,pi)=0 }.
+
+Let
+
+  P_GR^red
+
+be a specified diffeomorphism-reduced gravitational phase space with reduced
+symplectic form Omega_GR^red.
+
+OPEN ENDPOINT GR_NONLINEAR_SYMPLECTIC_COMPLETION.
+
+Construct a smooth map
+
+  I_epsilon : CP1 -> P_GR^red
+
+such that:
+
+  (i) every point is represented by exact nonlinear vacuum initial data;
+
+  (ii) its tangent at the flat/weak-field limit agrees with the two-mode TT
+       sector of GR_TT_REDUCED_ENTRY_B_TIER;
+
+  (iii) its pullback is
+
+        I_epsilon^* Omega_GR^red
+          = kappa_GR (c^3 epsilon^2/G) omega_FS;
+
+  (iv) kappa_GR is fixed independently of the target Planck relation;
+
+  (v) the orbit is identified with the same physical reduced orbit as the
+      Maxwell-Schrodinger profile-transfer CP1.
+
+STATUS = OPEN_DECISIVE_GR_ENDPOINT.
+
+
+10. CONTINUATION OF THE PLANCK-KERNEL CHAIN
+-------------------------------------------
+
+Assume GR_NONLINEAR_SYMPLECTIC_COMPLETION and
+
+  I_epsilon^* Omega_GR^red
+    = Omega_QM
+    = hbar omega_FS.
+
+Then
+
+  kappa_GR c^3 epsilon^2/G = hbar,
+
+and therefore
+
+  epsilon = l_P/sqrt(kappa_GR).
+
+If additionally
+
+  kappa_GR=1/4,
+
+then
+
+  epsilon=a_*=2l_P,
+  l_*=l_P.
+
+THEOREM PLANCK_MATCHING_AFTER_NONLINEAR_COMPLETION.
+
+The exact nonlinear constraint completion does not alter the scalar Planck
+matching implication.  It upgrades the GR carrier from a quadratic TT model to
+an exact vacuum constraint orbit, conditional on the open nonlinear symplectic
+completion endpoint.
+
+STATUS = CONDITIONAL_B_TIER.
+
+NONSELECTION.
+
+Neither the explicit circular family nor the general CMC existence theorem
+selects kappa_GR or epsilon.  The explicit family is isotropic; the general CMC
+constraint theorem establishes existence but not the required CP1 symplectic
+coefficient.
+
+
+11. RELATION TO THE EXISTING CERTIFIED GR ADAPTER
+-------------------------------------------------
+
+An independent repository theorem supplies an externally audited equivalence
+between local analytic NSE germs and a normalized marked five-dimensional
+vacuum GR germ sector.
+
+That theorem may be composed with the present Maxwell-Schrodinger branch only
+after an explicit endpoint
+
+  MS_TO_NSE_GERM
+
+is constructed.
+
+The CMC construction in this document instead gives explicit 3+1-dimensional
+vacuum initial data directly.  The two routes have different carriers and must
+not be identified without an additional adapter.
+
+
+12. VALIDATION ENDPOINTS
+------------------------
+
+V-CMC-01 CIRCULAR MODE.
+
+Verify numerically and symbolically
+
+  div a = 0,
+  Delta a = -k^2 a,
+  |a|=constant.
+
+V-CMC-02 TT LIFT.
+
+Verify
+
+  trace TT(a)=0,
+  div TT(a)=0,
+  |TT(a)|^2=|a|^2.
+
+V-CMC-03 EXACT CONSTRAINT RESIDUALS.
+
+For K=sigma+eta s delta/sqrt(6), verify
+
+  ||H(delta,K)|| = 0,
+  ||M(delta,K)|| = 0
+
+up to arithmetic precision.
+
+V-CMC-04 HEAT SCALE.
+
+Verify
+
+  s_epsilon/s
+    = exp(-epsilon^2 k^2/4).
+
+V-CMC-05 MEAN-CURVATURE LAW.
+
+Verify
+
+  |tau_epsilon|
+    = sqrt(3/2) s_epsilon.
+
+V-CMC-06 CMC LICHNEROWICZ SOLUTION.
+
+For constant-norm sigma, verify
+
+  phi^12=3|sigma|^2/(2tau^2)
+
+and all reconstructed constraint residuals.
+
+V-CMC-07 GAUGE ORBIT.
+
+Verify that alpha variation equals z translation and determine whether the
+selected reduced GR carrier quotients or retains that marking.
+
+V-CMC-08 SYMPLECTIC DEGENERACY.
+
+Verify that the pullback of Omega_ADM to the explicit fixed-metric family is
+zero.
+
+V-CMC-09 NONLINEAR CP1.
+
+Construct candidate exact-data CP1 families and compute the reduced pullback
+coefficient kappa_GR without inserting hbar or the target value 1/4.
+
+
+13. ENDPOINT REGISTER
+---------------------
+
+[x] GRCMC-01  CIRCULAR_MAXWELL_MODE
+               EXACT_B_TIER
+
+[x] GRCMC-02  CIRCULAR_HEAT_REGULARIZATION
+               EXACT_B_TIER
+
+[x] GRCMC-03  FIXED_AXIS_VECTOR_TO_TT
+               EXACT_B_TIER
+
+[x] GRCMC-04  CIRCULAR_TT_EXACT_VACUUM_DATA
+               EXACT_B_TIER
+
+[x] GRCMC-05  EXACT_MEAN_CURVATURE_BACKREACTION
+               EXACT_B_TIER
+
+[x] GRCMC-06  TRACE_MODE_RESOLVES_ENERGY_OBSTRUCTION
+               EXACT_B_TIER_FOR_EXPLICIT_FAMILY
+
+[x] GRCMC-07  CONSTANT_NORM_CMC_COMPLETION
+               EXACT_B_TIER
+
+[x] GRCMC-08  YAMABE_ZERO_CMC_SIGN_GATE
+               EXACT_B_TIER
+
+[x] GRCMC-09  CIRCULAR_PHASE_IS_TRANSLATION
+               EXACT_B_TIER
+
+[x] GRCMC-10  EXPLICIT_CMC_FAMILY_IS_ISOTROPIC
+               EXACT_B_TIER
+
+[ ] GRCMC-11  GENERAL_YAMABE_ZERO_CMC_EXISTENCE
+               NAMED_LITERATURE_ENDPOINT
+
+[ ] GRCMC-12  GR_NONLINEAR_SYMPLECTIC_COMPLETION
+               OPEN_DECISIVE
+
+[x] GRCMC-13  PLANCK_MATCHING_AFTER_NONLINEAR_COMPLETION
+               CONDITIONAL_B_TIER
+
+[ ] GRCMC-14  MS_TO_NSE_GERM
+               OPEN_CROSS_ADAPTER
+
+[x] GRCMC-15  QM_MAXWELL_GR_CMC_NONLINEAR_ENTRY
+               CONDITIONAL_B_TIER_ROOT
+
+
+14. ROOT ENDPOINT
+-----------------
+
+THEOREM QM_MAXWELL_GR_CMC_NONLINEAR_ENTRY.
+
+From the frozen circular Maxwell mode and Gaussian scale epsilon:
+
+  (A) heat regularization preserves circular shape and produces amplitude
+
+        s_epsilon=s exp(-epsilon^2k^2/4);
+
+  (B) the fixed-axis lift produces a smooth TT tensor sigma_epsilon of constant
+      pointwise norm s_epsilon;
+
+  (C) the exact data
+
+        g=delta,
+        K=sigma_epsilon +/- (s_epsilon/sqrt(6))delta
+
+      solve the nonlinear vacuum Einstein constraints;
+
+  (D) the homogeneous trace mode gives exact mean curvature
+
+        tau=+/-sqrt(3/2)s_epsilon
+
+      and resolves the flat-torus quadratic energy obstruction;
+
+  (E) the resulting explicit exact-data family is isotropic in ADM phase space
+      and therefore does not itself realize the quantum CP1 symplectic area;
+
+  (F) a nonlinear reduced-GR CP1 with nonzero pullback coefficient remains the
+      decisive open carrier endpoint;
+
+  (G) conditional on that endpoint, symplectic matching gives
+
+        epsilon=l_P/sqrt(kappa_GR),
+
+      and kappa_GR=1/4 gives epsilon=2l_P.
+
+MARKER = !
+STATUS = CONDITIONAL_B_TIER.
+
+
+15. DEPENDENCY SPINE
+--------------------
+
+  circular Fourier mode
+    -> GRCMC-01
+    -> GRCMC-02.
+
+  fixed-axis tensor map
+    -> GRCMC-03.
+
+  GRCMC-02 + GRCMC-03
+    -> GRCMC-04
+    -> GRCMC-05
+    -> GRCMC-06.
+
+  conformal reconstruction
+    -> GRCMC-07
+    -> GRCMC-08.
+
+  translation action
+    -> GRCMC-09.
+
+  fixed metric in ADM phase space
+    -> GRCMC-10.
+
+  GRCMC-04 + nonlinear reduced symplectic orbit
+    -> GRCMC-12
+    -> GRCMC-13.
+
+  all preceding exact components
+    -> GRCMC-15.
+
+
+16. SOURCE ANCHORS
+------------------
+
+  Brill and Deser,
+  Instability of Closed Spaces in General Relativity,
+  Communications in Mathematical Physics 32 (1973), 291-304,
+  DOI 10.1007/BF01645610.
+
+  Moncrief,
+  Spacetime Symmetries and Linearization Stability of the Einstein Equations I,
+  Journal of Mathematical Physics 16 (1975), 493,
+  DOI 10.1063/1.522572.
+
+  Moncrief,
+  Spacetime Symmetries and Linearization Stability of the Einstein Equations II,
+  Journal of Mathematical Physics 17 (1976), 1893-1902,
+  DOI 10.1063/1.522814.
+
+  Isenberg,
+  Constant Mean Curvature Solutions of the Einstein Constraint Equations on
+  Closed Manifolds,
+  Classical and Quantum Gravity 12 (1995), 2249-2274,
+  DOI 10.1088/0264-9381/12/9/013.
+
+The source anchors support the general linearization-stability and CMC
+existence context.  The circular-mode TT lift and explicit exact constraint
+solution are derived directly in this document.
+
+
+17. CLOSURE CLASSIFICATION
+--------------------------
+
+EXACT_B_TIER:
+
+  CIRCULAR_MAXWELL_MODE
+  CIRCULAR_HEAT_REGULARIZATION
+  FIXED_AXIS_VECTOR_TO_TT
+  CIRCULAR_TT_EXACT_VACUUM_DATA
+  EXACT_MEAN_CURVATURE_BACKREACTION
+  CONSTANT_NORM_CMC_COMPLETION
+  YAMABE_ZERO_CMC_SIGN_GATE
+  CIRCULAR_PHASE_IS_TRANSLATION
+  EXPLICIT_CMC_FAMILY_IS_ISOTROPIC.
+
+SOURCE_ANCHORED_B_TIER_CONTEXT:
+
+  flat-torus second-order linearization-stability condition
+  general Yamabe-zero CMC existence and uniqueness.
+
+CONDITIONAL_B_TIER:
+
+  PLANCK_MATCHING_AFTER_NONLINEAR_COMPLETION
+  QM_MAXWELL_GR_CMC_NONLINEAR_ENTRY.
+
+OPEN DECISIVE:
+
+  GR_NONLINEAR_SYMPLECTIC_COMPLETION
+  independent derivation of kappa_GR
+  same-orbit identification
+  kappa_GR=1/4
+  MS_TO_NSE_GERM.
+
+FORMAL STATUS:
+
+  B_TIER only.
+  Lean files are not emitted.
+  A_TIER is not established.
+  FORMAL_CLOSURE is not established.
+  UNCONDITIONAL_CLOSURE is not established.
