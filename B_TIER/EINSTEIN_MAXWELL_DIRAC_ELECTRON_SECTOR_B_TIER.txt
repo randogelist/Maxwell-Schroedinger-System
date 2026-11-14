@@ -1,0 +1,801 @@
+EINSTEIN-MAXWELL-DIRAC ELECTRON SECTOR
+B-TIER DERIVATION
+=======================================
+
+STATUS
+------
+
+MARKER = !
+TIER = B_TIER
+ARTIFACT = EINSTEIN_MAXWELL_DIRAC_ELECTRON_SECTOR_B_TIER
+ROOT_ENDPOINT = EINSTEIN_MAXWELL_DIRAC_ELECTRON_SECTOR
+SOURCE_BRANCH = b-tier-hull
+LEAN_STATUS = NOT_EMITTED
+A_TIER_STATUS = NOT_ESTABLISHED
+FORMAL_CLOSURE = NOT_ESTABLISHED
+LOCAL_LEAN_EXECUTIONS = 0
+
+The frozen object is a classical-field, one-electron-normalized
+Einstein-Maxwell-Dirac sector.  It contains rest mass, electric charge,
+spin 1/2, electromagnetic backreaction, and gravitational backreaction.
+It is not full QED and does not by itself establish existence of a globally
+regular stationary one-electron solution.
+
+The exact B-tier content is structural:
+
+  action -> Euler-Lagrange equations;
+  gauge covariance;
+  Dirac-current conservation;
+  one-electron charge normalization;
+  Maxwell-source compatibility;
+  matter/field stress exchange;
+  total stress conservation and Bianchi closure;
+  3+1 constraint equations;
+  compact-charge obstruction;
+  stationary-bilinear implication;
+  transverse a_dagger defect decomposition.
+
+Existence, uniqueness, global stability, particle interpretation in quantum
+field theory, and the construction of a stationary isolated solution remain
+separate endpoints.
+
+
+0. FROZEN GEOMETRIC DATA
+------------------------
+
+Let
+
+  (M,g)
+
+be an oriented, time-oriented, globally hyperbolic four-dimensional Lorentzian
+spin manifold with signature (-,+,+,+).  Let
+
+  S M -> M
+
+be its complex Dirac spinor bundle, equipped with a compatible spin connection
+
+  nabla^S,
+
+a Lorentzian spinor adjoint bar(Psi), and Clifford multiplication gamma.
+The spinor convention is fixed so that the Dirac number current defined below
+is future causal for positive-frequency solutions.
+
+Let
+
+  A in Omega^1(M;R)
+
+be a U(1) gauge potential and
+
+  F := dA.
+
+Freeze the electron constants
+
+  q_e := -e < 0,
+  m := m_e > 0,
+
+and the positive constants
+
+  hbar > 0,
+  c > 0,
+  epsilon0 > 0,
+  mu0 > 0,
+  G > 0,
+
+with
+
+  epsilon0 mu0 c^2 = 1.
+
+The gauge-spin covariant derivative is
+
+  D_mu Psi
+    := nabla^S_mu Psi
+       + i q_e A_mu Psi/(hbar c).
+
+Under a real gauge function Lambda,
+
+  A'   = A + d Lambda,
+  Psi' = exp(-i q_e Lambda/(hbar c)) Psi,
+
+one has
+
+  D'_mu Psi'
+    = exp(-i q_e Lambda/(hbar c)) D_mu Psi.
+
+
+1. JOINT ACTION
+---------------
+
+For cosmological constant Lambda_GR, define
+
+  S_EMD[g,A,Psi]
+    := integral_M dVol_g [
+         c^3(R_g-2 Lambda_GR)/(16 pi G)
+         - F_{mu nu}F^{mu nu}/(4 mu0)
+         + L_D(g,A,Psi)
+       ],
+
+where
+
+  L_D
+    := (i hbar c/2)
+       [ bar(Psi) gamma^mu D_mu Psi
+         - (D_mu bar(Psi)) gamma^mu Psi ]
+       - m_e c^2 bar(Psi) Psi.
+
+All variations below are smooth and compactly supported, or satisfy boundary
+conditions that remove the corresponding boundary terms.
+
+THEOREM EMD_ACTION_EULER_LAGRANGE.
+
+Critical points of S_EMD satisfy the coupled Einstein-Maxwell-Dirac equations
+recorded in Sections 2-4.
+
+STATUS = EXACT_B_TIER_FROM_STANDARD_VARIATION.
+
+No existence assertion is contained in this theorem.
+
+
+2. DIRAC ELECTRON EQUATION
+--------------------------
+
+The charged Dirac equation is
+
+  (i hbar c gamma^mu D_mu - m_e c^2) Psi = 0.
+
+The adjoint equation is
+
+  i hbar c (D_mu bar(Psi)) gamma^mu
+    + m_e c^2 bar(Psi) = 0.
+
+Define the number current
+
+  N^mu := c bar(Psi) gamma^mu Psi,
+
+and the electric current
+
+  j_e^mu := q_e N^mu
+          = -e c bar(Psi) gamma^mu Psi.
+
+THEOREM EMD_DIRAC_CURRENT_CONSERVATION.
+
+Every sufficiently regular solution of the Dirac equation and its adjoint
+satisfies
+
+  nabla_mu N^mu = 0,
+  nabla_mu j_e^mu = 0.
+
+DERIVATION.
+
+Expand
+
+  nabla_mu(bar(Psi) gamma^mu Psi).
+
+Metric-spin compatibility gives nabla gamma = 0.  Substitute the Dirac and
+adjoint equations.  The two mass terms cancel, and the U(1) connection terms
+cancel because the bilinear is gauge invariant.
+
+STATUS = EXACT_B_TIER.
+
+
+3. MAXWELL EQUATIONS
+--------------------
+
+The Maxwell equations are
+
+  nabla_mu F^{mu nu} = mu0 j_e^nu,
+
+  nabla_[alpha F_{beta gamma]} = 0.
+
+The second equation is the identity dF=0 when F=dA.
+
+THEOREM EMD_MAXWELL_SOURCE_COMPATIBILITY.
+
+The Maxwell source equation is compatible with the Dirac source because
+
+  nabla_nu j_e^nu = 0.
+
+Equivalently, applying nabla_nu to the Maxwell equation yields zero on both
+sides.  The left side vanishes because F is antisymmetric and the Ricci tensor
+is symmetric.
+
+STATUS = EXACT_B_TIER.
+
+
+4. EINSTEIN EQUATION AND STRESS TENSORS
+---------------------------------------
+
+The electromagnetic stress tensor is
+
+  T_EM_{mu nu}
+    := (1/mu0)
+       [ F_{mu alpha} F_nu^alpha
+         - (1/4) g_{mu nu} F_{alpha beta}F^{alpha beta} ].
+
+The on-shell symmetric Dirac stress tensor is
+
+  T_D_{mu nu}
+    := (i hbar c/4) [
+         bar(Psi) gamma_mu D_nu Psi
+         + bar(Psi) gamma_nu D_mu Psi
+         - (D_mu bar(Psi)) gamma_nu Psi
+         - (D_nu bar(Psi)) gamma_mu Psi
+       ].
+
+The Einstein equation is
+
+  G_{mu nu} + Lambda_GR g_{mu nu}
+    = (8 pi G/c^4) (T_D_{mu nu}+T_EM_{mu nu}).
+
+THEOREM EMD_STRESS_EXCHANGE.
+
+For sufficiently regular coupled solutions,
+
+  nabla_mu T_D^{mu nu}
+    = F^nu_lambda j_e^lambda,
+
+  nabla_mu T_EM^{mu nu}
+    = -F^nu_lambda j_e^lambda.
+
+Consequently,
+
+  nabla_mu(T_D^{mu nu}+T_EM^{mu nu}) = 0.
+
+STATUS = EXACT_B_TIER_FROM_FIELD_EQUATIONS.
+
+THEOREM EMD_BIANCHI_CLOSURE.
+
+The total stress conservation law is compatible with the Einstein equation
+because
+
+  nabla_mu G^{mu nu}=0,
+  nabla_mu g^{mu nu}=0.
+
+STATUS = EXACT_B_TIER.
+
+
+5. ONE-ELECTRON NORMALIZATION
+-----------------------------
+
+Let Sigma be a spacelike Cauchy hypersurface with future-directed unit normal
+n and induced volume dmu_Sigma.  Define
+
+  N_Sigma[Psi]
+    := -(1/c) integral_Sigma n_mu N^mu dmu_Sigma.
+
+For positive-frequency Dirac data this quantity is nonnegative.  Current
+conservation and the divergence theorem imply that N_Sigma is independent of
+the Cauchy hypersurface, under the declared decay or flux conditions.
+
+Define the electric charge
+
+  Q_Sigma[Psi]
+    := -(1/c) integral_Sigma n_mu j_e^mu dmu_Sigma.
+
+Since j_e=q_e N,
+
+  Q_Sigma = q_e N_Sigma.
+
+THEOREM EMD_ONE_ELECTRON_CHARGE.
+
+If
+
+  N_Sigma[Psi]=1,
+
+then every Cauchy hypersurface in the same globally hyperbolic development has
+
+  N=1,
+  Q=-e.
+
+STATUS = EXACT_B_TIER.
+
+SCOPE NOTE.
+
+This is a classical-field normalization.  It does not by itself identify Psi
+with a one-particle vector in interacting quantum electrodynamics.
+
+
+6. 3+1 CAUCHY CONSTRAINTS
+-------------------------
+
+Let h be the induced spatial metric on Sigma and K its second fundamental form.
+Let
+
+  T_tot := T_D + T_EM,
+
+  rho_tot := T_tot(n,n),
+
+  J_i := -T_tot(n,e_i).
+
+Then the Einstein constraints are
+
+  R(h) + (tr_h K)^2 - |K|_h^2
+    = 2 Lambda_GR + (16 pi G/c^4) rho_tot,
+
+  D^j(K_{ij}-(tr_h K)h_{ij})
+    = (8 pi G/c^4) J_i.
+
+The electromagnetic constraints are
+
+  D_i E^i = rho_e/epsilon0,
+  D_i B^i = 0,
+
+where
+
+  rho_e := -(1/c) n_mu j_e^mu.
+
+THEOREM EMD_CAUCHY_CONSTRAINT_COMPATIBILITY.
+
+If the matter and Maxwell evolution equations hold and the constraints are
+satisfied on one Cauchy hypersurface, then the contracted Bianchi identity,
+current conservation, and Maxwell identities give the standard constraint
+propagation system.
+
+STATUS = EXACT_B_TIER_AT_THE_FORMAL_IDENTITY_LEVEL.
+
+A complete Sobolev well-posedness theorem remains an external analytic input.
+
+
+7. ISOLATED AND COMPACT SECTOR VARIANTS
+---------------------------------------
+
+7.1 ASYMPTOTICALLY FLAT ISOLATED VARIANT
+
+Define
+
+  EMD_ELECTRON_SECTOR_AF(g,A,Psi)
+
+by the coupled field equations, asymptotically flat boundary conditions,
+finite ADM/electromagnetic/Dirac energy in the selected function class, and
+
+  N_Sigma[Psi]=1.
+
+Then
+
+  Q=-e
+
+without a compensating charge background.
+
+STATUS = EXACT_SECTOR_DEFINITION.
+
+Existence of a regular stationary isolated solution is not asserted.
+
+
+7.2 COMPACT NEUTRALIZED VARIANT
+
+If Sigma is compact and boundaryless, Maxwell Gauss law implies
+
+  integral_Sigma rho_total dmu_h = 0.
+
+Therefore a one-electron contribution Q_e=-e requires a compensating total
+charge +e.  Introduce a background current j_bg and stress tensor T_bg such
+that
+
+  nabla_mu j_bg^mu = 0,
+
+  integral_Sigma rho_bg dmu_h = +e,
+
+  nabla_mu T_bg^{mu nu}
+    = F^nu_lambda j_bg^lambda.
+
+The field equations become
+
+  nabla_mu F^{mu nu}
+    = mu0(j_e^nu+j_bg^nu),
+
+  G+Lambda_GR g
+    = (8 pi G/c^4)(T_D+T_EM+T_bg).
+
+THEOREM EMD_COMPACT_CHARGE_NEUTRALITY.
+
+A compact boundaryless Maxwell sector cannot contain net charge.  Therefore
+an electron-normalized compact sector is necessarily a neutralized composite
+sector rather than an isolated electron sector.
+
+STATUS = EXACT_B_TIER.
+
+The former subtraction by a uniform reference is recovered only after a
+specific background model and volume normalization are chosen.  In GR the
+background must carry both current and stress-energy.
+
+
+8. STATIONARY SUBSECTOR
+-----------------------
+
+Let K be a complete timelike Killing field in a stationary region.  Assume
+
+  L_K g = 0,
+
+  L_K A = d chi_K
+
+for a gauge function chi_K.  Let the gauge-covariant spinorial Lie derivative
+satisfy
+
+  L_K^A Psi = -i omega Psi
+
+for real omega.
+
+THEOREM EMD_STATIONARY_BILINEARS.
+
+Under the stationary ansatz,
+
+  L_K j_e = 0,
+  L_K T_D = 0,
+  L_K T_EM = 0,
+  L_K F = 0.
+
+Thus all gauge-invariant classical observables are stationary although the
+spinor may acquire a phase along the Killing flow.
+
+STATUS = EXACT_B_TIER_CONDITIONAL_ON_THE_STATIONARY_ANSATZ.
+
+OPEN ENDPOINT EMD_STATIONARY_EXISTENCE.
+
+Construct a globally regular, asymptotically flat, one-electron-normalized
+stationary solution of the full Einstein-Maxwell-Dirac equations, or prove a
+precise obstruction in the frozen class.
+
+STATUS = OPEN_ANALYTIC.
+
+
+9. TRANSVERSE a_DAGGER PLACEMENT
+--------------------------------
+
+Let
+
+  F = F_self + F_dagger.
+
+Define the exact defect current
+
+  j_def^nu
+    := (1/mu0) nabla_mu F^{mu nu}
+       - j_e^nu
+       - j_bg^nu.
+
+THEOREM EMD_A_DAGGER_CURRENT_DEFECT.
+
+The full electromagnetic field is self-consistent exactly when
+
+  j_def=0.
+
+The a_dagger sector has three exact classifications:
+
+  (A) source-free dressing:
+
+        nabla_mu F_dagger^{mu nu}=0;
+
+  (B) electron/background-supported dressing:
+
+        its divergence is contained in j_e+j_bg;
+
+  (C) externally maintained dressing:
+
+        j_def != 0.
+
+The Einstein equation always receives the stress tensor of the complete field
+F, including interference terms between F_self and F_dagger.
+
+STATUS = EXACT_B_TIER.
+
+No present theorem proves that the specified a_dagger profile is generated by
+a one-electron Dirac current.
+
+
+10. NONRELATIVISTIC PAULI LIMIT
+-------------------------------
+
+After extracting the rest-energy phase and separating large and small Dirac
+components, the formal c -> infinity limit gives a two-component Pauli spinor
+psi with
+
+  Pi_A := -i hbar grad + e A,
+
+  i hbar partial_t psi
+    = [ Pi_A^2/(2m_e)
+        - e Phi
+        + m_e U
+        + (e hbar/(2m_e)) sigma.B
+      ] psi
+
+at the leading Dirac magnetic moment g=2.
+
+The nonrelativistic electric current decomposes as
+
+  J_e
+    = -(e/m_e) Re(psi^dagger Pi_A psi)
+      + curl M,
+
+  M
+    = -(e hbar/(2m_e)) psi^dagger sigma psi.
+
+The leading mass density is
+
+  mu_m = m_e psi^dagger psi.
+
+THEOREM EMD_NONRELATIVISTIC_PARAMETER_MATCH.
+
+At formal leading order, the EMD electron sector carries
+
+  electric charge = -e,
+  inertial/rest mass = m_e,
+  spin = 1/2,
+  magnetic moment g=2.
+
+STATUS = FORMAL_ASYMPTOTIC_B_TIER.
+
+A uniform error estimate and convergence theorem are separate analytic
+endpoints.  The anomalous magnetic moment g-2 is outside the classical EMD
+system.
+
+
+11. FERMIONIC PROFILE TRANSFER
+------------------------------
+
+On a fixed Cauchy slice with one-particle spinor Hilbert space H_e, choose
+normalized reference and profile spinors u_0,u_chi.  Define
+
+  C_chi^spin := c^dagger(u_chi)c(u_0).
+
+On the one-particle sector,
+
+  C_chi^spin = |u_chi><u_0|,
+
+  [C_chi^spin,(C_chi^spin)^dagger]
+    = P_{u_chi}-P_{u_0},
+
+  [N_hat,C_chi^spin]=0.
+
+In a fixed spatial trivialization the relative charge density is
+
+  q_e diag(P_{u_chi}-P_{u_0}).
+
+THEOREM EMD_FERMIONIC_PROFILE_TRANSFER.
+
+The number-preserving profile-transfer operator carries a relative electric
+density and spin density while preserving total fermion number.
+
+STATUS = EXACT_B_TIER_ON_THE_ONE_PARTICLE_SECTOR.
+
+The identification with an interacting QED one-electron state remains open.
+
+
+12. ROOT SECTOR PREDICATE
+-------------------------
+
+Define
+
+  EINSTEIN_MAXWELL_DIRAC_ELECTRON_SECTOR(g,A,Psi)
+
+iff:
+
+  (i)   (M,g) is an oriented, time-oriented, globally hyperbolic Lorentzian
+        spin spacetime;
+
+  (ii)  Psi satisfies the Dirac equation with q_e=-e and m=m_e;
+
+  (iii) F=dA satisfies Maxwell's equations with the declared total current;
+
+  (iv)  g satisfies Einstein's equation with all declared stress tensors;
+
+  (v)   N_Sigma[Psi]=1;
+
+  (vi)  the selected isolated or neutralized boundary conditions hold;
+
+  (vii) every additional a_dagger/background source is represented explicitly
+        in the current and stress tensors.
+
+THEOREM EINSTEIN_MAXWELL_DIRAC_ELECTRON_SECTOR_HULL.
+
+Every sufficiently regular member of this sector satisfies:
+
+  (A) U(1) gauge covariance;
+
+  (B) conserved fermion number N=1;
+
+  (C) conserved electric charge Q=-e for the Dirac component;
+
+  (D) Maxwell-source compatibility;
+
+  (E) exact Dirac/electromagnetic stress exchange;
+
+  (F) conserved total stress-energy and Bianchi compatibility;
+
+  (G) the Einstein and Maxwell Cauchy constraints;
+
+  (H) compact neutrality when the Cauchy surface is closed;
+
+  (I) stationary gauge-invariant observables under the stationary ansatz;
+
+  (J) exact classification of any added transverse field by its defect current.
+
+STATUS = EXACT_B_TIER_STRUCTURAL.
+
+This theorem does not assert that the sector is nonempty under a chosen global
+stationary, asymptotically flat, compact, or stability condition.
+
+
+13. ENDPOINT REGISTER
+---------------------
+
+[x] EMD-01  EMD_GEOMETRIC_SECTOR_DATA
+              EXACT_B_TIER_DEFINITION
+
+[x] EMD-02  EMD_ACTION_EULER_LAGRANGE
+              EXACT_B_TIER_FROM_STANDARD_VARIATION
+
+[x] EMD-03  EMD_U1_GAUGE_COVARIANCE
+              EXACT_B_TIER
+
+[x] EMD-04  EMD_DIRAC_CURRENT_CONSERVATION
+              EXACT_B_TIER
+
+[x] EMD-05  EMD_ONE_ELECTRON_CHARGE
+              EXACT_B_TIER
+
+[x] EMD-06  EMD_MAXWELL_SOURCE_COMPATIBILITY
+              EXACT_B_TIER
+
+[x] EMD-07  EMD_STRESS_EXCHANGE
+              EXACT_B_TIER
+
+[x] EMD-08  EMD_BIANCHI_CLOSURE
+              EXACT_B_TIER
+
+[x] EMD-09  EMD_CAUCHY_CONSTRAINT_COMPATIBILITY
+              EXACT_B_TIER_FORMAL
+
+[x] EMD-10  EMD_COMPACT_CHARGE_NEUTRALITY
+              EXACT_B_TIER
+
+[x] EMD-11  EMD_ASYMPTOTICALLY_FLAT_ELECTRON_SECTOR
+              EXACT_SECTOR_DEFINITION
+
+[x] EMD-12  EMD_COMPACT_NEUTRALIZED_ELECTRON_SECTOR
+              EXACT_SECTOR_DEFINITION
+
+[x] EMD-13  EMD_STATIONARY_BILINEARS
+              EXACT_CONDITIONAL_B_TIER
+
+[x] EMD-14  EMD_A_DAGGER_CURRENT_DEFECT
+              EXACT_B_TIER
+
+[x] EMD-15  EMD_NONRELATIVISTIC_PARAMETER_MATCH
+              FORMAL_ASYMPTOTIC_B_TIER
+
+[x] EMD-16  EMD_FERMIONIC_PROFILE_TRANSFER
+              EXACT_B_TIER_ONE_PARTICLE
+
+[ ] EMD-17  EMD_LOCAL_WELLPOSEDNESS_IMPORT
+              NAMED_ANALYTIC_INPUT
+
+[ ] EMD-18  EMD_STATIONARY_EXISTENCE
+              OPEN_ANALYTIC
+
+[ ] EMD-19  EMD_GLOBAL_STABILITY
+              OPEN_DECISIVE
+
+[ ] EMD-20  EMD_QFT_ONE_ELECTRON_IDENTIFICATION
+              OPEN_QFT_ENDPOINT
+
+[x] EMD-21  EINSTEIN_MAXWELL_DIRAC_ELECTRON_SECTOR_HULL
+              EXACT_B_TIER_STRUCTURAL
+
+
+14. DEPENDENCY SPINE
+--------------------
+
+  joint action
+    -> EMD-02
+    -> Dirac, Maxwell, Einstein equations.
+
+  Dirac equation + adjoint
+    -> EMD-04
+    -> EMD-05
+    -> EMD-06.
+
+  Maxwell equation + Dirac equation
+    -> EMD-07
+    -> EMD-08.
+
+  3+1 decomposition
+    -> EMD-09
+    -> EMD-10.
+
+  boundary conditions
+    -> EMD-11 or EMD-12.
+
+  Killing/gauge-covariant eigenstate ansatz
+    -> EMD-13.
+
+  field decomposition
+    -> EMD-14.
+
+  large/small component expansion
+    -> EMD-15.
+
+  CAR one-particle algebra
+    -> EMD-16.
+
+  EMD-01 through EMD-16
+    -> EMD-21.
+
+  EMD-17 + appropriate data
+    -> local nonemptiness.
+
+  EMD-18 + coercive estimates
+    -> EMD-19.
+
+
+15. LEAN ADAPTER PLAN
+---------------------
+
+Planned modules:
+
+  MaxwellSchroedingerSystem/EMD/Geometry.lean
+  MaxwellSchroedingerSystem/EMD/SpinStructure.lean
+  MaxwellSchroedingerSystem/EMD/GaugeConnection.lean
+  MaxwellSchroedingerSystem/EMD/DiracEquation.lean
+  MaxwellSchroedingerSystem/EMD/DiracCurrent.lean
+  MaxwellSchroedingerSystem/EMD/MaxwellEquation.lean
+  MaxwellSchroedingerSystem/EMD/StressEnergy.lean
+  MaxwellSchroedingerSystem/EMD/EinsteinEquation.lean
+  MaxwellSchroedingerSystem/EMD/CauchyConstraints.lean
+  MaxwellSchroedingerSystem/EMD/ElectronNumber.lean
+  MaxwellSchroedingerSystem/EMD/CompactNeutrality.lean
+  MaxwellSchroedingerSystem/EMD/StationarySector.lean
+  MaxwellSchroedingerSystem/EMD/ADaggerDefect.lean
+  MaxwellSchroedingerSystem/EMD/PauliLimit.lean
+  MaxwellSchroedingerSystem/EMD/ProfileTransfer.lean
+  MaxwellSchroedingerSystem/EMD/Main.lean
+
+The first Lean target should be the algebraic/structural implication, not a
+PDE existence theorem.  All analytic existence, regularity, asymptotic, and
+QFT-identification inputs must remain explicit.
+
+
+16. CLOSURE CLASSIFICATION
+--------------------------
+
+EXACT_B_TIER STRUCTURAL CORE:
+
+  gauge covariance;
+  current conservation;
+  one-electron charge normalization;
+  Maxwell compatibility;
+  stress exchange;
+  Bianchi closure;
+  Cauchy constraint formulas;
+  compact neutrality;
+  stationary bilinears under the stationary ansatz;
+  a_dagger defect decomposition;
+  one-particle fermionic transfer algebra;
+  the root sector hull implication.
+
+FORMAL ASYMPTOTIC B_TIER:
+
+  nonrelativistic Pauli parameter match.
+
+OPEN ANALYTIC ENDPOINTS:
+
+  local well-posedness in the exact frozen function spaces;
+  globally regular stationary one-electron solutions;
+  nonlinear stability;
+  asymptotically flat soliton existence;
+  compact background construction;
+  self-generation of the specified a_dagger dressing.
+
+OPEN QUANTUM-FIELD ENDPOINTS:
+
+  identification with an interacting QED one-electron Fock sector;
+  photon quantization;
+  pair creation;
+  radiative corrections;
+  anomalous magnetic moment;
+  renormalization.
+
+FORMAL STATUS:
+
+  B_TIER only.
+  Lean files are not emitted.
+  A_TIER is not established.
+  FORMAL_CLOSURE is not established.
+  UNCONDITIONAL_CLOSURE is not established.
