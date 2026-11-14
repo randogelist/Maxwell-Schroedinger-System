@@ -1,0 +1,479 @@
+NSE KOOPMAN–HEISENBERG FORM — FROZEN SM-03 OPERATOR MATCH
+B-TIER MATHEMATICAL DERIVATION
+==============================================================
+
+STATUS
+------
+THEOREM = NSE_KOOPMAN_HEISENBERG_FORM
+MARKER = !
+TIER = B_TIER
+SOURCE_BRANCH = b-tier-hull
+FROZEN_REGISTER = FROZEN_SM_NSE_OPERATOR_MATCH_REGISTER_B_TIER
+SM_REFERENCE_ROW = SM-03 ONLY
+PREVIOUS MATCHES = SM-01 TRANSPORT_COMMUTATOR; SM-02 AUXILIARY_CURVATURE
+UNTOUCHED_ROWS = SM-04..SM-08
+A_TIER = NOT_ESTABLISHED
+LEAN_STATUS = NOT_EMITTED
+FORMAL_CLOSURE = NOT_ESTABLISHED
+LOCAL_LEAN_EXECUTION = NONE
+
+TARGET
+------
+Frozen Standard Model reference SM-03, time-independent observable:
+  i*hbar * partial_t O_H = [O_H,H_SM].
+
+Derive the same OPERATOR IDENTITY SHAPE for finite-dimensional
+NSE Galerkin observable dynamics, with a correctly normalized
+unitary half-density representation. Prove an exact energy
+dissipation commutator and distinguish the constructed generator
+K_N from the microscopic quantum Hamiltonian H_SM.
+
+IMPORTANT:
+The NSE phase-space generator may have a self-adjoint
+half-density realization although kinetic energy decreases.
+There is no contradiction: the unitary operator acts on a
+CLASSICAL ENSEMBLE / half-density Hilbert space, and K_N
+is NOT the positive physical electron energy operator.
+
+0. FIXED FINITE GALERKIN FRAMEWORK
+----------------------------------
+Fix a periodic torus M=T_L^3 and viscosity nu>0.
+Choose a finite-dimensional real, mean-zero, divergence-free
+Fourier Galerkin subspace V_N with orthonormal real L2 basis
+{e_1,...,e_d} (multiple layers and a finite symmetric
+graph may be included in the same finite product space).
+
+Set
+  u_N(z,x)=sum_(j=1)^d z_j e_j(x),  z in R^d.
+
+Define the solenoidal convection coefficient vector
+  (B_N(z,z))_j=<P_sigma((u_N dot grad)u_N),e_j>,
+
+and a constant symmetric positive-semidefinite linear
+dissipation matrix
+  R_N=nu A_N+L_kappa,N >=0.
+On the mean-zero Fourier space nu>0 makes R_N positive
+definite. The graph term is nonnegative if its edges
+are reciprocal, with nonnegative conductances.
+
+The finite-dimensional ODE is
+  dot z = b_N(z):= -B_N(z,z)-R_N z.                  (E1)
+
+The projected convection satisfies exact energy cancellation
+  z dot B_N(z,z)
+    =<u_N,(u_N dot grad)u_N>
+    =0
+for all z, by incompressibility and periodic integration.
+
+With a chosen positive constant rho for physical kinetic energy,
+define
+  E_N(z)=rho/2 * |z|^2,
+  D_N(z)=rho * z^T R_N z >=0.
+
+Thus
+  b_N dot grad_z E_N=-D_N.                         (E2)
+
+All finite-dimensional coefficient functions are smooth
+polynomials, but do not claim that arbitrary spectral
+Galerkin projection preserves the Lie Jacobi identity.
+
+1. COMPLETE FINITE GALERKIN FLOW
+---------------------------------
+THEOREM NKH-01: GLOBAL_BIDIRECTIONAL_FINITE_FLOW.
+
+For the ODE (E1), the Euclidean norm satisfies
+  (1/2) d/dt |z(t)|^2= -z(t)^T R_N z(t).
+
+For t>=0:
+  |z(t)|<=|z(0)|.
+For t<=0:
+  |z(t)| <= exp(||R_N||*|t|)|z(0)|.
+
+The second estimate follows from the differential
+inequality and reversing the time parameter.
+Neither direction can reach infinite norm in
+finite time. Since b_N is a smooth polynomial
+vector field, the finite ODE has a unique
+complete flow
+  Phi_t:R^d->R^d for all t in R,
+  Phi_(t+s)=Phi_t circle Phi_s,
+  Phi_(-t)=Phi_t^(-1).
+
+It consists of smooth diffeomorphisms
+with positive Jacobian determinant.
+
+CRITICAL CAVEAT:
+This finite-N invertibility does NOT establish
+a reversible infinite-dimensional viscous
+NSE flow or a bounded inverse as N tends
+to infinity. Backward diffusion amplification
+scales with the largest retained frequency.
+
+STATUS = EXACT_B_TIER.
+
+2. CLASSICAL KOOPMAN GENERATOR
+-------------------------------
+THEOREM NKH-02: OBSERVABLE_KOOPMAN_CHAIN_RULE.
+
+For smooth classical observables f:R^d->C define
+  L_N f:= b_N dot grad_z f.
+
+Set
+  f_t(z)=f(Phi_t(z)).
+
+The autonomous flow identity yields
+  partial_t f_t=L_N f_t.
+
+For the kinetic energy observable:
+  L_N E_N=-D_N.
+
+For time-independent f,
+  partial_t f_t(0,z)=L_N f(z).
+
+STATUS = EXACT_B_TIER.
+
+3. WHY THE UNSYMMETRIZED GENERATOR FAILS
+------------------------------------------
+THEOREM NKH-03: LEBESGUE_ADJOINT_AND_DIVERGENCE.
+
+On the dense smooth compact-support domain
+C_c^infty(R^d;C) inside L2(R^d,dz), integration
+by parts gives
+  <phi,L_N psi>
+    =<-L_N phi-(div b_N)phi,psi>.
+
+Thus
+  L_N^formal_adjoint=-L_N-M_(div b_N).
+
+Without an invariant reference measure,
+the raw Koopman composition operators
+f -> f circle Phi_t need not be unitary
+on the Lebesgue L2 space.
+
+The correction (div b_N)/2 is therefore
+necessary to obtain a formally skew
+first-order half-density generator.
+
+STATUS = EXACT_B_TIER.
+
+4. HALF-DENSITY UNITARITY AND GENERATOR
+---------------------------------------
+THEOREM NKH-04: UNITARY_HALF_DENSITY_FLOW.
+
+For the complete smooth diffeomorphism flow Phi_t,
+define on L2(R^d,dz):
+
+  (U_t psi)(z)
+   := |det D Phi_(-t)(z)|^(1/2)
+      psi(Phi_(-t)(z)).
+
+By the change-of-variables theorem, for all psi,
+  ||U_t psi||_2=||psi||_2.
+
+The maps U_t form a strongly continuous
+unitary group on L2(R^d,dz).
+Differentiating on smooth compact-support tests:
+  dU_t psi/dt at t=0
+    =-[b_N dot grad_z+(1/2)div b_N] psi.
+
+Define
+  A_(1/2)=b_N dot grad_z + (1/2)div b_N,
+  K_N= -i*hbar A_(1/2), hbar>0.
+
+The Stone generator of the above unitary
+group is the self-adjoint realization of K_N
+agreed with the displayed differential
+expression on its smooth test domain:
+
+  U_t=exp(-i*t*K_N/hbar).
+
+The parameter hbar>0 is an INSERTED
+action normalization. Classical NSE does
+not derive Planck's constant.
+
+STATUS = EXACT_B_TIER WITH STANDARD
+STONE/CHANGE-OF-VARIABLES ANALYTIC INPUT.
+
+5. EXACT HEISENBERG-SHAPE COMMUTATOR
+------------------------------------
+THEOREM NKH-05: HEISENBERG_FORM_ON_MULTIPLICATION_OBSERVABLES.
+
+For f smooth define M_f psi=f psi.
+On smooth common invariant tests:
+
+  [M_f,K_N]psi
+    = M_f[-i hbar A_(1/2)psi]
+      -[-i hbar A_(1/2)(f psi)]
+    =i hbar (L_N f)psi.
+
+Therefore
+  [M_f,K_N]=i hbar M_(L_N f).                      (H1)
+
+Since f_t=f circle Phi_t and
+  partial_t f_t=L_N f_t,
+
+  i hbar partial_t M_(f_t)
+    =[M_(f_t),K_N].                               (H2)
+
+Equivalently,
+  U_t^dagger M_f U_t=M_(f circle Phi_t).
+
+This is the EXACT formal shape of
+frozen SM-03 Heisenberg evolution.
+
+However, K_N is an operator encoding
+classical deterministic ensemble transport,
+not the physical energy operator H_SM
+acting on Standard Model Fock states.
+
+STATUS = EXACT B_TIER OPERATOR MATCH,
+NOT MICROSCOPIC QUANTUM EQUIVALENCE.
+
+6. ENERGY-DISSIPATION COMMUTATOR
+---------------------------------
+THEOREM NKH-06: NSE_ENERGY_DISSIPATION_OPERATOR_IDENTITY.
+
+From (E2) and (H1),
+
+  [M_(E_N),K_N]
+    =i hbar M_(L_N E_N)
+    =-i hbar M_(D_N).                            (H3)
+
+Consequently along the Heisenberg observable flow:
+  d/dt M_(E_N circle Phi_t)
+    =-M_(D_N circle Phi_t).
+
+The energy-loss operator M_D is
+nonnegative, but the commutator is
+anti-Hermitian as it should be.
+
+This does NOT define a canonical NSE
+time operator T with [T,H_SM]=i*hbar*I.
+The quantum Robertson uncertainty
+inequality does not follow from (H3).
+
+STATUS = EXACT B_TIER.
+
+7. EXPLICIT TWO-COEFFICIENT HELICAL NSE TEST
+---------------------------------------------
+THEOREM NKH-07: DAMPED_HELICAL_DILATION_EXAMPLE.
+
+Choose a nonzero periodic k=2 pi n/L.
+Set z=(a,b) and
+  u(z,x)=a cos(kz_spatial)e_x
+          +b sin(kz_spatial)e_y.
+
+This is divergence free and has
+  (u dot grad)u=0,
+  Delta u=-k^2 u.
+
+The finite coefficient ODE is exactly
+  dot a=-gamma a, dot b=-gamma b,
+  gamma:=nu*k^2>0,
+  Phi_t(a,b)=e^(-gamma*t)(a,b).
+
+Take physical fluid density rho_f>0.
+The fluctuation energy and dissipation are
+  E(a,b)=rho_f*L^3*(a^2+b^2)/4,
+  D=2 gamma E.
+
+Here
+  L=-gamma(a partial_a+b partial_b),
+  div b_flow=-2 gamma,
+  K=i*hbar*gamma*(a partial_a+b partial_b+1).
+
+The half-density unitary is
+  (U_t psi)(a,b)
+     =exp(gamma*t)*psi(exp(gamma*t)*a,
+                        exp(gamma*t)*b).
+
+Direct calculation gives
+  [M_E,K]=-2*i*hbar*gamma*M_E,
+
+  M_(E circle Phi_t)
+     =exp(-2gamma*t)*M_E.
+
+This recovers the exact NSE energy-decay
+law despite the unitary HALF-DENSITY
+representation.
+
+K is a dilation generator with spectrum
+unbounded in both directions, not
+a semibounded quantum electron Hamiltonian.
+
+STATUS = EXACT B_TIER CONSTRUCTIVE EXAMPLE.
+
+8. PRODUCT NSE^X AND GRAPH DISSIPATION
+---------------------------------------
+THEOREM NKH-08: GRAPH_GALERKIN_HEISENBERG_PORT.
+
+For finite X={1,...,N}, select finitely many
+mean-zero divergence-free Fourier modes
+in each layer, and a symmetric graph
+L_kappa>=0. Concatenate their coefficients
+into z in R^d.
+
+Then
+  dot z=-B_N(z,z)-[nu A_N+L_kappa]z,
+  R_N=nu A_N+L_kappa>=0.
+
+The same global finite-dimensional flow
+and half-density construction apply.
+The energy and dissipation are
+
+  E_N(z)=1/2 |z|^2,
+  D_N(z)
+     =nu sum_i||grad u_i||_2^2
+       +sum_(i<j) kappa_ij||u_i-u_j||_2^2.
+
+Therefore
+  [M_E,K_N]=-i hbar M_D
+
+for the PRODUCT finite Galerkin representation.
+
+The graph edge terms are real dissipative
+operator contributions, NOT additional
+gauge-generator structure.
+
+STATUS = EXACT B_TIER.
+
+9. BOUNDARIES AND FROZEN TABLE
+-------------------------------
+THEOREM NKH-09: SM03_MATCH_CLASSIFICATION.
+
+SM-03 frozen identity:
+  i hbar partial_t O_H=[O_H,H_SM].
+
+NSE finite Galerkin match:
+  i hbar partial_t M_(f_t)=[M_(f_t),K_N].
+
+TYPE CLASSIFICATION:
+  EXACT_ALGEBRAIC_MATCH:
+    classical Koopman half-density
+    Heisenberg commutator form.
+
+  DISTINCT:
+    K_N is classical Liouville/KvN
+    half-density generator, not
+    H_SM of quantum gauge/fermion fields.
+
+  DISTINCT:
+    Energy M_E dissipates, whereas
+    K_N is conserved as a fixed
+    generator of the unitary Koopman lift.
+
+  DISTINCT:
+    Unitary half-density action in
+    finite coefficient space does NOT
+    render infinite-dimensional NSE
+    time-reversal well posed.
+
+  NOT DERIVED:
+    physical electron energy-time uncertainty;
+    quantization of NSE;
+    CAR, Gauss-law and BRST identities;
+    gauge-current Ward or stress matching;
+    SM-to-NSE dynamical equivalence.
+
+Rows SM-04..SM-08 remain frozen.
+The U(1) connection of SM-02 is not
+modified or asserted to be physical EM.
+
+STATUS = EXACT SCOPE CLASSIFICATION.
+
+10. ROOT THEOREM
+-----------------
+THEOREM NSE_KOOPMAN_HEISENBERG_FORM.
+
+Given:
+ (H1) a finite divergence-free Fourier
+      Galerkin NSE or NSE^X model with
+      energy-preserving convective quadratic term;
+ (H2) a finite symmetric nonnegative
+      Stokes/graph dissipation matrix R_N;
+ (H3) fixed hbar>0, Lebesgue coefficient
+      measure and the half-density
+      operator realization;
+ (H4) standard finite ODE, smooth flow
+      and Stone unitary generator results;
+
+Conclude:
+ (R1) global complete finite Galerkin flow;
+ (R2) exact Koopman generator L_N;
+ (R3) self-adjoint half-density generator
+      K_N=-i*hbar(L_N+div b_N/2);
+ (R4) for smooth multiplication observables,
+      [M_f,K_N]=i*hbar M_(L_N f);
+ (R5) i*hbar partial_t M_(f circle Phi_t)
+        =[M_(f circle Phi_t),K_N];
+ (R6) [M_E,K_N]=-i*hbar M_D;
+ (R7) exact damped helical realization;
+ (R8) product graph extension;
+ (R9) no microscopic Standard Model
+      Hamiltonian equivalence is inferred.
+
+This is a complete mathematical B_TIER
+of the scoped identity and is not A_TIER.
+
+11. ENDPOINT REGISTER
+----------------------
+[x] NKH-01 GLOBAL_BIDIRECTIONAL_FINITE_FLOW
+[x] NKH-02 OBSERVABLE_KOOPMAN_CHAIN_RULE
+[x] NKH-03 LEBESGUE_ADJOINT_AND_DIVERGENCE
+[x] NKH-04 UNITARY_HALF_DENSITY_FLOW
+[x] NKH-05 HEISENBERG_FORM_ON_MULTIPLICATION_OBSERVABLES
+[x] NKH-06 NSE_ENERGY_DISSIPATION_OPERATOR_IDENTITY
+[x] NKH-07 DAMPED_HELICAL_DILATION_EXAMPLE
+[x] NKH-08 GRAPH_GALERKIN_HEISENBERG_PORT
+[x] NKH-09 SM03_MATCH_CLASSIFICATION
+[x] NKH-10 NSE_KOOPMAN_HEISENBERG_FORM_ROOT
+
+[ ] NKH-11 PHYSICAL_STANDARD_MODEL_HAMILTONIAN_IDENTIFICATION
+[ ] NKH-12 INFINITE_NSE_HALF_DENSITY_LIMIT
+[ ] NKH-13 GAUGE_CONSISTENT_STATE_REDUCTION
+[ ] NKH-14 PHYSICAL_ELECTRON_DISSIPATION_DERIVATION
+[ ] NKH-15 EXTERNAL_LEAN_BUILD_AND_AXIOM_AUDIT
+
+12. LITERATURE / RESEARCH ANCHORS
+----------------------------------
+Koopman-von Neumann treatment of nonlinear
+classical dynamics, Phys Rev Research 2, 043102:
+  https://doi.org/10.1103/PhysRevResearch.2.043102
+
+Tronci/Joseph (2021), Koopman wavefunctions
+in Vlasov-Maxwell kinetic theory:
+  https://www.cambridge.org/core/journals/journal-of-plasma-physics/article/koopman-wavefunctions-and-clebsch-variables-in-vlasovmaxwell-kinetic-theory/AA54B63EC3D96DBCE8CADEE6566CDDB6
+
+Koopman-von Neumann/half-density generators
+are operator representations of CLASSICAL
+dynamics, not automatic physical quantum
+states of interacting fermions.
+
+13. FUTURE A-TIER PROOF SPINE
+------------------------------
+A. Abstract finite-dimensional real quadratic
+   energy-preserving vector field b(z)=-B(z,z)-Rz.
+B. Energy derivative and bidirectional ODE
+   growth bound / flow.
+C. L_N product rule and formal L2 adjoint
+   divergence correction.
+D. Abstract multiplication commutator on
+   smooth tests.
+E. Finite-mode explicit two-dimensional
+   dilation example.
+F. Graph operator positive quadratic form.
+G. Unitariy/Stone endpoint as externally
+   justified analytic port, not a fake
+   Mathlib theorem import.
+H. Deterministic SM-03 scoped root.
+No local Lean compiler execution.
+No A-tier or theorem-level axiom audit evidence.
+
+FINAL
+-----
+MARKER=!
+TIER=B_TIER
+SM_03_ALGEBRAIC_MATCH=EXACT_ON_FINITE_GALERKIN
+PHYSICAL_QUANTUM_HAMILTONIAN_MATCH=OPEN
+SM_04_THROUGH_SM_08=FROZEN
+A_TIER=NOT_ESTABLISHED
