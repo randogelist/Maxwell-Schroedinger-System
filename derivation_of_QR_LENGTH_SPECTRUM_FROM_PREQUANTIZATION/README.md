@@ -1,0 +1,10 @@
+# derivation_of_QR_LENGTH_SPECTRUM_FROM_PREQUANTIZATION
+
+```text
+ENDPOINT_ID = QR-10
+STATUS = CONDITIONAL_B_TIER
+```
+
+Target: from `K_QR=κ_GR c³ε²/G=m_QRℏ`, derive `ε_m=√(m_QR/κ_GR)ℓ_P`.
+
+Source: [`B_TIER/QR_ELECTRON_REDUCED_ACTION_B_TIER.txt`](../B_TIER/QR_ELECTRON_REDUCED_ACTION_B_TIER.txt).

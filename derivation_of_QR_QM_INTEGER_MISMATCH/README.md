@@ -1,0 +1,10 @@
+# derivation_of_QR_QM_INTEGER_MISMATCH
+
+```text
+ENDPOINT_ID = QR-08
+STATUS = EXACT_CONDITIONAL_B_TIER
+```
+
+Target: define `r=m_QR-1∈ℤ` and prove `r=0 ↔ K_QR=K_QM=ℏ`.
+
+Source: [`B_TIER/QR_ELECTRON_REDUCED_ACTION_B_TIER.txt`](../B_TIER/QR_ELECTRON_REDUCED_ACTION_B_TIER.txt).
