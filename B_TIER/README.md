@@ -88,7 +88,52 @@ Composing the exact constraint data with the standard vacuum Cauchy theorem give
 
 The bridge is explicitly transverse-only: `rho_chi` and `E_chi` are not inserted into the vacuum Einstein stress tensor. The sourced Einstein–Maxwell–Schrodinger completion remains open.
 
-The decisive continuation is
+## Gowdy future completeness and stability gates
+
+- [`GR_GOWDY_FUTURE_STABILITY_B_TIER.txt`](GR_GOWDY_FUTURE_STABILITY_B_TIER.txt) — exact `T²` invariance, twist-zero calculation, future-expanding areal sign, unpolarized classification, global Gowdy future-completeness composition, and high-frequency curvature-defect diagnostic.
+- [`GR_GOWDY_FUTURE_STABILITY_ENDPOINT_INDEX.md`](GR_GOWDY_FUTURE_STABILITY_ENDPOINT_INDEX.md) — Gowdy and stability endpoint register.
+
+For the expanding branch,
+
+```text
+n(R)|_0 = sqrt(2/3)*s_epsilon > 0.
+```
+
+The block conditions
+
+```text
+g_Az = 0
+K_Az = 0
+```
+
+force both `T²` twist constants to vanish. Consequently the development lies in the Gowdy class. Under the established future-expanding Gowdy theorem, it admits a global future areal foliation and is future timelike geodesically complete.
+
+The data are genuinely unpolarized for `k!=0`: the rotating orbit TT block cannot be diagonalized by one constant `T²` basis.
+
+For a high-frequency sequence,
+
+```text
+|E_Weyl|² = (s_j*)^4/3
+|H_Weyl|² = k_j² (s_j*)².
+```
+
+Thus
+
+```text
+s_j* -> 0 and |k_j|s_j* -> beta != 0
+```
+
+retains a nonzero curvature-defect scale, while
+
+```text
+s_j* -> 0 and |k_j|s_j* -> 0
+```
+
+is a sufficient no-corrector gate for the circular family.
+
+Strong norm/orbital stability requires an exact match to the well-preparedness hypotheses of the torus-symmetric stability theory. Perturbations breaking `T²` symmetry remain open.
+
+The decisive symplectic continuation remains
 
 ```text
 GR_NONLINEAR_SYMPLECTIC_COMPLETION:
@@ -111,4 +156,4 @@ follow. The historical value `epsilon=2l_P` still requires `kappa_GR=1/4`.
 - [`OBLIGATION_GRAPH.md`](OBLIGATION_GRAPH.md)
 - [`VALIDATION_ENDPOINTS.md`](VALIDATION_ENDPOINTS.md)
 
-The nonlinear reduced symplectic orbit, same-orbit matching, geometric selection of the coefficient `1/4`, sourced Einstein–Maxwell–Schrodinger completion, four-dimensional/five-dimensional adapter interface, and cross-adapter `MS_TO_NSE_GERM` remain explicit unresolved premises. Prepared mathematics does not establish A-tier status.
+The nonlinear reduced symplectic orbit, same-orbit matching, geometric selection of the coefficient `1/4`, sourced Einstein–Maxwell–Schrodinger completion, four-dimensional/five-dimensional adapter interface, exact torus well-preparedness match, symmetry-breaking stability, and cross-adapter `MS_TO_NSE_GERM` remain explicit unresolved premises. Prepared mathematics does not establish A-tier status.
