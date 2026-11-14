@@ -1,0 +1,54 @@
+# derivation_of_ONE_ELECTRON_QM_MAXWELL_GR_MERGED_EVOLUTION
+
+```text
+ENDPOINT = ONE_ELECTRON_QM_MAXWELL_GR_MERGED_EVOLUTION
+STATUS = CONDITIONAL_B_TIER_WITH_EXPLICIT_OPERATOR_MODEL
+SIGNAL = !=! ON THE FROZEN SYNCHRONIZED REDUCED ORBIT
+LEAN_STATUS = NOT_EMITTED
+A_TIER_STATUS = NOT_ESTABLISHED
+```
+
+## Root implication
+
+```text
+DRESSED_EMD_CP1_EMBEDDING
++ DRESSED_EMD_TANGENCY
++ QM/MAXWELL/GR READOUTS
++ K_QR = hbar
++ Delta_omega = Delta_E/hbar
++ COMMON TIME NORMALIZATION
++ SECTOR READOUT INTERTWINERS
+-> ONE_ELECTRON_QM_MAXWELL_GR_MERGED_EVOLUTION.
+```
+
+## Merged carrier
+
+```text
+Z_merge(z) = (Gamma_z,F_z,gamma_z).
+```
+
+## Common generator
+
+```text
+L_merge = -i(Delta_E/hbar) partial_phi.
+```
+
+## Operator closure
+
+```text
+U_block(t)J = J exp(-itL_merge)
+[P_sync,U_block(t)] = 0
+[P_sync,L_block] = 0.
+```
+
+## Open premises
+
+```text
+DRESSED_EMD_CP1_EMBEDDING_CONSTRUCTION
+DRESSED_EMD_TANGENCY_VERIFICATION
+EMD_GR_PHYSICAL_SAME_ORBIT
+GLOBAL_SOURCED_NONLINEAR_PERSISTENCE
+SECTOR_READOUT_ISOMETRIES.
+```
+
+[Canonical B-tier derivation](../B_TIER/ONE_ELECTRON_QM_MAXWELL_GR_MERGED_EVOLUTION_B_TIER.txt)
