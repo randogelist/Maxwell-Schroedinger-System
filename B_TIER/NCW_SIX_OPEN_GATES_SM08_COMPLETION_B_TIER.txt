@@ -1,0 +1,383 @@
+SIX OPEN NCW GATES + FINAL FROZEN SM-08 STRESS MATCH
+B-TIER ATTEMPT AND HONEST ENDPOINT REGISTER — v0.1
+===================================================
+
+STATUS
+------
+THEOREM = NSE_SM08_STRESS_CURRENT_SIX_GATE_ASSESSMENT
+MARKER = !
+MODE = B_TIER_DERIVATION
+SOURCE_BRANCH = b-tier-hull
+FROZEN_STANDARD_MODEL_REFERENCE = SM-01..SM-08
+ONLY_PREVIOUSLY_UNMATCHED_ROW = SM-08
+SIX_REFERENCED_OPEN_GATES = NCW-13..NCW-18
+DEMONSTRATION = HELICAL_TWO_FLUID_MAXWELL_NSE_GLOBAL_B_TIER
+A_TIER = NOT_ESTABLISHED
+FORMAL_CLOSURE = NOT_ESTABLISHED
+LOCAL_LEAN_EXECUTION = NONE
+
+PRECISE INTERPRETATION
+----------------------
+Seven of the eight Standard Model operator rows SM-01..SM-07 already
+have scoped mathematical NSE analogues. Only SM-08 was not yet
+examined. The phrase "remaining six" corresponds to SIX OPEN
+CONDITIONAL/PHYSICAL/AUDIT GATES at the end of the frozen SM-07
+register:
+
+ NCW-13 PHYSICAL_SM_NOETHER_CURRENT_OPERATOR
+ NCW-14 NONABELIAN_QUANTUM_WARD_ANOMALY_AUDIT
+ NCW-15 MICROSCOPIC_TO_FLUID_CURRENT_MATCHING
+ NCW-16 CHARGE_TO_MOMENTUM_BACKREACTION_FORCE_BOUND
+ NCW-17 FULL_MAXWELL_STRESS_ENERGY_WARD_MATCH_SM08
+ NCW-18 EXTERNAL_LEAN_COMPILER_THEOREM_AXIOM_AUDIT
+
+This file attempts all SIX but DOES NOT assert unconditional closure.
+It separates (A) exact classical/effective algebra from (B) genuinely
+missing microscopic and native compiler endpoints.
+
+1. NCW-13 — SELECTED PHYSICAL ELECTRON NOETHER CURRENT OPERATOR
+----------------------------------------------------------------
+For a regulated/smeared 4D Dirac electron field psi_e of charge
+q_e=-e, coupled to U(1)_EM after electroweak symmetry breaking,
+the electron-part electromagnetic source operator is
+
+  Jhat_e^mu(x)
+     =q_e :bar psi_e(x) gamma^mu psi_e(x): .
+
+Normal ordering here is schematic and must be replaced by a declared
+renormalization prescription for interacting composite operators.
+The operator is a distribution and requires smearing and
+appropriate domains. It is gauge invariant under physical
+U(1)_EM transformations.
+
+For a chosen physical state rho, the classical current readout is
+
+  J_e^mu(x)
+    =Tr(rho Jhat_e^mu(x))
+
+after renormalization and suitable state/domain conditions.
+For a single normalized wavepacket in a first-quantized Dirac model,
+the classical current is
+
+  j_e^mu=q_e c bar psi gamma^mu psi
+
+in conventions where the time component agrees with charge density.
+
+On solutions of the classical covariant Dirac equation in an
+external U(1) connection,
+
+  partial_mu j_e^mu=0.
+
+The nonrelativistic Pauli reduction includes the spin curl current
+
+  j_num
+    =(hbar/m_e)Im(psi^dagger grad psi)
+      -(q_e/m_e) A (psi^dagger psi)
+      +(hbar/(2m_e))curl(psi^dagger sigma psi)
+
+with sign conventions for the kinetic derivative fixed
+consistently. The spin curl is divergence free.
+
+IMPORTANT: the full Standard Model physical electromagnetic current
+also includes other charged fermions and charged electroweak
+bosonic/Higgs sectors where present. The single-electron current
+operator is NOT automatically the full SM source.
+
+CLASSIFICATION:
+  DERIVED FORMULA IN SELECTED ELECTRON/REGULATED SECTOR.
+  FULL RENORMALIZED SM COMPOSITE OPERATOR = OPEN.
+  NCW-13 = PARTIAL B_TIER, NOT FULL PHYSICAL CLOSURE.
+
+2. NCW-14 — ANOMALY / QUANTUM WARD
+----------------------------------
+Choose one conventional chiral Standard Model generation with
+left-handed fields:
+  Q_L=(3,2,1/6), u^c=(bar3,1,-2/3),
+  d^c=(bar3,1,1/3), L_L=(1,2,-1/2),
+  e^c=(1,1,1).
+
+The finite mixed and Abelian anomaly coefficient sums are
+
+  A_SU3^2Y proportional to
+    2*(1/6)+(-2/3)+(1/3)=0,
+
+  A_SU2^2Y proportional to
+    3*(1/6)+(-1/2)=0,
+
+  A_grav^2Y =
+    6*(1/6)+3*(-2/3)+3*(1/3)
+      +2*(-1/2)+1=0,
+
+  A_Y^3 =
+    6*(1/6)^3+3*(-2/3)^3+3*(1/3)^3
+      +2*(-1/2)^3+1^3=0.
+
+SU(3)^3 is vectorlike once all quark chiralities
+are accounted for; the minimal generation has four
+SU(2) left doublets counting colors, avoiding the usual
+Witten parity obstruction.
+
+These are exact rational arithmetic checks and the
+standard necessary perturbative anomaly tests.
+They are NOT an operator-level renormalized quantum Ward identity,
+a full global/torsion anomaly audit for arbitrary global gauge group,
+or proof of a nonperturbative 4D Standard Model construction.
+
+CLASSIFICATION:
+  FINITE ANOMALY ARITHMETIC = B_TIER.
+  NCW-14 FULL QUANTUM WARD/AUDIT = OPEN.
+
+3. NCW-15 — MICROSCOPIC CURRENT TO FLUID NO-GO
+-----------------------------------------------
+Given a nonzero electron number density n_psi and number
+current j_psi, define
+  v_psi=j_psi/n_psi,
+  a_psi=P_sigma,0 v_psi.
+
+For the electron electric charge q_e,
+
+  J_e=q_e j_psi,
+  J_fluid=q_e n_psi a_psi,
+  J_res=J_e-J_fluid
+       =q_e n_psi(I-P_sigma,0)v_psi.
+
+This identity is exact but the map psi->a_psi is
+nonlinear and many-to-one. It is not isometric and
+does not preserve physical electron CAR as a linear map.
+
+Furthermore, for the free electron helical profile
+versus its viscously damped NSE flow, both full electric
+currents satisfy continuity but disagree for t>0:
+
+  J_e-J_NSE
+    =q_e n_psi U_e (exp(-nu k^2 t)-1)s_t !=0.
+
+Therefore current continuity and Ward identities
+DO NOT uniquely select a microscopic-to-fluid map
+or establish the necessary equality of time evolution.
+
+The exact residual must be part of the source, energy
+and stress ledger; its power may have either sign.
+
+CLASSIFICATION:
+  EXACT RESIDUAL/NO-GO = B_TIER.
+  NCW-15 MICROSCOPIC PHYSICAL MATCH = OPEN.
+
+4. NCW-16 — CONSTRUCTIVE BACKREACTION SUBCLASS
+------------------------------------------------
+A concrete nonzero classical U(1) Lorentz feedback is
+derived in the companion file
+
+  HELICAL_TWO_FLUID_MAXWELL_NSE_GLOBAL_B_TIER.txt.
+
+There the fields
+
+  u_s=V_s e_z+a_s h_1+b_s h_2,
+  E=E_z e_z+E_1 h_1+E_2 h_2,
+  B=B_1 h_1+B_2 h_2
+
+with neutralized periodic charge source close EXACTLY into
+a finite Maxwell–charged-NSE system. Electric and magnetic
+Lorentz coupling are generally nonzero.
+
+The positive total field/fluid energy obeys
+
+  (E_fluid+E_EM)'
+    =-V sum_s eta_s k^2(a_s^2+b_s^2)
+      -V kappa[
+        (V_1-V_2)^2+(a_1-a_2)^2+(b_1-b_2)^2
+      ]<=0.
+
+This strictly positive quadratic energy bounds all finite
+ODE variables, so polynomial ODE continuation gives
+globally smooth fields for every finite starting tuple.
+
+Thus a genuinely coupled, globally regular Maxwell-NSE
+electromagnetic BACKREACTION SUBCLASS is constructed
+without any H1/2 forcing smallness hypothesis, because
+the explicit helical manifold is invariant.
+
+It is not yet the physical fully quantum Standard Model
+backreaction force, and it says nothing about arbitrary
+3D field/matter coupling.
+
+CLASSIFICATION:
+  NCW-16 CONSTRUCTIVE CLASSICAL SUBCLASS = CLOSED B_TIER.
+  NCW-16 GENERAL SM FORCE NORM/REGULARITY = OPEN.
+
+5. NCW-17 — FROZEN SM-08 STRESS–ENERGY PORT
+-------------------------------------------
+For a classical Maxwell source J^mu satisfying
+  partial_mu F^{mu nu}=mu_0 J^nu,
+  partial_[mu F_nu lambda]=0,
+
+the electromagnetic symmetric stress tensor from
+the metric variation satisfies (with declared metric convention)
+
+  partial_mu T_EM^{mu nu}=-F^{nu lambda}J_lambda.
+
+For matter, the charged matter field's opposite
+source force is
+
+  partial_mu T_matter^{mu nu}=F^{nu lambda}J_lambda
+
+if the matter action/equations are closed and all stress
+contributions are properly accounted for.
+
+For nonabelian Yang–Mills and a chosen invariant
+Lie-algebra pairing, the classical force port is
+
+  Q^nu=<F^{nu lambda},J_lambda>_k,
+
+and the same opposite stress exchange holds on shell,
+modulo extra scalar/interaction stress fields.
+
+NONRELATIVISTIC NSE spatial realization:
+  partial_t(rho_s u_(s,j))
+    +partial_k[
+      rho_s u_(s,j)u_(s,k)
+      +p_s delta_jk
+      -eta_s(partial_j u_(s,k)+partial_k u_(s,j))
+     ]
+    =f_(s,j)+drag_(s,j),
+
+  f_s=rho_charge,s E+J_s cross B.
+
+Work identity:
+  u_s dot f_s=J_s dot E,
+  because u_s dot(u_s cross B)=0.
+
+Maxwell/Poynting:
+  dE_EM/dt=-int J_total dot E dx,
+
+and fluid NSE energy:
+  dE_fluid/dt=-D_visc-D_drag
+               +int J_fluid dot E dx.
+
+If J_total=J_fluid+J_res, then
+
+  d(E_EM+E_fluid)/dt
+    =-D_visc-D_drag-int J_res dot E dx.
+
+With e_thermal'=D_visc+D_drag
+and e_extra'=int J_res dot E,
+
+  d(E_EM+E_fluid+e_thermal+e_extra)/dt=0.
+
+In the explicit helical Maxwell–NSE model,
+J_res=0 relative to the declared two-fluid source,
+so the field/fluid power cancellation is exact.
+
+The mechanical support stress for any prescribed
+stationary compensating charge background must be
+included for a fully closed total momentum statement.
+
+CAUTION:
+Nonrelativistic viscous NSE has no automatically exact
+Lorentz-covariant microscopic T_matter^{mu nu}.
+Full 4D Standard Model stress/Ward identity needs the
+quantized and renormalized field operators, anomaly
+audits and a physically derived coarse-graining.
+
+CLASSIFICATION:
+  NCW-17 CLASSICAL MAXWELL/U1 SM-08 PORT = CLOSED B_TIER.
+  NCW-17 FULL QUANTUM SM-08 = OPEN.
+
+6. NCW-18 — EXTERNAL LEAN CERTIFICATION
+----------------------------------------
+No Lean files were emitted for this scope, no native
+Windows Lean 4.33 / 4.34.0-rc1 compiler run was
+performed, no theorem-level axiom audit log is
+available matching this exact root.
+
+Accordingly:
+  B_TIER = MATHEMATICAL DERIVATIONS IN TXT.
+  A_TIER_CANDIDATE = NOT PREPARED.
+  A_TIER = NOT ESTABLISHED.
+  FORMAL_CLOSURE = NOT ESTABLISHED.
+  UNCONDITIONAL_CLOSURE = NOT ESTABLISHED.
+
+There is NO valid reason to mark NCW-18 as closed.
+NO_LOCAL_LEAN instruction has been respected.
+
+7. STATUS MATRIX
+-----------------
+GATE     B_TIER RESULT                     UNRESOLVED
+-------  --------------------------------  -------------------------------
+NCW-13   Electron current formula          Full regulated SM operator
+NCW-14   Perturbative anomaly sums         Quantum/global Ward audit
+NCW-15   Exact current residual/no-go      Physical dynamical matching
+NCW-16   Exact Maxwell-NSE helical test    General SM force bound
+NCW-17   Maxwell stress and power identity Full quantum SM stress operator
+NCW-18   None; not compiled               Lean native theorem-level audit
+
+ROOT THEOREM
+------------
+THEOREM NSE_SM08_STRESS_CURRENT_SIX_GATE_ASSESSMENT.
+
+Under a classical Maxwell/Yang–Mills action with admissible
+matter fields, valid on-shell Ward identities, smooth
+periodic charged NSE layers and explicit current/source
+partition, the local stress-exchange and integrated
+energy-work balance are exact.
+
+There exists a constructive, charge-neutral, nontrivially
+Lorentz-coupled helical Maxwell–NSE model that remains
+globally smooth for every finite initial amplitude.
+
+However the original NCW-13 through NCW-18 physical/quantum/
+formal endpoints are NOT all discharged. In particular no
+unique microscopic Standard Model to NSE coupling and no
+A-tier compiler/audit proof is established.
+
+MARKER = !
+TIER = CONDITIONAL_B_TIER.
+
+ENDPOINT REGISTER
+-----------------
+[x] SIX-01 SELECTED_ELECTRON_NOETHER_CURRENT_FORMULA
+[x] SIX-02 ONE_GENERATION_ANOMALY_COEFFICIENT_ARITHMETIC
+[x] SIX-03 MICROSCOPIC_CURRENT_RESIDUAL_NO_GO
+[x] SIX-04 HELICAL_MAXWELL_NSE_NONZERO_BACKREACTION
+[x] SIX-05 CLASSICAL_ABELIAN_STRESS_WARD_SM08
+[x] SIX-06 SIGNED_RESIDUAL_POWER_AND_RESERVOIR
+[x] SIX-07 SIX_GATE_STATUS_ASSESSMENT_ROOT
+
+[ ] SIX-08 FULL_NONPERTURBATIVE_SM_CURRENT_OPERATOR
+[ ] SIX-09 QUANTUM_GLOBAL_WARD_ANOMALY_AUDIT
+[ ] SIX-10 UNIQUE_MICROSCOPIC_TO_FLUID_MATCH
+[ ] SIX-11 GENERAL_SM_FORCE_H_MINUS_HALF_CONTROL
+[ ] SIX-12 FULL_QUANTUM_STRESS_ENERGY_SM08
+[ ] SIX-13 NATIVE_EXTERNAL_LEAN_THEOREM_AXIOM_AUDIT
+
+FUTURE PROOF SPINE (NO LEAN EXECUTION):
+A. Rational hypercharge/anomaly coefficient checks.
+B. Abstract exact current residual and Ward nonuniqueness.
+C. Finite helical basis/curl/cross product algebra.
+D. Maxwell and NSE ODE closure, charge constraint.
+E. Positive quadratic energy and polynomial ODE continuation.
+F. Abstract field stress/reciprocal power identity.
+G. Conditional root, then external Lean kernel/axiom audit.
+
+REFERENCES
+----------
+Classical Maxwell stress and Lorentz force:
+https://faculty.washington.edu/seattle/physics544/2011-lectures/thorne-GR.pdf
+
+Two-fluid Euler-Maxwell literature:
+https://annals.math.princeton.edu/2016/183-2/p01
+
+Dirac-current operator and physical velocity:
+https://web.mit.edu/8.322/Spring%202007/notes/chapter1.pdf
+
+Anomaly arithmetic vs full global anomaly constraints:
+https://qft.org/gauge-theories-standard-model/standard-model-assembly-consistency/standard-model-anomaly-cancellation/
+
+Pauli spin-curl contribution:
+https://www.tandfonline.com/doi/full/10.1080/03605302.2024.2439358
+
+FINAL:
+  ! CONDITIONAL_B_TIER
+  SM-08 CLASSICAL STRESS_MATCH = DERIVED.
+  SIX ORIGINAL PHYSICAL/FORMAL GATES = NOT ALL CLOSED.
+  A_TIER = NOT_ESTABLISHED.
