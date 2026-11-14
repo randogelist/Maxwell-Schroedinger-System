@@ -1,476 +1,201 @@
-QUASI-FEFFERMAN-B / NSE TIME-GAP BRIDGE
-CORRECTED B-TIER DERIVATION
-======================================
+QUASI-FEFFERMAN-B / NSE TIME GAP — REFINED PERIODIC CERTIFICATE
+B-TIER DERIVATION, VERSION 0.3
+==============================================================
 
 STATUS
 ------
-
+THEOREM = QFB_NSE_TIME_GAP
 MARKER = !
-TIER = B_TIER
-ARTIFACT = QFB_NSE_TIME_GAP_BRIDGE_B_TIER
-ROOT_ENDPOINT = QFB_NSE_TIME_GAP
+TIER = CONDITIONAL_B_TIER
+DEPENDENCY = NSE_POWER_X_ROUGH_CORE_FINITE_ENTRY_AND_QFB_REFINEMENT_B_TIER
 SOURCE_BRANCH = b-tier-hull
-LEAN_STATUS = NOT_EMITTED
-A_TIER_STATUS = NOT_ESTABLISHED
-FORMAL_CLOSURE = NOT_ESTABLISHED
-LOCAL_LEAN_EXECUTIONS = 0
+LEAN_STATUS = NOT EMITTED
+A_TIER_STATUS = NOT ESTABLISHED
+NO_LOCAL_LEAN_EXECUTION = TRUE
 
-CORRECTION.
+REVISION HISTORY / CORRECTION
+-----------------------------
+The originally frozen coarse periodic QFB cutoff
+  T_coarse=||a||_2^4/(8 pi^2 nu^5)
+is a valid sufficient waiting time under the QFB admission,
+but it is not the strongest cutoff obtainable from the
+ordinary Leray-Hopf energy inequality.
 
-The frozen periodic Quasi-Fefferman_B cutoff is
+The energy-weighted square bound below proves the better
+  T_refined=||a||_2^4/(16 pi^2 nu^5)
+ON THE PERIODIC TORUS under exactly the same frozen QFB admission.
+The earlier claim that coefficient 1/16 was confined to a separate
+whole-space QFA route is superseded.
 
-  T_QFB(a,nu) = ||a||_2^4/(8 pi^2 nu^5).
+The cutoff is a SUFFICIENT regularity-certificate horizon,
+not an assertion of a singularity, a measured quantum time,
+or a lower bound for regularity.
 
-The coefficient 1/(16 pi^2) belongs to the distinct energy-refined QFA
-whole-space chain. It is not presently a proved improvement of periodic QFB.
+0. FROZEN PERIODIC QFB PREMISES
+-------------------------------
+M=T^3 unit flat torus, nu>0.
+a in L2_sigma,0(M). Let u be a Leray-Hopf
+solution with initial datum a.
 
-This document supersedes the earlier version that conflated those two cutoffs.
-
-
-0. FROZEN PERIODIC QFB SCOPE
-----------------------------
-
-Let
-
-  T^3 := (R/Z)^3,
-
-with volume one. Let
-
-  nu > 0,
-  a in L^2_{sigma,0}(T^3),
-
-and let u be an unforced Leray-Hopf solution with initial datum a.
-
-Set
-
-  M := ||a||_2.
-
-For a sufficiently regular time t define
-
-  E(t) := ||u(t)||_2^2,
-  D(t) := ||grad u(t)||_2^2,
-  H(t) := ||u(t)||_{dot H^{1/2}}^2.
-
-The frozen QFB admission endpoint is
+The named external QFB admission is
 
   QFB_ADMISSION:
+    ||b||_(dot H^(1/2))^2 < 2*pi*nu^2
+       -> global regular strong solution from b,
 
-    H(b) < 2 pi nu^2
-      implies
-    Reg_nu(b).
+plus the standard weak-strong uniqueness conclusion
+from any good restarting time.
 
-Here Reg_nu(b) denotes a global smooth strong solution from datum b, together
-with weak-strong uniqueness against the Leray-Hopf trajectory after the
-restart time.
+This numerical threshold is an EXPLICIT PREMISE,
+not a new proof of the threshold constant from
+the present note. The general case can instead
+use an explicit C_NL critical trilinear constant.
 
-
-1. LERAY-HOPF BUDGET
---------------------
-
-The energy inequality gives
-
-  E(t) + 2 nu integral_0^t D(s) ds <= M^2,
-
-hence
-
-  E(t) <= M^2,
-
-  integral_0^infinity D(s) ds <= M^2/(2 nu).
-
-The interpolation inequality is
-
-  H(t)^2 <= E(t) D(t).
-
-Therefore, for every delta>0,
-
-  integral_0^delta H(t)^2 dt
-    <= integral_0^delta E(t)D(t) dt
-    <= M^2 integral_0^delta D(t) dt
-    <= M^4/(2 nu).
-
-STATUS = EXACT_B_TIER.
-
-
-2. GOOD RESTART TIME
---------------------
-
-Define
-
-  T_QFB(a,nu)
-    := M^4/(8 pi^2 nu^5).
-
+1. ENERGY-WEIGHTED LERAY-HOPF BOUND
+------------------------------------
 Let
+  M0=||a||_2,
+  E(t)=||u(t)||_2^2,
+  D(t)=||grad u(t)||_2^2,
+  H(t)=||u(t)||_(dot H^(1/2))^2,
+  A_D(t)=int_0^t D(s)ds.
 
-  delta > T_QFB(a,nu).
-
-Then
-
-  M^4/(2 nu delta) < 4 pi^2 nu^4.
-
-By the integral budget, there exists a regular/Lebesgue time
-
-  s in (0,delta)
-
-such that
-
-  H(s)^2
-    <= M^4/(2 nu delta)
-    < 4 pi^2 nu^4.
-
-Since H(s)>=0,
-
-  H(s) < 2 pi nu^2.
-
-QFB_ADMISSION therefore yields a global smooth restart from u(s). By
-weak-strong uniqueness, the original Leray-Hopf trajectory agrees with this
-smooth solution for all t>=s. In particular it is smooth on [delta,infinity).
-
-THEOREM PERIODIC_QFB_TAIL_REGULARITY.
-
-For every delta satisfying
-
-  delta > T_QFB(a,nu),
-
-the trajectory u is smooth on
-
-  [delta,infinity).
-
-STATUS = B_TIER FROM THE FROZEN QFB ADMISSION.
-
-
-3. EXACT ENDPOINT SEMANTICS
----------------------------
-
-Because delta must satisfy the strict inequality
-
-  delta > T_QFB,
-
-the theorem proves
-
-  u is smooth for every t>T_QFB.
-
-Equivalently, possible positive singular times satisfy
-
-  Sing_t(u) subset (0,T_QFB].
-
-The theorem does not prove regularity at
-
-  t=T_QFB.
-
-It also does not prove uniqueness from the original L2 datum at t=0.
-Uniqueness is obtained only after a good regular restart time s.
-
-No recursive halving
-
-  T_QFB -> T_QFB/2 -> T_QFB/4 -> ...
-
-follows from this argument. Such a step would require a new restart estimate
-whose input is controlled at the earlier cutoff.
-
-STATUS = EXACT_B_TIER_SCOPE.
-
-
-4. DISTINCTION FROM ENERGY-REFINED QFA
---------------------------------------
-
-The distinct whole-space QFA energy refinement uses a sharper budget of the
-form
-
-  integral E(t)D(t) dt <= M^4/(4 nu)
-
-and a restart criterion
-
-  E(s)D(s) < 4 pi^2 nu^4.
-
-That chain gives
-
-  T_QFA,E(a,nu)
-    = M^4/(16 pi^2 nu^5).
+The standard energy inequality gives for a.e. t
+  E(t)+2nu A_D(t)<=M0^2.
 
 Therefore
 
-  T_QFA,E = T_QFB/2
+  int_0^T E(t)D(t)dt
+   <=int_0^T [M0^2-2nu A_D(t)] A_D'(t)dt
+   =M0^2 A_D(T)-nu A_D(T)^2
+   <= M0^4/(4nu).
 
-at the level of the displayed constants, but only under the QFA hypotheses and
-restart theorem.
+Homogeneous Fourier interpolation gives
 
-The implication
+  H(t)^2<= E(t)D(t).
 
-  periodic QFB cutoff = M^4/(16 pi^2 nu^5)
+Thus
 
-is not established.
+  int_0^infinity H(t)^2dt <= M0^4/(4nu).
 
-STATUS = EXACT SEPARATION STATEMENT.
+The earlier coarse approach bounded E(t) by M0^2
+AFTER integrating D, producing M0^4/(2nu).
+The weighted argument is a strict improvement
+of the integral upper bound, without extra NSE
+regularity or energy equality assumptions.
 
+2. GOOD RESTART AND IMPROVED PERIODIC CUTOFF
+---------------------------------------------
+For any
 
-5. PHYSICAL TORUS CONVENTION
-----------------------------
+  delta > M0^4/(16pi^2 nu^5),
 
-Let
+the mean-value argument yields some good time
+s in (0,delta) such that
 
-  T_L^3 := (R/LZ)^3
+  H(s)^2 < (2pi nu^2)^2
+  -> H(s)<2pi nu^2.
 
-with unnormalized physical measure dx and volume
+Invoke QFB_ADMISSION and weak-strong uniqueness.
+Then u is smooth for all t> T_refined, where
 
-  V=L^3.
+  T_refined=M0^4/(16pi^2 nu^5).
 
-For physical initial velocity a, define
+No regularity at the endpoint t=T_refined follows,
+no singularity existence follows, and recursive
+halving is not justified by this estimate alone.
 
-  M_phys^2 := integral_{T_L^3} |a(x)|^2 dx.
-
-The NSE scaling from T_L^3 to the unit torus preserves the formula
-
-  T_QFB^phys(a,nu)
-    = M_phys^4/(8 pi^2 nu^5).
-
-If instead one uses the normalized spatial average
-
-  ||a||_{2,av}^2
-    := L^{-3} integral |a|^2 dx,
-
-then
-
-  T_QFB^phys(a,nu)
-    = L^6 ||a||_{2,av}^4/(8 pi^2 nu^5).
-
-Thus the volume convention must be stated before substituting a profile.
-
-STATUS = EXACT_B_TIER_SCALING.
-
-
-6. CIRCULAR NSE PROFILE
------------------------
-
-Let
-
-  k := 2 pi n/L,
-  n in Z, n != 0,
-
-and define
-
-  r0 := |lambda| s exp(-epsilon^2 k^2/4).
-
-The mean-zero circular fluctuation is
+3. CIRCULAR ELECTRON-ADAPTED NSE INPUT
+---------------------------------------
+On T_L^3, with unnormalized physical integration,
+let k=2pi n/L, n!=0 and
 
   a_epsilon(z)
-    := r0 (cos(kz+alpha), sin(kz+alpha), 0).
-
-Because
-
-  |a_epsilon(x)|^2 = r0^2,
-
-one has, with unnormalized physical measure,
-
-  ||a_epsilon||_2^2 = L^3 r0^2,
-
-  ||a_epsilon||_2^4 = L^6 r0^4.
-
-Therefore the canonical periodic QFB cutoff becomes
-
-  T_QFB^circ
-    = L^6 r0^4/(8 pi^2 nu^5)
-
-    = L^6 lambda^4 s^4 exp(-epsilon^2 k^2)
-      /(8 pi^2 nu^5).
-
-STATUS = EXACT_B_TIER_SUBSTITUTION.
-
-A constant mean transport U0 e3 is removed before applying the mean-zero QFB
-theorem. Equivalently, apply QFB to the fluctuation in the comoving frame.
-
-
-7. ENERGY FORM
---------------
-
-Let rho_f>0 be the declared physical mass density and define the fluctuation
-kinetic energy
-
-  E_NSE(0)
-    := (rho_f/2) ||a_epsilon||_2^2
-     = (rho_f L^3/2) r0^2.
+    =r0 (cos(kz+alpha),sin(kz+alpha),0),
+  r0=|lambda|s exp(-epsilon^2k^2/4).
 
 Then
 
-  ||a_epsilon||_2^2 = 2 E_NSE(0)/rho_f,
+  ||a_epsilon||_2^2=L^3 r0^2.
 
-  ||a_epsilon||_2^4 = 4 E_NSE(0)^2/rho_f^2.
+The two valid sufficient upper cutoffs are
 
-Hence
+  T_coarse^circ = L^6 r0^4/(8pi^2 nu^5),
 
-  T_QFB^circ
-    = E_NSE(0)^2/(2 pi^2 rho_f^2 nu^5).
+  T_refined^circ = L^6 r0^4/(16pi^2 nu^5).
 
-STATUS = EXACT_B_TIER.
+Under a declared fluid density rho_f>0,
 
-This is the exact energy expression for the frozen periodic QFB constant and
-the unnormalized physical L2 convention.
-
-
-8. RELATION TO THE EXACT CIRCULAR DECAY TIMES
-----------------------------------------------
-
-The exact circular NSE solution has
-
-  T_amp    = 1/(nu k^2),
-  T_energy = 1/(2 nu k^2).
-
-The QFB certificate ratios are
-
-  T_QFB^circ/T_amp
-    = L^6 r0^4 k^2/(8 pi^2 nu^4)
-
-    = E_NSE(0)^2 k^2/(2 pi^2 rho_f^2 nu^4),
+  E_NSE(0)=(rho_f L^3/2)r0^2,
 
 and
 
-  T_QFB^circ/T_energy
-    = L^6 r0^4 k^2/(4 pi^2 nu^4)
+  T_refined^circ
+    = E_NSE(0)^2/(4pi^2 rho_f^2 nu^5).
 
-    = E_NSE(0)^2 k^2/(pi^2 rho_f^2 nu^4).
+For the exact circular NSE solution itself, including
+the helical electron-current profile,
 
-These are different notions:
+  u(t)=exp(-nu k^2 t)a_epsilon,
 
-  T_amp:
-    amplitude e-folding time of the exact eigenmode;
+the actual regularity gap is zero for all nu>0.
 
-  T_energy:
-    kinetic-energy e-folding time of the exact eigenmode;
+Hence neither T_coarse nor T_refined is an
+actual singularity onset time.
 
-  T_QFB:
-    worst-case waiting time after which every admissible trajectory with the
-    same initial L2 datum is certified regular.
-
-For the explicit circular solution itself,
-
-  actual regularity gap = 0.
-
-Thus T_QFB^circ is conservative and is not the onset time of regularity for
-that explicit solution.
-
-STATUS = EXACT_B_TIER_SEPARATION.
-
-
-9. CERTIFIED TAIL CLOCK
------------------------
-
-Define
-
-  tau := t-T_QFB^circ.
-
-For a general QFB trajectory, regularity is certified only for
-
-  tau>0.
-
-The value tau=0 is not included by the theorem.
-
-For the explicit circular solution, which is smooth for all t>=0, one may
-compute the exact readouts at the certificate location:
-
-  r(T_QFB^circ)
-    = r0 exp(-nu k^2 T_QFB^circ),
-
-  E_NSE(T_QFB^circ)
-    = E_NSE(0) exp(-2 nu k^2 T_QFB^circ).
-
-If the lab-frame phase clock satisfies
-
-  k U0 = Delta_E/hbar,
-
-then the accumulated phase displacement across the certificate window is
-
-  Delta_phi_QFB
-    = -(Delta_E/hbar) T_QFB^circ
-
-modulo 2 pi.
-
-This phase and decay evaluation applies to the explicit circular solution. It
-is not an exact formula for an arbitrary Leray-Hopf trajectory covered only by
-QFB.
-
-STATUS = EXACT_B_TIER_SCOPE_SEPARATION.
-
-
-10. OPTIONAL ACTION CALIBRATION
--------------------------------
-
-Under the separately declared calibration
-
-  E_NSE(0) T_amp = hbar,
-
-one has
-
-  E_NSE(0) = hbar nu k^2.
-
-Substitution into the periodic QFB energy formula gives
-
-  T_QFB^circ
-    = hbar^2 k^4/(2 pi^2 rho_f^2 nu^3).
-
-STATUS = CONDITIONAL_B_TIER_CALIBRATION.
-
-QFB does not derive this action calibration.
-
-
-11. ROOT ENDPOINT
------------------
-
-THEOREM QFB_NSE_TIME_GAP.
-
-Under the frozen periodic Quasi-Fefferman_B theorem,
-
-  T_gap^QFB(a,nu)
-    = ||a||_2^4/(8 pi^2 nu^5).
-
-For every
-
-  delta>T_gap^QFB,
-
-every admissible Leray-Hopf trajectory is smooth on [delta,infinity).
-Consequently it is smooth for all t>T_gap^QFB, while t=T_gap^QFB remains
-uncertified.
-
-For the circular fluctuation on T_L^3,
-
-  T_gap^{QFB,circ}
-    = L^6 r0^4/(8 pi^2 nu^5)
-    = E_NSE(0)^2/(2 pi^2 rho_f^2 nu^5).
-
-For the explicit circular trajectory, the actual regularity gap is zero.
-
-MARKER = !
-
-
-12. CLOSURE CLASSIFICATION
+4. COUPLED NSE^X EXTENSION
 --------------------------
+For a finite symmetric nonnegative graph of
+N unforced mean-zero NSE layers with common nu>0,
+set
 
-EXACT_B_TIER:
+  E0=sum_i ||a_i||_2^2,
+  H(t)=sum_i ||u_i(t)||_(dot H^(1/2))^2.
 
-  Leray-Hopf H^{1/2} budget;
-  good restart-time extraction;
-  strict endpoint semantics;
-  physical-torus scaling;
-  circular-profile substitution;
-  energy-form identity;
-  separation from viscous e-folding times;
-  explicit-mode tail readouts.
+The same energy-weighted proof yields
 
-FROZEN B_TIER INPUT:
+  int_0^infinity H(t)^2 dt<=E0^2/(4nu).
 
-  QFB_ADMISSION:
-    ||b||_{dot H^{1/2}}^2 < 2 pi nu^2
-      implies Reg_nu(b).
+Let C_NL be the product critical trilinear constant
+with small-data sufficient condition
 
-CONDITIONAL_B_TIER:
+  sqrt(H)<nu/(2C_NL).
 
-  action-calibrated QFB time.
+Then a sufficient product restart cutoff is
+
+  T_graph=4 C_NL^4 E0^2/nu^5.
+
+The single-layer special numerical constant
+2pi nu^2 must NOT be applied to all graph-coupled
+systems unless its coupled admission is independently
+proved. Product graph dissipation is nonnegative
+in all homogeneous Sobolev energy estimates.
+
+5. CLASSIFICATION
+-----------------
+EXACT ALGEBRAIC / B_TIER:
+  energy-weighted quadratic budget,
+  Fourier interpolation,
+  corrected cutoff arithmetic,
+  circular-profile norm/energy substitutions.
+
+EXPLICIT ANALYTIC PREMISES:
+  Leray-Hopf energy inequality,
+  frozen single-layer QFB_ADMISSION with the stated constant,
+  local critical product strong-solution continuation,
+  weak-strong uniqueness.
 
 NOT ESTABLISHED:
+  actual singularity in the certificate window,
+  regularity at the certificate endpoint,
+  full electron-to-NSE dynamical identification,
+  physical electron energy-time uncertainty from QFB,
+  arbitrary coupled SM/NSE dynamics,
+  Lean A-tier proof/audit.
 
-  periodic QFB cutoff with coefficient 1/(16 pi^2);
-  regularity at t=T_QFB;
-  singularity existence;
-  singularity at T_QFB;
-  recursive cutoff halving;
-  uniqueness from the original L2 datum at t=0;
-  full EMD-to-NSE physical identification;
-  A-tier formalization.
+FINAL:
+  MARKER = !
+  TIER = CONDITIONAL_B_TIER
+  PERIODIC_QFB_REFINED = ||a||_2^4/(16pi^2 nu^5)
+  QFB_ADMISSION = EXPLICIT_UNDISCHARGED_ANALYTIC_PREMISE
+  A_TIER = NOT_ESTABLISHED
