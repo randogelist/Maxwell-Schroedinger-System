@@ -1,0 +1,578 @@
+NSE LIE GROUP FOUNDATIONS FOR UNIVERSAL LAGRANGIAN ADAPTER
+B-TIER DERIVATION
+==========================================================
+
+STATUS
+------
+THEOREM = NSE_LIE_GROUP_FOUNDATIONS
+MARKER = !
+TIER = B_TIER
+BRANCH = b-tier-hull
+LEAN_STATUS = NOT EMITTED
+A_TIER = NOT ESTABLISHED
+FORMAL_CLOSURE = NOT ESTABLISHED
+LOCAL_LEAN_EXECUTION = NONE
+
+GOAL
+----
+Identify the smallest mathematically coherent group-theoretic foundation
+that (i) recovers Euler and viscous Navier-Stokes on a periodic domain;
+(ii) supports product layers and spectral interactions; (iii) supports
+advected fields and gauge-current ports; (iv) keeps Standard Model gauge
+symmetries distinct from volume-preserving spatial diffeomorphisms.
+
+No statement claims that the Standard Model equals NSE or that arbitrary
+Lagrangians automatically give equivalent NSE equations.
+
+0. DOMAIN, CONVENTIONS, AND TYPE INFORMATION
+--------------------------------------------
+M := T_L^3=(R/LZ)^3, with its flat metric and standard volume dx, L>0.
+All fields below are smooth and periodic unless stated otherwise.
+Physically rho>0 and nu>0, but set rho=1 for G01-G10 to simplify.
+
+G := SDiff(M) = {smooth diffeomorphisms phi:M->M:
+                 phi^*dx=dx}.
+g := X_sigma(M) = {u in C^infty(M;R^3): div u=0}.
+g0 := {u in g: integral_M u dx=0}.
+Bracket convention on Eulerian vector fields:
+
+  [u,v] := (u dot grad)v - (v dot grad)u.
+
+The Lie bracket sign for group trivializations is fixed by this definition.
+In the variational derivation below the right-trivialized variation has
+delta u = partial_t xi+[u,xi].
+
+P := full Leray projection onto divergence-free vector fields,
+     retaining constant Fourier modes.
+P0 := projection onto the mean-zero divergence-free fields.
+A := -P Delta, positive on the nonconstant solenoidal modes.
+
+All pairings <.,.> in G01-G10 are unweighted real L2(M) pairings.
+Use only fields for which all integrations by parts are legal.
+
+1. GROUP / ALGEBRA
+------------------
+G01  SDIFF_GROUP.
+
+The volume-preserving diffeomorphisms form a group under composition,
+with identity id_M and inverse phi^{-1}. Its infinitesimal divergence-free
+vector fields form the formal smooth Lie algebra g.
+
+G02  DIVERGENCE_FREE_LIE_BRACKET.
+
+For u,v in g,
+
+  div [u,v]
+    =u dot grad(div v)-v dot grad(div u)
+    =0.
+
+Anti-symmetry and bilinearity are direct.
+
+Jacobi:
+
+  [u,[v,w]]+[v,[w,u]]+[w,[u,v]]=0.
+
+Proof: The differential operators D_u(f):=u dot grad f satisfy
+
+  [D_u,D_v] = D_[u,v].
+
+The ordinary commutator of operators satisfies Jacobi; therefore so
+does the vector-field bracket.
+
+G03  MEAN_ZERO_IDEAL.
+
+On the torus,
+
+  integral_M [u,v] dx=0
+
+for all u,v in g, because
+
+  [u,v] = div(v tensor u - u tensor v)
+
+with tensor convention
+  (div(v tensor u))_i = partial_j(v_i u_j).
+
+Consequently [g,g] is contained in g0. In particular, g0 is a Lie
+subalgebra and an ideal of g. The full SDiff Lie algebra retains
+constant-velocity modes; P0 discards them.
+
+2. L2 GEOMETRY, EULER-ARNOLD AND PRESSURE
+-----------------------------------------
+G04  L2_COADJOINT_IDENTITY.
+
+Define ad_u(v):=[u,v] and its L2 adjoint on solenoidal tests:
+
+  <ad_u^dagger m,v> := <m,[u,v]>.
+
+Integration by parts yields
+
+  ad_u^dagger m
+    = -P[(u dot grad)m + (grad u)^T m].
+
+For m=u, (grad u)^T u=grad(|u|^2/2) and P grad=0:
+
+  ad_u^dagger u = -P[(u dot grad)u].
+
+G05  EULER_ARNOLD_VARIATION.
+
+For a smooth flow eta(t) in SDiff,
+
+  u = dot eta circle eta^{-1},
+
+and an admissible variation xi(t) vanishing at both time endpoints,
+
+  delta u = partial_t xi + [u,xi].
+
+Vary the reduced action
+
+  S_Euler = integral dt H(u(t)),
+  H(u)=1/2 ||u||_2^2.
+
+Then
+
+  delta S_Euler
+    = integral dt <u,partial_t xi+[u,xi]>
+    = integral dt <-partial_t u + ad_u^dagger u,xi>.
+
+Stationarity for all xi in g gives
+
+  partial_t u = ad_u^dagger u
+              = -P[(u dot grad)u].
+
+Equivalently there is pressure p, unique modulo a time-dependent spatial
+constant, such that
+
+  partial_t u+(u dot grad)u+grad p=0,
+  div u=0.
+
+The Euler/SDiff geodesic interpretation uses the right-invariant L2 metric;
+viscosity must be supplied separately.
+
+G06  HODGE_PRESSURE_PORT.
+
+For forced smooth NSE,
+
+  partial_t u+(u dot grad)u+grad p=nu Delta u+f,
+  div u=0,
+
+the Leray-projected equation is
+
+  partial_t u=-P[(u dot grad)u]+nu Delta u+P f.
+
+Taking divergence gives
+
+  Delta p
+    =-div[(u dot grad)u]+div f.
+
+Consequently, gradient forces P(grad phi)=0 only affect the effective
+pressure when density is constant. This does not extend without
+qualification to variable-density or compressible fluids.
+
+3. LIE-POISSON / VISCOSITY SPLIT
+--------------------------------
+G07  LIE_POISSON_BRACKET.
+
+For sufficiently regular cylinder functionals F,G on the smooth dual,
+with solenoidal L2 variational derivatives, define
+
+  {F,G}(u)
+    := -<u,[delta F/delta u,delta G/delta u]>.
+
+This is an antisymmetric Poisson bracket and obeys Jacobi on the
+admissible functional class; it derives from the Lie algebra bracket.
+
+For H(u)=1/2||u||_2^2,
+
+  dot F = {F,H}
+
+is Euler's projected equation. In particular {H,H}=0.
+
+Caveat: a naive finite Fourier cutoff followed by bracket projection
+need not preserve Jacobi. Do not treat a generic Galerkin truncation
+as a finite-dimensional Lie subalgebra without proving closure.
+
+G08  VISCOUS_SYMMETRIC_BRACKET.
+
+Define a symmetric negative-semidefinite bilinear form on functionals:
+
+  (F,G)_nu
+    := -nu integral_M
+         grad(delta F/delta u):grad(delta G/delta u) dx.
+
+Then for smooth NSE solutions, formally
+
+  dot F
+    = {F,H}+(F,H)_nu+<delta F/delta u,P f>,
+
+so the velocity equation is
+
+  partial_t u = -P[(u dot grad)u]+nu Delta u+P f.
+
+For H,
+
+  dot H=-nu ||grad u||_2^2 + <u,f>.
+
+This dissipative bracket is NOT the Lie bracket, and it is NOT by
+itself a closed energy-conserving GENERIC construction.
+A reservoir is required to conserve the total energy.
+
+4. FOURIER TRIADS AND SPECTRAL LAYERS
+-------------------------------------
+G09  FOURIER_LIE_BRACKET.
+
+Let k,ell in (2pi/L) Z^3 and a,b in C^3 satisfy
+k dot a=0, ell dot b=0. For formal complex modes
+
+  u=a exp(i k dot x),
+  v=b exp(i ell dot x),
+
+the bracket is
+
+  [u,v]
+    =i[(a dot ell)b-(b dot k)a]
+       exp(i(k+ell) dot x).
+
+Its coefficient is divergence free at wave number k+ell.
+
+The symmetric convection cross-term, a DIFFERENT operation, is
+
+  P[(u dot grad)v+(v dot grad)u]
+    =i P_{k+ell}[(a dot ell)b+(b dot k)a]
+       exp(i(k+ell) dot x),
+
+where P_m = I-(m tensor m)/|m|^2 for m != 0 and P_0=I
+for the full divergence-free projection.
+
+Thus the Lie bracket is antisymmetric in the pair (u,v), whereas the
+quadratic NSE cross-interaction is symmetric in (u,v). Conflating these
+two operations would give an incorrect Lagrangian adapter.
+
+G10  SPECTRAL_SUBGROUP_CLOSURE.
+
+For any additive subgroup Gamma of (2pi/L)Z^3, define
+
+  g_Gamma := {smooth real solenoidal u:
+              support(Fourier(u)) subset Gamma}.
+
+Since Gamma is closed under addition and negation, g_Gamma is a Lie
+subalgebra under [.,.]. The NSE quadratic term, Laplacian, and Leray
+projection preserve support in Gamma.
+
+If Gamma is generated by at most two independent spatial wave vectors,
+then an integer (hence periodic) spatial direction n is perpendicular
+to all Fourier modes and
+
+  (n dot grad)u=0.
+
+Smooth NSE solutions preserve this translational symmetry.
+The evolution reduces to the globally regular 2D3C system.
+
+For THREE independent wave vectors, the support argument alone cannot
+prove global 3D NSE regularity; special cancellations (e.g. Beltrami)
+can still provide global smoothness.
+
+5. PRODUCT LAYERS AND GRAPH EXCHANGE
+------------------------------------
+G11  NSE_PRODUCT_GROUP.
+
+For N independent fluid layers, the kinematic configuration group is
+
+  G_N := G^N,
+
+with componentwise Lie algebra bracket
+
+  [(u_i),(v_i)]_N:=([u_i,v_i])_i.
+
+This is a group-theoretic base for NSE x NSE and arbitrary finite
+NSE layering. Nonlinear exchange terms couple the equations and
+must be specified in addition to this product algebra.
+
+G12  GRAPH_LAPLACIAN_EXCHANGE.
+
+Take rho_i>0, eta_i>=0,
+kappa_ij=kappa_ji>=0, kappa_ii=0, and smooth div-free u_i.
+
+Define the weighted graph operator
+
+  (L_kappa u)_i := sum_j kappa_ij(u_i-u_j).
+
+Its quadratic form satisfies
+
+  sum_i <u_i,(L_kappa u)_i>
+    =sum_{i<j}kappa_ij||u_i-u_j||_2^2>=0.
+
+For connected exchange graph,
+
+  ker L_kappa = {(u,...,u):u in g}.
+
+For layer equations
+
+  rho_i (partial_t u_i + u_i dot grad u_i)
+    =-grad p_i+eta_i Delta u_i+f_i-(L_kappa u)_i,
+
+the energy
+
+  E_fluid:=1/2 sum_i rho_i ||u_i||_2^2
+
+satisfies
+
+  dot E_fluid
+    =-sum_i eta_i||grad u_i||_2^2
+     -sum_{i<j}kappa_ij||u_i-u_j||_2^2
+     +sum_i<u_i,f_i>.
+
+The interlayer exchange force is reciprocal and cancels in the total
+momentum integral. It dissipates relative kinetic energy.
+
+6. ADVECTED FIELDS, DIAMOND FORCE, AND SEMIDIRECT PRODUCT
+---------------------------------------------------------
+G13  LIE_DERIVATIVE_REPRESENTATION.
+
+For a smooth scalar field a,
+
+  L_u a:=u dot grad a.
+
+Then
+
+  [L_u,L_v]a=L_[u,v]a.
+
+A passively advected scalar obeys
+
+  partial_t a+L_u a=0.
+
+For differential forms use the genuine Lie derivative, not merely
+componentwise transport. In ideal MHD the flux 2-form is Lie-dragged.
+
+G14  DIAMOND_VARIATIONAL_FORCE.
+
+Let a be an advected field in a representation V*, b in its dual V,
+and define the diamond operation by
+
+  <b diamond a,xi>
+     :=-<b,L_xi a>.
+
+For a scalar advected field, on solenoidal test fields,
+
+  b diamond a = -P(b grad a).
+
+Consider a reduced Lagrangian ell(u,a) and write
+m:=delta ell/delta u, b:=delta ell/delta a.
+
+For variations
+
+  delta u=partial_t xi+[u,xi],
+  delta a=-L_xi a,
+
+the stationary action gives
+
+  partial_t m = ad_u^dagger m+b diamond a,
+  partial_t a+L_u a=0.
+
+This supplies an exact algebraic FIELD-TO-FLUID FORCE PORT for
+ADVECTED degrees of freedom. It does not assume that every dynamic
+Standard Model field is merely advected.
+
+G15  GAUGE_SEMIDIRECT_BRACKET.
+
+Fix a trivial principal bundle over M and a finite-dimensional
+internal Lie algebra k (e.g. u(1), su(2), su(3)).
+For k-valued scalar fields xi(x), define on k-valued test fields
+
+  D_(u,xi) a := u dot grad a+[xi,a]_k.
+
+Then
+
+  [D_(u,xi),D_(v,eta)]
+    =D_([u,v], u dot grad eta-v dot grad xi+[xi,eta]_k).
+
+Thus the pair bracket is
+
+  [(u,xi),(v,eta)]
+    =([u,v], u dot grad eta-v dot grad xi+[xi,eta]_k).
+
+It satisfies Jacobi because commutators of differential operators do,
+and the formula can also be verified directly.
+
+For Standard Model gauge algebra choose
+
+  k_SM=su(3)_C direct_sum su(2)_L direct_sum u(1)_Y.
+
+This is a gauge-and-spatial semidirect algebra interface. It does NOT
+identify internal SU(3) or SU(2) gauge symmetries with SDiff(M).
+For nontrivial gauge bundles the global group may be a non-split
+bundle-automorphism extension, so the local trivial-bundle
+semidirect-product description is not asserted globally.
+
+7. FIELD-THEORY VARIATIONAL PORT
+---------------------------------
+G16  VARIATIONAL_WARD_INTERFACE.
+
+For an admissible local field action
+
+  S_L[Phi,A,g]=integral sqrt(-g) L(Phi,D Phi,F,g,...),
+
+define its Euler-Lagrange equations E_Phi and, with fixed conventions,
+currents J_A^mu and stress-energy T_L^{mu nu} by variational
+derivatives. Gauge identities and diffeomorphism Ward identities
+are available when the action possesses those symmetries; anomalies
+and gauge fixing must be treated separately.
+
+An exchange port Q_i^nu is additional constitutive data satisfying
+
+  nabla_mu T_L^{mu nu}=-sum_i Q_i^nu,
+  nabla_mu T_fluid,i^{mu nu}=Q_i^nu,
+
+up to whichever reservoir and interaction stress tensors are included
+in the declared decomposition.
+
+Then
+
+  nabla_mu T_total^{mu nu}=0.
+
+For the nonrelativistic incompressible fluid, the spatial component is
+passed through P to produce the solenoidal body-force term P f_i.
+
+The field-to-NSE map is NOT unique without constitutive and
+coarse-graining specifications.
+
+G17  RESPONSE_ACTION_ENDPOINT.
+
+Given a specified field residual E_Phi=0 and specified fluid
+residuals R_i=0, introduce response fields
+tilde Phi, tilde u_i, tilde p_i and the deterministic constraint action
+
+  S_resp
+    =integral dt dx [
+         <tilde Phi,E_Phi>
+        +sum_i <tilde u_i,R_i>
+        +sum_i tilde p_i (div u_i)
+      ].
+
+Variation with respect to the response fields yields exactly
+the field and fluid equations by construction.
+This is a response/constraint action, not a microscopic derivation
+of the constitutive law or a quantum Schwinger-Keldysh completion.
+
+8. TOTAL ENERGY AND RESERVOIR CLOSURE
+-------------------------------------
+G18  ENERGY_RESERVOIR_IDENTITY.
+
+For the multilayer system define
+
+  D_total
+    :=sum_i eta_i||grad u_i||_2^2
+      +sum_{i<j}kappa_ij||u_i-u_j||_2^2>=0.
+
+Assume the external field-sector power is reciprocal:
+
+  dot E_fields = -sum_i<u_i,f_i>,
+
+and define an internal/reservoir energy by
+
+  dot E_res = D_total.
+
+Then
+
+  E_total:=E_fluid+E_fields+E_res
+
+satisfies
+
+  dot E_total=0.
+
+For a positive constant reservoir temperature T0,
+an illustrative reservoir entropy S_res=E_res/T0 obeys
+
+  dot S_res=D_total/T0>=0.
+
+This last temperature law is a declared constitutive simplification;
+it is not a derived quantum/Standard Model fluctuation relation.
+
+9. FORMAL ASSEMBLY
+------------------
+For local smooth periodic fields and the stated algebraic/variational
+assumptions, compose
+
+  SDiff -> divergence-free Lie bracket
+        -> right-invariant L2 Euler-Arnold
+        -> Lie-Poisson
+        -> NSE dissipative bracket
+        -> N-fold product and Fourier spectral layers
+        -> semidirect advected/gauge ports
+        -> exchange/energy-reservoir identity.
+
+Conclude:
+
+  conditional(G01,...,G18) implies
+  GROUP_STRUCTURED_MULTILAYER_FORCED_NSE_WITH_FIELD_PORTS.
+
+This is a complete B_TIER derivation of the EXPLICITLY SCOPED algebraic
+implication. It is not unconditional Standard Model derivation, nor
+quantum NSE equivalence.
+
+10. ENDPOINT REGISTER
+---------------------
+[x] NGL-01  SDIFF_GROUP
+[x] NGL-02  DIVERGENCE_FREE_LIE_BRACKET
+[x] NGL-03  MEAN_ZERO_IDEAL
+[x] NGL-04  L2_COADJOINT_IDENTITY
+[x] NGL-05  EULER_ARNOLD_VARIATION
+[x] NGL-06  HODGE_PRESSURE_PORT
+[x] NGL-07  LIE_POISSON_BRACKET
+[x] NGL-08  VISCOUS_SYMMETRIC_BRACKET
+[x] NGL-09  FOURIER_LIE_BRACKET
+[x] NGL-10  SPECTRAL_SUBGROUP_CLOSURE
+[x] NGL-11  NSE_PRODUCT_GROUP
+[x] NGL-12  GRAPH_LAPLACIAN_EXCHANGE
+[x] NGL-13  LIE_DERIVATIVE_REPRESENTATION
+[x] NGL-14  DIAMOND_VARIATIONAL_FORCE
+[x] NGL-15  GAUGE_SEMIDIRECT_BRACKET
+[x] NGL-16  VARIATIONAL_WARD_INTERFACE (conditional on admissibility)
+[x] NGL-17  RESPONSE_ACTION_ENDPOINT
+[x] NGL-18  ENERGY_RESERVOIR_IDENTITY (conditional power/thermal law)
+
+[ ] NGL-19  STANDARD_MODEL_MICROSCOPIC_COARSE_GRAINING
+             OPEN PHYSICAL/CONSTITUTIVE
+[ ] NGL-20  FULL_QUANTUM_SCHWINGER_KELDYSH_KMS_LIFT
+             OPEN QUANTUM ANALYTIC
+[ ] NGL-21  FULL_COUPLED_NSE_SM_GLOBAL_REGULARITY
+             OPEN ANALYTIC
+[ ] NGL-22  A_TIER_LEAN_EXTERNAL_COMPILER_AXIOM_AUDIT
+             NOT PREPARED
+
+11. FORMAL LEAN ASSEMBLY ORDER (PREIDENTIFIED, NOT EXECUTED)
+------------------------------------------------------------
+A. Type-correct vector fields on a periodic spatial domain; divergence,
+   mean and integration-by-parts ports.
+B. Abstract Lie algebra from derivations D_u and their commutator.
+   For a finite-support Fourier algebra, do NOT truncate the bracket
+   after each operation if Jacobi is to be retained.
+C. Divergence closure and mean-zero ideal.
+D. Independent L2 pairing and Euler variational/adjoint endpoints.
+E. Leray projection orthogonality and gradient kernel.
+F. Positive Laplacian, energy and dissipation identities.
+G. Product Lie algebra, weighted graph Laplacian and kernel.
+H. Differential-operator semidirect bracket for adjoint-valued fields.
+I. Response residual abstract assembly and energy-reservoir closure.
+
+Potential Mathlib categories to inspect upon A-tier assembly:
+LieAlgebra/LieRing, derivations, linear-map commutators, finitely
+supported functions, inner products, differential and integration
+identities, graph Laplacians. No specific imported theorem names are
+claimed checked, and no local Lean run was conducted.
+
+LITERATURE ANCHORS
+------------------
+Arnold geometric formulation and SDiff:
+  https://www.math.toronto.edu/khesin/papers/amshydro.pdf
+Holm-Marsden-Ratiu, semidirect Euler-Poincare continuum systems:
+  https://www.sciencedirect.com/science/article/pii/S0001870898917212
+Cotter-Holm-Hydon, multisymplectic and advected-quantity formulation:
+  https://www.kent.ac.uk/smsas/personal/ph282/papers/CotterHolmHydon07.pdf
+
+FINAL CLASSIFICATION
+--------------------
+B_TIER = exact smooth-field algebraic identities with explicit
+          constituent hypotheses and literature analytic anchors.
+A_TIER = NOT ESTABLISHED.
+FORMAL_CLOSURE = NOT ESTABLISHED.
+UNCONDITIONAL_STANDARD_MODEL_ADAPTER = NOT ESTABLISHED.
