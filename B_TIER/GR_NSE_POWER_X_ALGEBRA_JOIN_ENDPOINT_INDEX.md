@@ -41,7 +41,7 @@ Spinors carrying internal gauge representations have
 
 The Riemann and Yang–Mills curvatures are independent; the auxiliary velocity-vorticity connection from earlier SM-02 is **not** physical GR curvature.
 
-## Stage 2 — conditional GR joining (13 endpoints)
+## Stage 2 — conditional GR joining (14 endpoints)
 
 | ID | Endpoint | Classification |
 |---|---|---|
@@ -51,6 +51,7 @@ The Riemann and Yang–Mills curvatures are independent; the auxiliary velocity-
 | GRJ-04 | `GEOMETRIC_NSE_KINETIC_ENERGY_IDENTITY` | Exact for smooth model solutions |
 | GRJ-05 | `ADM_EXTRINSIC_CURVATURE_ENERGY_PORT` | Exact in shift-zero gauge |
 | GRJ-06 | `METRIC_WORK_GRONWALL_GATE` | Exact L² bound |
+| GRJ-06A | `EVOLVING_VOLUME_CONSTANT_DENSITY_OBSTRUCTION` | Exact mass continuity gate |
 | GRJ-07 | `PURE_POTENTIAL_FORCE_LERAY_NO_GO` | Exact flat constant-density obstruction |
 | GRJ-08 | `TOTAL_EINSTEIN_STRESS_PARTITION` | Conditional on physical source |
 | GRJ-09 | `TOTAL_GAUGE_STRESS_EXCHANGE` | Conditional on Ward and current matching |
@@ -83,6 +84,15 @@ W_geom=
 ```
 
 This is a **metric variation of fluid coordinate kinetic energy**. It is not a unique local gravitational energy density or a derivation of fully relativistic fluid dynamics.
+
+**Mass-consistency obstruction:** for fixed physical mass density `rho_i` and instantaneous `div_h u_i=0`,
+
+```text
+Mass_i(t)=rho_i*int_M dmu_h
+Mass_i'(t)=(rho_i/2)*int_M tr_h(partial_t h_t)dmu_h.
+```
+
+A physically mass-conserving model therefore needs a volume-preserving ADM slice, a variable-density continuity law, or a full covariant particle-number current. The geometric energy identity alone does **not** resolve this.
 
 ## Joining conditions for existing regularity classes
 
