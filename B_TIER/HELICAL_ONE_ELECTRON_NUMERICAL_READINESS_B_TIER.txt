@@ -1,0 +1,487 @@
+HELICAL ONE-ELECTRON / NSE / QFB NUMERICAL READINESS
+B-TIER DERIVATION
+===================================================
+
+STATUS
+------
+
+MARKER = !
+TIER = CONDITIONAL_B_TIER
+ARTIFACT = HELICAL_ONE_ELECTRON_NUMERICAL_READINESS_B_TIER
+ROOT_ENDPOINT = HELICAL_ONE_ELECTRON_NUMERICAL_READINESS
+SOURCE_BRANCH = b-tier-hull
+LEAN_STATUS = NOT_EMITTED
+A_TIER_STATUS = NOT_ESTABLISHED
+FORMAL_CLOSURE = NOT_ESTABLISHED
+LOCAL_LEAN_EXECUTIONS = 0
+
+This document isolates the remaining inputs required for a fully numerical
+instance of the explicit helical one-electron to circular NSE/QFB model.
+
+The exact special profile requires no PDE solver. Once the physical parameters
+are specified, all norms, frequencies, decay times, energies, and QFB
+certificate times are closed scalar formulas. A grid implementation is needed
+only for residual verification and visualization.
+
+The physical interpretation still requires a declared effective viscosity and
+the electron-to-NSE adapter premise.
+
+
+0. MINIMAL NUMERICAL INPUTS
+---------------------------
+
+Use SI units and fix
+
+  L > 0                 physical torus side length [m],
+  n in Z, n != 0        Fourier mode number,
+  epsilon >= 0          Gaussian smoothing length [m],
+  nu > 0                effective kinematic viscosity [m^2/s],
+  alpha in R            initial phase.
+
+The constants
+
+  hbar,
+  m_e,
+  c
+
+are the reduced Planck constant, electron mass, and speed of light.
+
+Define
+
+  k := 2 pi n/L,
+  x := epsilon |k|,
+  U_e := hbar k/(2m_e),
+  g_epsilon := exp(-x^2/4).
+
+The phase alpha does not affect any scalar norm, energy, or time scale.
+
+Therefore the scalar model is numerically determined by
+
+  (L,n,epsilon,nu).
+
+STATUS = EXACT_B_TIER_PARAMETER_REDUCTION.
+
+
+1. ONE-ELECTRON SPINOR AND NSE PROFILE
+--------------------------------------
+
+Define the normalized Pauli spinor
+
+  psi(z)
+    := L^(-3/2)/sqrt(2)
+       (1, exp(i(kz+alpha)))^T.
+
+Then
+
+  integral_{T_L^3} psi^dagger psi dx = 1.
+
+Its complete Pauli-current velocity is
+
+  v_psi(z)
+    = U_e e_3
+      - U_e (cos(kz+alpha), sin(kz+alpha), 0).
+
+After the mean-zero Leray projection and Gaussian smoothing,
+
+  a_{psi,epsilon}(z)
+    = -U_e g_epsilon
+      (cos(kz+alpha), sin(kz+alpha), 0).
+
+Set
+
+  r_epsilon := |U_e| g_epsilon.
+
+Then
+
+  div a_{psi,epsilon} = 0,
+  mean(a_{psi,epsilon}) = 0,
+  curl a_{psi,epsilon} = -k a_{psi,epsilon},
+  Delta a_{psi,epsilon} = -k^2 a_{psi,epsilon},
+  (a_{psi,epsilon} dot grad)a_{psi,epsilon} = 0,
+  |a_{psi,epsilon}(x)| = r_epsilon.
+
+STATUS = EXACT_B_TIER.
+
+
+2. EXACT NUMERICAL OUTPUTS
+--------------------------
+
+The unnormalized physical L2 norm is
+
+  N2 := ||a_{psi,epsilon}||_2^2
+      = L^3 r_epsilon^2
+      = L^3 hbar^2 k^2/(4m_e^2)
+        exp(-x^2/2).
+
+The fourth power is
+
+  N4 := ||a_{psi,epsilon}||_2^4
+      = L^6 hbar^4 k^4/(16m_e^4)
+        exp(-x^2).
+
+The one-electron kinetic gap is
+
+  Delta_E := hbar^2 k^2/(2m_e).
+
+The common electron/NSE phase frequency is
+
+  omega := k U_e
+         = hbar k^2/(2m_e)
+         = Delta_E/hbar.
+
+The viscous decay rate is
+
+  gamma := nu k^2.
+
+The exact times are
+
+  T_phase := 1/omega
+           = hbar/Delta_E,
+
+  P_phase := 2 pi/omega
+           = 2 pi hbar/Delta_E,
+
+  T_amp := 1/gamma
+         = 1/(nu k^2),
+
+  T_energy := 1/(2gamma)
+            = 1/(2nu k^2).
+
+The periodic QFB certificate time is
+
+  T_QFB
+    := N4/(8 pi^2 nu^5)
+
+     = L^6 hbar^4 k^4
+       exp(-x^2)
+       /(128 pi^2 m_e^4 nu^5).
+
+Equivalently, using k=2pi n/L,
+
+  T_QFB
+    = pi^2 hbar^4 n^4 L^2
+      exp(-4pi^2 epsilon^2 n^2/L^2)
+      /(8m_e^4 nu^5).
+
+STATUS = EXACT_B_TIER.
+
+
+3. EXACT NSE TRAJECTORY
+-----------------------
+
+Define
+
+  u(t,z)
+    := U_e e_3
+       + exp(-gamma t)
+         a_{psi,epsilon}(z-U_e t).
+
+Then u is an exact unforced incompressible NSE solution for every t>=0.
+
+The fluctuation norm and energy decay are
+
+  ||u(t)-U_e e_3||_2^2
+    = N2 exp(-2gamma t),
+
+  E_fluct(t)
+    = E_fluct(0) exp(-2gamma t).
+
+The exact solution is smooth at t=0. Therefore
+
+  actual regularity gap = 0,
+
+while T_QFB is a conservative worst-case certificate time for a general
+admissible Leray-Hopf trajectory with the same initial L2 datum.
+
+STATUS = EXACT_B_TIER.
+
+
+4. NATURAL ONE-ELECTRON MASS CALIBRATION
+----------------------------------------
+
+The spinor density is constant and integrates to one. The natural effective
+mass density is
+
+  rho_e := m_e/L^3.
+
+It gives total mass
+
+  rho_e L^3 = m_e.
+
+The fluctuation kinetic energy is
+
+  E_fluct(0)
+    := (rho_e/2)N2
+
+     = hbar^2 k^2/(8m_e)
+       exp(-x^2/2)
+
+     = (Delta_E/4) exp(-x^2/2).
+
+The constant mean-flow energy is
+
+  E_mean
+    := (m_e/2)U_e^2
+     = Delta_E/4.
+
+Hence the total adapted NSE kinetic energy is
+
+  E_total^NSE(0)
+    = Delta_E/4
+      [1+exp(-x^2/2)].
+
+At epsilon=0,
+
+  E_total^NSE(0) = Delta_E/2.
+
+The equal-weight electron spinor has kinetic-energy expectation
+
+  <H_free> = Delta_E/2.
+
+Therefore
+
+  epsilon=0
+
+produces exact equality between the free-electron kinetic expectation and the
+mean-plus-fluctuation NSE kinetic energy under rho_e=m_e/L^3.
+
+For epsilon>0, the energy deficit is
+
+  E_filter
+    := Delta_E/2-E_total^NSE(0)
+
+     = Delta_E/4
+       [1-exp(-x^2/2)].
+
+Any exact energy-preserving smoothing interpretation must place E_filter in an
+additional filter/reservoir sector.
+
+STATUS = EXACT_B_TIER_CALIBRATION_IDENTITY.
+
+
+5. DIMENSIONLESS NUMERICAL DIAGNOSTICS
+--------------------------------------
+
+Define the nonrelativistic parameter
+
+  beta_rel
+    := |U_e|/c
+     = hbar |k|/(2m_e c).
+
+The Pauli/nonrelativistic regime requires
+
+  beta_rel << 1.
+
+Define the damping-to-phase ratio
+
+  zeta
+    := gamma/omega
+     = 2m_e nu/hbar.
+
+This ratio is independent of L, n, and epsilon.
+
+Define the smoothing factor
+
+  g_epsilon = exp(-x^2/4),
+  x=epsilon |k|.
+
+The QFB-to-amplitude-time ratio is
+
+  T_QFB/T_amp
+    = 8 pi^4 n^6
+      exp(-x^2)
+      /zeta^4.
+
+The QFB-to-energy-time ratio is
+
+  T_QFB/T_energy
+    = 16 pi^4 n^6
+      exp(-x^2)
+      /zeta^4.
+
+STATUS = EXACT_B_TIER.
+
+These ratios quantify how conservative the QFB certificate is relative to the
+actual viscous decay of the explicit eigenmode.
+
+
+6. OPTIONAL CLOCK-DAMPING CALIBRATION
+-------------------------------------
+
+Define the candidate electron diffusivity
+
+  nu_e := hbar/(2m_e).
+
+This is a calibration, not a derived physical viscosity of an electron.
+
+Under
+
+  nu=nu_e,
+
+one has
+
+  zeta=1,
+  gamma=omega,
+  T_amp=T_phase=hbar/Delta_E,
+  T_energy=hbar/(2Delta_E).
+
+The QFB time simplifies to
+
+  T_QFB^{nu_e}
+    = 4 pi^2 m_e n^4 L^2/hbar
+      exp(-4pi^2 epsilon^2 n^2/L^2).
+
+The dimensionless ratios become
+
+  T_QFB^{nu_e}/T_amp
+    = 8 pi^4 n^6 exp(-x^2),
+
+  T_QFB^{nu_e}/T_energy
+    = 16 pi^4 n^6 exp(-x^2).
+
+STATUS = CONDITIONAL_B_TIER_CALIBRATION.
+
+This calibration reduces the numerical input set to
+
+  (L,n,epsilon).
+
+If epsilon is also fixed by an external scale law, only (L,n) remain.
+
+
+7. MINIMAL NUMERICAL ALGORITHM
+------------------------------
+
+INPUT:
+
+  L,n,epsilon,nu,alpha.
+
+SCALAR COMPUTATION:
+
+  1. k=2pi n/L.
+  2. U_e=hbar k/(2m_e).
+  3. x=epsilon |k|.
+  4. r_epsilon=|U_e| exp(-x^2/4).
+  5. N2=L^3 r_epsilon^2.
+  6. Delta_E=hbar^2 k^2/(2m_e).
+  7. omega=Delta_E/hbar.
+  8. gamma=nu k^2.
+  9. T_amp=1/gamma.
+  10. T_energy=1/(2gamma).
+  11. T_QFB=N2^2/(8pi^2 nu^5).
+  12. beta_rel=|U_e|/c.
+  13. zeta=2m_e nu/hbar.
+
+OPTIONAL GRID VERIFICATION:
+
+  sample z_j=jL/N;
+
+  evaluate psi(z_j), a(z_j), and u(t,z_j);
+
+  verify numerically
+
+    ||psi||_2^2=1,
+    div a=0,
+    curl a+k a=0,
+    Delta a+k^2a=0,
+    NSE residual=0,
+
+  with spectral differentiation.
+
+No time-stepping scheme is required to obtain the exact trajectory. Direct
+formula evaluation is preferable for validation.
+
+STATUS = NUMERICALLY_READY_B_TIER.
+
+
+8. WHAT REMAINS PHYSICALLY OPEN
+-------------------------------
+
+The mathematical numerical model is closed after specifying
+
+  (L,n,epsilon,nu).
+
+The following physical identifications remain open:
+
+  P1. derive or select the effective viscosity nu;
+
+  P2. justify the full Pauli-current velocity as the physical NSE carrier;
+
+  P3. provide the dissipative reservoir responsible for exp(-nu k^2 t);
+
+  P4. embed the profile in the dressed nonlinear EMD orbit;
+
+  P5. preserve the EMD/QR clock synchronization after the dissipative
+      extension;
+
+  P6. interpret the QFB certificate time as anything beyond a conservative
+      regularity bound.
+
+These gates are not needed for scalar numerical evaluation, but they are
+needed for a physical electron/NSE identification.
+
+
+9. ROOT ENDPOINT
+----------------
+
+THEOREM HELICAL_ONE_ELECTRON_NUMERICAL_READINESS.
+
+For every
+
+  L>0,
+  epsilon>=0,
+  nu>0,
+  n in Z\{0},
+  alpha in R,
+
+all fields and scalar observables of the helical one-electron/circular-NSE
+sector are given by the closed formulas above. In particular,
+
+  ||a||_2,
+  Delta_E,
+  omega,
+  gamma,
+  T_amp,
+  T_energy,
+  T_QFB,
+  E_fluct,
+  E_mean,
+  beta_rel,
+  zeta
+
+are numerically computable without solving a PDE.
+
+The only essential undetermined physical scale is the effective viscosity nu.
+Under the optional calibration nu=hbar/(2m_e), the complete scalar model is
+determined by (L,n,epsilon).
+
+MARKER = !
+
+
+10. CLOSURE CLASSIFICATION
+--------------------------
+
+EXACT_B_TIER:
+
+  one-electron normalization;
+  exact Pauli-current profile;
+  exact circular NSE solution;
+  exact L2 norm;
+  exact phase and decay scales;
+  exact periodic QFB time;
+  one-electron mass-density energy identity;
+  dimensionless diagnostics;
+  direct numerical algorithm.
+
+CONDITIONAL_B_TIER:
+
+  nu=hbar/(2m_e) clock-damping calibration;
+  electron-to-fluid physical interpretation;
+  dissipative-reservoir interpretation.
+
+NOT ESTABLISHED:
+
+  a fundamental derivation of nu;
+  full EMD-to-NSE semiconjugacy;
+  nonlinear sourced EMD persistence;
+  physical singularity interpretation of T_QFB;
+  A-tier formalization.
