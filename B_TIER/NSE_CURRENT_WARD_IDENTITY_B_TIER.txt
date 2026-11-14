@@ -1,0 +1,546 @@
+NSE CURRENT CONTINUITY, LAYER-EXCHANGE GRAPH AND COVARIANT WARD PORT
+FROZEN STANDARD MODEL ROW SM-07 — B-TIER DERIVATION
+================================================================
+
+STATUS
+------
+ROOT_ENDPOINT = NSE_CURRENT_WARD_IDENTITY
+MARKER = !
+MODE = B_TIER_DERIVATION
+FROZEN_ROW = SM-07 ONLY
+REFERENCE = FROZEN_SM_NSE_OPERATOR_MATCH_REGISTER_B_TIER
+PREVIOUS = NSE_AUXILIARY_BRST_NILPOTENCY_B_TIER
+SOURCE_BRANCH = b-tier-hull
+LEAN_SOURCE = NOT_EMITTED
+LOCAL_LEAN_EXECUTION = NONE
+A_TIER = NOT_ESTABLISHED
+FORMAL_CLOSURE = NOT_ESTABLISHED
+
+PURPOSE
+-------
+Identify the actual continuity/operator structure within NSE^X
+corresponding to the FORM of the Standard Model covariant current
+Ward identity
+
+    D_mu^A J^mu = 0
+
+while distinguishing:
+ (i) ordinary Abelian continuity from nonabelian covariant continuity;
+(ii) transported conserved quantities from NSE incompressibility;
+(iii) graph exchange of CHARGE from graph exchange of MOMENTUM;
+ (iv) Ward conservation alone from a microscopic current identity;
+  (v) structurally gauge-covariant charge transport from the actual
+      Standard Model matter-action/quantum Ward theorem.
+
+SM-01 through SM-06 remain frozen. SM-08 remains frozen for its
+later independent stress-energy-exchange derivation.
+
+0. DOMAINS, TYPES, AND PHYSICAL BOUNDARIES
+------------------------------------------
+M=T_L^3 periodic flat spatial torus, L>0.
+X={1,...,N}, finite nonempty.
+For each i, u_i(t,x) is a smooth real solenoidal NSE velocity:
+  div u_i=0.
+Smoothness of u_i may be obtained through one of the PREVIOUS
+regularity classes (common 2D3C, common Beltrami, small H1/2
+global strong solution, or large regular-core perturbation).
+Its proof is not repeated or inferred from current conservation.
+
+For each i fix:
+  q_i(t,x): smooth real scalar transported charge density,
+  d_i>=0: charge diffusion coefficient,
+  gamma_ij=gamma_ji>=0, gamma_ii=0: reciprocal charge-exchange rates.
+
+Crucially d_i and gamma_ij are INDEPENDENT of:
+  nu_i: fluid kinematic viscosity,
+  kappa_ij: momentum-exchange graph conductances.
+
+Nothing in the NSE Lie algebra equates these transport coefficients.
+
+1. SINGLE-LAYER CURRENT CONSERVATION
+-------------------------------------
+THEOREM NCW-01: INCOMPRESSIBLE_SCALAR_CURRENT_IDENTITY.
+
+Define
+  J_i := q_i u_i - d_i grad q_i.
+
+The local charge equation
+
+  partial_t q_i+u_i dot grad q_i
+       -d_i Delta q_i = s_i
+
+is equivalent, because div u_i=0, to
+
+  partial_t q_i + div J_i = s_i.
+
+Writing J_i^mu=(q_i,J_i) gives
+
+  partial_mu J_i^mu=s_i.
+
+For the closed single-layer sector s_i=0, the exact ordinary
+Abelian Ward-form continuity identity is
+
+  partial_mu J_i^mu=0.
+
+This is a TRANSPORT EQUATION, not a consequence of
+NSE velocity incompressibility alone for arbitrary q_i.
+
+The constant density q_i=q_const and d_i=0 case gives
+  div(q_const u_i)=0
+directly from div u_i=0, but contains no additional
+physical charge dynamics.
+
+STATUS = EXACT B_TIER FOR THE DECLARED SCALAR TRANSPORT PDE.
+
+THEOREM NCW-02: MATERIAL_DERIVATIVE_COMMUTATOR.
+
+Let D_{t,u}=partial_t+u dot grad on smooth functions.
+For multiplication M_q by a smooth scalar q,
+
+  [D_{t,u}, M_q]
+     =M_{D_{t,u} q}
+
+on smooth test functions. The computation follows from
+the product rule:
+  D_{t,u}(q f)-q D_{t,u} f=(D_{t,u}q)f.
+
+If div u=0, then the time-dependent volume form is preserved
+by u and material scalar transport q'= -u dot grad q
+is equivalent to local current continuity.
+
+This is an exact TRANSPORT OPERATOR relation, not
+a microscopic Noether/Ward quantum operator identity.
+
+STATUS = EXACT B_TIER.
+
+2. RECIPROCAL CHARGE-GRAPH CONSERVATION
+---------------------------------------
+THEOREM NCW-03: NSE_POWER_X_TOTAL_ABELIAN_WARD.
+
+Define the charge graph
+  (L_gamma q)_i=sum_j gamma_ij(q_i-q_j),
+gamma_ij=gamma_ji>=0.
+
+Assume for each i
+
+  partial_t q_i+div(q_i u_i-d_i grad q_i)
+      =-(L_gamma q)_i.                                   (C1)
+
+Sum over i. Because gamma_ij is symmetric, every
+unordered edge contributes opposite transfer to
+its two endpoints:
+
+  sum_i (L_gamma q)_i=0
+pointwise in space and time.
+
+Define the total charge density and spatial current
+  Q=sum_i q_i,
+  J=sum_i (q_i u_i-d_i grad q_i).
+
+Then EXACTLY
+
+  partial_t Q+div J=0,
+  partial_mu J_total^mu=0.                               (C2)
+
+On periodic M,
+
+  d/dt int_M Q dx=0.
+
+This is conservation of the TOTAL transported charge,
+even though individual layer charges may exchange.
+
+STATUS = EXACT B_TIER.
+
+THEOREM NCW-04: CHARGE_GRAPH_QUADRATIC_DISSIPATION.
+
+For smooth real charges satisfying (C1), integrate
+the i-th equation against q_i, sum, and use
+div u_i=0 and periodic integration by parts:
+
+  (1/2) d/dt sum_i ||q_i||_2^2
+   = -sum_i d_i||grad q_i||_2^2
+     -sum_{i<j}gamma_ij||q_i-q_j||_2^2 <=0.
+
+This is dissipation of CHARGE-DENSITY L2 VARIANCE.
+It is NOT decay of the conserved total signed charge
+int Q and is not the NSE kinetic-energy dissipation.
+
+If q_i can have either sign the L2 estimate remains
+valid; positivity preservation of each q_i additionally
+depends on the parabolic/graph maximum principle and
+appropriate positivity of the initial charges.
+
+STATUS = EXACT B_TIER.
+
+3. GAUGE-COVARIANT NONABELIAN EXTENSION
+----------------------------------------
+THEOREM NCW-05: COVARIANT_ADJOINT_CURRENT_PORT.
+
+Let K be a compact Lie group with algebra k and an
+Ad-invariant positive-definite inner product on k.
+Fix a TRIVIAL principal K bundle over spacetime or
+work in a local trivialization of a general bundle.
+Let A_mu be a smooth connection, and let all charge
+densities q_i be sections of the SAME adjoint bundle,
+so sums and graph differences are meaningful.
+
+Define
+  D_mu^A q = partial_mu q+[A_mu,q].
+
+For each i define an adjoint-valued four-current
+
+  J_i^0=q_i,
+  J_i^a=u_i^a q_i-d_i D_a^A q_i,
+
+where u_i^a are real divergence-free velocity components.
+
+Assume the declared gauge-covariant transport equation
+
+  D_mu^A J_i^mu=-(L_gamma q)_i.                          (C3)
+
+Then by summing over i,
+
+  D_mu^A J_total^mu=0,
+  J_total^mu=sum_i J_i^mu.                              (C4)
+
+These equalities transform covariantly under local
+K gauge transformations, since the connection,
+adjoint q_i, and J_i transform consistently and
+gamma_ij are gauge-singlet real coefficients.
+
+On expanding (C3), each layer satisfies
+
+  D_t^A q_i +u_i dot D^A q_i
+     -d_i D_a^A D_a^A q_i
+     =-(L_gamma q)_i
+
+when div u_i=0.
+
+This gives the exact COVARIANT FORM of the SM-07 Ward
+identity, but as a declared CLASSICAL ADJOINT FLUID
+transport law, not as a theorem derived from the
+Standard Model quantum action.
+
+Different quark/lepton representations cannot be
+summed naively as adjoint charges; a prescribed
+representation-to-current intertwiner or physically
+defined total source current is required.
+
+STATUS = CONDITIONAL_B_TIER ON CHOSEN ADJOINT FIELD
+REPRESENTATION, GAUGE CONNECTION AND TRANSPORT LAW.
+
+THEOREM NCW-06: GAUGE_COVARIANT_CHARGE_GRAPH_NORM.
+
+Under (C3), with the same invariant inner product
+for all adjoint charges and compact periodic M,
+
+  (1/2)d/dt sum_i||q_i||_2^2
+   =-sum_i d_i||D^A q_i||_2^2
+    -sum_{i<j}gamma_ij||q_i-q_j||_2^2 <=0.
+
+Proof: the adjoint action ad(A_mu) is skew relative
+to an invariant pairing, so
+  <q_i,D_t^A q_i>=(1/2)partial_t |q_i|^2,
+  <q_i,u_i dot D^A q_i>=(1/2)u_i dot grad |q_i|^2;
+integrate over periodic M using div u_i=0.
+Covariant integration by parts handles the Laplacian.
+Graph positivity follows from reciprocal gamma_ij.
+
+This is a GAUGE-INVARIANT quadratic norm
+calculation for an adjoint-valued classical
+transport model. It does not establish
+quantum SM BRST, confinement, or physical
+particle flux/charge measurements.
+
+STATUS = CONDITIONAL_B_TIER.
+
+4. EXACT ELECTRON CURRENT COUNTEREXAMPLE TO UNIQUENESS
+------------------------------------------------------
+THEOREM NCW-07: HELICAL_WARD_NONUNIQUENESS.
+
+Let
+  k=2*pi*n/L !=0,
+  omega_e=hbar*k^2/(2m_e),
+  U_e=hbar*k/(2m_e),
+  theta(t,z)=kz+alpha-omega_e t,
+  s_t=(cos(theta),sin(theta),0),
+  n_e=L^(-3), q_e=-e.
+
+The frozen free Pauli electron spinor has constant
+number density n_e and full probability-current
+velocity
+
+  v_e(t)=U_e e_z-U_e s_t.
+
+Its physical electric current is
+  J_e=q_e n_e v_e.
+
+The frozen smooth full mean-plus-fluctuation
+NSE velocity at viscosity nu>0 is
+
+  u_NSE(t)=U_e e_z-U_e exp(-nu*k^2*t)s_t,
+
+with the current-like fluid readout
+  J_NSE=q_e n_e u_NSE.
+
+Because each s_t has zero z-component and depends
+only on z,
+
+  div s_t=0,  div v_e=0, div u_NSE=0.
+
+As q_e n_e is constant, BOTH currents satisfy
+the SAME Abelian Ward form:
+
+  partial_t (q_e n_e)+div J_e=0,
+  partial_t (q_e n_e)+div J_NSE=0.
+
+However their difference is
+
+  J_e-J_NSE
+    =q_e n_e U_e
+       [exp(-nu*k^2*t)-1]s_t.                           (C5)
+
+For t>0, nu>0, k!=0 and U_e!=0 this is nonzero,
+while the residual ALSO has zero divergence:
+
+  div(J_e-J_NSE)=0.
+
+THEREFORE EVEN EXACT COMMON CHARGE CONTINUITY
+DOES NOT IDENTIFY THE PHYSICAL ELECTRON CURRENT
+WITH THE DISSIPATIVE NSE CURRENT.
+
+This is a concrete nonuniqueness obstruction:
+a Ward equation constrains divergence but not
+the entire solenoidal current or its time
+evolution.
+
+STATUS = EXACT B_TIER FOR THE FROZEN HELICAL PROFILE.
+
+5. ELECTROMAGNETIC CHARGE / BACKREACTION GATES
+------------------------------------------------
+THEOREM NCW-08: PERIODIC_GAUSS_NEUTRALITY_OBLIGATION.
+
+If J_total is declared as a physical Maxwell
+electric source on a compact boundaryless spatial
+torus, Gauss law imposes
+
+  integral_M rho_charge dx=0.
+
+A net one- or two-electron charge must be balanced
+by a specified compensating background or moved
+to a noncompact/asymptotically charged geometry.
+
+Neither the charge transport equation nor
+SM-07 covariant Ward conservation by itself
+supplies this neutrality. The background must
+be included in current/stress/energy accounting.
+
+STATUS = EXACT B_TIER PHYSICAL COMPATIBILITY.
+
+THEOREM NCW-09: REGULARITY_PRESERVING_CHARGE_PORT.
+
+Assume:
+  - finite NSE^X fluid layers already have a
+    globally smooth trajectory in a previously
+    established regularity class (e.g., common
+    2D3C or critical H1/2 regularity);
+  - charge transport satisfies the smooth scalar
+    advection-diffusion-graph system (C1) with
+    fixed d_i>=0, symmetric gamma_ij>=0;
+  - the charge currents do NOT feed back into
+    the NSE momentum equations.
+
+Then the charge problem is a global linear
+advection-diffusion-graph system with smooth
+coefficients on each bounded time interval.
+Standard parabolic/transport theory gives a
+global smooth charge field from smooth charge
+initial data, preserving total charge and the
+quadratic charge budget from NCW-03/04.
+
+This is a TRIANGULAR COUPLING, not a true
+two-way electromagnetic fluid interaction.
+No force smallness is needed because no
+charge-to-velocity feedback occurs.
+
+If charge/field dynamics DOES feed back
+through a Lorentz-type momentum force
+  f_i=rho_q,i E+J_i cross B,
+the fluid regularity theorem requires
+INDEPENDENT analytic control: exact tangent
+preservation of a 2D3C/Beltrami sector,
+or the previously frozen critical
+L2_t dot H^(-1/2) forcing budget, or
+the large-core exponential perturbation gate.
+
+Physical current matching, charge continuity
+and gauge covariance alone do NOT imply
+these analytic bounds.
+
+STATUS = EXACT TRIANGULAR PDE CLASS; FULL BACKREACTION CONDITIONAL.
+
+6. IMPORTANT DIFFERENCE FROM MOMENTUM GRAPH
+--------------------------------------------
+THEOREM NCW-10: CHARGE_GRAPH_MOMENTUM_GRAPH_SEPARATION.
+
+NSE momentum drag:
+  (L_kappa u)_i=sum_j kappa_ij(u_i-u_j).
+
+Charge transport/exchange:
+  (L_gamma q)_i=sum_j gamma_ij(q_i-q_j).
+
+Both operators are positive symmetric weighted
+graph Laplacians, but they act on DIFFERENT
+spaces and encode different conserved
+quantities and constitutive coefficients.
+
+Reciprocal momentum graph alone does NOT
+prove SM-07 local charge conservation:
+charge density fields, currents and equations
+must also be present.
+
+Converse: local charge Ward identity alone
+does NOT prove the fluid kinetic-energy
+identity or a global PDE regularity theorem.
+
+STATUS = EXACT B_TIER TYPE SEPARATION.
+
+7. FROZEN SM-07 CLASSIFICATION
+-------------------------------
+THEOREM NCW-11: SM07_MATCH_AND_NONMATCH.
+
+FROZEN SM-07:
+  D_mu^A J^mu=0
+for the correctly defined total quantum
+gauge current on shell with anomaly control.
+
+Native NSE:
+  div u=0, continuity for advected charge
+  partial_t q+div(q u-d grad q)=s.
+
+An exact classical Abelian or adjoint-gauge
+covariant Ward-form current can be built
+using the declared transport and graph
+exchange equations.
+
+NOT DERIVED:
+  - SM fermionic Noether current operator
+    equals a classical NSE transported current;
+  - nonabelian current from SM quantum
+    renormalized local operators;
+  - source equality J_SM=J_NSE;
+  - SM anomaly cancellation/BRST at
+    the microscopic quantum level;
+  - interaction-induced global NSE
+    regularity for arbitrary backreaction.
+
+The helical test NCW-07 proves that
+even two currents satisfying an exact
+common Ward identity may differ.
+
+SM-01 through SM-06 remain frozen.
+SM-08, stress-energy exchange, remains
+unimplemented in this document.
+
+STATUS = B_TIER STRUCTURAL MATCH ONLY.
+
+8. ROOT THEOREM
+----------------
+THEOREM NSE_CURRENT_WARD_IDENTITY.
+
+Let finite X index smooth incompressible NSE
+layers on periodic M, together with
+smooth Abelian charge densities q_i satisfying
+(C1) with nonnegative d_i and reciprocal
+nonnegative graph gamma_ij.
+
+Then:
+ R1 the layer continuity equations imply
+    local total-current conservation;
+ R2 total integrated charge is constant;
+ R3 the graph acts dissipatively on
+    charge-density differences;
+ R4 a chosen common adjoint bundle and
+    gauge-covariant charge transport
+    satisfy an exact covariant total Ward
+    law under the stated extra premises;
+ R5 the helical electron/NSE example
+    demonstrates Ward nonuniqueness;
+ R6 the charge transport can preserve
+    a pre-existing global NSE regularity
+    class without feedback;
+ R7 physical Maxwell net-charge
+    neutrality and backreaction are
+    independent obligations.
+
+PROOF: NCW-01..NCW-11.
+
+CLASSIFICATION = B_TIER FOR THE SCOPED
+MATHEMATICAL CURRENT/GRAPH IMPLICATION;
+PHYSICAL QUANTUM SM-07 IDENTIFICATION = OPEN.
+A_TIER NOT ESTABLISHED.
+
+9. ENDPOINT REGISTER
+---------------------
+[x] NCW-01 INCOMPRESSIBLE_SCALAR_CURRENT_IDENTITY
+[x] NCW-02 MATERIAL_DERIVATIVE_COMMUTATOR
+[x] NCW-03 NSE_POWER_X_TOTAL_ABELIAN_WARD
+[x] NCW-04 CHARGE_GRAPH_QUADRATIC_DISSIPATION
+[x] NCW-05 COVARIANT_ADJOINT_CURRENT_PORT
+[x] NCW-06 GAUGE_COVARIANT_CHARGE_GRAPH_NORM
+[x] NCW-07 HELICAL_WARD_NONUNIQUENESS
+[x] NCW-08 PERIODIC_GAUSS_NEUTRALITY_OBLIGATION
+[x] NCW-09 REGULARITY_PRESERVING_CHARGE_PORT
+[x] NCW-10 CHARGE_GRAPH_MOMENTUM_GRAPH_SEPARATION
+[x] NCW-11 SM07_MATCH_AND_NONMATCH
+[x] NCW-12 NSE_CURRENT_WARD_IDENTITY_ROOT
+
+[ ] NCW-13 PHYSICAL_SM_NOETHER_CURRENT_OPERATOR
+[ ] NCW-14 NONABELIAN_QUANTUM_WARD_ANOMALY_AUDIT
+[ ] NCW-15 MICROSCOPE_TO_FLUID_CURRENT_MATCHING
+[ ] NCW-16 CHARGE_TO_MOMENTUM_BACKREACTION_FORCE_BOUND
+[ ] NCW-17 FULL_MAXWELL_STRESS_ENERGY_WARD_MATCH_SM08
+[ ] NCW-18 EXTERNAL_LEAN_COMPILER_THEOREM_AXIOM_AUDIT
+
+10. PROOF SPINE FOR FUTURE A-TIER (NOT EXECUTED)
+------------------------------------------------
+A. Abstract finite real vector fields and smooth
+   product/divergence identities.
+B. Scalar transport and material derivative
+   multiplication commutator.
+C. Symmetric graph cancellation and positive
+   quadratic energy; independent product
+   layer interfaces.
+D. Abstract invariant Lie algebra pairing
+   and covariant derivation, diffusion
+   integration by parts.
+E. Explicit helical phase, electron vs
+   damped NSE current and divergence mismatch.
+F. Classical Maxwell net charge condition.
+G. Conditional regularity port signature
+   and root deterministic assembly.
+H. External native Lean compiler, theorem
+   audit: not performed.
+
+No specific Mathlib/Methlib theorem name has
+been asserted inspected or compiled.
+
+11. SOURCES
+------------
+Non-Abelian Wong-fluid covariant continuity
+and charge transport:
+https://citeseerx.ist.psu.edu/document?doi=47258d522cc08ffbaf826b12e682cd6912565cc2&repid=rep1&type=pdf
+
+Gauge/Yang-Mills current Ward law:
+https://qft.org/gauge-theories-standard-model/yang-mills-theory/yang-mills-equations-constraints-observables/
+
+Prior frozen NSE^X current and residual:
+https://raw.githubusercontent.com/randogelist/Maxwell-Schroedinger-System/b-tier-hull/B_TIER/NSE_STANDARD_MODEL_MATTER_CURRENT_STRESS_PORT_B_TIER.txt
+
+FINAL
+-----
+MARKER = !
+TIER = B_TIER_FOR_EXPLICIT_MATHEMATICAL_CURRENT_ADAPTER
+PHYSICAL_STANDARD_MODEL_WARD_MATCH = OPEN
+SM-08 = FROZEN
+A_TIER = NOT_ESTABLISHED
