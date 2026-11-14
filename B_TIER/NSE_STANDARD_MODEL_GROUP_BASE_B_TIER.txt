@@ -1,0 +1,621 @@
+NSE -> STANDARD MODEL: MINIMAL GROUP BASE FOR A VARIATIONAL ADAPTER
+B-TIER MATHEMATICAL DERIVATION
+=================================================================
+
+STATUS
+------
+THEOREM = NSE_STANDARD_MODEL_GROUP_BASE
+MARKER = !
+TIER = B_TIER
+BRANCH = b-tier-hull
+LEAN_STATUS = NOT EMITTED
+EXTERNAL_COMPILER_AND_THEOREM_LEVEL_AXIOM_AUDIT = NOT PROVIDED
+A_TIER = NOT ESTABLISHED
+FORMAL_CLOSURE = NOT ESTABLISHED
+LOCAL_LEAN_EXECUTIONS = 0
+
+PURPOSE
+-------
+Identify and derive the minimum group, Lie-algebra, representation,
+principal-bundle, and positive-dissipation identities that must be
+available BEFORE a local Standard Model Lagrangian can be attached to
+an NSE layering model.
+
+This is a base-structure theorem, not a claim that Navier-Stokes
+implies the Standard Model gauge group, nor that arbitrary Standard
+Model matter admits a fluid identification.
+
+FROZEN SEPARATIONS
+------------------
+(A) Fluid relabeling and incompressible transport: SDiff.
+(B) Internal local gauge transformations: Gau(P).
+(C) Spacetime diffeomorphisms and spin geometry: different symmetries.
+(D) N independent fluid labels: SDiff^N, distinct from one common
+    physical spacetime and one common gauge connection.
+(E) Field theory supplies a conservative action and Ward identities;
+    constitutive transport and dissipation are extra physical inputs.
+(F) Smooth NSE is generally a viscous semiflow, not a Lie group of
+    time transformations; time reversal fails for positive viscosity.
+
+0. DOMAINS AND TYPES
+--------------------
+Let M := T_L^3 be a compact oriented Riemannian 3-manifold with
+standard flat metric, volume form mu and, when spinors are present,
+a fixed spin structure. Let X=R x M be spacetime, with Lorentz
+metric or tetrad as extra geometric input when needed.
+
+Let N be a finite positive integer.
+Let K be a compact connected matrix Lie group with algebra k.
+The Standard Model example is
+
+  k_SM = su(3)_C direct_sum su(2)_L direct_sum u(1)_Y.
+
+A declared global realization is
+
+  K_Gamma =
+    (SU(3) x SU(2) x U(1))/Gamma,
+
+  Gamma in {1, Z2, Z3, Z6},
+
+using a compatible integer hypercharge convention.
+
+The local Lie algebra is identical for all four Gamma choices;
+the global representation/bundle and line-operator spectrum can
+depend on Gamma.
+
+Let P -> M be a principal K-bundle. Its associated adjoint bundle
+is ad(P)=P x_Ad k. Its gauge transformations form Gau(P), the
+group of automorphisms covering the identity on M.
+
+For each material NSE layer i in {1,...,N}, choose
+
+  rho_i>0,  eta_i>=0,
+  u_i in X_sigma(M),
+
+and symmetric kappa_ij=kappa_ji>=0 for all i!=j.
+
+1. NSE GEOMETRY AND LIE ALGEBRA
+------------------------------
+THEOREM GB01: SDIFF_AND_SOLENOIDAL_LIE_ALGEBRA.
+
+  G_fl := SDiff(M)
+        = {phi in Diff(M): phi^*mu=mu}.
+
+Its infinitesimal algebra, using the vector-field commutator
+convention, is
+
+  g_fl := {u smooth tangent vector field: div_mu u=0},
+
+  [u,v] := nabla_u v - nabla_v u.
+
+For all u,v,w in g_fl,
+
+  div_mu[u,v] = u dot grad(div_mu v)-v dot grad(div_mu u)=0,
+  [u,v]=-[v,u],
+  [u,[v,w]]+[v,[w,u]]+[w,[u,v]]=0.
+
+PROOF: D_u:=u dot grad is a derivation on scalar functions and
+[D_u,D_v]=D_[u,v]. Differential-operator commutators satisfy
+Jacobi. Divergence is the Lie derivative of the volume form;
+L_[u,v]mu=[L_u,L_v]mu=0.
+
+STATUS: B_TIER COMPLETE.
+
+THEOREM GB02: NSE_LIE_SYMMETRY_VS_VISCOUS_SEMIFLOW.
+
+The ideal Euler part of NSE is the L2 Euler-Arnold equation on
+SDiff(M); its velocity dynamics is
+
+  partial_t u = -P_sigma((u dot grad)u).
+
+The viscous NSE equation is
+
+  partial_t u
+    = -P_sigma((u dot grad)u)+nu Delta u +P_sigma f,
+
+and satisfies
+
+  (d/dt) (1/2)||u||_2^2
+    = -nu||grad u||_2^2+<u,f>
+
+for smooth periodic incompressible solutions.
+
+Positive viscosity introduces dissipation, so the forward NSE flow
+is not a group of reversible time evolution on its natural energy
+state space. Thus SDiff is the configuration symmetry base, not a
+claim that the viscous dynamics itself is a Lie group.
+
+STATUS: B_TIER COMPLETE.
+
+2. MULTILAYER KINEMATICS
+------------------------
+THEOREM GB03: NSE_N_FOLD_PRODUCT.
+
+  G_mat := SDiff(M)^N
+  g_mat := g_fl^N,
+
+with componentwise bracket.
+
+The diagonal embedding
+
+  diag:SDiff(M)->SDiff(M)^N,
+  diag(phi)=(phi,...,phi)
+
+is a group homomorphism. For an adapter with a single physical
+spatial manifold and a single shared gauge field, the common
+physical diffeomorphism action is diagonal.
+
+CAUTION:
+Independent material relabelings for each constituent fluid are
+NOT N independent physical spacetime coordinate systems. There
+is no canonical full SDiff(M)^N action on ONE shared gauge field;
+such an action requires explicitly defined separate pullbacks
+or a compatible groupoid/fiber-product construction.
+
+STATUS: B_TIER COMPLETE.
+
+THEOREM GB04: GRAPH_EXCHANGE_OPERATOR.
+
+Define
+
+  (L_kappa u)_i
+    := sum_j kappa_ij (u_i-u_j).
+
+Then
+
+  sum_i <u_i,(L_kappa u)_i>
+    =sum_{i<j} kappa_ij ||u_i-u_j||_2^2>=0.
+
+For connected interlayer graph,
+
+  ker L_kappa = {(u,...,u):u in g_fl}.
+
+The reciprocal drag force in layer i is -(L_kappa u)_i.
+This is a positive symmetric dissipative structure on the
+product fluid algebra, NOT an additional internal gauge group.
+
+STATUS: B_TIER COMPLETE.
+
+3. INTERNAL GAUGE GROUP BASE
+----------------------------
+THEOREM GB05: SM_INTERNAL_GAUGE_LIE_ALGEBRA.
+
+  k_SM = su(3)+su(2)+u(1)
+
+as a direct sum of Lie algebras, real dimension 8+3+1=12.
+
+The pointwise current gauge algebra for a TRIVIAL bundle is
+
+  g_gauge := C^infty(M,k_SM),
+
+with [xi,eta](x)=[xi(x),eta(x)]_k.
+
+For a general principal bundle,
+
+  g_gauge := Gamma(M,ad(P)).
+
+The current bracket is pointwise and satisfies Jacobi because
+the finite-dimensional k bracket does.
+
+STATUS: B_TIER COMPLETE.
+
+THEOREM GB06: LOCAL_SPATIAL_GAUGE_SEMIDIRECT_BRACKET.
+
+For a trivial bundle and a matrix representation rho of k,
+define the first-order differential operator
+
+  D_(u,xi):=u dot grad +rho(xi).
+
+Its commutator is
+
+  [D_(u,xi),D_(v,eta)]
+    =D_([u,v], u dot grad eta-v dot grad xi+[xi,eta]).
+
+Thus the bracket
+
+  [(u,xi),(v,eta)]
+   :=([u,v],u dot grad eta-v dot grad xi+[xi,eta])
+
+defines a Lie-algebra semidirect structure, with the action
+convention fixed by the D_(u,xi) representation.
+The corresponding group composition convention must be
+chosen compatibly (right/left action and inverse pullback
+can reverse the sign of the transport component).
+
+This is a local algebraic bridge; it does NOT identify the
+SDiff Lie algebra with su(3), su(2), or u(1).
+
+STATUS: B_TIER COMPLETE.
+
+4. NONTRIVIAL BUNDLES: WHY ATIYAH STRUCTURE IS REQUIRED
+--------------------------------------------------------
+THEOREM GB07: GAUGE_AUTOMORPHISM_EXTENSION.
+
+The principal bundle automorphism group Aut(P) covers only those
+base diffeomorphisms that admit a lift preserving the bundle.
+
+With volume-preserving restrictions,
+
+  1 -> Gau(P)
+    -> Aut_vol(P)
+    -> SDiff(M)_[P]
+    -> 1,
+
+where SDiff(M)_[P] is the subgroup of volume-preserving base
+diffeomorphisms that have an automorphism lift to P.
+This sequence is exact at each displayed term; it is
+not asserted that all of SDiff(M) acts when P is nontrivial.
+
+If P is globally trivial, a trivialization supplies a split
+semidirect group description.
+
+STATUS: B_TIER FROM STANDARD PRINCIPAL-BUNDLE GEOMETRY.
+
+THEOREM GB08: ATIYAH_ALGEBROID_SEQUENCE.
+
+The Lie algebroid
+
+  At(P):=TP/K
+
+sits in the exact sequence of vector bundles
+
+  0 -> ad(P) -> At(P) -> TM -> 0.
+
+Its sections form the infinitesimal bundle-automorphism
+algebra. A connection A provides a VECTOR BUNDLE splitting,
+but its horizontal lift does not preserve brackets unless
+curvature F_A vanishes.
+
+For the volume-preserving subalgebra restrict the anchor
+from TM to solenoidal vector fields (or bundle automorphisms
+covering such fields).
+
+STATUS: B_TIER, STANDARD ATIYAH IDENTITY.
+
+THEOREM GB09: CURVATURE_CORRECTION_IN_COVARIANT_BRACKET.
+
+Fix the convention D^A=d+rho(A), so
+
+  [D^A_u,D^A_v]-D^A_[u,v]=rho(F_A(u,v)).
+
+Let xi,eta be adjoint-bundle sections and define
+
+  D_(u,xi)^A:=D^A_u+rho(xi).
+
+Then
+
+  [D_(u,xi)^A,D_(v,eta)^A]
+  =D^A_[u,v]
+   +rho(F_A(u,v)
+        +nabla_u^{ad A}eta
+        -nabla_v^{ad A}xi
+        +[xi,eta]).
+
+Here
+
+  nabla_u^{ad A}eta=u dot grad eta+[A(u),eta]
+
+in a local trivialization.
+
+This is the necessary curvature-dependent bracket in a
+connection splitting; the exact sign of the curvature term
+in horizontal-vector-field conventions is convention-dependent.
+
+Dropping F_A would generally invalidate the covariant
+commutator and the intended gauge-covariant adapter.
+
+STATUS: B_TIER COMPLETE OPERATOR IDENTITY.
+
+5. MATTER REPRESENTATIONS / VARIATIONAL INTERFACE
+--------------------------------------------------
+THEOREM GB10: REPRESENTATION_BASE.
+
+The local Standard Model Lagrangian is not constructed merely
+from the group k_SM. It also requires associated bundles of
+matter representations, chirality, a spin structure,
+connections, and invariant couplings.
+
+Use the hypercharge convention Q=T3+Y. Per generation,
+standard representations include:
+
+  Q_L: (3,2,1/6)
+  u_R: (3,1,2/3)
+  d_R: (3,1,-1/3)
+  L_L: (1,2,-1/2)
+  e_R: (1,1,-1)
+  H:   (1,2,1/2).
+
+A connection A defines covariant derivatives
+
+  D^A psi = d psi +rho_*(A) psi,
+
+supplemented by the spacetime spin connection for fermions.
+Its curvature is
+
+  F_A=dA+1/2[A wedge A],
+
+and satisfies the Bianchi identity
+
+  D^A F_A=0.
+
+Gauge transformations act AFFINELY on connections and
+linearly in the appropriate associated-bundle
+representation on matter fields.
+
+The spinor/fermionic sector is Z2-graded; physical quantum
+fermions require anticommuting (Grassmann) variables or
+operator-valued fields. They are not ordinary NSE scalar
+advected fields. All gauge/anomaly, spin-structure, and
+Yukawa invariance conditions must be audited.
+
+STATUS: B_TIER STRUCTURAL IDENTIFICATION.
+
+THEOREM GB11: WARD_CURRENT_STRESS_PORT.
+
+For an admissible gauge-invariant local field action
+S_L[Phi,A,g], with fixed variational sign conventions,
+define
+
+  E_Phi := delta S_L/delta Phi,
+  J := the current from variation of A,
+  T_L := the stress from metric/tetrad variation.
+
+Gauge and diffeomorphism invariance imply their appropriate
+on-shell Noether/Ward identities. For a standard Yang-Mills
+matter coupling, schematically,
+
+  D_mu J^mu=0,
+  nabla_mu T_matter^{mu nu}
+     =F^{a nu}{}_mu J_a^mu,
+
+with opposite exchange in T_gauge, subject to the
+chosen decomposition and interaction conventions.
+
+IMPORTANT:
+One cannot assert these identities unchanged for an
+arbitrary non-gauge-invariant Lagrangian, an anomalous
+quantum field theory, or a choice of stress tensor that
+omits interaction contributions.
+
+STATUS: CONDITIONAL_B_TIER ON ADMISSIBILITY / SYMMETRIES.
+
+6. HODGE PRESSURE, DISSIPATION AND FIELD EXCHANGE
+-------------------------------------------------
+THEOREM GB12: HODGE_LERAY_PORT.
+
+For incompressible constant-density flow, the physical
+body force f_i from the field stress/current interface
+enters as P_sigma f_i. Gradient components can be
+absorbed into pressure, whereas solenoidal components
+change the fluid velocity. For nonuniform density
+and relativistic fluids this simple projection is
+not the correct universal force law.
+
+STATUS: B_TIER COMPLETE.
+
+THEOREM GB13: MULTILAYER_ENERGY_DISSIPATION.
+
+For smooth periodic NSE layers
+
+  rho_i (partial_t u_i+u_i dot grad u_i)
+  =-grad p_i+eta_i Delta u_i+f_i-(L_kappa u)_i,
+  div u_i=0,
+
+define
+
+  E_fluid := 1/2 sum_i rho_i ||u_i||_2^2.
+
+Then
+
+  dot E_fluid
+   =-sum_i eta_i||grad u_i||_2^2
+    -sum_{i<j}kappa_ij||u_i-u_j||_2^2
+    +sum_i<u_i,f_i>.
+
+Proof: integrate against u_i, use incompressibility
+to kill advection and pressure, integration by parts
+for viscosity, and symmetry of kappa_ij for drag.
+
+STATUS: B_TIER COMPLETE.
+
+THEOREM GB14: RECIPROCAL_WARD_RESERVOIR_CLOSURE.
+
+Assume a full field-sector energy balance
+
+  dot E_fields=-sum_i<u_i,f_i>,
+
+with no unaccounted boundary flux, external work,
+field self-energy, or time-dependent prescribed sources.
+
+Define
+
+  D_visc :=sum_i eta_i||grad u_i||_2^2,
+  D_drag :=sum_{i<j}kappa_ij||u_i-u_j||_2^2,
+
+and supply a reservoir with
+
+  dot E_reservoir=D_visc+D_drag.
+
+Then
+
+  dot(E_fluid+E_fields+E_reservoir)=0.
+
+If reservoir temperature T0>0 is constant and all
+other entropy balances are compatible,
+
+  dot S_reservoir=(D_visc+D_drag)/T0>=0.
+
+These are exact algebraic consequences of the stated
+power/constitutive premises. No microscopic reservoir
+Lagrangian is constructed by this implication.
+
+STATUS: CONDITIONAL_B_TIER.
+
+7. A TYPED UNIVERSAL LAGRANGIAN ENTRY PORT
+-------------------------------------------
+THEOREM GB15: SM_LAGRANGIAN_PLUGIN_SIGNATURE.
+
+A physically meaningful insertion is not a bare
+function L -> f_NSE. It is a tuple
+
+  FIELD_SECTOR :=
+    (K, P, representations, spin/tetrad data, connection,
+     local action S_L, gauge/diffeomorphism Ward identities),
+
+  FLUID_SECTOR :=
+    (N, SDiff(M)^N, rho_i, eta_i, graph kappa,
+     fluid kinetic energy, equations and constraints),
+
+  MATCHING :=
+    (coarse_grained observables, reciprocal Q_i^mu,
+     constitutive closure, reservoir bookkeeping,
+     gauge/coordinate covariance data).
+
+The field action can be decomposed schematically as
+
+  S_SM =
+    S_YangMills + S_Dirac + S_Higgs + S_Yukawa,
+
+with chirality and hypercharge handled inside
+the specified representations.
+
+The fluid matching yields source forces f_i. For
+on-shell-compatible exchange ports Q_i^nu,
+
+  nabla_mu T_SM^{mu nu}=-sum_i Q_i^nu,
+  nabla_mu T_fluid,i^{mu nu}=Q_i^nu
+
+(with reservoirs / interaction stress included in
+T_total according to the chosen accounting), so
+
+  nabla_mu T_total^{mu nu}=0.
+
+In general, a nonrelativistic incompressible NSE
+equation is recovered only after a declared
+hydrodynamic/nonrelativistic limit and a constitutive
+closure; full Standard Model dynamics is not itself
+an incompressible fluid theory.
+
+STATUS: CONDITIONAL_B_TIER, TYPED SIGNATURE.
+
+8. ROOT THEOREM
+---------------
+THEOREM NSE_STANDARD_MODEL_GROUP_BASE.
+
+ASSUME:
+  H1. Smooth periodic orientable spin spatial manifold M and
+      fixed spacetime geometric input when fermions are used.
+  H2. SDiff(M) and N independent material fluid layers.
+  H3. A chosen globally valid Standard Model gauge group
+      K_Gamma and a principal bundle P over M.
+  H4. A connection A, its curvature F_A, associated field
+      representations and admissible invariant action S_L.
+  H5. A fluid forcing/matching law with reciprocal power
+      exchange and symmetric nonnegative layer drag.
+  H6. The reservoir balance of GB14 for a closed system.
+
+THEN:
+  R1. The NSE transport algebra and pointwise SM current algebra
+      satisfy Jacobi separately.
+  R2. Their trivial-bundle semidirect Lie-algebra bracket is
+      well-defined and satisfies Jacobi.
+  R3. For nontrivial gauge bundles, the Atiyah algebroid is
+      the correct infinitesimal automorphism interface.
+  R4. With a connection split, the covariant bracket
+      requires the curvature term F_A.
+  R5. Product NSE layer symmetry and graph exchange
+      produce nonnegative interlayer dissipation.
+  R6. Field-force ports satisfy the stated kinetic-energy
+      balance, and the closed combined field/fluid/reservoir
+      energy is constant.
+  R7. The resulting typed group/field/constitutive interface
+      can ACCEPT an admissible SM field action without
+      equating its microscopic dynamics to NSE.
+
+PROOF:
+  R1-R4 from GB01, GB05-GB09;
+  R5 from GB03-GB04 and GB13;
+  R6 from GB11, GB13-GB14;
+  R7 by the explicitly typed construction GB15.
+
+STATUS: B_TIER for the explicitly conditional theorem.
+NO CLAIM of full physical SM/NSE equivalence, quantum
+field-theoretic reconstruction, or A_TIER closure.
+
+9. ENDPOINT INDEX FOR FUTURE LEAN ASSEMBLY
+------------------------------------------
+[+] NSMG-01 SDIFF_SOLENOIDAL_LIE_JACOBI
+[+] NSMG-02 EULER_GEOMETRIC_VS_NSE_DISSIPATIVE_SPLIT
+[+] NSMG-03 MULTILAYER_PRODUCT_AND_DIAGONAL
+[+] NSMG-04 WEIGHTED_GRAPH_DISSIPATION
+[+] NSMG-05 SM_INTERNAL_LIE_DIRECT_SUM
+[+] NSMG-06 SM_POINTWISE_GAUGE_CURRENT_BRACKET
+[+] NSMG-07 SDIFF_GAUGE_SEMIDIRECT_OPERATOR_JACOBI
+[+] NSMG-08 PRINCIPAL_BUNDLE_AUT_EXTENSION
+[+] NSMG-09 ATIYAH_ALGEBROID_SHORT_EXACT_SEQUENCE
+[+] NSMG-10 CURVATURE_CORRECTED_COVARIANT_BRACKET
+[+] NSMG-11 SM_ASSOCIATED_REPRESENTATIONS_AND_BIANCHI
+[+] NSMG-12 GAUGE_WARD_CURRENT_STRESS_PORT
+[+] NSMG-13 HODGE_LERAY_PROJECTED_FORCE
+[+] NSMG-14 MULTILAYER_ENERGY_DISSIPATION
+[+] NSMG-15 RECIPROCAL_TOTAL_ENERGY_RESERVOIR
+[+] NSMG-16 TYPED_SM_FIELD_ADAPTER
+[+] NSMG-17 ROOT_CONDITIONAL_GROUP_BASE
+
+[ ] NSMG-18 MICROSCOPIC_SM_TO_FLUID_COARSE_GRAINING
+[ ] NSMG-19 FULL_SPACETIME_SPIN_BUNDLE_AND_CHIRAL_QFT
+[ ] NSMG-20 GAUGE_ANOMALY_AND_WARD_QUANTUM_AUDIT
+[ ] NSMG-21 QUANTUM_SCHWINGER_KELDYSH_DISSIPATIVE_LIFT
+[ ] NSMG-22 NONTRIVIAL_BUNDLE_GLOBAL_FORM_CHOICE
+[ ] NSMG-23 FULL_COUPLED_FIELD_NSE_GLOBAL_REGULARITY
+[ ] NSMG-24 EXTERNAL_LEAN_THEOREM_AXIOM_AUDIT
+
+All [+] endpoints denote B-tier mathematical or
+conditional structural identities, NOT A-tier kernel
+proofs. Pending signatures are not proofs.
+
+10. PRELOAD PLAN / MATHLIB AND EXISTING METHLIB ADAPTERS
+--------------------------------------------------------
+A. Abstract Lie algebra direct sums and semidirect Lie
+   algebras; proof of Jacobi via derivation commutators.
+B. Pointwise current algebras from C^infty sections;
+   finite-dimensional su(3), su(2), u(1) abstract
+   LieAlgebra endpoints before explicit matrices.
+C. Product of fluid symmetry algebras and diagonal map.
+D. Weighted graph Laplacian positive form, kernel.
+E. Covariant derivation operator and curvature commutator.
+F. Abstract principal-bundle extension / Atiyah interface
+   if available; otherwise explicit named structural
+   premises with no invented library imports.
+G. PDE pressure projection and bilinear energy ports.
+H. Final deterministic root theorem using typed endpoints.
+
+Specific Mathlib/Methlib imported declaration names were
+NOT checked in the current session. No local Lean process
+was run, and no A-tier status is claimed.
+
+SOURCES / ANCHORS
+-----------------
+Holm-Marsden-Ratiu (Euler-Poincare and semidirect products):
+https://www.cds.caltech.edu/~marsden/bib/1998/04-HoMaRa1998b/HoMaRa1998b.pdf
+
+Principal bundle automorphisms and gauge extension:
+https://www.math.toronto.edu/mein/teaching/moduli.pdf
+
+Atiyah algebroid exact sequence:
+https://link.springer.com/article/10.1007/s00023-023-01360-8
+
+Standard Model global gauge-group forms:
+https://qft.org/gauge-theories-standard-model/standard-model-assembly-consistency/standard-model-global-form-charge-quantization/
+
+Standard Model representation content:
+https://www.tpi.uni-jena.de/~floerchinger/qft2/lecture16/
+
+FINAL CLASSIFICATION
+--------------------
+MARKER = !
+TIER = B_TIER
+ROOT_THEOREM = CONDITIONAL_B_TIER
+A_TIER = NOT ESTABLISHED
+FORMAL_CLOSURE = NOT ESTABLISHED
+STANDARD_MODEL_EQUIVALENCE = NOT ESTABLISHED
