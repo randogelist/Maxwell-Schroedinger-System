@@ -1,8 +1,9 @@
-MAXWELL–SCHRÖDINGER SYSTEM — CANONICAL BRANCH B-TIER TXT
-========================================================
+A B-TIER MATHEMATICAL ARCHITECTURE FOR THE PERIODIC
+MAXWELL-SCHROEDINGER SYSTEM
+====================================================
 
-STATUS
-------
+STATUS BLOCK
+------------
 
 MARKER = !
 TIER = B_TIER
@@ -10,46 +11,114 @@ ARTIFACT = MAXWELL_SCHROEDINGER_BRANCH_B_TIER
 ROOT_THEOREM = MAXWELL_SCHROEDINGER_B_TIER_HULL
 REPOSITORY = randogelist/Maxwell-Schroedinger-System
 SOURCE_BRANCH = b-tier-hull
-ASSEMBLY_PARENT_COMMIT = fedf6ea42f88d6d5fd6fe0a562b9c0d3de688bbd
+PRESENTATION_REVISION = 2
 LEAN_ROOT_PLANNED = MaxwellSchroedingerSystem.Main
 LEAN_STATUS = NOT_EMITTED
 A_TIER_STATUS = NOT_ESTABLISHED
 LOCAL_LEAN_EXECUTIONS = 0
 
-This file is the single B-tier export of the branch. It consolidates the
-mathematical setting, exact equations, derived identities, conditional
-extensions, endpoint checklist, validation gates, and Lean-adapter plan.
-
-A recorded derivation is not an A-tier proof. Promotion requires exact Lean
-files, a matching cached external compiler run, and theorem-level axiom-audit
-evidence.
+Prepared mathematics in this document establishes B-tier derivations only.
+Prepared Lean declarations, when emitted, establish at most A_TIER_CANDIDATE.
+Promotion requires a matching cached external compiler run and theorem-level
+axiom audit.
 
 
-0. CHECKLIST SEMANTICS
-----------------------
+ABSTRACT
+--------
 
-  [x] = an exact B-tier derivation is recorded, possibly conditionally.
-  [ ] = a source theorem, analytic closure, numerical validation, or physical
-        limit remains unresolved.
+This document specifies a periodic spinless Maxwell-Schrodinger system on the
+unit three-torus, records its algebraic and analytic identities, constructs a
+stationary electrostatic matter profile, derives an exact nonnegative energy
+gap, identifies the neutralized charge density as the diagonal of a
+number-preserving one-particle transfer commutator, and analyzes a conditional
+transverse a_dagger magnetic extension.
+
+The exact core consists of:
+
+  (i)   charge neutrality, gauge covariance, continuity, mass conservation,
+        propagation of Maxwell constraints, Coulomb-gauge reduction, and
+        total-energy conservation for sufficiently regular solutions;
+
+  (ii)  a stationary profile theorem for every positive normalized smooth
+        profile chi with a reconstructed binding potential;
+
+  (iii) an exact ground-state transform and exact energy-gap identity;
+
+  (iv)  a number-preserving creation-annihilation profile-transfer algebra;
+
+  (v)   a stationary regularized a_dagger magnetic extension with an explicit
+        current defect;
+
+  (vi)  a static spinless magnetic no-go theorem excluding nonzero magnetic
+        self-consistency for one positive scalar matter profile.
+
+The regularity/photon-radius interpretation remains conditional on named NSE
+and coherent-state premises. No physical phase transition is inferred from the
+certificate radius alone.
+
+
+CONTENTS
+--------
+
+  0. Claim classes and presentation rule
+  1. Geometric, algebraic, and functional setting
+  2. Maxwell-Schrodinger equations
+  3. Gauge covariance and Coulomb-gauge equivalence
+  4. Neutrality, continuity, mass, and constraint propagation
+  5. Total-energy conservation
+  6. Stationary profile construction
+  7. Ground-state transform and exact energy gap
+  8. Minimization and energy trapping
+  9. Number-preserving profile-transfer algebra
+ 10. Regularized a_dagger magnetic extension
+ 11. Static spinless magnetic no-go theorem
+ 12. Conditional regularity/photon-radius bridge
+ 13. Analytical and numerical validation program
+ 14. Endpoint register
+ 15. Dependency spine
+ 16. Lean-adapter map
+ 17. Root B-tier theorem
+ 18. Closure classification
+
+
+0. CLAIM CLASSES AND PRESENTATION RULE
+--------------------------------------
+
+EXACT_B_TIER:
+  A complete mathematical derivation is recorded from explicitly stated
+  assumptions to the stated endpoint.
+
+CONDITIONAL_B_TIER:
+  A complete implication is recorded, but one or more named source, analytic,
+  dynamical, numerical, or semantic premises remain unresolved.
+
+OPEN_ENDPOINT:
+  The endpoint is frozen, but no complete derivation is recorded.
+
+NUMERICAL_TARGET:
+  The endpoint is a convergence or benchmark obligation, not a theorem already
+  established by this text.
+
+PHYSICAL_INTERPRETATION_GATE:
+  The endpoint requires a regulator-independent observable and cannot be
+  inferred from an analytic certificate alone.
+
+Checklist semantics:
+
+  [x] = exact or explicitly conditional B-tier derivation recorded.
+  [ ] = unresolved source, analytic, numerical, or physical-limit endpoint.
 
 No checkbox establishes A-tier status.
 
-Endpoint count:
 
-  38 total endpoints
-  19 recorded B-tier or conditional B-tier derivations
-  19 open, premise, target, or validation endpoints
+1. GEOMETRIC, ALGEBRAIC, AND FUNCTIONAL SETTING
+------------------------------------------------
 
-
-1. FROZEN MATHEMATICAL SETTING
-------------------------------
-
-Domain:
+1.1 Domain and constants
+~~~~~~~~~~~~~~~~~~~~~~~~
 
   T^3 := (R/Z)^3,
   |T^3| = 1.
-
-Parameters:
 
   m > 0,
   hbar > 0,
@@ -58,170 +127,308 @@ Parameters:
   q != 0,
   c^2 = 1/(epsilon0 mu0).
 
-Unknowns:
+Spatial means are denoted by
 
-  psi : R x T^3 -> C,
-  A   : R x T^3 -> R^3,
-  Phi : R x T^3 -> R.
+  <f> := integral_{T^3} f(x) dx.
 
-Matter Hilbert space:
+The Laplacian convention is
 
-  H_m := L^2(T^3; C).
+  Delta := sum_{j=1}^3 partial_j^2,
 
-Normalized matter sphere:
+so -Delta is nonnegative.
 
-  S(H_m) := { psi in H_m : ||psi||_2 = 1 }.
+1.2 Scalar and vector spaces
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Solenoidal zero-mean Sobolev spaces:
+  L2_m := L^2(T^3; C),
+
+  S(L2_m) := {psi in L2_m : ||psi||_2 = 1},
 
   H^s_{sigma,0}
-    := { v in H^s(T^3;R^3) : div v = 0 and mean(v) = 0 }.
+    := {v in H^s(T^3; R^3) : div v = 0 and <v> = 0},
 
-Energy configuration space:
+  H^s_0
+    := {f in H^s(T^3) : <f> = 0}.
 
-  E_energy
+The strong configuration class is
+
+  X_strong
+    := { (psi,A,Phi,E,B) :
+           psi, A, Phi, E, B are smooth,
+           ||psi||_2 = 1,
+           A in H^s_{sigma,0},
+           <Phi> = 0 }.
+
+The energy configuration class is
+
+  X_energy
     := { (psi,A,E,B) :
-           psi in H^1(T^3;C),
-           A in H^1_{sigma,0}(T^3;R^3),
-           E,B in L^2(T^3;R^3),
-           ||psi||_2 = 1 }.
+           psi in H^1(T^3; C),
+           A in H^1_{sigma,0},
+           E,B in L^2(T^3; R^3),
+           ||psi||_2 = 1,
+           B = curl A,
+           div E = q(|psi|^2-1)/epsilon0 }.
 
-Fermionic profile-transfer space:
+The B-tier conservation derivations are asserted first for sufficiently smooth
+solutions. Extension to weak energy solutions is a separate compactness and
+lower-semicontinuity endpoint.
 
-  F_-(H_m) := direct_sum_{n>=0} exterior_power^n H_m.
+1.3 Fourier-Hodge operators
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Uniform reference mode:
+Let
 
-  e_0(x) := 1,
-  ||e_0||_2 = 1.
+  L := (-Delta)_0^{-1}
 
-Outsider input and heat regularization:
-
-  a_dagger in L^2_{sigma,0} \ BMO^{-1},
-
-  a_epsilon := exp((epsilon^2/4) Delta) a_dagger,
-  epsilon > 0,
-
-  a_epsilon in C^infinity_{sigma,0}.
-
-The raw a_dagger membership and outsider claims remain an explicit source
-obligation inside this repository.
-
-
-2. FOURIER–HODGE ALGEBRA
-------------------------
-
-Define the mean-zero inverse Laplacian and the associated operators:
-
-  L := (-Delta)_0^{-1},
+be the zero-mean inverse of -Delta. Define
 
   P := I + grad L div,
-
   K := curl L.
 
-For a mean-zero vector distribution F:
+For every mean-zero smooth vector field F,
 
-  F = -grad L(div F) + curl(KF).
+  -Delta L F = F,
 
-The first term is longitudinal. The second term is transverse.
+  P F = F + grad L(div F),
 
-Coulomb gauge:
+  div(P F) = 0,
+
+  curl(K F) = P F,
+
+  div(K F) = 0,
+
+  F = -grad L(div F) + curl(K F).
+
+Thus
+
+  longitudinal(F) = -grad L(div F),
+  transverse(F)   = P F = curl(K F).
+
+For B in H^s_{sigma,0},
+
+  curl(K B) = B.
+
+1.4 Coulomb gauge
+~~~~~~~~~~~~~~~~~
 
   div A = 0,
-  mean(A) = 0,
-  mean(Phi) = 0.
+  <A> = 0,
+  <Phi> = 0.
 
+In this gauge, the vector potential is uniquely recovered from B by
 
-3. MAXWELL–SCHRÖDINGER SYSTEM
------------------------------
+  A = K B.
 
-Covariant derivative:
+1.5 Matter and electromagnetic definitions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Define the covariant momentum
 
   D_A := -i hbar grad - q A.
 
-Neutralized periodic charge:
+Define charge and current
 
-  rho_psi := q(|psi|^2 - 1).
-
-Minimal-coupling matter current:
+  rho_psi := q(|psi|^2 - 1),
 
   J_{psi,A}
-    := (q/m) Re(conj(psi) D_A psi).
+    := (q/m) Re( conjugate(psi) D_A psi )
+     = (q hbar/m) Im(conjugate(psi) grad psi)
+       - (q^2/m) A |psi|^2.
 
-Electromagnetic fields:
+Define fields
 
   E := -partial_t A - grad Phi,
   B := curl A.
 
-For a real time-independent binding potential W:
+1.6 Fermionic one-particle and Fock spaces
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  H_1 := L^2(T^3; C),
+
+  F_-(H_1) := direct_sum_{n>=0} wedge^n H_1,
+
+  e_0(x) := 1,
+  ||e_0||_2 = 1.
+
+Creation and annihilation operators satisfy the canonical anticommutation
+relations
+
+  {a(f),a^dagger(g)} = <f,g> I,
+  {a(f),a(g)} = 0,
+  {a^dagger(f),a^dagger(g)} = 0.
+
+1.7 a_dagger sector
+~~~~~~~~~~~~~~~~~~~
+
+A raw transverse datum a_dagger is assumed to be a mean-zero divergence-free
+periodic distribution. For epsilon>0 define
+
+  a_epsilon := exp((epsilon^2/4) Delta) a_dagger.
+
+The exact outsider properties
+
+  a_dagger in L^2_{sigma,0},
+  a_dagger notin BMO^{-1},
+  precise Sobolev threshold,
+
+remain a separate source endpoint unless proved from the explicit raw series.
+
+
+2. MAXWELL-SCHRODINGER EQUATIONS
+--------------------------------
+
+Let W:T^3->R be real and time-independent.
+
+The Schrodinger equation is
 
 (MS-S)
 
   i hbar partial_t psi
-    = [ D_A^2/(2m) + W + q Phi ] psi.
+    = [ (1/(2m)) D_A^2 + W + q Phi ] psi.
 
-(MS-G)
+The first-order Maxwell equations are
+
+(MS-GE)
 
   div E = rho_psi/epsilon0,
-  div B = 0.
 
-(MS-M)
+(MS-GB)
+
+  div B = 0,
+
+(MS-F)
 
   partial_t B + curl E = 0,
 
-  partial_t E - c^2 curl B
-    = -J_{psi,A}/epsilon0.
+(MS-A)
 
-Coulomb-gauge reduction:
+  partial_t E - c^2 curl B = -J_{psi,A}/epsilon0.
 
-(MS-C1)
+The potential identities are
 
-  -Delta Phi = rho_psi/epsilon0.
+  E = -partial_t A - grad Phi,
+  B = curl A.
 
-(MS-C2)
+The Coulomb-gauge reduced equations are
+
+(MS-P)
+
+  -Delta Phi = rho_psi/epsilon0,
+
+(MS-W)
 
   partial_t^2 A - c^2 Delta A
     = (1/epsilon0) P J_{psi,A}.
 
 
-4. NATIVE IDENTITIES
----------------------
+3. GAUGE COVARIANCE AND COULOMB-GAUGE EQUIVALENCE
+--------------------------------------------------
 
-THEOREM MS_CHARGE_NEUTRALITY.
+THEOREM MS_GAUGE_COVARIANCE.
 
-If ||psi||_2 = 1 and |T^3| = 1, then
+For a sufficiently regular real scalar Lambda, define
 
-  integral_{T^3} rho_psi dx = 0.
+  psi' = exp(i q Lambda/hbar) psi,
+  A'   = A + grad Lambda,
+  Phi' = Phi - partial_t Lambda.
+
+Then
+
+  D_{A'} psi' = exp(i q Lambda/hbar) D_A psi,
+
+and
+
+  |psi'|^2 = |psi|^2,
+  rho_{psi'} = rho_psi,
+  J_{psi',A'} = J_{psi,A},
+  E' = E,
+  B' = B.
+
+Consequently the Maxwell-Schrodinger equations and total energy are gauge
+covariant.
 
 DERIVATION.
 
-  integral rho_psi
-    = q(integral |psi|^2 - integral 1)
-    = q(||psi||_2^2 - 1)
+Differentiate exp(i q Lambda/hbar) psi. The q grad Lambda term generated by the
+phase derivative cancels the added q grad Lambda in A'. The time derivative
+produces -q partial_t Lambda, which is canceled by q Phi'. The field identities
+follow directly.
+
+
+THEOREM MS_COULOMB_EQUIVALENCE.
+
+Assume Coulomb gauge, zero means, sufficient regularity, and the continuity
+equation. Then the first-order Maxwell system (MS-GE)--(MS-A) is equivalent to
+(MS-P)--(MS-W) together with
+
+  E = -partial_t A - grad Phi,
+  B = curl A.
+
+DERIVATION: FIRST-ORDER TO REDUCED.
+
+Gauss law and div(partial_t A)=0 give
+
+  -Delta Phi = rho_psi/epsilon0.
+
+Using curl curl A = grad div A - Delta A = -Delta A, Ampere gives
+
+  -partial_t^2 A - grad partial_t Phi + c^2 Delta A
+    = -J/epsilon0.
+
+Applying P annihilates the gradient term and yields
+
+  partial_t^2 A - c^2 Delta A = P J/epsilon0.
+
+DERIVATION: REDUCED TO FIRST-ORDER.
+
+Faraday and div B follow identically from the potential definitions. Gauss law
+is (MS-P). Apply P to Ampere to obtain its transverse component from (MS-W).
+The longitudinal component follows by differentiating (MS-P) and using
+
+  partial_t rho + div J = 0.
+
+Therefore the complete Ampere equation follows.
+
+STATUS = EXACT_B_TIER.
+
+
+4. NEUTRALITY, CONTINUITY, MASS, AND CONSTRAINT PROPAGATION
+-----------------------------------------------------------
+
+THEOREM MS_CHARGE_NEUTRALITY.
+
+If ||psi||_2=1, then
+
+  integral_{T^3} rho_psi dx
+    = q( ||psi||_2^2 - 1 )
     = 0.
+
+Thus the periodic Poisson equation is compatible.
 
 
 THEOREM MS_CONTINUITY_IDENTITY.
 
-For sufficiently regular solutions of (MS-S), with real A, Phi, and W:
+Assume psi solves (MS-S), with real A, Phi, and W. Then
 
   partial_t |psi|^2
-    + div[(1/m) Re(conj(psi) D_A psi)] = 0.
+    + div[ (1/m) Re(conjugate(psi) D_A psi) ]
+    = 0,
 
-Equivalently:
+and hence
 
   partial_t rho_psi + div J_{psi,A} = 0.
 
 DERIVATION.
 
-Multiply (MS-S) by conj(psi), subtract the conjugate equation multiplied by
-psi, cancel all real zeroth-order terms, and rewrite the covariant kinetic
-remainder as a divergence.
+Multiply (MS-S) by conjugate(psi), subtract the conjugate equation multiplied
+by psi, and divide by i hbar. The real zeroth-order terms cancel. The covariant
+kinetic difference is the divergence of the minimal-coupling current.
 
 
 COROLLARY MS_MASS_CONSERVATION.
 
-On the periodic domain:
+For periodic sufficiently regular solutions,
 
   d/dt ||psi(t)||_2^2 = 0.
 
@@ -233,64 +440,106 @@ Define
   G_E := div E - rho_psi/epsilon0,
   G_B := div B.
 
-Under Ampere, Faraday, and continuity:
+If Ampere, Faraday, and continuity hold, then
 
   partial_t G_E = 0,
   partial_t G_B = 0.
 
-Hence Gauss constraints imposed at one time persist.
+Therefore Gauss constraints imposed at one time persist for all times of
+existence.
+
+DERIVATION.
+
+Take divergence of Ampere and use div curl B=0 and continuity. Take divergence
+of Faraday and use div curl E=0.
 
 
-TARGET MS_COULOMB_EQUIVALENCE.
+5. TOTAL-ENERGY CONSERVATION
+----------------------------
 
-Under Coulomb gauge, zero-mean normalization, sufficient regularity, and
-periodic Hodge inversion, prove equivalence between the first-order Maxwell
-system and the Poisson–wave system (MS-C1)–(MS-C2).
+Define the matter energy
 
+  H_mat(psi,A)
+    := (1/(2m)) ||D_A psi||_2^2
+       + integral_{T^3} W |psi|^2 dx.
 
-TARGET MS_TOTAL_ENERGY_CONSERVATION.
+Define the electromagnetic energy
+
+  H_EM(E,B)
+    := (epsilon0/2)||E||_2^2
+       + (1/(2 mu0))||B||_2^2.
 
 Define
 
-  H_MS(psi,A,E,B)
-    := (1/(2m)) ||D_A psi||_2^2
-       + integral W |psi|^2
-       + (epsilon0/2) ||E||_2^2
-       + (1/(2mu0)) ||B||_2^2.
+  H_MS := H_mat + H_EM.
 
-For sufficiently regular solutions and static real W, prove
+THEOREM MS_TOTAL_ENERGY_CONSERVATION.
+
+Assume a sufficiently regular solution of the complete Maxwell-Schrodinger
+system, periodic boundary conditions, and real time-independent W. Then
 
   d/dt H_MS = 0.
 
+DERIVATION: MATTER PART.
 
-5. STATIONARY PROFILE SECTOR
-----------------------------
+Differentiate H_mat. Use
+
+  partial_t D_A = -q partial_t A,
+
+insert the Schrodinger equation, integrate covariant derivatives by parts, and
+use E=-partial_t A-grad Phi. All Hamiltonian commutator terms cancel. The
+remaining power identity is
+
+  d/dt H_mat = integral_{T^3} J_{psi,A} dot E dx.
+
+DERIVATION: FIELD PART.
+
+Pair Ampere with epsilon0 E and Faraday with B/mu0. Since
+
+  epsilon0 c^2 = 1/mu0,
+
+periodic integration by parts gives
+
+  d/dt H_EM
+    = -integral_{T^3} J_{psi,A} dot E dx.
+
+Summing the two identities yields the result.
+
+STATUS = EXACT_B_TIER_FOR_SMOOTH_SOLUTIONS.
+
+Weak-solution conservation or inequality requires a separate approximation and
+limit theorem.
+
+
+6. STATIONARY PROFILE CONSTRUCTION
+----------------------------------
 
 Fix
 
-  chi in C^infinity(T^3;R),
-  chi(x) > 0,
-  ||chi||_2 = 1,
+  chi in C^infinity(T^3; R),
+  chi(x)>0,
+  ||chi||_2=1,
   lambda in R.
 
 Define
 
-  rho_chi := q(chi^2 - 1),
+  rho_chi := q(chi^2-1),
 
   -epsilon0 Delta Phi_chi = rho_chi,
-  mean(Phi_chi) = 0,
+  <Phi_chi>=0,
 
   E_chi := -grad Phi_chi,
+
+and
 
   W_chi
     := lambda
        + (hbar^2/(2m))(Delta chi)/chi
        - q Phi_chi.
 
-
 THEOREM MS_STATIONARY_PROFILE.
 
-The tuple
+The fields
 
   psi_*(t,x) = exp(-i lambda t/hbar) chi(x),
   A_*(t,x)   = 0,
@@ -298,55 +547,99 @@ The tuple
   E_*(x)     = E_chi(x),
   B_*(x)     = 0
 
-solves the Maxwell–Schrödinger system, and
+solve the Maxwell-Schrodinger system and satisfy
 
-  J_{psi_*,0} = 0,
-  partial_t |psi_*|^2 = 0,
-  partial_t rho_chi = 0.
-
-
-THEOREM MS_GROUND_STATE_TRANSFORM.
-
-For every admissible psi and A, set f := psi/chi. Then
-
-  (1/(2m)) ||D_A psi||_2^2
-  + (hbar^2/(2m)) integral (Delta chi/chi)|psi|^2
-
-  = (1/(2m)) integral chi^2 |D_A f|^2.
+  J_{psi_*,0}=0,
+  partial_t |psi_*|^2=0,
+  partial_t rho_chi=0,
+  partial_t E_chi=0,
+  partial_t B_*=0.
 
 DERIVATION.
 
-Expand D_A(chi f), integrate the real cross term by parts, and use that the
-A-dependent scalar cross term is purely imaginary.
+Because chi is real,
+
+  Re(chi(-i hbar grad chi))=0.
+
+The Schrodinger right-hand side is
+
+  -(hbar^2/(2m))Delta chi
+  + W_chi chi
+  + q Phi_chi chi
+  = lambda chi.
+
+The Maxwell equations reduce to the Poisson equation for Phi_chi.
+
+STATUS = EXACT_B_TIER.
+
+
+7. GROUND-STATE TRANSFORM AND EXACT ENERGY GAP
+----------------------------------------------
+
+Let
+
+  f := psi/chi.
+
+THEOREM MS_GROUND_STATE_TRANSFORM.
+
+For psi in H^1 and admissible A,
+
+  (1/(2m))||D_A psi||_2^2
+  + (hbar^2/(2m)) integral (Delta chi/chi)|psi|^2 dx
+
+  = (1/(2m)) integral chi^2 |D_A f|^2 dx.
+
+DERIVATION.
+
+Expand
+
+  D_A(chi f) = chi D_A f - i hbar f grad chi.
+
+The A-dependent part of the cross term is purely imaginary and has zero real
+part. Integrate the remaining gradient cross term by parts. The scalar
+remainder is exactly canceled by the displayed Delta chi/chi term.
 
 
 THEOREM MS_EXACT_ENERGY_GAP.
 
-For every admissible configuration satisfying Gauss law:
+For every configuration in X_energy, with W=W_chi,
 
   H_MS(psi,A,E,B) - H_MS(chi,0,E_chi,0)
 
-  = (1/(2m)) integral chi^2 |D_A(psi/chi)|^2
-    + (epsilon0/2) ||E-E_chi||_2^2
-    + (1/(2mu0)) ||B||_2^2.
+  = (1/(2m)) integral chi^2 |D_A(psi/chi)|^2 dx
+    + (epsilon0/2)||E-E_chi||_2^2
+    + (1/(2 mu0))||B||_2^2.
 
 DERIVATION.
 
-  1. The lambda term cancels by normalization.
-  2. Apply MS_GROUND_STATE_TRANSFORM.
-  3. Use
+Step 1. The lambda contribution cancels because
 
-       div(E-E_chi)
-         = q(|psi|^2-chi^2)/epsilon0,
+  ||psi||_2=||chi||_2=1.
 
-     and E_chi = -grad Phi_chi to obtain
+Step 2. Apply MS_GROUND_STATE_TRANSFORM.
 
-       epsilon0 <E_chi,E-E_chi>
-         = q integral Phi_chi(|psi|^2-chi^2).
+Step 3. Gauss law gives
 
-  4. This cancels the term generated by -q Phi_chi in W_chi.
-  5. Complete the electric square.
+  div(E-E_chi)
+    = q(|psi|^2-chi^2)/epsilon0.
 
+Step 4. Since E_chi=-grad Phi_chi,
+
+  epsilon0 <E_chi,E-E_chi>
+    = q integral Phi_chi(|psi|^2-chi^2) dx.
+
+Step 5. This term cancels the linear contribution generated by
+
+  -q Phi_chi
+
+inside W_chi. Complete the electric square. The magnetic term is already
+nonnegative.
+
+STATUS = EXACT_B_TIER.
+
+
+8. MINIMIZATION AND ENERGY TRAPPING
+-----------------------------------
 
 COROLLARY MS_GLOBAL_MINIMIZER.
 
@@ -354,240 +647,269 @@ COROLLARY MS_GLOBAL_MINIMIZER.
 
 In frozen Coulomb gauge, equality implies
 
-  B = 0,
-  E = E_chi,
-  A = 0,
-  psi = exp(i theta) chi
+  E=E_chi,
+  B=0,
+  A=0,
+  psi=exp(i theta)chi
 
 for a constant theta.
+
+DERIVATION OF THE EQUALITY CASE.
+
+The three gap terms vanish. B=0 and the zero-mean Coulomb gauge imply A=0.
+Then
+
+  grad(psi/chi)=0,
+
+so psi/chi is constant. Normalization fixes its modulus to one.
 
 
 COROLLARY MS_ENERGY_TRAPPING.
 
-Assume a sufficiently regular global solution and energy conservation. Put
+For every sufficiently regular global solution with conserved energy define
 
   delta
     := H_MS(psi(0),A(0),E(0),B(0))
        - H_MS(chi,0,E_chi,0).
 
-Then for every t:
+Then for every time of existence,
 
   (epsilon0/2)||E(t)-E_chi||_2^2 <= delta,
 
   (1/(2mu0))||B(t)||_2^2 <= delta,
 
   (1/(2m)) integral chi^2
-    |D_{A(t)}(psi(t)/chi)|^2 <= delta.
+    |D_{A(t)}(psi(t)/chi)|^2 dx <= delta.
+
+A quantitative estimate in a fixed orbital metric is a separate endpoint:
+
+  MS_ORBITAL_METRIC_COERCIVITY.
+
+Global orbital stability additionally requires global well-posedness in the
+chosen energy class.
 
 
-OPEN MS_ORBITAL_METRIC_COERCIVITY.
+9. NUMBER-PRESERVING PROFILE-TRANSFER ALGEBRA
+---------------------------------------------
 
-Derive a gauge-fixed estimate controlling distance to
-
-  { exp(i theta) chi : theta in R }
-
-by the covariant gap.
-
-
-CONDITIONAL MS_GLOBAL_ORBITAL_STABILITY.
-
-Assuming global energy-class well-posedness, energy conservation, and
-MS_ORBITAL_METRIC_COERCIVITY, the phase orbit of chi is globally orbitally
-stable.
-
-
-6. CREATION–ANNIHILATION / PROFILE TRANSFER
--------------------------------------------
-
-Let a(f), a^dagger(f) satisfy the fermionic CAR on F_-(H_m):
-
-  {a(f),a^dagger(g)} = <f,g>I,
-  {a(f),a(g)} = 0,
-  {a^dagger(f),a^dagger(g)} = 0.
-
-Define
+Define on fermionic Fock space
 
   C_chi := a^dagger(chi)a(e_0),
-
   C_chi^dagger := a^dagger(e_0)a(chi).
-
 
 THEOREM PROFILE_TRANSFER_ONE_PARTICLE.
 
-On the one-particle sector:
+On the one-particle sector H_1,
 
   C_chi = |chi><e_0|,
-  C_chi^dagger = |e_0><chi|.
-
-
-THEOREM PROFILE_TRANSFER_COMMUTATOR.
-
-On the one-particle sector:
+  C_chi^dagger = |e_0><chi|,
 
   C_chi C_chi^dagger = P_chi,
   C_chi^dagger C_chi = P_0,
 
-  [C_chi,C_chi^dagger] = P_chi - P_0.
+  [C_chi,C_chi^dagger] = P_chi-P_0.
 
+The integral-kernel diagonal satisfies
 
-THEOREM PROFILE_TRANSFER_CHARGE_DIAGONAL.
-
-The kernel diagonal satisfies
-
-  diag(P_chi-P_0)(x) = |chi(x)|^2 - 1.
+  diag(P_chi-P_0)(x)=|chi(x)|^2-1.
 
 Hence
 
   rho_chi(x)
-    = q diag([C_chi,C_chi^dagger])(x).
+    = q diag([C_chi,C_chi^dagger])(x)
 
-Moreover
+on the one-particle sector.
 
-  [N_hat,C_chi] = 0.
+The transfer preserves total particle number:
 
-Thus C_chi transfers one occupied mode into another without changing total
-particle number. The subtraction 1 is the uniform reference occupation; it is
-not pair annihilation.
+  [N_hat,C_chi]=0.
 
 
 THEOREM RELATIVE_CHARGE_SMEARING.
 
-For a test function f, let M_f be multiplication by f and define
+For a bounded test multiplier M_f define
 
   rho_hat_rel(f)
-    := q[dGamma(M_f) - (integral f)N_hat].
+    := q[ dGamma(M_f) - (integral f) N_hat ].
 
 Then
 
   <chi|rho_hat_rel(f)|chi>
     = q integral f(x)(|chi(x)|^2-1) dx.
 
+The uniform subtraction is a neutralizing reference occupation; it is not pair
+annihilation.
 
-TARGET PROFILE_TRANSFER_UNITARY_ROTATION.
 
-Let c=<e_0,chi>, s=sqrt(1-c^2), and
+THEOREM PROFILE_TRANSFER_UNITARY_ROTATION.
 
-  xi=(chi-ce_0)/s
+Let
 
-when s>0. Define
+  c_0 := <e_0,chi>.
+
+Because chi is positive and normalized,
+
+  0 < c_0 <= 1.
+
+If c_0=1, then chi=e_0 and the identity operator performs the transfer.
+If c_0<1, define
+
+  s_0 := sqrt(1-c_0^2),
+  xi  := (chi-c_0 e_0)/s_0,
+  theta_0 := arccos(c_0),
+
+and
 
   G_chi
     := a^dagger(xi)a(e_0)-a^dagger(e_0)a(xi).
 
-Derive the number-preserving unitary rotation
+Then G_chi is anti-self-adjoint on the finite two-mode sector and
 
-  U_chi := exp(theta G_chi),
-  theta := arccos(c),
+  U_chi := exp(theta_0 G_chi)
 
-with
+is number-preserving and unitary. On the one-particle sector,
 
-  U_chi |e_0> = |chi>.
+  U_chi e_0 = chi.
+
+STATUS = EXACT_B_TIER.
 
 
-7. CONDITIONAL a_DAGGER MAGNETIC EXTENSION
-------------------------------------------
+10. REGULARIZED a_DAGGER MAGNETIC EXTENSION
+-------------------------------------------
 
-Let epsilon>0 and assume a_epsilon is a nonzero smooth solenoidal zero-mean
-field obtained from the raw a_dagger datum.
+THEOREM A_DAGGER_HEAT_REGULARIZATION.
+
+Let a_dagger be any periodic distribution. For epsilon>0,
+
+  a_epsilon=exp((epsilon^2/4)Delta)a_dagger
+
+is smooth. If
+
+  div a_dagger=0,
+  <a_dagger>=0,
+
+in distributions, then
+
+  div a_epsilon=0,
+  <a_epsilon>=0.
+
+DERIVATION.
+
+The periodic heat multiplier is
+
+  exp(-pi^2 epsilon^2 |k|^2)
+
+on Fourier mode k. It suppresses every polynomial Fourier growth and commutes
+with derivatives and the zero-mode projection.
+
+STATUS = EXACT_B_TIER.
+
 
 For lambda in R define
 
   B_lambda := lambda a_epsilon,
+  A_lambda := K B_lambda.
 
-  A_lambda := K B_lambda,
+Then
 
-  p_lambda := hbar grad theta_lambda - q A_lambda.
+  div A_lambda=0,
+  <A_lambda>=0,
+  curl A_lambda=B_lambda.
 
-Weighted phase equation:
+Weighted stationarity requires
 
-  div(chi^2 p_lambda) = 0,
-  mean(theta_lambda) = 0.
-
-Because chi is positive on compact T^3, the operator
-
-  theta |-> -div(chi^2 grad theta)
-
-is uniformly elliptic on the mean-zero scalar sector.
-
+  div[chi^2(hbar grad theta_lambda-qA_lambda)]=0,
+  <theta_lambda>=0.
 
 THEOREM WEIGHTED_PHASE_SOLVABILITY.
 
-For smooth Coulomb-gauge A_lambda, there is a unique weak mean-zero
-solution theta_lambda of
+For positive smooth chi and smooth A_lambda, the weighted phase equation has a
+unique mean-zero weak solution theta_lambda.
 
-  hbar div(chi^2 grad theta_lambda)
-    = q div(chi^2 A_lambda).
+DERIVATION.
 
-This is B-tier derived; exact formal endpoint and source routing remain pending.
+On H^1_0(T^3), define
+
+  a(theta,eta)
+    := hbar integral chi^2 grad theta dot grad eta,
+
+  ell(eta)
+    := q integral chi^2 A_lambda dot grad eta.
+
+Since min chi>0, a is bounded and coercive by the periodic Poincare inequality.
+ell is bounded. Lax-Milgram gives existence and uniqueness. Elliptic regularity
+gives smoothness for smooth data.
 
 Define
 
-  J_lambda^mat
-    := (q/m) chi^2 p_lambda,
+  p_lambda := hbar grad theta_lambda-qA_lambda,
 
-  J_lambda^Max
-    := (1/mu0) curl B_lambda,
+  J_lambda^mat := (q/m)chi^2 p_lambda,
 
-  J_lambda^ext
-    := J_lambda^Max - J_lambda^mat,
+  J_lambda^Max := (1/mu0)curl B_lambda,
 
-and
+  J_lambda^ext := J_lambda^Max-J_lambda^mat.
+
+For a real phase eigenvalue E_lambda define
 
   W_{chi,lambda}
     := E_lambda
        + (hbar^2/(2m))(Delta chi)/chi
        - |p_lambda|^2/(2m)
-       - q Phi_chi,
-
-where E_lambda is a real phase eigenvalue.
-
+       - q Phi_chi.
 
 THEOREM A_DAGGER_STATIC_WITH_CURRENT_DEFECT.
 
-The tuple
+The fields
 
   psi_lambda(t,x)
     = exp(-i E_lambda t/hbar)
-      chi(x) exp(i theta_lambda(x)),
+      chi(x)exp(i theta_lambda(x)),
 
-  A = A_lambda,
-  Phi = Phi_chi,
-  E = E_chi,
-  B = B_lambda
+  A=A_lambda,
+  Phi=Phi_chi,
+  E=E_chi,
+  B=B_lambda,
 
-solves the stationary Maxwell–Schrödinger equations with total current
+with total current
 
-  J_total
-    = J_lambda^mat + J_lambda^ext
-    = J_lambda^Max.
+  J_total=J_lambda^mat+J_lambda^ext
 
-The charge is independent of lambda:
+solve the stationary Maxwell-Schrodinger equations. The charge is
 
-  rho_lambda = q(chi^2 - 1).
+  rho_lambda=q(chi^2-1),
 
+independent of lambda. The magnetic incompatibility is exactly
+J_lambda^ext.
+
+STATUS = EXACT_B_TIER.
+
+
+11. STATIC SPINLESS MAGNETIC NO-GO THEOREM
+------------------------------------------
 
 THEOREM STATIC_SPINLESS_MAGNETIC_NO_GO.
 
 Assume
 
-  div(chi^2 p) = 0,
+  div(chi^2 p)=0,
 
-  p = hbar grad theta - qA,
+  p=hbar grad theta-qA,
 
-  B = curl A,
-  div A = 0,
-  mean(A) = 0,
+  B=curl A,
+  div A=0,
+  <A>=0,
 
-and exact static spinless self-consistency
+and exact spinless static self-consistency
 
-  (1/mu0)curl B = (q/m)chi^2 p.
+  (1/mu0)curl B=(q/m)chi^2 p.
 
 Then
 
-  B = 0,
-  p = 0,
-  A = 0,
-  theta = constant.
+  B=0,
+  p=0,
+  A=0,
+  theta=constant.
 
 DERIVATION.
 
@@ -598,337 +920,138 @@ Pair Ampere's equation with A:
 
 Use
 
-  qA = hbar grad theta - p.
+  qA=hbar grad theta-p.
 
-Weighted continuity gives
+The weighted continuity equation gives
 
-  integral chi^2 p dot grad theta = 0.
+  integral chi^2 p dot grad theta=0.
 
 Therefore
 
   (1/mu0)||B||_2^2
-    = -(1/m) integral chi^2 |p|^2.
+    = -(1/m) integral chi^2|p|^2.
 
-Both nonnegative terms vanish.
-
+Both nonnegative quantities vanish. The gauge conditions then imply A=0 and
+theta is constant.
 
 COROLLARY NONZERO_DRESSING_REQUIRES_DEFECT.
 
-If lambda != 0 and a_epsilon != 0, then
+If
 
-  J_lambda^ext != 0.
+  lambda!=0,
+  a_epsilon!=0,
 
-A nonzero static magnetic dressing therefore requires an external current,
-spin current, additional matter sector, or time dependence.
+then
+
+  J_lambda^ext!=0.
+
+Thus a nonzero static magnetic dressing requires at least one of:
+
+  external current,
+  spin current,
+  additional matter species,
+  nonstationary evolution,
+  modified coupling law.
+
+STATUS = EXACT_B_TIER.
 
 
-OPEN RAW_A_DAGGER_OUTSIDER_PROPERTIES.
+12. CONDITIONAL REGULARITY / PHOTON-RADIUS BRIDGE
+-------------------------------------------------
 
-Establish in this repository the exact raw-series definition and prove the
-claimed L^2, Sobolev-threshold, and BMO^{-1}-exclusion properties.
-
-
-OPEN CRITICAL_BMO_RAY_PROPERTIES.
-
-Establish the adjusted a_dagger ray in BMO^{-1}\VMO^{-1}, its scaling law,
-and its exact critical-boundary interpretation.
-
-
-8. CONDITIONAL REGULARITY / PHOTON-RADIUS BRIDGE
-------------------------------------------------
-
-NAMED PREMISE NSE_REGULARITY_CERTIFICATE(nu,epsilon).
+PREMISE NSE_REGULARITY_CERTIFICATE(nu,epsilon).
 
 There exist K2>0 and p(a_epsilon)>0 such that
 
   |lambda| < lambda_crit
 
-where
+with
 
   lambda_crit
     := sqrt(2)nu/[K2 p(a_epsilon)]
 
-implies a separately specified NSE regularity predicate
+implies
 
   Reg_nu(lambda a_epsilon).
 
+PREMISE COHERENT_RAY_LAWS(epsilon).
 
-NAMED PREMISE COHERENT_RAY_LAWS(epsilon).
+For a fixed quantization convention there exist N_1>0 and E_1>0 such that
 
-For a fixed quantization normalization, there are N_1,E_1>0 such that
-
-  N_gamma(lambda) = lambda^2 N_1,
-  E_gamma(lambda) = lambda^2 E_1.
+  N_gamma(lambda)=lambda^2 N_1,
+  E_gamma(lambda)=lambda^2 E_1.
 
 Define
 
-  N_crit := lambda_crit^2 N_1,
-  E_crit := lambda_crit^2 E_1.
+  N_crit=lambda_crit^2 N_1,
+  E_crit=lambda_crit^2 E_1.
 
+THEOREM CERTIFICATE_RADIUS_TRANSLATION.
 
-CONDITIONAL THEOREM CERTIFICATE_RADIUS_TRANSLATION.
+Under the two named premises,
 
-Under the two named premises:
+  |lambda|<lambda_crit
+    iff N_gamma(lambda)<N_crit
+    iff E_gamma(lambda)<E_crit.
 
-  |lambda| < lambda_crit
+This theorem translates one sufficient regularity certificate along one
+coherent ray. It does not establish:
 
-  iff
+  singularity at equality,
+  singularity above the radius,
+  a Maxwell phase transition,
+  a photon-production threshold,
+  regulator-independent physical criticality.
 
-  N_gamma(lambda) < N_crit
+A physical threshold claim requires both
 
-  iff
+  PHYSICAL_THRESHOLD_LIMIT
 
-  E_gamma(lambda) < E_crit.
+and
 
-This is a translation of a one-sided sufficient certificate along one coherent
-ray. It does not establish a physical phase transition.
+  QED_TO_NSE_DYNAMICAL_BRIDGE.
 
+STATUS = CONDITIONAL_B_TIER.
 
-OPEN PHYSICAL_THRESHOLD_LIMIT.
 
-Require a regulator-independent limit under cutoff removal, epsilon->0, and
-volume scaling, together with a declared observable changing at the boundary.
+13. ANALYTICAL AND NUMERICAL VALIDATION PROGRAM
+-----------------------------------------------
 
+13.1 Analytical invariants
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-OPEN DECISIVE ENDPOINT QED_TO_NSE_DYNAMICAL_BRIDGE.
+A-01  Gauge covariance.
+A-02  Charge neutrality.
+A-03  Continuity identity.
+A-04  Mass conservation.
+A-05  Maxwell constraint propagation.
+A-06  Coulomb-gauge equivalence.
+A-07  Total-energy conservation.
+A-08  Manufactured stationary solution.
+A-09  Ground-state transform.
+A-10  Exact energy-gap identity.
+A-11  One-particle transfer algebra.
+A-12  Static magnetic no-go identity.
 
-Construct an exact dynamical adapter that maps Maxwell–Schrödinger trajectories
-to the relevant NSE trajectories while preserving the regularity observable.
-Without this bridge, lambda_crit remains certificate-only.
+13.2 PDE residuals
+~~~~~~~~~~~~~~~~~~
 
+For a computed trajectory define
 
-9. ROOT THEOREM
----------------
+  R_S := i hbar partial_t psi
+         -[(D_A^2)/(2m)+W+qPhi]psi,
 
-THEOREM MAXWELL_SCHROEDINGER_B_TIER_HULL.
+  R_P := -Delta Phi-rho/epsilon0,
 
-Under the frozen setting and the definitions above:
+  R_A := partial_t^2 A-c^2 Delta A-(1/epsilon0)P J,
 
-  (A) normalized Maxwell–Schrödinger fields satisfy exact neutrality,
-      continuity, mass conservation, and Gauss-constraint propagation;
+  R_GE := div E-rho/epsilon0,
 
-  (B) every positive normalized smooth chi determines an exact stationary
-      electrostatic solution;
+  R_GB := div B,
 
-  (C) W_chi yields the exact nonnegative energy-gap identity and the stationary
-      solution is a global minimizer modulo constant phase;
+  R_F := partial_t B+curl E,
 
-  (D) the density defect chi^2-1 is the one-particle diagonal of the
-      number-preserving profile-transfer commutator;
-
-  (E) every smooth regularized a_dagger profile gives an exact stationary
-      magnetic extension with an explicit external-current defect;
-
-  (F) exact static self-consistency of a nonzero magnetic dressing is
-      impossible in the frozen spinless one-state system;
-
-  (G) an imported NSE regularity radius translates algebraically into coherent
-      photon-number and photon-energy radii, conditional on the two named
-      premises.
-
-This theorem is B-tier only.
-
-
-10. ENDPOINT CHECKLIST
-----------------------
-
-A. NATIVE MAXWELL–SCHRÖDINGER CORE
-
-  [x] MS-01  MS_CHARGE_NEUTRALITY
-      STATUS = B_TIER_DERIVED
-      FOLDER = derivation_of_MS_CHARGE_NEUTRALITY/
-
-  [x] MS-02  MS_CONTINUITY_IDENTITY
-      STATUS = B_TIER_DERIVED
-      FOLDER = derivation_of_MS_CONTINUITY_IDENTITY/
-
-  [x] MS-03  MS_MASS_CONSERVATION
-      STATUS = B_TIER_DERIVED
-      FOLDER = derivation_of_MS_MASS_CONSERVATION/
-
-  [x] MS-04  MS_CONSTRAINT_PROPAGATION
-      STATUS = B_TIER_DERIVED
-      FOLDER = derivation_of_MS_CONSTRAINT_PROPAGATION/
-
-  [ ] MS-05  MS_COULOMB_EQUIVALENCE
-      STATUS = TARGET_DERIVATION
-      FOLDER = derivation_of_MS_COULOMB_EQUIVALENCE/
-
-  [ ] MS-06  MS_TOTAL_ENERGY_CONSERVATION
-      STATUS = TARGET_DERIVATION
-      FOLDER = derivation_of_MS_TOTAL_ENERGY_CONSERVATION/
-
-B. STATIONARY PROFILE SECTOR
-
-  [x] ST-01  MS_STATIONARY_PROFILE
-      STATUS = B_TIER_DERIVED
-      FOLDER = derivation_of_MS_STATIONARY_PROFILE/
-
-  [x] ST-02  MS_GROUND_STATE_TRANSFORM
-      STATUS = B_TIER_DERIVED
-      FOLDER = derivation_of_MS_GROUND_STATE_TRANSFORM/
-
-  [x] ST-03  MS_EXACT_ENERGY_GAP
-      STATUS = B_TIER_DERIVED
-      FOLDER = derivation_of_MS_EXACT_ENERGY_GAP/
-
-  [x] ST-04  MS_GLOBAL_MINIMIZER
-      STATUS = B_TIER_DERIVED
-      FOLDER = derivation_of_MS_GLOBAL_MINIMIZER/
-
-  [x] ST-05  MS_ENERGY_TRAPPING
-      STATUS = B_TIER_DERIVED
-      FOLDER = derivation_of_MS_ENERGY_TRAPPING/
-
-  [ ] ST-06  MS_ORBITAL_METRIC_COERCIVITY
-      STATUS = OPEN_ANALYTIC
-      FOLDER = derivation_of_MS_ORBITAL_METRIC_COERCIVITY/
-
-  [x] ST-07  MS_GLOBAL_ORBITAL_STABILITY
-      STATUS = CONDITIONAL
-      FOLDER = derivation_of_MS_GLOBAL_ORBITAL_STABILITY/
-
-C. CREATION–ANNIHILATION / PROFILE TRANSFER
-
-  [x] CA-01  PROFILE_TRANSFER_ONE_PARTICLE
-      STATUS = B_TIER_DERIVED
-      FOLDER = derivation_of_PROFILE_TRANSFER_ONE_PARTICLE/
-
-  [x] CA-02  PROFILE_TRANSFER_COMMUTATOR
-      STATUS = B_TIER_DERIVED
-      FOLDER = derivation_of_PROFILE_TRANSFER_COMMUTATOR/
-
-  [x] CA-03  PROFILE_TRANSFER_CHARGE_DIAGONAL
-      STATUS = B_TIER_DERIVED
-      FOLDER = derivation_of_PROFILE_TRANSFER_CHARGE_DIAGONAL/
-
-  [x] CA-04  RELATIVE_CHARGE_SMEARING
-      STATUS = B_TIER_DERIVED
-      FOLDER = derivation_of_RELATIVE_CHARGE_SMEARING/
-
-  [ ] CA-05  PROFILE_TRANSFER_UNITARY_ROTATION
-      STATUS = TARGET_DERIVATION
-      FOLDER = derivation_of_PROFILE_TRANSFER_UNITARY_ROTATION/
-
-D. a_DAGGER MAGNETIC EXTENSION
-
-  [ ] AD-01  A_DAGGER_HEAT_REGULARIZATION
-      STATUS = PENDING_SOURCE_THEOREM
-      FOLDER = derivation_of_A_DAGGER_HEAT_REGULARIZATION/
-
-  [x] AD-02  WEIGHTED_PHASE_SOLVABILITY
-      STATUS = B_TIER_DERIVED_FORMAL_PENDING
-      FOLDER = derivation_of_WEIGHTED_PHASE_SOLVABILITY/
-
-  [x] AD-03  A_DAGGER_STATIC_WITH_CURRENT_DEFECT
-      STATUS = B_TIER_DERIVED
-      FOLDER = derivation_of_A_DAGGER_STATIC_WITH_CURRENT_DEFECT/
-
-  [x] AD-04  STATIC_SPINLESS_MAGNETIC_NO_GO
-      STATUS = B_TIER_DERIVED
-      FOLDER = derivation_of_STATIC_SPINLESS_MAGNETIC_NO_GO/
-
-  [x] AD-05  NONZERO_DRESSING_REQUIRES_DEFECT
-      STATUS = B_TIER_DERIVED
-      FOLDER = derivation_of_NONZERO_DRESSING_REQUIRES_DEFECT/
-
-  [ ] AD-06  RAW_A_DAGGER_OUTSIDER_PROPERTIES
-      STATUS = OPEN
-      FOLDER = derivation_of_RAW_A_DAGGER_OUTSIDER_PROPERTIES/
-
-  [ ] AD-07  CRITICAL_BMO_RAY_PROPERTIES
-      STATUS = OPEN
-      FOLDER = derivation_of_CRITICAL_BMO_RAY_PROPERTIES/
-
-E. REGULARITY / PHOTON-RADIUS BRIDGE
-
-  [ ] RP-01  NSE_REGULARITY_CERTIFICATE
-      STATUS = NAMED_PREMISE
-      FOLDER = derivation_of_NSE_REGULARITY_CERTIFICATE/
-
-  [ ] RP-02  COHERENT_RAY_LAWS
-      STATUS = NAMED_PREMISE
-      FOLDER = derivation_of_COHERENT_RAY_LAWS/
-
-  [x] RP-03  CERTIFICATE_RADIUS_TRANSLATION
-      STATUS = B_TIER_CONDITIONAL
-      FOLDER = derivation_of_CERTIFICATE_RADIUS_TRANSLATION/
-
-  [ ] RP-04  PHYSICAL_THRESHOLD_LIMIT
-      STATUS = OPEN
-      FOLDER = derivation_of_PHYSICAL_THRESHOLD_LIMIT/
-
-  [ ] RP-05  QED_TO_NSE_DYNAMICAL_BRIDGE
-      STATUS = OPEN_DECISIVE
-      FOLDER = derivation_of_QED_TO_NSE_DYNAMICAL_BRIDGE/
-
-F. VALIDATION ENDPOINTS
-
-  [ ] V-01  RESIDUAL_CONVERGENCE
-      STATUS = NUMERICAL_TARGET
-      FOLDER = derivation_of_RESIDUAL_CONVERGENCE/
-
-  [ ] V-02  GAUGE_COVARIANCE
-      STATUS = ANALYTICAL_NUMERICAL_TARGET
-      FOLDER = derivation_of_GAUGE_COVARIANCE/
-
-  [ ] V-03  MASS_ENERGY_CONSERVATION
-      STATUS = NUMERICAL_TARGET
-      FOLDER = derivation_of_MASS_ENERGY_CONSERVATION/
-
-  [ ] V-04  STATIONARY_PROFILE_REPRODUCTION
-      STATUS = NUMERICAL_TARGET
-      FOLDER = derivation_of_STATIONARY_PROFILE_REPRODUCTION/
-
-  [ ] V-05  CURRENT_DEFECT_TEST
-      STATUS = DECISIVE_NUMERICAL_TARGET
-      FOLDER = derivation_of_CURRENT_DEFECT_TEST/
-
-  [ ] V-06  OUTSIDER_REGULATOR_CONVERGENCE
-      STATUS = OPEN
-      FOLDER = derivation_of_OUTSIDER_REGULATOR_CONVERGENCE/
-
-  [ ] V-07  COHERENT_STATISTICS
-      STATUS = BENCHMARK_TARGET
-      FOLDER = derivation_of_COHERENT_STATISTICS/
-
-  [ ] V-08  AB_PHASE
-      STATUS = BENCHMARK_TARGET
-      FOLDER = derivation_of_AB_PHASE/
-
-
-11. VALIDATION PROGRAM
-----------------------
-
-Analytical checks:
-
-  A-01 Gauge covariance.
-  A-02 Continuity.
-  A-03 Constraint propagation.
-  A-04 Total-energy conservation.
-  A-05 Manufactured stationary solution.
-  A-06 Exact energy-gap identity.
-  A-07 Static no-go identity.
-  A-08 One-particle transfer algebra.
-  A-09 Neutrality.
-  A-10 Threshold classification discipline.
-
-Numerical PDE residuals:
-
-  R_S = i hbar partial_t psi
-        - [D_A^2/(2m)+W+qPhi]psi,
-
-  R_P = -Delta Phi-rho/epsilon0,
-
-  R_A = partial_t^2 A-c^2Delta A-(1/epsilon0)P J,
-
-  R_G = div E-rho/epsilon0,
-
-  R_B = div B,
-
-  R_F = partial_t B+curl E,
-
-  R_C = partial_t rho+div J.
+  R_C := partial_t rho+div J.
 
 Required convergence:
 
@@ -936,52 +1059,151 @@ Required convergence:
 
 under simultaneous spatial and temporal refinement.
 
-Manufactured and convergence suite:
+13.3 Manufactured-solution tests
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-  N-01 stationary electrostatic profile;
-  N-02 pure transverse Maxwell mode with omega=c|k|;
-  N-03 gauge-related initial data;
-  N-04 small perturbation of the stationary profile;
-  N-05 a_dagger current-defect computation;
-  N-06 mass, energy, and Gauss-drift convergence;
-  N-07 Fourier-cutoff convergence;
-  N-08 epsilon-regularization convergence;
-  N-09 torus-size convergence;
-  N-10 threshold robustness under regulators.
+N-01  Stationary electrostatic profile.
+N-02  Source-free transverse Maxwell mode with omega=c|k|.
+N-03  Gauge-related initial data.
+N-04  Small perturbation of the stationary profile.
+N-05  a_dagger current-defect computation.
+N-06  Mass, energy, and Gauss drift.
+N-07  Fourier-cutoff convergence.
+N-08  epsilon-regularization convergence.
+N-09  torus-size convergence.
+N-10  threshold robustness under all regulators.
 
-Established benchmark comparisons:
+The decisive present test is
 
-  B-01 free Schrödinger dispersion;
-  B-02 source-free Maxwell dispersion;
-  B-03 Coulomb/Poisson reconstruction;
-  B-04 Aharonov–Bohm phase;
-  B-05 coherent-state linear/quadratic scaling;
-  B-06 cyclotron orbital benchmark.
+  R_J(lambda)
+    := || (1/mu0)curl B_lambda-J_lambda^mat ||_{H^{-1}}.
 
-Utility gates:
+The static spinless theorem predicts
 
-  U1 exact constraints and conservation pass;
-  U2 manufactured stationary solution passes;
-  U3 current defect is quantitatively characterized;
-  U4 gauge, cutoff, regularization, and volume convergence pass;
-  U5 every proposed threshold is linked to a declared observable;
-  U6 electron-specific claims remain within the spinless model's scope.
+  R_J(0)=0,
+  R_J(lambda)>0 for lambda!=0 and a_epsilon!=0.
 
-The first decisive numerical endpoint is V-05 CURRENT_DEFECT_TEST.
+13.4 External benchmark identities
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+B-01  Free Schrodinger Fourier phase.
+B-02  Maxwell dispersion omega=c|k|.
+B-03  Coulomb reconstruction -grad L(rho/epsilon0).
+B-04  Aharonov-Bohm phase q line_integral(A)/hbar.
+B-05  Coherent-state linear field and quadratic number/energy scaling.
+B-06  Spinless cyclotron spacing hbar|q|B/m.
+
+Electron spin, pair creation, radiative corrections, and g-2 are outside the
+frozen spinless Maxwell-Schrodinger scope.
 
 
-12. LEAN ADAPTER PLAN
+14. ENDPOINT REGISTER
 ---------------------
 
-Unique formalization entry point:
+A. NATIVE MAXWELL-SCHRODINGER CORE
 
-  Lean_Adapter/
+[x] MS-01  MS_CHARGE_NEUTRALITY             EXACT_B_TIER
+[x] MS-02  MS_CONTINUITY_IDENTITY            EXACT_B_TIER
+[x] MS-03  MS_MASS_CONSERVATION              EXACT_B_TIER
+[x] MS-04  MS_CONSTRAINT_PROPAGATION         EXACT_B_TIER
+[x] MS-05  MS_COULOMB_EQUIVALENCE            EXACT_B_TIER
+[x] MS-06  MS_TOTAL_ENERGY_CONSERVATION      EXACT_B_TIER_SMOOTH
 
-Planned root:
+B. STATIONARY PROFILE SECTOR
 
-  MaxwellSchroedingerSystem.Main
+[x] ST-01  MS_STATIONARY_PROFILE             EXACT_B_TIER
+[x] ST-02  MS_GROUND_STATE_TRANSFORM         EXACT_B_TIER
+[x] ST-03  MS_EXACT_ENERGY_GAP               EXACT_B_TIER
+[x] ST-04  MS_GLOBAL_MINIMIZER               EXACT_B_TIER
+[x] ST-05  MS_ENERGY_TRAPPING                CONDITIONAL_ON_GLOBAL_SOLUTION
+[ ] ST-06  MS_ORBITAL_METRIC_COERCIVITY      OPEN_ANALYTIC
+[x] ST-07  MS_GLOBAL_ORBITAL_STABILITY       CONDITIONAL_ON_ST06_AND_GLOBAL_WP
 
-Planned native module graph:
+C. PROFILE-TRANSFER SECTOR
+
+[x] CA-01  PROFILE_TRANSFER_ONE_PARTICLE     EXACT_B_TIER
+[x] CA-02  PROFILE_TRANSFER_COMMUTATOR       EXACT_B_TIER
+[x] CA-03  PROFILE_TRANSFER_CHARGE_DIAGONAL  EXACT_B_TIER
+[x] CA-04  RELATIVE_CHARGE_SMEARING          EXACT_B_TIER
+[x] CA-05  PROFILE_TRANSFER_UNITARY_ROTATION EXACT_B_TIER
+
+D. a_DAGGER MAGNETIC EXTENSION
+
+[x] AD-01  A_DAGGER_HEAT_REGULARIZATION     EXACT_B_TIER
+[x] AD-02  WEIGHTED_PHASE_SOLVABILITY        EXACT_B_TIER
+[x] AD-03  A_DAGGER_STATIC_WITH_CURRENT_DEFECT EXACT_B_TIER
+[x] AD-04  STATIC_SPINLESS_MAGNETIC_NO_GO    EXACT_B_TIER
+[x] AD-05  NONZERO_DRESSING_REQUIRES_DEFECT  EXACT_B_TIER
+[ ] AD-06  RAW_A_DAGGER_OUTSIDER_PROPERTIES  OPEN_SOURCE_THEOREM
+[ ] AD-07  CRITICAL_BMO_RAY_PROPERTIES       OPEN_SOURCE_THEOREM
+
+E. REGULARITY / PHOTON-RADIUS BRIDGE
+
+[ ] RP-01  NSE_REGULARITY_CERTIFICATE        NAMED_PREMISE
+[ ] RP-02  COHERENT_RAY_LAWS                 NAMED_PREMISE
+[x] RP-03  CERTIFICATE_RADIUS_TRANSLATION    CONDITIONAL_B_TIER
+[ ] RP-04  PHYSICAL_THRESHOLD_LIMIT          OPEN_PHYSICAL_GATE
+[ ] RP-05  QED_TO_NSE_DYNAMICAL_BRIDGE      OPEN_DECISIVE
+
+F. VALIDATION ENDPOINTS
+
+[ ] V-01  RESIDUAL_CONVERGENCE               NUMERICAL_TARGET
+[ ] V-02  GAUGE_COVARIANCE_VALIDATION        NUMERICAL_TARGET
+[ ] V-03  MASS_ENERGY_CONSERVATION           NUMERICAL_TARGET
+[ ] V-04  STATIONARY_PROFILE_REPRODUCTION    NUMERICAL_TARGET
+[ ] V-05  CURRENT_DEFECT_TEST                DECISIVE_NUMERICAL_TARGET
+[ ] V-06  OUTSIDER_REGULATOR_CONVERGENCE     OPEN
+[ ] V-07  COHERENT_STATISTICS                BENCHMARK_TARGET
+[ ] V-08  AB_PHASE                           BENCHMARK_TARGET
+
+REGISTER SUMMARY
+
+  21 exact B-tier endpoints,
+   2 conditional B-tier endpoints,
+  15 open, premise, numerical, or physical-gate endpoints,
+  38 total endpoints.
+
+
+15. DEPENDENCY SPINE
+--------------------
+
+  MS-01
+
+  MS-02 -> MS-03
+
+  MS-02 + Maxwell evolution -> MS-04
+
+  MS-02 + Coulomb gauge + Fourier-Hodge laws -> MS-05
+
+  MS-02 + Schrodinger power identity + Poynting identity -> MS-06
+
+  ST-01 -> ST-02
+
+  ST-02 + Gauss law -> ST-03 -> ST-04
+
+  MS-06 + ST-03 -> ST-05
+
+  ST-05 + ST-06 + global well-posedness -> ST-07
+
+  CA-01 -> CA-02 -> CA-03 -> CA-04
+
+  two-mode decomposition -> CA-05
+
+  heat semigroup laws -> AD-01
+
+  AD-01 + weighted elliptic theory -> AD-02 -> AD-03
+
+  AD-02 + exact static self-consistency -> AD-04 -> AD-05
+
+  RP-01 + RP-02 -> RP-03
+
+  RP-03 + RP-04 + RP-05 -> physical-threshold interpretation
+
+
+16. LEAN-ADAPTER MAP
+--------------------
+
+Planned modules:
 
   MaxwellSchroedingerSystem/Geometry.lean
   MaxwellSchroedingerSystem/Parameters.lean
@@ -1011,155 +1233,107 @@ Proof-spine policy:
   -> cached native asynchronous elaboration
   -> deterministic final chain.
 
-Proof-spine safety:
-
-  Scheduling may change.
-  The theorem, premises, axioms, and endpoint may not change.
-  Pending signatures are not proved until their bodies pass the external Lean
-  kernel.
-
-Approved foundational axioms:
-
-  propext
-  Classical.choice
-  Quot.sound
-
-Forbidden:
-
-  sorry
-  admit
-  custom axioms
-  unsafe proof construction
-  native_decide proof axioms
-  local Lean/Lake/elan execution
-  cache cleaning
-  dependency cleaning.
+No pending signature counts as proved until its body passes the external Lean
+kernel. No local Lean execution is permitted.
 
 
-13. DERIVATION-FOLDER CONTRACT
-------------------------------
+17. ROOT B-TIER THEOREM
+-----------------------
 
-Every checklist endpoint has a top-level folder
+THEOREM MAXWELL_SCHROEDINGER_B_TIER_HULL.
 
-  derivation_of_<ENDPOINT>/
+Under the frozen domain, parameter, gauge, and regularity conventions:
 
-whose README records:
+  (A) the normalized periodic Maxwell-Schrodinger equations satisfy exact
+      charge neutrality, gauge covariance, continuity, mass conservation,
+      Maxwell-constraint propagation, Coulomb-gauge equivalence, and total
+      energy conservation for sufficiently regular solutions;
 
-  exact theorem statement;
-  inputs and output;
-  dependency boundary;
-  B-tier derivation status;
-  source-premise status;
-  sign and edge-case audit status;
-  numerical-validation status;
-  Lean-signature status;
-  cached-compilation status;
-  theorem-level axiom-audit status;
-  promotion state.
+  (B) every positive normalized smooth profile chi determines an exact
+      stationary electrostatic solution through the reconstructed potential
+      Phi_chi and binding potential W_chi;
 
-Planned artifacts per endpoint:
+  (C) the stationary profile obeys an exact ground-state transform and an exact
+      nonnegative energy-gap identity, and is therefore a global energy
+      minimizer modulo constant phase in frozen Coulomb gauge;
 
-  <ENDPOINT>_B_TIER.txt
-  <ENDPOINT>.lean
-  <ENDPOINT>_A_TIER.txt
-  run.cmd
+  (D) the density defect |chi|^2-1 is the one-particle diagonal of the
+      commutator of a number-preserving uniform-to-profile transfer operator;
+
+  (E) every heat-regularized transverse a_dagger datum defines an exact static
+      magnetic extension with an explicit external-current defect;
+
+  (F) exact static self-consistency of a nonzero magnetic dressing is
+      impossible in the frozen spinless one-profile system;
+
+  (G) an imported NSE regularity radius translates algebraically into coherent
+      photon-number and photon-energy radii only under the named certificate
+      and coherent-ray premises;
+
+  (H) physical criticality remains unresolved until regulator-independent
+      convergence and a QED-to-NSE dynamical bridge are established.
+
+MARKER = !
 
 
-14. CLOSURE CLASSIFICATION
+18. CLOSURE CLASSIFICATION
 --------------------------
 
-B-TIER DERIVED IN THIS BRANCH:
+EXACT_B_TIER CORE:
 
   MS_CHARGE_NEUTRALITY
+  MS_GAUGE_COVARIANCE
   MS_CONTINUITY_IDENTITY
   MS_MASS_CONSERVATION
   MS_CONSTRAINT_PROPAGATION
+  MS_COULOMB_EQUIVALENCE
+  MS_TOTAL_ENERGY_CONSERVATION for smooth solutions
   MS_STATIONARY_PROFILE
   MS_GROUND_STATE_TRANSFORM
   MS_EXACT_ENERGY_GAP
   MS_GLOBAL_MINIMIZER
-  MS_ENERGY_TRAPPING
   PROFILE_TRANSFER_ONE_PARTICLE
   PROFILE_TRANSFER_COMMUTATOR
   PROFILE_TRANSFER_CHARGE_DIAGONAL
   RELATIVE_CHARGE_SMEARING
+  PROFILE_TRANSFER_UNITARY_ROTATION
+  A_DAGGER_HEAT_REGULARIZATION
   WEIGHTED_PHASE_SOLVABILITY
   A_DAGGER_STATIC_WITH_CURRENT_DEFECT
   STATIC_SPINLESS_MAGNETIC_NO_GO
   NONZERO_DRESSING_REQUIRES_DEFECT
 
-B-TIER CONDITIONAL:
+CONDITIONAL_B_TIER:
 
+  MS_ENERGY_TRAPPING on a supplied global smooth solution
   MS_GLOBAL_ORBITAL_STABILITY
   CERTIFICATE_RADIUS_TRANSLATION
 
-OPEN OR NAMED PREMISES:
+OPEN ANALYTIC OR SOURCE ENDPOINTS:
 
-  MS_COULOMB_EQUIVALENCE
-  MS_TOTAL_ENERGY_CONSERVATION
   MS_ORBITAL_METRIC_COERCIVITY
-  PROFILE_TRANSFER_UNITARY_ROTATION
-  A_DAGGER_HEAT_REGULARIZATION
+  global energy-class well-posedness
+  weak-solution energy conservation or inequality
   RAW_A_DAGGER_OUTSIDER_PROPERTIES
   CRITICAL_BMO_RAY_PROPERTIES
-  NSE_REGULARITY_CERTIFICATE
-  COHERENT_RAY_LAWS
-  PHYSICAL_THRESHOLD_LIMIT
+  NSE_REGULARITY_CERTIFICATE in this repository
+  COHERENT_RAY_LAWS with fixed normalization
   QED_TO_NSE_DYNAMICAL_BRIDGE
-  all eight validation endpoints.
+  PHYSICAL_THRESHOLD_LIMIT
 
-Not established by this branch:
+OUTSIDE FROZEN SCOPE:
 
-  global energy-class well-posedness for arbitrary data;
-  a physical phase transition at lambda_crit;
-  regulator-independent photon threshold;
-  spin dynamics;
-  pair creation;
-  radiative corrections;
-  relativistic QED;
-  electron g-2;
-  an unconditional QED-to-NSE equivalence.
+  Pauli spin
+  Dirac relativity
+  electron-positron pair creation
+  radiative corrections
+  renormalized relativistic QED
+  electron g-2
 
+FORMAL STATUS:
 
-15. PROMOTION RULE
-------------------
-
-B_TIER:
-
-  The exact theorem has a complete mathematical derivation recorded in TXT.
-
-A_TIER_CANDIDATE:
-
-  Lean files are prepared, but no matching external compiler and theorem-level
-  axiom-audit evidence exists.
-
-A_TIER:
-
-  The exact Lean theorem passed the matching external compiler and theorem-level
-  axiom audit with no sorryAx or unapproved axioms.
-
-FORMAL_CLOSURE:
-
-  The exact implication from all explicitly stated premises to the root
-  conclusion is A_TIER. Named unresolved certificates, witnesses, checkers,
-  admissions, semantic premises, or analytic premises may remain.
-
-UNCONDITIONAL_CLOSURE:
-
-  The root theorem is A_TIER and every named premise is discharged.
-
-Current classification:
-
-  MAXWELL_SCHROEDINGER_B_TIER_HULL = B_TIER.
-
-  A_TIER_CANDIDATE = not yet prepared.
-
-  A_TIER = not established.
-
-  FORMAL_CLOSURE = not established.
-
-  UNCONDITIONAL_CLOSURE = not established.
-
-
-END OF CANONICAL BRANCH B-TIER TXT
-==================================
+  B_TIER only.
+  Lean files are not emitted.
+  A_TIER is not established.
+  FORMAL_CLOSURE is not established.
+  UNCONDITIONAL_CLOSURE is not established.
