@@ -284,6 +284,57 @@ Sobolev continuation estimate is also needed.
 
 STATUS = EXACT B_TIER.
 
+3B. MASS CONSERVATION IN EVOLVING GR GEOMETRY
+-------------------------------------------------
+GRJ-06A: EVOLVING_VOLUME_CONSTANT_DENSITY_OBSTRUCTION.
+
+For the DECLARED model with rho_i>0
+constant and div_(h_t)u_i=0, the total
+mass represented by each fluid layer
+on the physical spatial metric is
+
+  Mass_i(t)=rho_i int_M dmu_(h_t).
+
+Its exact time derivative is
+
+  d(Mass_i)/dt
+     =(rho_i/2)int_M
+        tr_h(partial_t h_t)dmu_(h_t).
+
+Thus for a changing spatial volume,
+constant rho_i and div_h u_i=0
+DO NOT automatically imply material
+mass conservation. In fact, the
+standard coordinate-chart continuity
+equation would require
+
+  partial_t(rho_i sqrt(h))
+    +partial_j(rho_i sqrt(h) u_i^j)=0.
+
+For constant rho_i and div_h u_i=0,
+this imposes
+  tr_h(partial_t h_t)=0
+pointwise (in the beta=0 chart).
+
+ALLOWED PHYSICAL REPAIRS:
+  (A) restrict to a volume-preserving
+      ADM slicing/metric deformation;
+  (B) allow time-dependent fluid density
+      rho_i(t,x) and use its proper
+      transport/continuity law;
+  (C) use a full relativistic
+      particle-number current on spacetime
+      with lapse, shift and temporal flux
+      treated covariantly.
+
+The kinetic-energy identity GRJ-04 is
+mathematically correct for its DECLARED
+equations, but it is not by itself a
+physically closed mass-conserving
+relativistic fluid theory.
+
+STATUS = EXACT B_TIER NECESSARY MASS GATE.
+
 4. SHARP GRAVITY-ONLY LIMIT
 ---------------------------
 GRJ-07: PURE_POTENTIAL_FORCE_LERAY_NO_GO.
@@ -579,6 +630,7 @@ A_TIER = NOT ESTABLISHED.
 [x] GRJ-04 GEOMETRIC_NSE_KINETIC_ENERGY_IDENTITY
 [x] GRJ-05 ADM_EXTRINSIC_CURVATURE_ENERGY_PORT
 [x] GRJ-06 METRIC_WORK_GRONWALL_GATE
+[x] GRJ-06A EVOLVING_VOLUME_CONSTANT_DENSITY_OBSTRUCTION
 [x] GRJ-07 PURE_POTENTIAL_FORCE_LERAY_NO_GO
 [x] GRJ-08 TOTAL_EINSTEIN_STRESS_PARTITION (conditional)
 [x] GRJ-09 TOTAL_GAUGE_STRESS_EXCHANGE (conditional)
