@@ -1,0 +1,687 @@
+QM-MAXWELL TO REDUCED GENERAL RELATIVITY
+TWO-MODE TT ENTRY — B-TIER DERIVATION
+==========================================
+
+STATUS
+------
+
+MARKER = !
+TIER = CONDITIONAL_B_TIER
+ARTIFACT = GR_TT_REDUCED_ENTRY_B_TIER
+ROOT_ENDPOINT = QM_MAXWELL_GR_REDUCED_TT_ENTRY
+SOURCE_BRANCH = b-tier-hull
+LEAN_STATUS = NOT_EMITTED
+A_TIER_STATUS = NOT_ESTABLISHED
+FORMAL_CLOSURE = NOT_ESTABLISHED
+LOCAL_LEAN_EXECUTIONS = 0
+
+This document derives a concrete route from the existing quantum projective
+orbit and Maxwell Gaussian length to a reduced two-mode sector of linearized
+General Relativity.
+
+The principal conclusions are:
+
+  (1) a global CP1 symplectic match is impossible in the unreduced exact ADM
+      cotangent phase space;
+
+  (2) two transverse-traceless gravitational modes admit a U(1) symplectic
+      reduction whose reduced phase space is CP1;
+
+  (3) the reduced GR symplectic form has the exact coefficient
+
+        kappa_TT c^3 epsilon^2/G,
+
+      where kappa_TT is computed from the metric-amplitude normalization,
+      packet norm, characteristic frequency, and reduction level;
+
+  (4) matching to the Maxwell-Schrodinger quantum form gives
+
+        epsilon = l_P/sqrt(kappa_TT);
+
+  (5) the historical endpoint epsilon=2l_P is equivalent to the explicit
+      normalization equation kappa_TT=1/4.
+
+The derivation does not prove that nonlinear Einstein geometry selects
+kappa_TT=1/4. It reduces that open assertion to a precise GR normalization and
+reduction-level endpoint.
+
+
+0. FROZEN CONVENTIONS
+---------------------
+
+Let
+
+  Sigma := T^3,
+
+and let
+
+  G>0, c>0, hbar>0, epsilon>0.
+
+Define
+
+  l_P := sqrt(G hbar/c^3),
+  tau_epsilon := epsilon^2/4,
+  a_* := epsilon,
+  l_* := epsilon/2.
+
+Let the quantum two-mode orbit be
+
+  O_chi := CP^1,
+
+with Fubini-Study form normalized by
+
+  omega_FS := (1/2) sin(theta) dtheta wedge dphi,
+  integral_{CP1} omega_FS = 2 pi.
+
+The Maxwell-Schrodinger action form on this orbit is
+
+  Omega_QM = hbar omega_FS.
+
+The Gaussian transverse datum is
+
+  a_epsilon := exp(tau_epsilon Delta) a_dagger,
+
+whose physical-wave-vector multiplier is
+
+  exp(-epsilon^2 |xi|^2/4).
+
+Thus
+
+  a_* = epsilon,
+  l_* = epsilon/2.
+
+
+1. UNREDUCED ADM EXACTNESS
+--------------------------
+
+Let
+
+  Q_ADM := Riem(Sigma)
+
+be the configuration space of spatial Riemannian metrics and let
+
+  P_ADM := T^*Q_ADM
+
+be its kinematical cotangent phase space.
+
+For canonical data (h,pi), define the ADM canonical one-form
+
+  Theta_ADM(h,pi)[delta h,delta pi]
+    := integral_Sigma pi^{ij} delta h_{ij} d^3x.
+
+Define
+
+  Omega_ADM := -d Theta_ADM.
+
+THEOREM ADM_KINEMATICAL_EXACTNESS.
+
+  Omega_ADM is exact on P_ADM.
+
+STATUS = EXACT_B_TIER_FROM_DEFINITION.
+
+
+THEOREM ADM_CP1_GLOBAL_OBSTRUCTION.
+
+For every smooth map
+
+  iota : CP1 -> P_ADM,
+
+one has
+
+  integral_{CP1} iota^*Omega_ADM = 0.
+
+Consequently there is no smooth global map satisfying
+
+  iota^*Omega_ADM = hbar omega_FS
+
+for hbar>0.
+
+DERIVATION.
+
+  iota^*Omega_ADM
+    = -d(iota^*Theta_ADM).
+
+Since CP1 is closed,
+
+  integral_{CP1} iota^*Omega_ADM
+    = -integral_{CP1} d(iota^*Theta_ADM)
+    = 0.
+
+But
+
+  integral_{CP1} hbar omega_FS = 2 pi hbar != 0.
+
+STATUS = EXACT_B_TIER.
+
+INTERPRETATION.
+
+A global QM-GR symplectic match cannot occur inside the unreduced exact ADM
+cotangent phase space. At least one of the following is required:
+
+  (a) a genuine symplectic quotient with nontrivial second cohomology;
+  (b) boundary or edge degrees of freedom;
+  (c) a coadjoint-orbit sector;
+  (d) only local chartwise matching rather than global CP1 matching.
+
+
+2. LOCAL DARBOUX MATCHING AND NONSELECTION
+------------------------------------------
+
+On the north chart of CP1 define
+
+  J := hbar sin^2(theta/2).
+
+Then
+
+  Omega_QM = dJ wedge dphi.
+
+Let a GR canonical plane have positive symplectic coefficient S:
+
+  Omega_plane := S dQ wedge dP.
+
+Define locally
+
+  Q := sqrt(2J/S) cos(phi),
+  P := sqrt(2J/S) sin(phi).
+
+Then
+
+  Omega_plane = dJ wedge dphi = Omega_QM.
+
+THEOREM QM_GR_LOCAL_DARBOUX_MATCHING.
+
+Every positive coefficient S admits a local symplectic matching on a
+contractible CP1 chart.
+
+STATUS = EXACT_B_TIER.
+
+CONSEQUENCE.
+
+Local Darboux matching alone cannot determine epsilon, kappa, or a Planck
+scale. Global reduction data or an independent normalization law is required.
+
+
+3. LINEARIZED TT GRAVITY CONVENTION
+-----------------------------------
+
+Adopt the following physical-time quadratic action convention for a
+transverse-traceless spatial perturbation h_ij:
+
+  S_TT[h]
+    := (c^2/(64 pi G))
+       integral dt integral_Sigma
+       [ dot(h_ij) dot(h_ij)
+         - c^2 partial_k(h_ij) partial_k(h_ij) ] d^3x.
+
+The canonical momentum density is
+
+  Pi^{ij} = (c^2/(32 pi G)) dot(h_ij).
+
+The induced canonical one-form and symplectic form are
+
+  Theta_TT
+    = (c^2/(32 pi G))
+      integral_Sigma dot(h_ij) delta h_ij d^3x,
+
+  Omega_TT := -d Theta_TT.
+
+This section is a frozen normalization convention. Any alternate
+normalization of the metric perturbation must be translated before numerical
+comparison of coefficients.
+
+
+4. TWO TT PACKETS AND THE SCALE COEFFICIENT
+--------------------------------------------
+
+Let
+
+  T^0_{ij,epsilon}, T^1_{ij,epsilon}
+
+be two real TT initial-data profiles satisfying
+
+  partial_i T^a_{ij,epsilon}=0,
+  delta^{ij}T^a_{ij,epsilon}=0,
+
+and the orthogonality/scale law
+
+  integral_Sigma
+    T^a_{ij,epsilon} T^b_{ij,epsilon} d^3x
+      = epsilon^3 I_TT delta_ab,
+
+where
+
+  I_TT>0.
+
+Let
+
+  A>0,
+  sigma>0,
+  omega_epsilon := sigma c/epsilon.
+
+For real mode coordinates Q_a,P_a define initial data
+
+  h_ij
+    := A sum_{a=0}^1 Q_a T^a_{ij,epsilon},
+
+  dot(h_ij)
+    := A omega_epsilon
+       sum_{a=0}^1 P_a T^a_{ij,epsilon}.
+
+THEOREM GR_TT_TWO_MODE_SYMPLECTIC_FORM.
+
+The pullback of the TT symplectic form to the four-dimensional mode space is
+
+  Omega_TT
+    = S_epsilon sum_{a=0}^1 dQ_a wedge dP_a,
+
+where
+
+  S_epsilon
+    := (c^3 epsilon^2/G)
+       [A^2 sigma I_TT/(32 pi)].
+
+DERIVATION.
+
+Substitution into Theta_TT gives
+
+  Theta_TT
+    = (c^2/(32 pi G))
+      A^2 omega_epsilon epsilon^3 I_TT
+      sum_a P_a dQ_a.
+
+Since omega_epsilon=sigma c/epsilon,
+
+  (c^2/(32 pi G))
+  A^2 omega_epsilon epsilon^3 I_TT
+
+    = (c^3 epsilon^2/G)
+      [A^2 sigma I_TT/(32 pi)].
+
+Taking -d and choosing the positive canonical orientation yields the stated
+form.
+
+STATUS = EXACT_CONDITIONAL_B_TIER.
+
+CONDITIONS RETAINED.
+
+  TT_ACTION_CONVENTION;
+  TT_PROFILE_CONSTRAINTS;
+  TT_ORTHOGONAL_SCALE_LAW;
+  CHARACTERISTIC_FREQUENCY_LAW.
+
+
+5. GLOBAL CP1 BY U(1) SYMPLECTIC REDUCTION
+------------------------------------------
+
+Define complex mode variables
+
+  z_a := (Q_a+iP_a)/sqrt(2).
+
+Fix a reduction radius R>0:
+
+  |z_0|^2+|z_1|^2=R^2.
+
+Quotient by the common phase action
+
+  (z_0,z_1) -> exp(i alpha)(z_0,z_1).
+
+The quotient is the Hopf reduction
+
+  S^3_R/U(1) = CP1.
+
+On the north and south sections choose
+
+  z_N
+    = R(cos(theta/2), exp(i phi)sin(theta/2)),
+
+  z_S
+    = R(exp(-i phi)cos(theta/2), sin(theta/2)).
+
+Up to exact terms, the canonical potential is represented by
+
+  alpha_N
+    = S_epsilon R^2 sin^2(theta/2) dphi,
+
+  alpha_S
+    = -S_epsilon R^2 cos^2(theta/2) dphi.
+
+Their difference on the overlap is
+
+  alpha_N-alpha_S = S_epsilon R^2 dphi,
+
+while their curvatures agree:
+
+  d alpha_N = d alpha_S
+    = S_epsilon R^2 omega_FS.
+
+THEOREM GR_TT_HOPF_REDUCTION_CP1.
+
+The reduced two-mode TT phase space is CP1 with reduced symplectic form
+
+  Omega_GR_red
+    = S_epsilon R^2 omega_FS
+    = kappa_TT (c^3 epsilon^2/G) omega_FS,
+
+where
+
+  kappa_TT
+    := A^2 sigma I_TT R^2/(32 pi).
+
+STATUS = EXACT_CONDITIONAL_B_TIER.
+
+This quotient resolves the global exactness obstruction: the unreduced form is
+exact, while the reduced CP1 form has nonzero symplectic area
+
+  integral_{CP1} Omega_GR_red
+    = 2 pi S_epsilon R^2.
+
+
+6. MATCHING TO THE QUANTUM ACTION CELL
+--------------------------------------
+
+The quantum orbit carries
+
+  Omega_QM = hbar omega_FS.
+
+THEOREM GR_TT_PULLBACK_COEFFICIENT.
+
+If the reduced TT orbit represents the same reduced orbit as the quantum
+profile-transfer CP1 and
+
+  Omega_GR_red = Omega_QM,
+
+then
+
+  kappa_TT c^3 epsilon^2/G = hbar,
+
+and therefore
+
+  epsilon = l_P/sqrt(kappa_TT).
+
+STATUS = CONDITIONAL_B_TIER.
+
+
+THEOREM GR_ONE_QUARTER_NORMALIZATION_GATE.
+
+Under the same assumptions, the following are equivalent:
+
+  (i)  epsilon = 2 l_P;
+
+  (ii) kappa_TT = 1/4;
+
+  (iii)
+
+       A^2 sigma I_TT R^2 = 8 pi.
+
+DERIVATION.
+
+By definition
+
+  kappa_TT=A^2 sigma I_TT R^2/(32 pi).
+
+Thus kappa_TT=1/4 exactly when the displayed normalization product equals
+8pi. The Planck-scale equivalence follows from the matching theorem.
+
+STATUS = EXACT_CONDITIONAL_B_TIER.
+
+DECISIVE INTERPRETATION.
+
+The coefficient 1/4 is no longer an opaque scalar. In this reduced TT model it
+is the exact normalization equation
+
+  metric amplitude squared
+  x frequency ratio
+  x TT packet norm
+  x reduction radius squared
+  = 8 pi.
+
+The present theory does not yet derive this equation from nonlinear Einstein
+geometry.
+
+
+7. REDUCTION-LEVEL NONSELECTION
+-------------------------------
+
+THEOREM GR_REDUCTION_LEVEL_NONSELECTION.
+
+For fixed A,sigma,I_TT and every prescribed positive kappa, one may choose
+
+  R^2
+    = 32 pi kappa/(A^2 sigma I_TT)
+
+and obtain
+
+  Omega_GR_red
+    = kappa(c^3 epsilon^2/G)omega_FS.
+
+Therefore the two-mode reduction does not select kappa until the reduction
+level R, metric amplitude A, profile normalization I_TT, and frequency ratio
+sigma are fixed independently by GR geometry or dynamics.
+
+STATUS = EXACT_B_TIER.
+
+This is the GR analogue of COEFFICIENT_NONSELECTION.
+
+
+8. CONSTRAINT AND VALIDITY GATES
+--------------------------------
+
+The following conditions are not discharged merely by the symplectic
+calculation.
+
+GR_LINEARIZED_CONSTRAINT_GATE:
+
+  the two profiles must be valid TT initial data on the chosen background and
+  the corresponding linearized solution must satisfy the vacuum linearized
+  Einstein equations.
+
+GR_SMALL_AMPLITUDE_GATE:
+
+  the metric perturbation must remain within the regime where the quadratic TT
+  action approximates the nonlinear Einstein-Hilbert action.
+
+GR_NONLINEAR_REDUCTION_GATE:
+
+  the two-mode U(1) quotient must arise as a sector or controlled approximation
+  of the nonlinear reduced Einstein phase space.
+
+GR_ORBIT_IDENTIFICATION_GATE:
+
+  the reduced GR CP1 must represent the same physical orbit as the
+  Maxwell-Schrodinger profile-transfer CP1, not merely an abstract
+  symplectomorphic sphere.
+
+GR_UNIVERSALITY_GATE:
+
+  kappa_TT must be independent of the matter profile chi and of arbitrary
+  packet conventions before epsilon can be interpreted as universal.
+
+These are explicit unresolved premises.
+
+
+9. ALTERNATIVE ROUTE THROUGH THE EXISTING GR ADAPTER
+-----------------------------------------------------
+
+An independently certified repository endpoint states, for nu>0, rho!=0 and
+t0 in R,
+
+  Nonempty(NSEgerm(nu,t0) equiv GRgerm(nu,rho,t0)).
+
+The target GRgerm is a local analytic five-dimensional Lorentzian vacuum
+metric in a fixed Gaussian marking.
+
+Define the open bridge premise
+
+  MS_TO_NSE_GERM:
+
+    the selected Maxwell-Schrodinger trajectory determines an NSEgerm with the
+    required parameters and preserves the declared equivalence relation.
+
+THEOREM QM_MAXWELL_TO_GR_GERM_COMPOSITION.
+
+Under MS_TO_NSE_GERM and the imported NSE-GR equivalence, the selected
+Maxwell-Schrodinger trajectory determines a corresponding GRgerm.
+
+STATUS = CONDITIONAL_B_TIER_COMPOSITION.
+
+SCOPE.
+
+This route gives a GR solution-germ representation. It does not compute the
+ADM/TT symplectic coefficient kappa_TT and does not establish the Planck-kernel
+normalization.
+
+
+10. ROOT ENDPOINT
+-----------------
+
+THEOREM QM_MAXWELL_GR_REDUCED_TT_ENTRY.
+
+Assume:
+
+  H1. the frozen Maxwell-Schrodinger quantum CP1 orbit with
+      Omega_QM=hbar omega_FS;
+
+  H2. the Gaussian scale identification a_*=epsilon and l_*=epsilon/2;
+
+  H3. the quadratic TT action convention;
+
+  H4. two TT packet profiles satisfying the orthogonal scale law;
+
+  H5. the characteristic-frequency law omega_epsilon=sigma c/epsilon;
+
+  H6. U(1) reduction at radius R;
+
+  H7. identification of the reduced TT CP1 with the quantum CP1 orbit.
+
+Then the reduced GR symplectic form is
+
+  Omega_GR_red
+    = kappa_TT(c^3 epsilon^2/G)omega_FS,
+
+  kappa_TT
+    = A^2 sigma I_TT R^2/(32 pi).
+
+If the GR and quantum forms match, then
+
+  epsilon=l_P/sqrt(kappa_TT).
+
+Furthermore,
+
+  epsilon=2l_P
+
+is equivalent to
+
+  A^2 sigma I_TT R^2=8pi.
+
+STATUS = CONDITIONAL_B_TIER.
+
+
+11. ENDPOINT REGISTER
+---------------------
+
+[x] GRTT-01  ADM_KINEMATICAL_EXACTNESS
+              EXACT_B_TIER_FROM_DEFINITION
+
+[x] GRTT-02  ADM_CP1_GLOBAL_OBSTRUCTION
+              EXACT_B_TIER
+
+[x] GRTT-03  QM_GR_LOCAL_DARBOUX_MATCHING
+              EXACT_B_TIER
+
+[x] GRTT-04  GR_TT_TWO_MODE_SYMPLECTIC_FORM
+              EXACT_CONDITIONAL_B_TIER
+
+[x] GRTT-05  GR_TT_HOPF_REDUCTION_CP1
+              EXACT_CONDITIONAL_B_TIER
+
+[x] GRTT-06  GR_TT_PULLBACK_COEFFICIENT
+              CONDITIONAL_B_TIER
+
+[x] GRTT-07  GR_ONE_QUARTER_NORMALIZATION_GATE
+              EXACT_CONDITIONAL_B_TIER
+
+[x] GRTT-08  GR_REDUCTION_LEVEL_NONSELECTION
+              EXACT_B_TIER
+
+[x] GRTT-09  QM_MAXWELL_GR_REDUCED_TT_ENTRY
+              CONDITIONAL_B_TIER
+
+[x] GRTT-10  QM_MAXWELL_TO_GR_GERM_COMPOSITION
+              CONDITIONAL_ON_MS_TO_NSE_GERM
+
+[ ] GRTT-11  GR_LINEARIZATION_VALIDITY_GATE
+              OPEN_ANALYTIC
+
+[ ] GRTT-12  GR_NONLINEAR_REDUCTION_GATE
+              OPEN_DECISIVE
+
+
+12. DEPENDENCY SPINE
+--------------------
+
+  ADM canonical one-form
+    -> GRTT-01
+    -> GRTT-02.
+
+  quantum CP1 chart
+    -> GRTT-03.
+
+  TT action convention
+  + TT profiles
+  + frequency scale
+    -> GRTT-04
+    -> GRTT-05.
+
+  GRTT-05
+  + quantum/GR orbit identification
+    -> GRTT-06
+    -> GRTT-07.
+
+  free reduction level
+    -> GRTT-08.
+
+  Maxwell-Schrodinger CP1
+  + Gaussian scale
+  + GRTT-05
+    -> GRTT-09.
+
+  MS_TO_NSE_GERM
+  + imported NSE-GR equivalence
+    -> GRTT-10.
+
+
+13. CLOSURE CLASSIFICATION
+--------------------------
+
+EXACT_B_TIER:
+
+  ADM_KINEMATICAL_EXACTNESS
+  ADM_CP1_GLOBAL_OBSTRUCTION
+  QM_GR_LOCAL_DARBOUX_MATCHING
+  GR_REDUCTION_LEVEL_NONSELECTION.
+
+EXACT_CONDITIONAL_B_TIER:
+
+  GR_TT_TWO_MODE_SYMPLECTIC_FORM
+  GR_TT_HOPF_REDUCTION_CP1
+  GR_TT_PULLBACK_COEFFICIENT
+  GR_ONE_QUARTER_NORMALIZATION_GATE
+  QM_MAXWELL_GR_REDUCED_TT_ENTRY
+  QM_MAXWELL_TO_GR_GERM_COMPOSITION.
+
+OPEN DECISIVE ENDPOINTS:
+
+  derivation of the two-mode sector from nonlinear Einstein geometry;
+  independent selection of A,sigma,I_TT,R;
+  proof of A^2 sigma I_TT R^2=8pi;
+  same-orbit identification;
+  linearization validity and nonlinear persistence;
+  MS_TO_NSE_GERM.
+
+FORMAL STATUS:
+
+  B_TIER only.
+  Lean files are not emitted.
+  A_TIER is not established.
+  FORMAL_CLOSURE is not established.
+  UNCONDITIONAL_CLOSURE is not established.
