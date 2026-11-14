@@ -1,0 +1,212 @@
+FROZEN STANDARD MODEL / NSE OPERATOR MATCH REGISTER
+B-TIER STRUCTURAL CLASSIFICATION — v0.1
+===================================================
+
+STATUS
+------
+ROOT = FROZEN_SM_NSE_OPERATOR_MATCH_REGISTER
+MARKER = !
+TIER = B_TIER_STRUCTURE_CLASSIFICATION
+BRANCH = b-tier-hull
+A_TIER = NOT_ESTABLISHED
+FORMAL_CLOSURE = NOT_ESTABLISHED
+NO_LOCAL_LEAN_EXECUTION = TRUE
+FROZEN_REFERENCE = EIGHT_OPERATOR_STANDARD_MODEL_TABLE
+IMPLEMENTATION_SCOPE = MATCH IDENTIFICATION ONLY
+
+PURPOSE
+-------
+Preserve the original eight Standard Model operator identities
+as an IMMUTABLE REFERENCE REGISTER. Identify where their
+STRUCTURAL ANALOGUES emerge from existing NSE equations.
+Do not derive, couple, or force all eight at once.
+
+Comparison rules:
+* EXACT_NATIVE: already follows from smooth incompressible NSE geometry.
+* EXACT_WITH_ADDED_PORT: exact only when an additional declared
+  gauge connection, representation, forcing, or stress structure exists.
+* STRUCTURAL_ANALOGY: same abstract type but no claimed operator equality.
+* ABSENT: no native NSE identity; do not fabricate a match.
+
+THE EIGHT FROZEN STANDARD MODEL IDENTITIES
+------------------------------------------
+SM-01. GAUGE REPRESENTATION:
+       [T_a,T_b]=i f_ab^c T_c
+       with Hermitian-generator normalization.
+
+SM-02. COVARIANT DERIVATIVES (INTERNAL SCALARS):
+       [D_mu,D_nu]Phi=rho(F_mu nu)Phi.
+       For spinors the full commutator also has spin curvature.
+
+SM-03. QUANTUM DYNAMICS (HEISENBERG CONVENTION):
+       i hbar partial_t O_H=[O_H,H]
+       for time-independent observables and suitable domains.
+       Explicitly time-dependent observables require a correction.
+
+SM-04. FERMIONIC STATISTICS:
+       {psi_alpha(x),psi_beta^dagger(y)}
+          =delta_alpha beta delta(x-y)
+       as regulated/smeared CAR fields.
+
+SM-05. GAUGE CONSTRAINTS:
+       [G_a,G_b] ~ i hbar f_ab^c G_c,
+       under first-class constraint and anomaly assumptions.
+
+SM-06. BRST CONSISTENCY:
+       Q_BRST^2=0,
+       in a chosen anomaly-free gauge-fixed BRST complex.
+
+SM-07. GAUGE CURRENT WARD IDENTITY:
+       D_mu^A J^mu=0,
+       on shell with correct total current and anomaly control.
+
+SM-08. STRESS-ENERGY EXCHANGE:
+       nabla_mu T_matter^{mu nu}
+          = F^{a nu}{}_lambda J_a^lambda,
+       under the on-shell source/stress partition conventions.
+
+MATCH REGISTER (SM ID -> NSE LOCATION)
+----------------------------------------
+SM-01 -> NSE-01:
+  g_sigma = divergence-free vector fields, with
+  [u,v]=(u.grad)v-(v.grad)u.
+  Differential representation D_u=u.grad.
+  [D_u,D_v]=D_[u,v].
+  CLASS = EXACT_NATIVE as an ABSTRACT LIE REPRESENTATION,
+          NOT an identification of g_sigma with su(3)+su(2)+u(1).
+
+SM-02 -> NSE-02:
+  Pure NSE scalar transport has flat spatial commutator:
+    [D_u,D_v]-D_[u,v]=0.
+  With an ADDED internal connection and representation,
+    D_u^A=D_u+rho(A(u)),
+    [D_u^A,D_v^A]-D_[u,v]^A=rho(F_A(u,v)).
+  CLASS = EXACT_WITH_ADDED_PORT.
+  Curvature is not inferred from fluid viscosity.
+
+SM-03 -> NSE-03:
+  Euler carries a classical Lie-Poisson Hamiltonian
+    dot F={F,H_Euler};
+  NSE observable generator for a smooth finite Galerkin model
+    L_N F = DF.b_N
+  includes dissipative flow and generally nonunitary Koopman
+  representation on an arbitrary L2 ensemble measure.
+  CLASS = STRUCTURAL_ANALOGY.
+  No native self-adjoint quantum Hamiltonian or
+  equal quantum commutator.
+
+SM-04 -> NSE-04:
+  Classical real velocity components commute as
+  ordinary functions; NSE has no intrinsic CAR.
+  CLASS = ABSENT.
+  Anticommuting fermionic fields are additional quantum data.
+
+SM-05 -> NSE-05:
+  div u=0 is the incompressibility constraint;
+  the Helmholtz-Leray projection and elliptic pressure
+  enforce the solenoidal velocity constraint.
+  This is not a first-class local internal Yang-Mills
+  Gauss constraint, nor an equivalent generator commutator.
+  CLASS = STRUCTURAL_ANALOGY.
+
+SM-06 -> NSE-06:
+  Ordinary viscous NSE has no intrinsic nilpotent BRST
+  charge. Gauge-fixing of a separately specified
+  relabeling or response-field theory can introduce
+  ghosts, but that requires new structure.
+  CLASS = ABSENT.
+
+SM-07 -> NSE-07:
+  At constant density rho_m,
+    partial_t rho_m+div(rho_m u)=0
+    is equivalent to div u=0.
+  Momentum and energy balance also arise from
+  the divergence-form PDE; none supplies nonabelian
+  covariant current conservation without internal
+  gauge source information.
+  CLASS = STRUCTURAL_ANALOGY.
+
+SM-08 -> NSE-08:
+  For constant density rho_m and dynamic viscosity eta,
+  define symmetric rate of strain
+    S_ij=(partial_i u_j+partial_j u_i)/2,
+  and momentum-flux tensor
+    Pi_ij=rho_m u_i u_j+p delta_ij-2 eta S_ij.
+
+  The forced incompressible NSE is exactly
+    partial_t(rho_m u_i)+partial_j Pi_ij=f_i.
+
+  If a charge/current model and a nonrelativistic
+  matching are separately specified, one may set
+    f_i= rho_q E_i+(J cross B)_i,
+  or more covariantly derive spatial f_i
+  from a gauge-invariant contraction F^a_{i nu}J_a^nu.
+
+  CLASS = EXACT_NATIVE momentum-stress divergence
+          PLUS EXACT_WITH_ADDED_PORT for gauge stress exchange.
+
+  No identification of the entire NSE stress tensor
+  with a quantum stress operator is claimed.
+
+FIRST WORKING CHOICE
+--------------------
+1. First algebraic NSE port:
+     NSE_DERIVATION_COMMUTATOR
+       [D_u,D_v]=D_[u,v]
+   and its representation-theoretic Jacobi closure.
+
+2. First optional field port:
+     NSE_CONNECTION_CURVATURE_EXTENSION
+       [D_u^A,D_v^A]-D_[u,v]^A=rho(F_A(u,v)).
+   Requires connection A and representation rho as independent inputs.
+
+3. First physical coupling port:
+     NSE_MOMENTUM_STRESS_FORCE
+       partial_t(rho u_i)+partial_j Pi_ij=f_i
+   and field-force reciprocity, with current/residual accounting.
+
+4. Freeze rows SM-03..SM-07 without attempting construction.
+   They remain comparison targets, not prerequisites for
+   the first exact NSE operator endpoint.
+
+MINIMAL MATHEMATICAL CHECK FOR THE FIRST PORT
+---------------------------------------------
+For smooth scalar f,
+  D_u(D_v f)-D_v(D_u f)
+    =u^i partial_i(v^j partial_j f)
+       -v^i partial_i(u^j partial_j f)
+    =(u^i partial_i v^j-v^i partial_i u^j)partial_j f,
+since mixed second derivatives cancel.
+This is D_[u,v] f.
+
+If div u=div v=0 then
+  div[u,v]=u.grad(div v)-v.grad(div u)=0.
+Thus the representation closes on the NSE
+incompressible transport algebra.
+
+COMPARISON TO PREVIOUS ASSEMBLIES
+----------------------------------
+Prior artifacts:
+  NSE_LIE_GROUP_FOUNDATIONS_B_TIER
+  NSE_STANDARD_MODEL_GROUP_BASE_B_TIER
+  SM_OPERATOR_IDENTITY_BASE_B_TIER
+  SM_TO_NSE_POWER_X_OPERATOR_MATCHING_B_TIER
+
+The present file does not supersede them. It freezes
+the *matching register*, narrows scope, and selects
+one existing native operator identity for subsequent
+mathematical/formal work.
+
+OPEN:
+  actual SM field representation and physical charge sector;
+  selected connection/gauge bundle;
+  constitutive or microscopic SM-to-NSE force law;
+  Ward/current/stress no-double-counting;
+  regularity-preserving critical force estimate;
+  exact physical electron-to-fluid evolution map.
+
+CLASSIFICATION:
+  ! B_TIER for exact NSE transport and stress identities,
+    with conditional additional-connection/gauge ports.
+  A_TIER NOT ESTABLISHED.
+  NO FULL SM/NSE EQUIVALENCE CLAIM.
