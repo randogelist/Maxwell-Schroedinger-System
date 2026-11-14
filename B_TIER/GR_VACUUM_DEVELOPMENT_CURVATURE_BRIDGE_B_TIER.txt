@@ -1,0 +1,805 @@
+QM-MAXWELL TO FOUR-DIMENSIONAL VACUUM GENERAL RELATIVITY
+CAUCHY DEVELOPMENT AND WEYL-CURVATURE BRIDGE — B-TIER DERIVATION
+=================================================================
+
+STATUS
+------
+
+MARKER = !
+TIER = CONDITIONAL_B_TIER
+ARTIFACT = GR_VACUUM_DEVELOPMENT_CURVATURE_BRIDGE_B_TIER
+ROOT_ENDPOINT = QM_MAXWELL_GR_VACUUM_DEVELOPMENT_CURVATURE_BRIDGE
+SOURCE_BRANCH = b-tier-hull
+LEAN_STATUS = NOT_EMITTED
+A_TIER_STATUS = NOT_ESTABLISHED
+FORMAL_CLOSURE = NOT_ESTABLISHED
+LOCAL_LEAN_EXECUTIONS = 0
+
+This document extends the existing exact-constraint bridge from the
+Maxwell-Schrodinger object to spacetime General Relativity.
+
+The exact internal chain is
+
+  stationary QM/Maxwell bridge datum
+  -> transverse circular Maxwell mode
+  -> TT gravitational seed
+  -> exact nonlinear vacuum Cauchy data
+  -> explicit Gaussian-normal metric jet
+  -> explicit electric and magnetic Weyl initial tensors.
+
+The passage from smooth vacuum Cauchy data to a unique maximal globally
+hyperbolic vacuum development uses the standard vacuum Einstein Cauchy theorem
+as an established external mathematical input. That theorem is not reproved in
+this repository.
+
+The stationary electric charge sector q(chi^2-1) is not inserted into the
+vacuum Einstein equations. The current GR lift uses only the transverse
+Maxwell-derived datum. A fully sourced Einstein-Maxwell-Schrodinger completion
+remains a separate endpoint.
+
+
+0. FROZEN CONVENTIONS
+---------------------
+
+Spatial manifold:
+
+  Sigma := T^3 = (R/Z)^3,
+  |T^3| = 1.
+
+Orientation:
+
+  epsilon_123 = +1.
+
+Circular wave number and phase:
+
+  n in Z, n != 0,
+  k := 2 pi n,
+  vartheta(z) := k z + alpha.
+
+Gaussian smoothing length:
+
+  epsilon > 0.
+
+Raw circular amplitude:
+
+  s > 0.
+
+Smoothed amplitude:
+
+  s_epsilon := s exp(-epsilon^2 k^2/4).
+
+Circular transverse mode:
+
+  a_epsilon(z)
+    := s_epsilon (cos(vartheta(z)), sin(vartheta(z)), 0).
+
+Then
+
+  div a_epsilon = 0,
+  mean(a_epsilon) = 0,
+  Delta a_epsilon = -k^2 a_epsilon,
+  |a_epsilon(x)| = s_epsilon.
+
+Fixed-axis TT lift:
+
+  sigma_epsilon
+    := (1/sqrt(2))
+       [ [ a_1,  a_2, 0 ],
+         [ a_2, -a_1, 0 ],
+         [   0,    0, 0 ] ].
+
+It satisfies
+
+  tr_delta sigma_epsilon = 0,
+  div_delta sigma_epsilon = 0,
+  |sigma_epsilon|_delta^2 = s_epsilon^2.
+
+Define
+
+  h_epsilon^pm := +/- s_epsilon/sqrt(6),
+  tau_epsilon^pm := 3 h_epsilon^pm
+                  = +/- sqrt(3/2) s_epsilon.
+
+The Cauchy data are
+
+  g_0 := delta,
+
+  K_0^pm
+    := sigma_epsilon + h_epsilon^pm delta.
+
+Spacetime convention:
+
+  signature = (-,+,+,+),
+
+  gbar = -du^2 + g_ij(u,x) dx^i dx^j,
+
+  K_ij = -(1/2) partial_u g_ij
+
+in unit lapse and zero shift. Here u is a normal coordinate with dimension of
+length; physical time is t=u/c.
+
+
+1. EXACT NONLINEAR VACUUM CONSTRAINT DATA
+----------------------------------------
+
+THEOREM CIRCULAR_CMC_VACUUM_CONSTRAINTS.
+
+The data (g_0,K_0^pm) satisfy the vacuum Einstein constraint equations
+
+  R(g_0) + (tr K_0^pm)^2 - |K_0^pm|^2 = 0,
+
+  D^j [K_0^pm_ij - (tr K_0^pm) g_0_ij] = 0.
+
+DERIVATION.
+
+Because g_0=delta,
+
+  R(g_0)=0.
+
+Since sigma_epsilon is tracefree and orthogonal to delta,
+
+  tr K_0^pm = 3 h_epsilon^pm = tau_epsilon^pm,
+
+  |K_0^pm|^2
+    = |sigma_epsilon|^2 + 3(h_epsilon^pm)^2
+    = s_epsilon^2 + s_epsilon^2/2
+    = 3 s_epsilon^2/2.
+
+Also
+
+  (tau_epsilon^pm)^2 = 3 s_epsilon^2/2.
+
+Hence the Hamiltonian constraint holds pointwise.
+
+The momentum constraint follows from
+
+  div sigma_epsilon = 0,
+  d h_epsilon^pm = 0,
+  d tau_epsilon^pm = 0.
+
+STATUS = EXACT_B_TIER.
+
+
+2. REGULARITY OF THE CAUCHY DATA
+--------------------------------
+
+THEOREM CIRCULAR_CMC_ANALYTIC_DATA.
+
+The fields g_0 and K_0^pm are real analytic on T^3.
+
+DERIVATION.
+
+The metric g_0 is constant. The tensor K_0^pm is formed from constants and the
+trigonometric functions cos(kz+alpha), sin(kz+alpha).
+
+STATUS = EXACT_B_TIER.
+
+
+3. GAUSSIAN-NORMAL SPACETIME JET
+--------------------------------
+
+In unit lapse and zero shift, the vacuum ADM evolution equations in the frozen
+extrinsic-curvature convention are
+
+  partial_u g_ij = -2 K_ij,
+
+  partial_u K_ij
+    = Ric(g)_ij + (tr_g K) K_ij - 2 K_i^m K_mj.
+
+THEOREM GAUSSIAN_NORMAL_FIRST_JET.
+
+At u=0,
+
+  partial_u g|_0 = -2 K_0^pm.
+
+STATUS = EXACT_B_TIER_FROM_CONVENTION.
+
+
+THEOREM GAUSSIAN_NORMAL_SECOND_JET.
+
+At u=0,
+
+  partial_u^2 g|_0
+    = 4 (K_0^pm)^2 - 2 tau_epsilon^pm K_0^pm.
+
+DERIVATION.
+
+Since Ric(delta)=0,
+
+  partial_u K|_0
+    = tau_epsilon^pm K_0^pm - 2(K_0^pm)^2.
+
+Differentiate partial_u g=-2K.
+
+Consequently, the formal Gaussian-normal spacetime metric begins as
+
+  gbar
+    = -du^2
+      + [ delta
+          - 2u K_0^pm
+          + u^2 ( 2(K_0^pm)^2
+                  - tau_epsilon^pm K_0^pm )
+          + O(u^3) ]_ij dx^i dx^j.
+
+STATUS = EXACT_B_TIER.
+
+SCOPE.
+
+This is an exact initial jet determined by the vacuum evolution equations. It
+is not by itself a convergence or existence theorem for the full spacetime.
+
+
+4. INTRINSIC INITIAL WEYL DATA
+------------------------------
+
+For vacuum initial data define the electric and magnetic Weyl tensors by
+
+  E_GR_ij
+    := Ric(g)_ij
+       + (tr_g K) K_ij
+       - K_i^m K_mj,
+
+  H_GR_ij
+    := epsilon_i^(kl) D_k K_lj.
+
+With the frozen orientation and extrinsic-curvature convention these agree
+with the electric and magnetic parts of the spacetime Weyl tensor on the
+initial hypersurface of any vacuum development.
+
+THEOREM INITIAL_WEYL_DATA_FROM_CAUCHY_DATA.
+
+For every vacuum constraint datum (g,K), E_GR and H_GR are determined entirely
+by the intrinsic Cauchy data. For the circular data,
+
+  E_GR = tau_epsilon^pm K_0^pm - (K_0^pm)^2,
+
+  H_GR_ij = epsilon_i^(kl) partial_k K_0^pm_lj.
+
+STATUS = EXACT_B_TIER_GAUSS_CODAZZI.
+
+
+5. EXPLICIT CIRCULAR WEYL FORMULAS
+----------------------------------
+
+Write
+
+  s0 := s_epsilon,
+  h  := h_epsilon^pm,
+  sigma := sigma_epsilon.
+
+Then
+
+  h^2 = s0^2/6,
+
+  sigma^2
+    = (s0^2/2) diag(1,1,0),
+
+  K_0^pm = h I + sigma,
+
+  tau_epsilon^pm = 3h.
+
+THEOREM CIRCULAR_WEYL_ELECTRIC_FORMULA.
+
+  E_GR
+    = h sigma
+      + (s0^2/6) diag(-1,-1,2).
+
+DERIVATION.
+
+  E_GR
+    = 3h(hI+sigma) - (hI+sigma)^2
+    = 2h^2 I + h sigma - sigma^2.
+
+Substitute h^2=s0^2/6 and the displayed sigma^2.
+
+The tensor E_GR is symmetric and tracefree.
+
+STATUS = EXACT_B_TIER.
+
+
+THEOREM CIRCULAR_WEYL_MAGNETIC_FORMULA.
+
+  H_GR = -k sigma.
+
+DERIVATION.
+
+Only the z derivative is nonzero. Direct differentiation gives
+
+  epsilon_i^(3l) partial_z sigma_lj = -k sigma_ij
+
+in the frozen orientation epsilon_123=+1.
+
+The tensor H_GR is symmetric and tracefree.
+
+STATUS = EXACT_B_TIER.
+
+SIGN AUDIT.
+
+Changing the sign convention for K or the spatial orientation changes the
+sign of H_GR. The norm and superenergy formulas below are invariant under that
+change.
+
+
+6. CURVATURE NORMS AND SUPERENERGY
+----------------------------------
+
+THEOREM CIRCULAR_WEYL_NORMS.
+
+For either sign branch,
+
+  |E_GR|^2 = s0^4/3,
+
+  |H_GR|^2 = k^2 s0^2,
+
+  <E_GR,H_GR> = -k h s0^2.
+
+DERIVATION.
+
+The diagonal tensor
+
+  D0 := (s0^2/6) diag(-1,-1,2)
+
+is orthogonal to sigma. Hence
+
+  |E_GR|^2
+    = h^2 |sigma|^2 + |D0|^2
+    = (s0^2/6)s0^2 + s0^4/6
+    = s0^4/3.
+
+The remaining identities follow from H_GR=-k sigma.
+
+STATUS = EXACT_B_TIER.
+
+
+Define the initial Bel-Robinson superenergy density
+
+  W_GR(epsilon)
+    := |E_GR|^2 + |H_GR|^2.
+
+THEOREM CIRCULAR_BEL_ROBINSON_DENSITY.
+
+  W_GR(epsilon)
+    = k^2 s_epsilon^2 + s_epsilon^4/3.
+
+Since |T^3|=1, its spatial integral has the same value.
+
+STATUS = EXACT_B_TIER.
+
+
+7. GAUSSIAN LENGTH CONTROLS INITIAL GR CURVATURE
+------------------------------------------------
+
+Since
+
+  s_epsilon = s exp(-epsilon^2 k^2/4),
+
+one has
+
+  W_GR(epsilon)
+    = k^2 s^2 exp(-epsilon^2 k^2/2)
+      + (s^4/3) exp(-epsilon^2 k^2).
+
+THEOREM GR_SUPERENERGY_MONOTONICITY.
+
+For epsilon>0, s>0 and k!=0,
+
+  d W_GR/d epsilon
+    = -epsilon k^4 s^2 exp(-epsilon^2 k^2/2)
+      - (2/3) epsilon k^2 s^4 exp(-epsilon^2 k^2)
+    < 0.
+
+Therefore the Gaussian smoothing length monotonically suppresses the initial
+gravity-wave curvature content of this circular sector.
+
+STATUS = EXACT_B_TIER.
+
+INTERPRETATION BOUNDARY.
+
+This monotonicity does not select a preferred epsilon. It only supplies an
+explicit GR observable depending on epsilon.
+
+
+8. VACUUM CAUCHY DEVELOPMENT
+----------------------------
+
+Define a vacuum Cauchy development of (Sigma,g_0,K_0^pm) to be a time-oriented
+Lorentzian spacetime (M,gbar), together with an embedding
+
+  iota : Sigma -> M,
+
+such that
+
+  Ric(gbar)=0,
+
+  iota(Sigma) is a Cauchy hypersurface,
+
+  iota^*gbar = g_0,
+
+and the induced second fundamental form is K_0^pm in the frozen convention.
+
+EXTERNAL MATHEMATICAL INPUT VACUUM_CAUCHY_DEVELOPMENT_THEOREM.
+
+Every sufficiently regular vacuum initial datum satisfying the constraint
+equations admits a maximal globally hyperbolic vacuum development, unique up
+to a time-orientation-preserving isometry fixing the initial hypersurface.
+
+This is the classical Choquet-Bruhat–Geroch Cauchy theorem. It is accepted as an
+external theorem in this B-tier document and is not reproved here.
+
+THEOREM CIRCULAR_CMC_VACUUM_DEVELOPMENT.
+
+Under VACUUM_CAUCHY_DEVELOPMENT_THEOREM, each sign branch
+
+  (T^3,g_0,K_0^pm)
+
+admits a unique isometry class of maximal globally hyperbolic vacuum
+developments.
+
+STATUS = CONDITIONAL_B_TIER_ON_ESTABLISHED_CAUCHY_THEOREM.
+
+SCOPE.
+
+"Maximal globally hyperbolic" does not imply geodesic completeness, global
+smallness, or existence for all values of a chosen coordinate time.
+
+
+9. THE TRANSVERSE QM-MAXWELL-GR MAP
+-----------------------------------
+
+The stationary Maxwell-Schrodinger bridge datum contains
+
+  B_{chi,epsilon}
+    = ( O_chi,
+        Gamma_chi,
+        rho_chi,
+        E_chi,
+        a_epsilon ).
+
+Define the transverse projection
+
+  P_T(B_{chi,epsilon}) := a_epsilon.
+
+Define the GR initial-data lift
+
+  L_GR^pm(a_epsilon)
+    := ( g_0=delta,
+         K_0^pm
+           = T(a_epsilon)
+             +/- |a_epsilon| delta/sqrt(6) ).
+
+For the circular constant-amplitude sector this is well-defined and satisfies
+the vacuum constraints.
+
+Define the intrinsic curvature output
+
+  C_GR(g_0,K_0^pm)
+    := ( E_GR,H_GR ).
+
+The exact internal bridge is
+
+  B_{chi,epsilon}
+    -> P_T
+  a_epsilon
+    -> L_GR^pm
+  (g_0,K_0^pm)
+    -> C_GR
+  (E_GR,H_GR).
+
+THEOREM QM_MAXWELL_GR_CURVATURE_BRIDGE.
+
+For the circular sector,
+
+  C_GR(L_GR^pm(P_T(B_{chi,epsilon})))
+
+is exactly
+
+  E_GR
+    = h_epsilon^pm sigma_epsilon
+      + (s_epsilon^2/6)diag(-1,-1,2),
+
+  H_GR = -k sigma_epsilon.
+
+STATUS = EXACT_B_TIER.
+
+
+10. ROOT SPACETIME BRIDGE
+-------------------------
+
+THEOREM QM_MAXWELL_GR_VACUUM_DEVELOPMENT_CURVATURE_BRIDGE.
+
+Assume:
+
+  H1. a stationary Maxwell-Schrodinger profile datum chi;
+
+  H2. a nonzero circular transverse mode a_epsilon with the frozen Gaussian
+      regularization;
+
+  H3. the fixed-axis TT lift;
+
+  H4. either sign of the exact mean-curvature compensation;
+
+  H5. VACUUM_CAUCHY_DEVELOPMENT_THEOREM.
+
+Then:
+
+  (A) the Maxwell-derived transverse mode determines exact smooth analytic
+      vacuum Cauchy data on T^3;
+
+  (B) the initial Gaussian-normal spacetime jet is explicitly determined
+      through second order;
+
+  (C) the initial electric and magnetic Weyl tensors are the explicit tensors
+      in Section 5;
+
+  (D) the initial Bel-Robinson density is
+
+        k^2 s_epsilon^2 + s_epsilon^4/3;
+
+  (E) the data determine a unique isometry class of maximal globally
+      hyperbolic four-dimensional vacuum developments.
+
+STATUS = CONDITIONAL_B_TIER.
+
+
+11. SCOPE SEPARATION: VACUUM VERSUS SOURCED GR
+----------------------------------------------
+
+THEOREM TRANSVERSE_ONLY_GR_BRIDGE.
+
+The vacuum GR lift depends on a_epsilon and does not depend on
+
+  rho_chi = q(chi^2-1),
+
+  E_chi = -grad Phi_chi.
+
+Therefore the current construction is a transverse vacuum-geometric encoding,
+not an Einstein-Maxwell-Schrodinger solution.
+
+STATUS = EXACT_B_TIER_SCOPE_STATEMENT.
+
+A full sourced bridge requires at least:
+
+  (i) a covariant matter stress-energy tensor for the matter model;
+
+  (ii) Einstein constraint equations with electromagnetic and matter sources;
+
+  (iii) compatibility of charge/current conservation with the spacetime
+        covariant equations;
+
+  (iv) a coupled Einstein-Maxwell-matter development theorem.
+
+Define the open endpoint
+
+  EINSTEIN_MAXWELL_SCHRODINGER_COMPLETION.
+
+STATUS = OPEN_DECISIVE.
+
+
+12. RELATION TO THE EXISTING FIVE-DIMENSIONAL GR ADAPTER
+--------------------------------------------------------
+
+The existing project GR adapter uses five-dimensional Lorentzian vacuum
+metrics with a four-dimensional Gaussian boundary and a fixed induced boundary
+metric. The development constructed here is a four-dimensional vacuum
+spacetime arising from three-dimensional Cauchy data.
+
+Consequently no direct type-level identification is presently established.
+The required endpoint is
+
+  FOUR_D_CAUCHY_TO_FIVE_D_GAUSSIAN_INTERFACE.
+
+A trivial product metric dr^2+gbar is five-dimensional Ricci-flat when gbar is
+four-dimensional Ricci-flat, but it has vanishing radial second fundamental
+form and generally does not satisfy the nonzero normalization and fixed
+boundary conditions of the existing GR adapter.
+
+STATUS = OPEN_INTERFACE.
+
+
+13. VALIDATION PROGRAM
+----------------------
+
+V-GRDEV-01 CONSTRAINT RESIDUALS.
+
+Verify pointwise
+
+  R + tau^2 - |K|^2 = 0,
+  div(K-tau g) = 0.
+
+V-GRDEV-02 JET RESIDUALS.
+
+Verify
+
+  partial_u g|_0 = -2K_0,
+
+  partial_u^2 g|_0
+    = 4K_0^2 - 2tau K_0.
+
+V-GRDEV-03 WEYL TRACE AND SYMMETRY.
+
+Verify
+
+  tr E_GR = tr H_GR = 0,
+  E_GR^T=E_GR,
+  H_GR^T=H_GR.
+
+V-GRDEV-04 CIRCULAR MAGNETIC WEYL LAW.
+
+Verify
+
+  H_GR + k sigma_epsilon = 0
+
+under the frozen orientation.
+
+V-GRDEV-05 SUPERENERGY FORMULA.
+
+Verify
+
+  |E_GR|^2 + |H_GR|^2
+    = s_epsilon^4/3 + k^2s_epsilon^2.
+
+V-GRDEV-06 EPSILON MONOTONICITY.
+
+Verify strict decrease of W_GR(epsilon) for epsilon>0.
+
+V-GRDEV-07 DEVELOPMENT RECONSTRUCTION.
+
+Numerically evolve the ADM or harmonic-gauge vacuum equations and check that
+the initial constraints and Weyl data converge to the exact formulas.
+
+V-GRDEV-08 GAUGE INVARIANCE.
+
+Compare gauge-related numerical developments through curvature invariants or a
+fixed geometric identification, not componentwise coordinate equality.
+
+V-GRDEV-09 FOUR-D/FIVE-D SCOPE AUDIT.
+
+Prevent accidental identification of the present four-dimensional Cauchy
+development with the existing five-dimensional Gaussian-boundary adapter.
+
+
+14. ENDPOINT REGISTER
+---------------------
+
+[x] GRDEV-01  CIRCULAR_CMC_VACUUM_CONSTRAINTS
+               EXACT_B_TIER
+
+[x] GRDEV-02  CIRCULAR_CMC_ANALYTIC_DATA
+               EXACT_B_TIER
+
+[x] GRDEV-03  GAUSSIAN_NORMAL_FIRST_JET
+               EXACT_B_TIER_FROM_CONVENTION
+
+[x] GRDEV-04  GAUSSIAN_NORMAL_SECOND_JET
+               EXACT_B_TIER
+
+[x] GRDEV-05  INITIAL_WEYL_DATA_FROM_CAUCHY_DATA
+               EXACT_B_TIER_GAUSS_CODAZZI
+
+[x] GRDEV-06  CIRCULAR_WEYL_ELECTRIC_FORMULA
+               EXACT_B_TIER
+
+[x] GRDEV-07  CIRCULAR_WEYL_MAGNETIC_FORMULA
+               EXACT_B_TIER
+
+[x] GRDEV-08  CIRCULAR_WEYL_NORMS
+               EXACT_B_TIER
+
+[x] GRDEV-09  CIRCULAR_BEL_ROBINSON_DENSITY
+               EXACT_B_TIER
+
+[x] GRDEV-10  GR_SUPERENERGY_MONOTONICITY
+               EXACT_B_TIER
+
+[x] GRDEV-11  CIRCULAR_CMC_VACUUM_DEVELOPMENT
+               CONDITIONAL_ON_ESTABLISHED_CAUCHY_THEOREM
+
+[x] GRDEV-12  QM_MAXWELL_GR_CURVATURE_BRIDGE
+               EXACT_B_TIER
+
+[x] GRDEV-13  TRANSVERSE_ONLY_GR_BRIDGE
+               EXACT_B_TIER_SCOPE_STATEMENT
+
+[x] GRDEV-14  QM_MAXWELL_GR_VACUUM_DEVELOPMENT_CURVATURE_BRIDGE
+               CONDITIONAL_B_TIER
+
+[ ] GRDEV-15  EINSTEIN_MAXWELL_SCHRODINGER_COMPLETION
+               OPEN_DECISIVE
+
+[ ] GRDEV-16  FOUR_D_CAUCHY_TO_FIVE_D_GAUSSIAN_INTERFACE
+               OPEN_INTERFACE
+
+
+15. DEPENDENCY SPINE
+--------------------
+
+  circular Maxwell mode
+    -> fixed-axis TT lift
+    -> GRDEV-01
+    -> GRDEV-02.
+
+  ADM evolution convention
+  + GRDEV-01
+    -> GRDEV-03
+    -> GRDEV-04.
+
+  Gauss-Codazzi/Weyl decomposition
+  + GRDEV-01
+    -> GRDEV-05
+    -> GRDEV-06
+    -> GRDEV-07
+    -> GRDEV-08
+    -> GRDEV-09.
+
+  Gaussian amplitude law
+  + GRDEV-09
+    -> GRDEV-10.
+
+  GRDEV-01
+  + standard vacuum Cauchy theorem
+    -> GRDEV-11.
+
+  stationary bridge datum
+  + transverse projection
+  + GRDEV-06
+  + GRDEV-07
+    -> GRDEV-12.
+
+  GRDEV-11
+  + GRDEV-12
+    -> GRDEV-14.
+
+
+16. CLOSURE CLASSIFICATION
+--------------------------
+
+EXACT_B_TIER:
+
+  CIRCULAR_CMC_VACUUM_CONSTRAINTS
+  CIRCULAR_CMC_ANALYTIC_DATA
+  GAUSSIAN_NORMAL_FIRST_JET
+  GAUSSIAN_NORMAL_SECOND_JET
+  INITIAL_WEYL_DATA_FROM_CAUCHY_DATA
+  CIRCULAR_WEYL_ELECTRIC_FORMULA
+  CIRCULAR_WEYL_MAGNETIC_FORMULA
+  CIRCULAR_WEYL_NORMS
+  CIRCULAR_BEL_ROBINSON_DENSITY
+  GR_SUPERENERGY_MONOTONICITY
+  QM_MAXWELL_GR_CURVATURE_BRIDGE
+  TRANSVERSE_ONLY_GR_BRIDGE.
+
+CONDITIONAL_B_TIER:
+
+  CIRCULAR_CMC_VACUUM_DEVELOPMENT
+  QM_MAXWELL_GR_VACUUM_DEVELOPMENT_CURVATURE_BRIDGE.
+
+EXTERNAL ESTABLISHED MATHEMATICAL INPUT:
+
+  VACUUM_CAUCHY_DEVELOPMENT_THEOREM.
+
+OPEN DECISIVE ENDPOINTS:
+
+  EINSTEIN_MAXWELL_SCHRODINGER_COMPLETION
+  FOUR_D_CAUCHY_TO_FIVE_D_GAUSSIAN_INTERFACE
+  nonlinear symplectic CP1 completion
+  independent Planck-kernel normalization.
+
+FORMAL STATUS:
+
+  B_TIER only.
+  Lean files are not emitted.
+  A_TIER is not established.
+  FORMAL_CLOSURE is not established.
+  UNCONDITIONAL_CLOSURE is not established.
+
+
+REFERENCES FOR THE EXTERNAL CAUCHY INPUT
+----------------------------------------
+
+  Y. Choquet-Bruhat and R. Geroch,
+  Global aspects of the Cauchy problem in general relativity,
+  Communications in Mathematical Physics 14 (1969), 329–335.
+
+  J. Isenberg,
+  The initial value problem in general relativity,
+  arXiv:1304.1960.
