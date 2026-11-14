@@ -1,0 +1,645 @@
+GENERAL RELATIVITY + STANDARD MODEL + (NSE)^X:
+COVARIANT JOIN, GEOMETRIC ENERGY PORT AND REGULARITY ADMISSION
+B-TIER CONDITIONAL DERIVATION — GR STAGE 2
+================================================================
+
+STATUS
+------
+ROOT = GR_NSE_POWER_X_SM_COVARIANT_JOIN
+MARKER = !
+MODE = B_TIER_DERIVATION
+SOURCE_BRANCH = b-tier-hull
+REQUIRES:
+  GR_ADM_CONSTRAINT_ALGEBRA_NSE_GROUP_BRIDGE_B_TIER
+  NSE_POWER_X_ADMISSIBLE_COMPOSITION_B_TIER
+  NSE_POWER_X_REGULARITY_PRESERVING_INTERACTION_PORT_B_TIER
+  NSE_STANDARD_MODEL_MATTER_CURRENT_STRESS_PORT_B_TIER
+  FROZEN_SM_NSE_OPERATOR_MATCH_REGISTER_B_TIER
+
+LEAN = NOT EMITTED
+LOCAL_LEAN_RUNS = ZERO
+A_TIER = NOT_ESTABLISHED
+FORMAL_CLOSURE = NOT_ESTABLISHED
+FULL_PHYSICAL_GR_SM_NSE_COUPLING = OPEN
+
+GOAL
+----
+Give the EXACT mathematical joining interface while maintaining
+the separation between:
+ (A) classical GR covariance/ADM constraints,
+ (B) genuine Standard Model connections and stress,
+ (C) declared classical incompressible fluid dynamics,
+ (D) analytic gates preserving the NSE regularity classes.
+
+The result has two levels:
+   I. classical geometric fluid ON A PRESCRIBED evolving
+      spatial metric, with an exact metric-dependent
+      kinetic-energy identity;
+  II. a CONDITIONAL Einstein–SM–fluid source interface,
+      whose full backreaction/relativistic constitutive
+      dynamics is explicitly unresolved.
+
+Neither level identifies classical fluid velocity
+with the quantum electron field without a further
+current/stress/coarse-graining map.
+
+0. JOINT GEOMETRIC TYPES
+------------------------
+Let spacetime Y=I x M, M=T_L^3, with an ADM foliation
+  g_4=-N^2dt^2+h_ij(t,x)(dx^i+beta^i dt)(dx^j+beta^j dt),
+  N>0, h_t positive Riemannian.
+
+Fix a principal SM gauge bundle P->Y and the
+appropriate associated spin and matter bundles.
+Take a finite set X={1,...,N_L} of NSE layers.
+The symbol N_L is the NUMBER OF LAYERS and must
+not be confused with ADM lapse N.
+
+The genuine spacetime symmetry group is
+  Diff(Y) with suitable spin/bundle lifts.
+
+The internal gauge group is
+  Gau(P), with an appropriately chosen global
+  SU(3)xSU(2)xU(1)/Gamma form.
+
+The matter geometric configuration is
+  (g_4,e,omega,A_SM,Phi_SM).
+
+The fluid material configuration is a family
+  (eta_i) in SDiff(M,mu0)^X
+for a DECLARED fixed material volume mu0.
+
+Under a varying physical spatial volume
+mu_h(t)=sqrt(det h_t)dx, requiring
+div_h(t) u_i=0 at each time defines a
+different instantaneous constraint. There is
+no automatic identification of the fixed
+material SDiff(mu0) with all the varying
+instantaneous SDiff(mu_h(t)).
+A transfer map or compatible fixed-volume
+gauge must be specified to equate them.
+
+1. JOINT SYMMETRY / FIELD CURVATURE
+------------------------------------
+GRJ-01: COMMON_BUNDLE_AUTOMORPHISM_PORT.
+
+The common physical coordinate action on
+spacetime geometry, fluids and SM fields is
+the (appropriately liftable) spacetime
+diffeomorphism group. Independent fluid
+material relabelings form a separate
+product kinematic group.
+
+The total operator action is carried by
+bundle automorphisms of the spin/gauge
+associated bundles. On a trivial bundle a
+chosen semidirect presentation is possible;
+nontrivial topology requires the global
+bundle-automorphism/Atiyah framework.
+
+The canonical ADM HDA from Stage 1 must
+be retained, not replaced with the
+spatial SDiff Lie algebra alone.
+
+STATUS = B_TIER GEOMETRIC TYPE INTERFACE.
+
+GRJ-02: SPIN_GAUGE_COMBINED_COMMUTATOR.
+
+For spinor psi in a selected SM
+representation, define
+  mathcalD_mu
+     =partial_mu+(1/4)omega_mu^ab gamma_ab
+                    +rho(A_mu).
+
+Then for a pure spinor+internal section
+
+  [mathcalD_mu,mathcalD_nu]psi
+   =[(1/4)R_mu nu^ab gamma_ab
+          +rho(F_mu nu)]psi.
+
+This is an EXACT tensor-factor curvature
+identity with declared connection conventions.
+It does not set R_mu nu^ab proportional to
+NSE vorticity or to F_mu nu.
+
+STATUS = EXACT B_TIER.
+
+2. EXPLICIT GEOMETRIC NSE MODEL ON EVOLVING h(t)
+-------------------------------------------------
+GRJ-03: DECLARED_EVOLVING_METRIC_INCOMPRESSIBLE_NSE.
+
+In a fixed spatial coordinate gauge with
+shift beta=0 for this exact simple energy
+calculation, choose:
+ rho_i>0 constant, eta_i=rho_i nu_i>0,
+ kappa_ij=kappa_ji>=0.
+
+For each time t, define
+  u_i(t) in ker div_(h_t),
+  u_i^flat=h_t(u_i,.).
+
+Define the positive Hodge Laplacian
+  Delta_H,h=d delta_h+delta_h d
+on one-forms, with
+  <alpha,Delta_H alpha>
+     =||d alpha||^2+||delta_h alpha||^2.
+
+Define the DECLARED geometric
+incompressible fluid model
+
+  rho_i[partial_t u_i+nabla_(u_i)^(h_t)u_i]
+    =-rho_i grad_(h_t)p_i
+     -eta_i (Delta_H,h_t u_i^flat)^sharp
+     -sum_j kappa_ij(u_i-u_j)+f_i,
+
+  div_(h_t)u_i=0.
+
+This PDE is a GEOMETRIC MODEL DEFINITION,
+not the exact 3+1 split of a microscopic
+relativistic viscous stress tensor.
+Its coordinate partial_t form is tied to
+the beta=0 gauge, and fully covariant
+ADM evolution would require lapse/shift
+and extrinsic curvature terms in a
+consistent relativistic constitutive law.
+
+When h_t=delta, beta=0 and lapse=1,
+the equation reduces exactly to the
+previous flat, forced NSE^X model,
+since Delta_H=-Delta componentwise.
+
+STATUS = EXACT MODEL DEFINITION / FLAT LIMIT.
+
+3. METRIC-VARIATION KINETIC ENERGY
+-----------------------------------
+GRJ-04: GEOMETRIC_NSE_KINETIC_ENERGY_IDENTITY.
+
+For a smooth solution of GRJ-03 define
+
+  E_fl(t)
+   =1/2 sum_i rho_i
+       int_M h_t(u_i,u_i) dmu_(h_t).
+
+Define fluid dissipation
+
+  D_visc
+   =sum_i eta_i||d(u_i^flat)||^2_(L2(h_t))
+     (because div_(h_t)u_i=0 implies delta_h u_i^flat=0),
+
+  D_graph
+   =sum_{i<j} kappa_ij
+       ||u_i-u_j||^2_(L2(h_t))>=0.
+
+Define field work
+
+  P_force
+   =sum_i int_M h_t(f_i,u_i)dmu_(h_t).
+
+Differentiation gives
+
+  d/dt dmu_(h_t)
+    =(1/2)tr_(h_t)(partial_t h_t)dmu_(h_t).
+
+Therefore the EXACT kinetic-energy derivative
+in the fixed beta=0 coordinates is
+
+  dE_fl/dt =
+      -D_visc-D_graph+P_force+W_geom,
+
+where
+
+  W_geom =
+    sum_i {
+      (rho_i/2)int_M
+           (partial_t h_t)(u_i,u_i)dmu_h
+      +(rho_i/4)int_M
+           |u_i|_h^2 tr_h(partial_t h_t)dmu_h
+    }.
+
+Proof:
+  - convective power vanishes by
+    div_h u_i=0 and periodic integration;
+  - pressure power vanishes likewise;
+  - positive Hodge Laplacian gives
+    the viscous negative square;
+  - reciprocal graph edges give
+    nonnegative relative-velocity form;
+  - two additional terms come exactly
+    from time variation of the metric and
+    spatial volume form.
+
+This W_geom is a geometrical contribution
+to coordinate-gauge fluid kinetic-energy
+variation. It is NOT by itself a
+coordinate-invariant, local GR
+gravitational field-energy density.
+
+STATUS = COMPLETE B_TIER ENERGY DERIVATION.
+
+GRJ-05: ADM_EXTRINSIC_CURVATURE_ENERGY_PORT.
+
+For shift beta=0 and the convention
+  partial_t h_ij=-2 N K_ij,
+
+the geometrical work becomes
+
+  W_geom =
+   -sum_i rho_i int_M
+          N K(u_i,u_i)dmu_h
+   -sum_i (rho_i/2)int_M
+          N tr_h(K)|u_i|_h^2 dmu_h.
+
+Thus the ADM EXTRINSIC CURVATURE gives
+a precise algebraic port controlling
+the time variation of the NSE kinetic
+energy in this declared model.
+
+Nonzero shift requires inclusion of
+Lie_beta h and corresponding transport
+terms; W_geom alone is not then a
+gauge-invariant gravitational power.
+
+STATUS = EXACT B_TIER.
+
+GRJ-06: METRIC_WORK_GRONWALL_GATE.
+
+Define
+  beta_geom(t)
+   := ||h_t^(-1)partial_t h_t||_(Linf operator)
+       +(1/2)||tr_h(partial_t h_t)||_Linf.
+
+Then
+  |W_geom(t)|<= beta_geom(t) E_fl(t).
+
+If force work is zero/nonpositive,
+  E_fl(t)
+    <= E_fl(0) exp(int_0^t beta_geom(s)ds).
+
+This is a deterministic L2 energy growth
+control on any smooth trajectory, provided
+the metric is positive and regular.
+It does NOT imply 3D global smoothness
+for arbitrary NSE data; a critical
+Sobolev continuation estimate is also needed.
+
+STATUS = EXACT B_TIER.
+
+4. SHARP GRAVITY-ONLY LIMIT
+---------------------------
+GRJ-07: PURE_POTENTIAL_FORCE_LERAY_NO_GO.
+
+In the weak-field Newtonian regime, let
+Phi_g be a scalar gravitational potential,
+with acceleration -grad Phi_g. For
+constant fluid mass density and flat
+incompressible NSE,
+
+  P_sigma(-grad Phi_g)=0.
+
+Thus the Newtonian scalar gravitational
+force is absorbed into pressure and by
+itself cannot create a nonzero solenoidal
+NSE acceleration in this EXACT constant-
+density incompressible limit.
+
+A nontrivial gravitational coupling needs,
+for example:
+  - metric/time variation,
+  - nonuniform matter density/real
+    compressible or multi-species transport,
+  - frame-dependent inertial/shift terms,
+  - curvature/tidal effects or full
+    relativistic stress dynamics.
+
+Conversely a fully curved h_t need not
+be equivalent to a pure potential force.
+
+STATUS = EXACT FLAT-LIMIT OBSTRUCTION.
+
+5. CORRECT GR SOURCE AND CONSTRAINT JOIN
+-----------------------------------------
+GRJ-08: TOTAL_EINSTEIN_STRESS_PARTITION.
+
+Choose a physical Einstein source stress
+  T_total=T_SM+T_effective_fluid
+            +T_reservoir+T_interaction,
+with no double-counting of microscopic
+charged matter and effective fluid.
+
+For Einstein equations
+  G_mu nu+Lambda g_mu nu
+     =8pi G T_total,mu nu (c=1),
+
+contracted Bianchi gives
+  nabla_mu T_total^mu nu=0.
+
+Physical GR initial data must satisfy
+the scalar and vector Einstein ADM
+constraints with these same stress
+sources. Existing vacuum data cannot
+simply be retained after adding a
+nonzero positive electron/EM/fluid
+energy density.
+
+A physically admissible
+T_effective_fluid requires a
+relativistic imperfect-fluid and heat/
+entropy constitutive closure whose
+nonrelativistic reduction is GRJ-03
+(or another specified geometric NSE).
+The stress cannot be supplied solely
+by the spatial NSE energy functional.
+
+STATUS = CONDITIONAL B_TIER SOURCE JOIN.
+
+GRJ-09: TOTAL_GAUGE_STRESS_EXCHANGE.
+
+Under an on-shell gauge-invariant
+SM matter action, define the field
+force density schematically
+  Q_nu=<F_nu mu,J^mu>_k
+with all source/stress partition
+conventions fixed.
+
+Assign a reciprocal field/fluid
+exchange satisfying
+  nabla_mu T_SM^mu nu=-sum_i Q_i^nu-...,
+  nabla_mu T_fluid,i^mu nu=Q_i^nu+...,
+  nabla_mu T_total^mu nu=0.
+
+Noether/Ward identities alone do not
+determine how Q_i^nu are distributed
+among finite fluid layers; a
+state-dependent coarse-graining or
+interaction action must provide
+the allocation.
+
+The flat physical electron-current
+projection still has a nonzero signed
+residual J_res=J_SM-J_fluid, which must
+be included in source and energy
+accounting.
+
+STATUS = CONDITIONAL B_TIER WARD JOIN.
+
+6. GR-REGULARITY ADMISSION AS AN EXPLICIT PORT
+-----------------------------------------------
+GRJ-10: PULLED_BACK_GEOMETRIC_CRITICAL_GATE.
+
+Suppose a time-dependent family of
+bounded invertible solenoidal transfer
+maps S_t has been derived:
+
+  S_t: ker div_(h_t) -> H_sigma,0(flat),
+
+with all domain, volume-form,
+pressure/Hodge and gauge compatibility
+properties needed to transform an
+actual curved-geometry solution into
+a flat solenoidal state v_i=S_t u_i.
+
+Assume the EXACT transformed equation is
+  partial_t v_i+B_0(v_i,v_i)
+     +nu A_0 v_i+(L_kappa v)_i
+     =g_i^SM+g_i^GR,
+
+where the gravitational residual
+g_i^GR contains ALL terms from
+  - S_t and partial_t S_t,
+  - time-dependent metric/Hodge/Leray,
+  - lapse/shift/extrinsic curvature,
+  - transformed nonlinear convection,
+  - matter/connection forces.
+
+This equality is an explicit PORT
+PREMISE, not something asserted to
+follow from arbitrary GR geometry.
+
+Let
+  H0=sum_i||v_i(0)||_(dot H^(1/2))^2,
+  F*=sum_i||g_i^SM+g_i^GR||^2_(L2_t dot H^(-1/2)).
+
+For a standard critical trilinear
+constant C_NL and common nu>0, the
+strict sufficient admission
+
+  H0+(2/nu) F*
+    <(nu/(2 C_NL))^2
+
+implies a global critical-strong
+solution v by the frozen NSE^X
+regularity result, under the
+standard local-continuation theorem.
+
+If S_t and S_t^(-1) preserve
+the regularity class uniformly on
+each finite time interval, this
+gives corresponding positive-time
+regularity of u.
+
+For a large already regular reference
+U, use the previous exponential
+decomposition budget with the
+GR/SM residual replacing h.
+
+IMPORTANT FOR BACKREACTION:
+Since g_i^GR and g_i^SM can depend
+on the unknown coupled solution,
+the force bound must be proved
+uniformly by an a priori estimate
+or within a genuine closed
+bootstrap, not assumed after
+the solution is constructed.
+
+This is a CONDITIONAL regularity
+admission and is NOT a theorem of
+global Einstein–NSE well-posedness.
+
+STATUS = CONDITIONAL B_TIER.
+
+GRJ-11: COMMON_SYMMETRY_TANGENCY_GATE.
+
+For the exact common-2D3C route,
+the gravitational/SM source and
+geometry must preserve a common
+spatial translation/Killing
+direction, including corresponding
+lapse/shift and metric components.
+A product/warped-product metric
+compatible with the planar-plus-
+passive-scalar reduction is a
+sufficient geometrical design
+subject to its detailed PDE check.
+
+The mere existence of one GR
+Killing field is not automatically
+sufficient for 2D3C splitting on
+an arbitrary evolving metric.
+
+The alternative common signed
+Beltrami route requires the metric,
+Hodge/Leray operator, force
+and layer graph to preserve the
+same curl eigenspace. A generic
+time-dependent GR metric does not.
+
+STATUS = CONDITIONAL B_TIER TANGENCY PORT.
+
+7. GR CLOCK COMPATIBILITY
+-------------------------
+GRJ-12: FOLIATION_DEPENDENT_CLOCK_JOIN.
+
+Choose a GR foliation with lapse N
+and shift beta, and a physical
+electron or observer worldline.
+Normal-observer proper time satisfies
+  d tau=N dt (c=1).
+
+A normal-local quantum energy gap
+Delta E_loc produces phase increment
+  dphi/dtau=-Delta E_loc/hbar.
+
+Thus
+  phi(t)-phi(0)
+   =-int_0^t N(s,x(s))
+       Delta E_loc(s)/hbar ds,
+plus any independently specified
+connection/transport/Berry terms
+for a nontrivial gauge and observer
+readout.
+
+An NSE advective phase clock in
+coordinate time can only be
+identified after selecting the same
+foliation, observer and transport
+law. The earlier NSE phase match
+k U=Delta E/hbar is a SPECIAL flat
+N=1, beta=0 and fixed-gap instance.
+
+The ADM bulk Hamiltonian is a
+constraint sum and does not provide
+a canonical unique electron energy
+or universal global time parameter
+on a compact universe.
+
+STATUS = EXACT KINEMATIC / CONDITIONAL DYNAMIC.
+
+8. FINAL CONDITIONAL ROOT
+--------------------------
+THEOREM GR_NSE_POWER_X_SM_COVARIANT_JOIN.
+
+ASSUME:
+ H1 smooth ADM geometry with N>0,
+    Einstein Hamiltonian/momentum
+    constraints and specified foliation;
+ H2 compatible spin+SM gauge bundles
+    and covariant matter current/stress;
+ H3 a chosen relativistic fluid stress
+    and a justified nonrelativistic
+    geometric NSE^X reduction;
+ H4 a no-double-counting SM/fluids/
+    reservoir stress partition satisfying
+    reciprocal total Ward exchange;
+ H5 smooth geometric NSE evolution
+    and the regularity transfer/gauge
+    mapping where invoked;
+ H6 one geometric-symmetry tangency
+    or quantitative critical GR+SM
+    force/metric-leakage admission.
+
+THEN:
+ R1 the spatial and connection
+    algebraic interfaces are typed;
+ R2 the declared time-dependent
+    geometric NSE model obeys its
+    exact viscous/graph and metric
+    work identity;
+ R3 the total Einstein source has
+    compatible covariant stress
+    conservation and initial
+    constraints by hypothesis;
+ R4 any admitting NSE critical
+    sector remains regular in the
+    specified pulled-back class;
+ R5 the GR clock requires lapse/
+    shift and observer data;
+ R6 a physical full Einstein-SM-
+    quantum-electron-NSE equivalence
+    is NOT deduced solely from
+    these structural premises.
+
+STATUS = CONDITIONAL B_TIER.
+A_TIER = NOT ESTABLISHED.
+
+9. ENDPOINT REGISTER
+---------------------
+[x] GRJ-01 COMMON_BUNDLE_AUTOMORPHISM_PORT
+[x] GRJ-02 SPIN_GAUGE_COMBINED_COMMUTATOR
+[x] GRJ-03 DECLARED_EVOLVING_METRIC_NSE_MODEL
+[x] GRJ-04 GEOMETRIC_NSE_KINETIC_ENERGY_IDENTITY
+[x] GRJ-05 ADM_EXTRINSIC_CURVATURE_ENERGY_PORT
+[x] GRJ-06 METRIC_WORK_GRONWALL_GATE
+[x] GRJ-07 PURE_POTENTIAL_FORCE_LERAY_NO_GO
+[x] GRJ-08 TOTAL_EINSTEIN_STRESS_PARTITION (conditional)
+[x] GRJ-09 TOTAL_GAUGE_STRESS_EXCHANGE (conditional)
+[x] GRJ-10 PULLED_BACK_GEOMETRIC_CRITICAL_GATE (conditional)
+[x] GRJ-11 COMMON_SYMMETRY_TANGENCY_GATE (conditional)
+[x] GRJ-12 FOLIATION_DEPENDENT_CLOCK_JOIN
+[x] GRJ-13 GR_NSE_POWER_X_SM_COVARIANT_JOIN_ROOT
+
+[ ] GRJ-14 FULL_RELATIVISTIC_VISCOUS_FLUID_STRESS
+[ ] GRJ-15 EINSTEIN_CONSTRAINTS_WITH_ACTUAL_SM_FLUID_SOURCES
+[ ] GRJ-16 EXPLICIT_SOLENOIDAL_GEOMETRIC_TRANSFER_S_t
+[ ] GRJ-17 SM_GR_COUPLED_FORCE_H_MINUS_HALF_BUDGET
+[ ] GRJ-18 QUANTUM_TWO_ELECTRON_GR_BACKREACTION
+[ ] GRJ-19 NONTRIVIAL_GLOBAL_SOURCED_EINSTEIN_EXISTENCE
+[ ] GRJ-20 NATIVE_LEAN_COMPILER_AND_AXIOM_AUDIT
+
+10. FUTURE LEAN/PROOF SPINE (NO LOCAL COMPILATION)
+--------------------------------------------------
+A. Abstract metric, SPD inverse, Lie bracket,
+   exterior covariant commutator and spin/gauge
+   tensor-factor curvature.
+B. Fixed sign ADM algebra signatures, with
+   Hamiltonian/momentum structure-function
+   dependence explicit, not hidden as axioms
+   accidentally changing the root.
+C. Positive Hodge operator and symmetric
+   multilayer graph quadratic energy.
+D. Metric-volume derivative and W_geom exact
+   integration/kinetic-energy identity.
+E. Lapse/shift ADM substitution and
+   beta_geom scalar Gronwall.
+F. Ward/source compatibility and
+   flat-potential gradient Leray obstruction.
+G. Geometric solenoidal transfer S_t and
+   critical H^-1/2 residual as named
+   independent analytical premises.
+H. Deterministic conditional root. Native
+   external Lean compiler and theorem-level
+   axiom audit needed for A-tier.
+
+No local Lean run. No claimed verified
+Mathlib/Methlib names.
+
+REFERENCES
+----------
+Gourgoulhon, 3+1 Formalism:
+https://arxiv.org/abs/gr-qc/0703035
+
+Carlotto, General relativistic constraints:
+https://link.springer.com/article/10.1007/s41114-020-00030-z
+
+Hypersurface deformations:
+https://arxiv.org/abs/2410.18807
+
+Curved-space NSE Hodge-Laplacian convention
+and alternative viscosity models:
+https://pmc.ncbi.nlm.nih.gov/articles/PMC13148646/
+
+FINAL:
+  ! CONDITIONAL_B_TIER
+  EXACT_GEOMETRIC_ENERGY_PORT = YES
+  EINSTEIN_FIELD_AND_FLUID_PHYSICAL_CLOSURE = OPEN
+  CRITICAL_GR_FORCE_MATCHING = OPEN
+  A_TIER = NOT_ESTABLISHED
