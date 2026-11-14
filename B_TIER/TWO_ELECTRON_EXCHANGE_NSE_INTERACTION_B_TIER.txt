@@ -1,0 +1,430 @@
+TWO ORTHOGONAL ELECTRONS -> FERMIONIC EXCHANGE AND INTERACTING NSE
+B-TIER DERIVATION
+===============================================================
+
+STATUS
+------
+MARKER = !
+TIER = B_TIER, with explicitly named physical interpretation gates
+ARTIFACT = TWO_ELECTRON_EXCHANGE_NSE_INTERACTION_B_TIER
+ROOT_ENDPOINT = TWO_ELECTRON_CURRENT_NSE_2D3C_GLOBAL_REGULAR
+SOURCE_BRANCH = b-tier-hull
+LEAN_STATUS = NOT_EMITTED
+A_TIER_STATUS = NOT ESTABLISHED
+NO_LOCAL_LEAN_EXECUTIONS = TRUE
+
+SCOPE
+-----
+Two normalized and orthogonal Pauli orbitals are antisymmetrized into a
+two-electron wavefunction. Their one-body probability current is projected to
+an NSE velocity field. Unlike a single helix, two transverse helices with
+different wave numbers generate nonzero solenoidal quadratic interactions.
+Nevertheless the initial field is independent of y and its NSE solution
+remains in the globally regular 2D3C class. A distinct periodic-background
+Coulomb exchange expectation gives a finite interaction-energy diagnostic.
+
+NO CLAIM IS MADE that the full two-electron Coulomb/Maxwell evolution equals
+the NSE trajectory. An NSE bilinear interaction is not a physical electron
+pair interaction without a dynamical identification.
+
+0. PARAMETERS
+-------------
+L>0, V=L^3, nu>0, hbar>0, m_e>0;
+n,m,r in Z\{0};
+k=2 pi n/L, ell=2 pi m/L, q=2 pi r/L;
+alpha,beta in R.
+Spatial coordinates (x,y,z) on T_L^3.
+theta=kz+alpha; phi=ell x+beta.
+
+All L2 norms are unnormalized physical integrals over T_L^3.
+
+1. NORMALIZED PAULI ORBITALS
+---------------------------
+Define
+
+  psi_1(x,y,z)
+    = 1/sqrt(2V) * (1, exp(i theta))^T,
+
+  psi_2(x,y,z)
+    = exp(i q y) exp(i phi/2)/sqrt(V)
+      * (cos(pi/4-phi/2), i sin(pi/4-phi/2))^T.
+
+The second spinor is L-periodic in x: shifting phi by an integer multiple of
+2 pi changes the signs of exp(i phi/2) and both trigonometric factors, leaving
+their products invariant.
+
+Both densities are constant:
+
+  psi_1^dagger psi_1=psi_2^dagger psi_2=1/V.
+
+Hence ||psi_1||_2=||psi_2||_2=1.
+
+Because q != 0, psi_2 carries a nontrivial exp(i q y) factor while psi_1
+does not. Integration in y gives
+
+  <psi_1,psi_2>=0.
+
+The correctly antisymmetrized two-electron wavefunction is therefore
+
+  Psi_12(X_1,X_2)
+    = [psi_1(X_1) tensor psi_2(X_2)
+       - psi_2(X_1) tensor psi_1(X_2)]/sqrt(2),
+
+where each X_j includes position and spin, and ||Psi_12||=1.
+
+This state obeys Fermi antisymmetry. Its total one-particle density
+integrates to 2, not 1.
+
+STATUS = EXACT_B_TIER.
+
+2. SPIN TEXTURES AND PROBABILITY CURRENTS
+-----------------------------------------
+The normalized Pauli spin vectors are
+
+  s_1=(cos theta,sin theta,0),
+  s_2=(0,cos phi,sin phi).
+
+They satisfy
+
+  curl s_1 = -k s_1,
+  curl s_2 = -ell s_2,
+  div s_1 = div s_2=0,
+  mean s_1=mean s_2=0.
+
+For A=0 the Dirac-derived full Pauli probability current is
+
+  j[psi]
+    = (hbar/m_e) Im(psi^dagger grad psi)
+      + (hbar/(2m_e)) curl(psi^dagger sigma psi).
+
+Define U_k=hbar k/(2m_e), U_ell=hbar ell/(2m_e).
+
+The normalized single-electron current velocities are
+
+  v_1=j[psi_1]/(1/V)=U_k e_z-U_k s_1,
+
+  v_2=j[psi_2]/(1/V)
+     =U_ell e_x+(hbar q/m_e)e_y-U_ell s_2.
+
+For the antisymmetrized two-electron state the one-body number density and
+current are sums of the orbital expectations:
+
+  n_12=2/V,
+  j_12=(1/V)(v_1+v_2).
+
+Therefore the average electron current velocity is
+
+  v_12=j_12/n_12=(v_1+v_2)/2.
+
+Let P_{sigma,0} denote mean-zero Leray projection. The two-electron NSE datum is
+
+  a_12:=P_{sigma,0} v_12
+       =A s_1 + B s_2,
+
+  A=-U_k/2=-hbar k/(4m_e),
+  B=-U_ell/2=-hbar ell/(4m_e).
+
+The 1/2 factors follow from dividing the total number current by the
+two-particle number density. Summing raw velocities without those factors
+would define a different adapter.
+
+STATUS = EXACT_B_TIER FOR THE STATED CURRENT ADAPTER.
+
+3. QUADRATIC CROSS-INTERACTION
+------------------------------
+Since each helix separately depends only on its transverse axis,
+
+  (s_1 dot grad)s_1=0,
+  (s_2 dot grad)s_2=0.
+
+But for a=a_12=A s_1+B s_2,
+
+  f:=(a dot grad)a
+    = AB * (
+        -k sin(theta) sin(phi),
+        (k-ell) cos(theta) sin(phi),
+        ell cos(theta) cos(phi)
+      ).
+
+The cross term is not identically zero whenever AB != 0.
+
+To isolate the physically relevant incompressible nonlinearity, solve
+
+  Delta p_0=-div f.
+
+Indeed
+
+  div f=-2 AB k ell sin(theta) cos(phi),
+
+and one periodic mean-zero pressure is
+
+  p_0
+    =-2AB k ell/(k^2+ell^2)
+      * sin(theta) cos(phi).
+
+The solenoidal quadratic interaction is
+
+  P_sigma f=f+grad p_0
+
+    =AB * (
+       k (ell^2-k^2)/(k^2+ell^2) sin(theta) sin(phi),
+       (k-ell) cos(theta) sin(phi),
+       ell (ell^2-k^2)/(k^2+ell^2) cos(theta) cos(phi)
+      ).
+
+For nonzero A,B:
+
+  P_sigma f=0  iff  k=ell.
+
+Its exact squared L2 magnitude is
+
+  ||P_sigma f||_2^2
+    = V A^2 B^2/4 *
+      [ (ell^2-k^2)^2/(k^2+ell^2) + (k-ell)^2 ].
+
+Thus k != ell gives a genuinely nonzero NSE nonlinear coupling and
+excites spatial wave numbers (plus/minus ell,0,plus/minus k).
+
+This is an NSE interaction diagnostic, NOT a Coulomb-force identity.
+
+STATUS = EXACT_B_TIER.
+
+4. TWO DISTINCT GLOBAL NSE REGULARITY CASES
+--------------------------------------------
+
+CASE I: k=ell.
+
+The sum is a Beltrami field:
+
+  curl a=-k a,
+  Delta a=-k^2 a,
+
+  (a dot grad)a=grad(|a|^2/2).
+
+Therefore for any nu>0
+
+  u(t)=exp(-nu k^2 t) a,
+
+  p(t)=-exp(-2nu k^2 t)|a|^2/2 + constant
+
+is an explicit globally smooth solution of unforced 3D NSE on T_L^3.
+
+CASE II: k != ell.
+
+Here P_sigma[(a dot grad)a] != 0: the two heat-decaying helices do not remain
+a closed two-mode solution. Nevertheless a is independent of y:
+
+  partial_y a=0.
+
+The unforced 3D NSE equations preserve this symmetry. Write
+
+  w=(u_x,u_z),  b=u_y,  nabla_2=(partial_x,partial_z).
+
+Then the exact reduced equations are
+
+  partial_t w+(w dot nabla_2)w+nabla_2 p=nu Delta_2 w,
+  div_2 w=0,
+
+  partial_t b+(w dot nabla_2)b=nu Delta_2 b.
+
+The planar velocity w solves global 2D Navier-Stokes, independently of b;
+b solves a globally regular passive advection-diffusion equation.
+For smooth periodic initial data this yields a globally smooth 2D3C
+solution, and weak-strong uniqueness identifies it with every Leray-Hopf
+3D solution having this same initial datum.
+
+THUS FOR BOTH CASES
+
+  u in C^infty([0,infinity) x T_L^3),
+  Sing_t(u)=empty,
+  T_actual_regularity_gap=0.
+
+There is no amplitude smallness restriction on this 2D3C NSE result.
+
+STATUS = COMPLETE B_TIER MATHEMATICAL DERIVATION, RELYING ON THE STANDARD
+GLOBAL 2D NAVIER-STOKES AND PASSIVE-SCALAR THEOREMS.
+
+5. QFB CERTIFICATE FOR THE TWO-ELECTRON DATUM
+---------------------------------------------
+Orthogonality of the spatial patterns under torus integration gives
+
+  integral s_1 dot s_2 dx=0.
+
+Consequently,
+
+  ||a_12||_2^2
+    =V(A^2+B^2)
+    =V hbar^2(k^2+ell^2)/(16m_e^2).
+
+The frozen periodic QFB time is
+
+  T_QFB(a_12,nu)
+    =||a_12||_2^4/(8pi^2 nu^5)
+
+    =L^6 hbar^4(k^2+ell^2)^2
+      /(2048 pi^2 m_e^4 nu^5).
+
+It is positive for nonzero k,ell, despite the already-proved globally smooth
+NSE evolution. Thus the general QFB certificate remains conservative.
+
+For Gaussian regularization a_epsilon=exp((epsilon^2/4)Delta)a_12, replace
+
+  A -> A_epsilon=A exp(-epsilon^2 k^2/4),
+  B -> B_epsilon=B exp(-epsilon^2 ell^2/4).
+
+Then
+
+  ||a_epsilon||_2^2
+    =V hbar^2/(16m_e^2) *
+      (k^2 exp(-epsilon^2k^2/2)
+       +ell^2 exp(-epsilon^2ell^2/2)).
+
+The same regularity and interaction conclusions remain valid, with the
+filtered amplitudes.
+
+STATUS = EXACT_B_TIER.
+
+6. ACTUAL ELECTRON-ELECTRON COULOMB/EXCHANGE INTERACTION
+-------------------------------------------------------
+An NSE cross-nonlinearity is not an electromagnetic repulsion term. To define
+the two-electron Coulomb model on a compact torus with total charge -2e,
+include a neutralizing +2e background and let G_L be the zero-mean periodic
+Coulomb Green function:
+
+  -Delta G_L=delta_0-1/V,
+  integral G_L dx=0.
+
+The background-subtracted pair potential is
+
+  V_ee(x_1-x_2)=(e^2/epsilon_0) G_L(x_1-x_2).
+
+The initial two-electron expectation is
+
+  E_ee
+    = <Psi_12, V_ee Psi_12>
+    = E_direct - E_exchange.
+
+Because each orbital density equals 1/V, the direct Hartree term vanishes
+under this exact zero-mean Green convention:
+
+  E_direct=0.
+
+Set f(x)=psi_1(x)^dagger psi_2(x).
+The orbital-overlap function has four Fourier modes:
+
+  f(x)
+   =e^{iqy}/(2sqrt(2)V) *
+     [ exp(i pi/4)(1+exp(-i theta))
+       +exp(-i pi/4) exp(i phi)(1-exp(-i theta)) ].
+
+The four wave vectors are
+
+  (0,q,0), (0,q,-k), (ell,q,0), (ell,q,-k).
+
+Using F(p)=integral_{T_L^3} f(x) exp(-i p dot x) dx,
+each nonzero Fourier coefficient has |F(p)|^2=1/8.
+
+Since
+
+  -Delta G_L=delta_0-1/V,
+
+the Fourier representation gives
+
+  E_exchange
+    = e^2/(epsilon_0 V) sum_{p != 0} |F(p)|^2/|p|^2
+
+    =e^2/(8 epsilon_0 V) *
+     [ 1/q^2
+       +1/(q^2+k^2)
+       +1/(q^2+ell^2)
+       +1/(q^2+k^2+ell^2) ].
+
+Hence the EXACT total pair-interaction expectation in this
+background-subtracted periodic Green convention is
+
+  E_ee
+    =-e^2/(8 epsilon_0 L^3) *
+      [ 1/q^2
+        +1/(q^2+k^2)
+        +1/(q^2+ell^2)
+        +1/(q^2+k^2+ell^2) ].
+
+IMPORTANT PHYSICAL SIGN CONVENTION:
+This is an energy relative to the imposed neutralizing background and the
+zero-spatial-mean periodic potential. Its negative sign is an exchange
+contribution RELATIVE TO THAT CHOSEN REFERENCE. It does not assert an
+attractive bare Coulomb force between two electrons; changing the electrostatic
+reference or removing the background alters the physical interpretation.
+
+This is an exact initial-state expectation, not a two-electron eigenvalue or
+a proof that the chosen Slater determinant is invariant under interacting
+two-electron Schrödinger/Pauli evolution.
+
+STATUS = EXACT_B_TIER UNDER THE DEFINED PERIODIC COULOMB HAMILTONIAN.
+
+7. NUMERICAL EXPERIMENT REGISTER
+--------------------------------
+Minimal input:
+
+  L>0, integers n,m,r !=0, nu>0, optional epsilon>=0,
+  physical constants hbar,m_e,e,epsilon_0.
+
+Compute
+
+  k=2pi n/L, ell=2pi m/L, q=2pi r/L,
+  A=-hbar k/(4m_e), B=-hbar ell/(4m_e).
+
+Outputs:
+
+  R1  two orthogonal normalized one-electron Pauli orbitals;
+  R2  normalized antisymmetrized two-electron Slater determinant;
+  R3  mean current velocity and mean-zero NSE datum;
+  R4  exact NSE nonlinear solenoidal interaction P_sigma f;
+  R5  exact norm ||P_sigma f||_2;
+  R6  exact QFB certificate T_QFB;
+  R7  globally regular NSE class, including k != ell;
+  R8  exact background-subtracted Coulomb exchange energy E_ee;
+  R9  physical calibration candidates, kept distinct from identities.
+
+Representative comparison choices:
+
+  - n=m=1, r=1: closed Beltrami NSE, P_sigma f=0;
+  - n=1, m=2, r=1: genuine nonlinear NSE interaction, 2D3C global;
+  - n=1, m=-1, r=1: nonzero cross NSE interaction even though
+    k^2=ell^2; equal Laplacian eigenvalues alone do not suffice for Beltrami.
+
+A computational time scale hbar/|E_ee| can be assigned if E_ee !=0, but it is
+a convention, not a rigorous interaction-evolution or uncertainty time.
+
+8. EXACT SCOPE / LIMITS
+-----------------------
+B_TIER:
+
+  orthogonal orbitals and fermionic normalization;
+  exact two-electron current adapter and NSE norm;
+  exact cross-nonlinearity and pressure projection;
+  global NSE regularity for 2D3C profiles;
+  periodic background-subtracted Coulomb/exchange expectation.
+
+NOT ESTABLISHED:
+
+  full two-electron quantum dynamics with self-consistent Maxwell fields;
+  the full interacting Slater determinant staying invariant over time;
+  any identification between electron Coulomb coupling and NSE nonlinearity;
+  a full three-coordinate-dependent NSE interacting profile outside 2D3C;
+  resolution of arbitrary 3D NSE initial data;
+  Lean A_TIER certification or audit.
+
+SOURCE ANCHORS:
+  Nowakowski, The Quantum Mechanical Current of the Pauli Equation (1998),
+  arXiv:physics/9807019 for the spin-curl current.
+  Standard 2D NSE + passive advection-diffusion decomposition; 2D3C
+  also identified in Babin-Mahalov-Nicolaenko literature.
+
+CONCLUSION
+----------
+Two electron-current profiles can interact nonlinearly through NSE, while
+remaining globally regular because of 2D3C symmetry. Separately their
+fermionic state possesses a calculable periodic Coulomb exchange expectation.
+These supply distinct, testable mathematical endpoints; neither identifies
+NSE interaction with physical electron-electron coupling.
