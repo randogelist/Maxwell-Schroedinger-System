@@ -1,0 +1,587 @@
+NSE^X REGULARITY-PRESERVING INTERACTION PORTS
+B-TIER MATHEMATICAL DERIVATION
+==========================================================
+
+STATUS
+------
+THEOREM = NSE_POWER_X_REGULARITY_PRESERVING_INTERACTION_PORT
+MARKER = !
+MODE = B_TIER_DERIVATION
+SOURCE_BRANCH = b-tier-hull
+DEPENDS_ON =
+  NSE_POWER_X_GROUP_STRUCTURE_B_TIER
+  NSE_POWER_X_ADMISSIBLE_COMPOSITION_B_TIER
+  NSE_STANDARD_MODEL_MATTER_CURRENT_STRESS_PORT_B_TIER
+REUSES_USER_CLASSES =
+  H12_SIGMA_SMALL
+  NSE_NOH
+  NSE_DECOMP_EXT
+  NSE_DECOMP_EXT_AXES
+  NSE_DECOMP_SMOOTH_SMALL
+  GP_NSE_UNIT_RADIUS_COERCIVITY (NOT PROMOTED)
+  C_EA_THETA (NOT PROMOTED)
+LEAN_STATUS = NOT_EMITTED
+A_TIER = NOT_ESTABLISHED
+FORMAL_CLOSURE = NOT_ESTABLISHED
+LOCAL_LEAN_EXECUTIONS = 0
+
+GOAL
+----
+Given finitely many fluid layers coupled by (NSE)^X, identify actual
+interaction operators and sufficiently explicit hypotheses which
+preserve a pre-existing global regularity class.
+
+Three disjoint mechanisms are developed:
+ (A) EXACT SYMMETRY TANGENCY: force and graph couplings remain inside
+     a common 2D3C translation-invariant sector; no amplitude bound;
+ (B) EXACT BELTRAMI TANGENCY: all layer fields lie in the same signed
+     curl eigenspace and couplings preserve it; no amplitude bound;
+ (C) PERTURBATIVE CRITICAL ABSORPTION: fully 3D leakage is permitted,
+     but a quantitative H^{1/2} budget absorbs it.
+
+A fourth mechanism (D) is a controlled perturbation around a large
+regular reference, recovering the FORM of NSE_DECOMP_EXT with a
+proved bootstrap criterion under an integrable background norm.
+
+DO NOT CLAIM:
+  - arbitrary couplings preserve 3D global NSE regularity;
+  - standard-model field forces automatically satisfy these budgets;
+  - the frozen exponential cutoff NSE_DECOMP_EXT is automatically
+    inherited by all coupled systems;
+  - rough L2 2D3C backgrounds automatically admit this H12 restart
+    without a finite-entry theorem;
+  - A-tier without native Lean compiler and theorem-level audit.
+
+0. FINITE-LAYER OPERATOR-LEVEL BASE
+-----------------------------------
+Take M=T_L^3, X={1,...,N}, N>=1 finite.
+Let A=-P_sigma Delta be the positive mean-zero Stokes operator,
+Lambda=(-Delta)^{1/2} on nonzero solenoidal Fourier modes.
+Let
+  H_0= direct_sum_{i=1}^N L2_sigma,0(M),
+  V_s= direct_sum_{i=1}^N dot H^s_sigma,0(M).
+
+Fix equal positive kinematic viscosities nu>0 and unit densities
+for the critical estimates. Unequal rho_i>0 and eta_i>0 are allowed
+in the L2 energy identity after weighting, but require a separately
+tracked coercivity constant for the H^{1/2} bootstrap.
+
+Let kappa_ij=kappa_ji>=0 and kappa_ii=0. Define
+
+  (L_kappa u)_i=sum_j kappa_ij(u_i-u_j).
+
+Let B(u,v)=P_sigma[(u dot grad)v]. Each mean-zero layer solves
+
+  partial_t u_i +B(u_i,u_i)+nu A u_i
+                   +(L_kappa u)_i =g_i,
+
+where g_i=P_sigma f_i is a given force ACCELERATION and, in the
+regularity theorems below, has spatial zero mean. All data/forces
+are smooth if a smooth-in-time-and-space conclusion is requested.
+
+THEOREM RI-01: COERCIVE_STOKES_GRAPH_OPERATOR.
+
+Define the linear operator
+  K_X=nu diag(A,...,A)+L_kappa.
+
+Then
+  <u,K_X u>_{H_0}
+     =nu sum_i ||grad u_i||_2^2
+      +sum_{i<j} kappa_ij||u_i-u_j||_2^2 >=0.
+
+With the standard self-adjoint Stokes realization and finite
+symmetric layer matrix L_kappa, K_X is positive self-adjoint on
+the product Stokes domain. The graph term is bounded and commutes
+with Lambda^s because kappa_ij are spatially constant.
+
+For all smooth u and s>=0,
+
+  sum_i <Lambda^s u_i,Lambda^s(L_kappa u)_i>
+    =sum_{i<j}kappa_ij||u_i-u_j||_{dot H^s}^2>=0.
+
+Thus arbitrary LARGE graph conductances are analytically
+BENEFICIAL in the critical energy estimate. Positivity is lost
+if one substitutes an unconstrained directed matrix.
+
+STATUS = EXACT_B_TIER.
+
+1. INTERACTION ADMISSIBILITY CATEGORIES
+---------------------------------------
+THEOREM RI-02: TANGENT_AND_LEAKAGE_FORCE_DECOMPOSITION.
+
+Let S be a closed linear spatial sector preserved by the Stokes
+operator, Leray projection and NSE nonlinearity at the vector
+fields of S. Let P_S be its orthogonal projector and Q_S=I-P_S.
+
+For a candidate interaction force g_i, define
+
+  g_i^parallel=P_S g_i,
+  g_i^leak=Q_S g_i.
+
+Exact tangency condition:
+  g_i^leak=0 for every i and every state in S^X.
+
+Perturbative admissibility condition:
+  sum_i ||g_i^leak||_{L2_t dot H^{-1/2}_x}^2
+     <= declared small budget.
+
+The latter condition is NOT automatically sufficient without
+a stability theorem relative to the chosen S-reference.
+The proof below supplies precisely such a theorem when
+the reference has integrable W^{2,infinity} size.
+
+STATUS = EXACT DEFINITIONS; IMPLICATIONS FOLLOW BELOW.
+
+2. UNRESTRICTED 2D3C COUPLING
+------------------------------
+THEOREM RI-03: COMMON_2D3C_TANGENT_PORT.
+
+Fix one primitive lattice direction n and define the sector
+  S_n={smooth divergence-free u: (n dot grad)u=0}.
+
+For the Cartesian case n=e_y, the field has 3 velocity
+components depending only on (x,z).
+
+Assume:
+  - every u_i(0) lies in S_n;
+  - all graph terms use spatially constant kappa_ij;
+  - every external g_i is divergence-free, smooth,
+    and remains in S_n, with smooth bounded data on
+    every compact time interval;
+  - nu>0 and X finite.
+
+The derivatives, pressure Poisson solver, Laplacian, Leray
+projection and graph drag commute with n translations.
+Thus the coupled system preserves S_n^X.
+
+Writing u_i=(w_i^x,b_i,w_i^z) and x2=(x,z), we obtain
+coupled 2D NSE for w_i and a coupled passive-scalar
+advection/diffusion system for b_i. With graph drag
+and smooth forcing the planar vorticities obey
+
+  partial_t zeta_i +w_i dot grad_2 zeta_i
+    =nu Delta_2 zeta_i
+     -sum_j kappa_ij(zeta_i-zeta_j)
+     +curl_2 g_i^planar.
+
+For g_i=0 the exact identity is
+
+  (1/2) d/dt sum_i ||zeta_i||_2^2
+    +nu sum_i||grad_2 zeta_i||_2^2
+    +sum_{i<j} kappa_ij||zeta_i-zeta_j||_2^2=0.
+
+For smooth forced data, the force term can be estimated on any
+compact time interval. Finite-dimensional layer graph damping
+does not introduce a singular source. Standard 2D parabolic
+regularity yields global smoothness on all finite intervals
+for smooth locally bounded-in-time forcing.
+
+NO AMPLITUDE SMALLNESS is required for the initial fields,
+the 2D3C-tangent force, or the graph conductances, subject to
+the stated smooth/locally bounded forcing condition.
+
+CAVEAT: an interaction respecting an individual layer's
+separate 2D plane is insufficient if these planes differ.
+A COMMON n is required for this mechanism.
+
+STATUS = COMPLETE B_TIER USING STANDARD 2D PDE THEOREMS.
+
+3. UNRESTRICTED SIGNED BELTRAMI COUPLING
+----------------------------------------
+THEOREM RI-04: COMMON_BELTRAMI_TANGENT_PORT.
+
+Fix a nonzero real curl eigenvalue lambda and let
+
+  E_lambda={smooth solenoidal mean-zero u:
+               curl u=lambda u}.
+
+On a periodic torus E_lambda is finite-dimensional.
+For u in E_lambda,
+
+  Delta u=-lambda^2 u,
+  (u dot grad)u=grad(|u|^2/2),
+  B(u,u)=0.
+
+If every layer u_i(0) belongs to the SAME E_lambda,
+the graph drag is spatially constant, and every forcing
+g_i(t) belongs to E_lambda with locally integrable
+coefficient functions, the NSE equations reduce to
+the finite-dimensional linear system
+
+  dot u_i= -nu lambda^2 u_i
+          -sum_j kappa_ij(u_i-u_j)+g_i(t).
+
+The solution is given by an operator/matrix exponential
+and Duhamel. It stays in E_lambda and is globally smooth
+for every finite initial amplitude and any finite positive
+conductance matrix.
+
+If g_i=0, all amplitudes decay. If g_i is only locally
+integrable, the velocity is absolutely continuous in
+time (not necessarily C-infinity in time); for smooth
+g_i it is smooth in time.
+
+Different curl signs or different eigenvalues can lose
+the common Beltrami cancellation.
+
+STATUS = EXACT_B_TIER.
+
+4. CRITICAL H^{1/2} SMALL-INTERACTION THEOREM
+---------------------------------------------
+THEOREM RI-05: SMALL_CRITICAL_FORCED_GRAPH_GLOBAL_REG.
+
+Assume all layers have mean-zero H^{1/2} initial data and
+g_i in L2([0,infinity); dot H^{-1/2}_sigma,0).
+Define
+
+  H(t)=sum_i ||u_i(t)||_{dot H^{1/2}}^2,
+  D(t)=sum_i ||u_i(t)||_{dot H^{3/2}}^2,
+  F(t)=sum_i ||g_i(t)||_{dot H^{-1/2}}^2.
+
+Let C_NL>0 be a fixed constant in the critical estimate
+for each smooth divergence-free component
+
+  |<Lambda^{1/2}B(u,u),Lambda^{1/2}u>|
+    <= C_NL ||u||_{dot H^{1/2}}
+               ||u||_{dot H^{3/2}}^2.
+
+This is the standard 3D critical Sobolev product estimate
+with the torus length/normalization frozen in C_NL.
+
+Pair the i-th NSE equation with Lambda u_i; sum to obtain
+
+  (1/2)H' +nu D
+    +sum_{i<j}kappa_ij||u_i-u_j||_{dot H^{1/2}}^2
+    <= C_NL sqrt(H) D +sqrt(F) sqrt(D).
+
+Let
+  delta=nu/(2*C_NL).
+
+On the bootstrap interval sqrt(H)<=delta,
+
+  C_NL sqrt(H)D <=(nu/2)D,
+
+and Young's inequality gives
+
+  sqrt(F)sqrt(D)
+    <=(nu/4)D+F/nu.
+
+Hence
+
+  (1/2)H'+(nu/4)D<=F/nu,
+  H(t)<=H(0)+(2/nu)integral_0^t F(s)ds.
+
+The sufficient global smallness criterion is
+
+  H(0)+(2/nu) integral_0^infinity F(s)ds < delta^2.
+
+It prevents reaching the critical threshold and, together
+with standard local H^{1/2} well-posedness and continuation
+for the forced NSE graph system, supplies a global strong
+solution. For smooth forcing/data, standard parabolic
+regularity yields smoothness at every finite positive time.
+
+NOTE: f_i may represent an interaction *port* only after
+its force regularity, boundary/mean compatibility and
+small-norm budget have been proven. Merely naming an SM
+field current does not establish the bound.
+
+STATUS = COMPLETE B_TIER CRITICAL BOOTSTRAP UNDER THE
+STANDARD LOCAL WELL-POSEDNESS/CONTINUATION INPUT.
+
+5. PERTURBATIONS AROUND A LARGE REGULAR CORE
+----------------------------------------------
+THEOREM RI-06: REGULAR_CORE_LEAKAGE_STABILITY.
+
+Let U=(U_i) be a specified smooth globally regular
+MEAN-ZERO reference solution of the same graph-coupled
+NSE model with tangent force g^0, on [0,infinity).
+
+Let u=U+w solve the equation with force g^0+h and
+initial perturbation w(0)=w0; assume w0 mean-zero,
+h_i in L2_t dot H^{-1/2} and smooth/locally admissible
+where higher regularity is asserted.
+
+The exact perturbation equation is
+
+  partial_t w_i+nu A w_i+(L_kappa w)_i
+   +B(U_i,w_i)+B(w_i,U_i)+B(w_i,w_i)=h_i.
+
+For a smooth mean-zero background define
+
+  M_U(t)^2=sum_i ||U_i(t)||_{W^{2,infinity}}^2.
+
+The standard Sobolev multiplication bounds yield
+
+  ||B(U_i,w_i)+B(w_i,U_i)||_{dot H^{-1/2}}
+   <= C_mix ||U_i||_{W^{2,infinity}}
+              ||w_i||_{dot H^{1/2}},
+
+with a torus/normalization-dependent C_mix.
+
+Let
+  H_w(t)=sum_i||w_i(t)||_{dot H^{1/2}}^2,
+  D_w(t)=sum_i||w_i(t)||_{dot H^{3/2}}^2,
+  F_w(t)=sum_i||h_i(t)||_{dot H^{-1/2}}^2.
+
+The energy estimate is
+
+  (1/2)H_w'+nu D_w
+    +graph_H12
+      <=C_NL sqrt(H_w) D_w
+       +C_mix M_U sqrt(H_w) sqrt(D_w)
+       +sqrt(F_w)sqrt(D_w).
+
+Fix the bootstrap threshold
+
+  delta_w=nu/(4*C_NL).
+
+When sqrt(H_w)<=delta_w, use Young on the mixed
+background and forcing terms:
+
+  C_mix M_U sqrt(H_w) sqrt(D_w)
+    <=(nu/4) D_w+(C_mix^2/nu) M_U^2 H_w,
+
+  sqrt(F_w)sqrt(D_w)
+    <=(nu/4) D_w+F_w/nu.
+
+The nonlinear term is at most (nu/4)D_w.
+Consequently
+
+  H_w'<= beta_U(t) H_w+(2/nu)F_w(t),
+
+where
+  beta_U(t)=(2*C_mix^2/nu)M_U(t)^2.
+
+Define the background amplification budget
+
+  B_U:=int_0^infinity beta_U(t)dt.
+
+Assume B_U<infinity. Gronwall gives
+
+  H_w(t)
+    <=e^{B_U}
+       [H_w(0)+(2/nu)int_0^infinity F_w(s)ds].
+
+Therefore the sufficient strict condition
+
+  e^{B_U}
+    [H_w(0)+(2/nu)int_0^infinity F_w(s)ds]
+       < delta_w^2
+
+keeps the perturbation globally below its critical
+continuation threshold. Standard critical-class local
+existence/continuation then gives global regularity of
+u=U+w; for smooth datum and force, global smoothness.
+
+This theorem genuinely allows a FULLY 3D perturbation w
+about a large 2D3C or Beltrami reference U. The strength
+of the interactions is judged by their OFF-REFERENCE
+H^{-1/2} budget and the integrable reference size,
+not by the total kinetic energy of U.
+
+It is sufficient but not necessary. The constant can be
+improved using more refined anisotropic commutator and
+paraproduct estimates; this is not assumed here.
+
+STATUS = COMPLETE CONDITIONAL B_TIER.
+
+6. RELATION TO FROZEN NSE_DECOMP_EXT
+-------------------------------------
+THEOREM RI-07: DECOMP_EXT_STYLE_INTERACTION_GATE.
+
+The pre-existing unforced single-layer class has the
+canonical decomposition
+
+  a0=Pi u0 - mean(u0),  r0=(I-Pi)u0,
+
+with r0 in H^{1/2} and an exponential smallness gate
+
+  ||r0||_{H^{1/2}}
+  exp(C ||a0||_2^2/nu^2) < c nu.
+
+For finite NSE^X introduce a globally smooth graph-coupled
+reference U(0)=(a0_i), all in a common 2D3C symmetry class,
+and perturbation r0=(r0_i).
+
+RI-06 supplies the new EXPLICIT interaction gate
+
+  exp(B_U/2) *
+     [sum_i ||r0_i||_{dot H^{1/2}}^2
+      +(2/nu)sum_i||h_i||_{L2_t dot H^{-1/2}}^2]^(1/2)
+      <delta_w,
+
+where B_U is the background stability budget from RI-06.
+
+If a separate analytic bound
+
+  B_U <= C_base sum_i||a0_i||_2^2/nu^2
+
+is proved, one recovers an exponential formula similar
+to NSE_DECOMP_EXT.
+
+But that bound is NOT established for every nonlinear
+graph-coupled 2D3C core by the group algebra alone. It
+must be proved in the proper anisotropic function spaces
+to claim a full extension of the frozen NSE_DECOMP_EXT.
+
+Rough L2 2D3C cores and positive-time smoothness require
+a finite-entry and integrability bridge near t=0.
+RI-06 uses smooth reference cores only.
+
+Relation to literature:
+Iftimie (1999), 3D NSE as perturbation of 2D NSE,
+Bull. Soc. Math. France 127, 473–517,
+DOI 10.24033/bsmf.2358.
+That result uses anisotropic Sobolev/Besov spaces and
+cannot be assumed to apply verbatim to arbitrary new
+nonlocal NSE^X interactions.
+
+STATUS = CONDITIONAL_B_TIER; EXPONENTIAL SHAPE GROUNDED,
+COUPLED QUANTITATIVE CORE BOUND REMAINS OPEN.
+
+7. PHYSICAL STANDARD MODEL FORCE PORT
+--------------------------------------
+THEOREM RI-08: GAUGE_INVARIANT_FORCE_LEAKAGE_GATE.
+
+For a gauge-invariant field-theory exchange force
+  Q_i^nu=<F^{nu}{}_{mu},J_i^mu>_k
+(or a general invariant stress-exchange source),
+declare a nonrelativistic matching and set
+
+  g_i=P_sigma( spatial_force_i/rho_i ).
+
+When a common spatial symmetry sector S is selected,
+define the actual diagnostic
+  Leak_S(g)=(I-P_S)g.
+
+A coupling remains within the EXACT regularity class
+of RI-03/RI-04 if
+  Leak_S(g)=0
+and the force is otherwise smooth, locally controlled,
+and tangent to the relevant Beltrami/2D3C structure.
+
+If not exactly tangent, the 3D leakage is acceptable
+through RI-05/RI-06 only when its L2 dot H^{-1/2}
+budget is small and all additional background terms
+satisfy the declared stability assumptions.
+
+The field/matter action must separately satisfy
+the proper gauge Ward identities, charge continuity,
+reciprocal field power and current-residual bookkeeping;
+analytic regularity does NOT imply physical gauge
+consistency or the converse.
+
+STATUS = CONDITIONAL_B_TIER ON THE REAL FORCE ADAPTER.
+
+8. WHAT IS NOT CURRENTLY AN ALLOWED UNCONDITIONAL PORT
+------------------------------------------------------
+- Arbitrary rank-3 Fourier coupling with no critical
+  norm control or invariant structural cancellation.
+- A quantum/Standard Model interaction inserted as a
+  formal symbol without gauge-covariant current/stress
+  and precise force-space bounds.
+- Independently regular 2D3C layers in DIFFERENT planes
+  with large graph exchange and no common symmetry:
+  the combined interaction can generate rank-3 modes.
+- General BMO^{-1} outsider data with unproved continuity
+  of nonlinear/forcing operators in the appropriate
+  critical Koch-Tataru spaces.
+- Transfer of NSE_DECOMP_EXT from unforced single-layer
+  geometry to arbitrary NSE^X dynamics without the
+  background amplification and finite-entry proof.
+- Identification of QFB cutoff with a real singularity
+  interval or a quantum uncertainty time.
+
+9. ROOT THEOREM
+---------------
+THEOREM NSE_POWER_X_REGULARITY_PRESERVING_INTERACTION_PORT.
+
+Under finite X, constant common viscosity nu>0,
+symmetric nonnegative graph exchange and sufficient
+smoothness/local existence:
+
+ A. If the interactions are tangent to the SAME common
+    2D3C sector and locally smooth, all finite-energy
+    smooth initial states in that sector remain globally
+    smooth, irrespective of coupling amplitude.
+
+ B. If interactions preserve a common signed curl
+    eigenspace E_lambda, the dynamics reduces to a
+    forced finite-dimensional linear ODE and remains
+    globally smooth for locally integrable forcing,
+    irrespective of finite amplitude.
+
+ C. If the initial global H^{1/2} norm and external
+    interaction forcing satisfy RI-05, the coupled
+    NSE system has global critical-strong solutions.
+
+ D. If a globally smooth reference U obeys the
+    integrable W^{2,infinity} budget and the deviation
+    satisfies RI-06, the full perturbed 3D solution
+    remains globally regular, even for arbitrarily
+    large finite reference kinetic energy.
+
+The result is a set of SUFFICIENT coupling admissions,
+not a necessary-and-sufficient characterization of all
+possible regularity-preserving Standard Model fields.
+
+10. ENDPOINT REGISTER
+---------------------
+[x] RIP-01 COERCIVE_STOKES_GRAPH_OPERATOR
+[x] RIP-02 TANGENT_AND_LEAKAGE_FORCE_DECOMPOSITION
+[x] RIP-03 COMMON_2D3C_TANGENT_PORT
+[x] RIP-04 COMMON_BELTRAMI_TANGENT_PORT
+[x] RIP-05 SMALL_CRITICAL_FORCED_GRAPH_GLOBAL_REG
+[x] RIP-06 REGULAR_CORE_LEAKAGE_STABILITY
+[x] RIP-07 DECOMP_EXT_STYLE_INTERACTION_GATE
+[x] RIP-08 GAUGE_INVARIANT_FORCE_LEAKAGE_GATE
+[x] RIP-09 NSE_POWER_X_REGULARITY_PRESERVING_INTERACTION_PORT
+
+[ ] RIP-10 FULL_COUPLED_DECOMP_EXT_EXPONENTIAL_CONSTANT
+[ ] RIP-11 ROUGH_L2_2D3C_FINITE_ENTRY_FOR_COUPLING
+[ ] RIP-12 SM_QUANTUM_FORCE_NORM_CONTROL
+[ ] RIP-13 BMO_MINUS_ONE_INTERACTION_PORT
+[ ] RIP-14 PHYSICAL_ELECTRON_TO_NSE_SEMICONJUGACY
+[ ] RIP-15 GENERAL_3D_RANK_THREE_REGULARITY
+[ ] RIP-16 EXTERNAL_A_TIER_LEAN_AXIOM_AUDIT
+
+11. FUTURE LEAN ADAPTER SPINE (NO LOCAL LEAN RUN)
+------------------------------------------------
+A. Abstract Hilbert product, positive symmetric
+   graph Laplacian, self-adjoint Stokes premise.
+B. Exact 2D3C and Beltrami tangent endpoint signatures.
+C. Critical Sobolev trilinear estimate with named
+   external analytic bound C_NL.
+D. Nonnegative H12 graph dissipation and Young bound.
+E. Scalar Gronwall/bootstrap critical proof spine.
+F. Large-background W2infty perturbation estimate,
+   exponential admission threshold, continuation.
+G. Gauge-invariant spatial force and leakage signatures,
+   explicit physical matching premises.
+H. Deterministic root theorem under explicit analytic
+   and semantic assumptions.
+
+No Mathlib/Methlib imported declaration is claimed
+verified without an actual source inspection.
+No local Lean compiler was executed and no external
+theorem-level axiom-audit evidence exists.
+
+12. REFERENCES
+--------------
+Iftimie, D., The 3D Navier-Stokes equations seen as a
+perturbation of the 2D Navier-Stokes equations (1999):
+https://archive.numdam.org/articles/10.24033/bsmf.2358/
+
+Frozen prior project modules:
+NSE_POWER_X_ADMISSIBLE_COMPOSITION_B_TIER
+NSE_STANDARD_MODEL_MATTER_CURRENT_STRESS_PORT_B_TIER
+
+CLASSIFICATION
+--------------
+MARKER = !
+MODE = B_TIER_DERIVATION
+B_TIER = COMPLETE FOR EXPLICIT CONDITIONAL SUFFICIENCY THEOREMS
+A_TIER = NOT_ESTABLISHED
+FORMAL_CLOSURE = NOT_ESTABLISHED
+UNCONDITIONAL_SM_TO_NSE_REGULARITY = NOT_ESTABLISHED
