@@ -159,3 +159,37 @@ H²=(8*pi*G/3)*(rho_2+rho_bg)
 The inverse derivative in the ADM momentum constraint cancels the wavenumber factor in the selected Dirac Belinfante momentum; the isolated gravitational shear term is independent of `k≠0`. An assigned two-electron GKSL dephasing rate `gamma=nu*k²` also yields the previously regular helical NSE motion through the **chosen momentum/energy readout**.
 
 **Essential no-go:** the resulting time-parametrized family of flat-metric ADM constraint surfaces is not an Einstein spacetime evolution with fixed `h=delta` and positive lapse. A true joined evolution must evolve the metric and include the full physical matter, electromagnetic, environment and renormalized stress sources.
+
+## Stage 5 — genuine evolution jets, not repeated constraint surfaces
+
+**Root:** `GR_T2_EINSTEIN_DIRAC_NSE_EVOLUTION_JET`  
+**Tier:** `! CONDITIONAL_B_TIER` for forced initial jets and a separate exact open-system stress obstruction.
+
+- [B-tier mathematical derivation](./GR_T2_EINSTEIN_DIRAC_NSE_EVOLUTION_JET_B_TIER.txt)
+- [13-endpoint index, 8 unresolved gates](./GR_T2_EINSTEIN_DIRAC_NSE_EVOLUTION_JET_ENDPOINT_INDEX.md)
+
+Given a smooth classical Einstein–Dirac–Maxwell–charged-dust development of Stage 4 sourced initial data, the Gaussian-normal ADM and Maxwell evolution equations force:
+
+```text
+dot h(0)=-2(H*delta+Sigma)
+V_h'(0)/V=-3H
+V_h''(0)/V=kappa_G*(3rho_0-tau_0)/2+3Lambda
+
+dot E(0) = +e*p/(E_p*V)*h_minus
+dot B(0) = 0
+ddot B(0)= -e*p*k/(E_p*V)*h_minus.
+```
+
+The charged dust and electron normal charge densities must change with the volume form; constant source density is not preserved by a changing ADM spatial volume.
+
+**New no-go:** the separately imposed GKSL dephasing has
+
+```text
+partial_mu J_e^mu = 0,
+partial_mu T_e^(mu i)
+  =-gamma*exp(-gamma*t)*j_0^i != 0.
+```
+
+Thus the electric-current Ward identity does **not** imply the stress–energy Ward identity. An actual Einstein source for this open quantum evolution needs a causal physical environment/reservoir carrying the compensating momentum/stress and satisfying its own positive-energy/source requirements.
+
+**Main local-existence boundary:** a well-posed unique combined Einstein–Dirac–Maxwell–charged-dust system has to be established or invoked explicitly, rather than inferred from separately known systems. A curved-space NSE transfer and critical force bound remain independent.
