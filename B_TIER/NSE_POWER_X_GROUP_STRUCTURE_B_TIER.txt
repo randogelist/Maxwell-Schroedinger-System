@@ -1,0 +1,316 @@
+NSE^X GROUP STRUCTURE — FIRST-STAGE FOUNDATIONS
+B-TIER MATHEMATICAL DERIVATION
+=================================================
+
+STATUS
+------
+ROOT = NSE_POWER_X_GROUP_STRUCTURE
+MARKER = !
+MODE = B_TIER_DERIVATION
+BRANCH = b-tier-hull
+A_TIER = NOT_ESTABLISHED
+FORMAL_CLOSURE = NOT_ESTABLISHED
+LEAN_FILES = NOT_PREPARED
+LOCAL_LEAN_EXECUTIONS = NONE
+
+INTERPRETATION
+--------------
+The symbol (NSE)^X denotes a family of Navier–Stokes layers indexed
+by a set X. NSE solutions do not form a group under arbitrary
+superposition; for positive viscosity their time evolution is a
+forward dissipative semiflow, not an invertible time-action group.
+
+The correct group-level object is the X-fold configuration group
+of volume-preserving diffeomorphisms. This is not a derivation
+of Standard Model gauge symmetry from hydrodynamics.
+
+0. DOMAIN AND CONVENTIONS
+------------------------
+M := T_L^3, L>0, oriented smooth spatial torus, volume form mu.
+Let X be an arbitrary nonempty INDEX SET of fluid layers, not
+the spacetime manifold. Write spacetime as Y=R x M.
+
+G := SDiff(M)={smooth phi:M->M diffeomorphism with phi^*mu=mu}.
+g := X_sigma(M)={smooth u: div_mu u=0}, bracket
+  [u,v]=u dot grad v-v dot grad u.
+
+P_sigma: full Leray projection to solenoidal vector fields,
+including constant spatial modes. Positive viscosity nu>0 is
+an independent constitutive parameter.
+
+1. X-INDEXED PRODUCT GROUP
+-------------------------
+THEOREM NXG-01: PRODUCT_SDIFF_GROUP.
+
+Define
+  G_X=Map(X,G)=Product_{a in X} G,
+
+with pointwise multiplication
+  (phi*psi)_a := phi_a circle psi_a,
+  identity (id)_a=id_M,
+  inverse (phi^{-1})_a=(phi_a)^{-1}.
+
+Associativity, identity, and inverse laws hold because they
+hold in each coordinate.
+
+For FINITE X this is the ordinary finite smooth
+diffeomorphism-group product.
+For ARBITRARY X it is always an abstract group and a
+topological group under the product topology, but a
+choice of function-space topology/manifold model is
+required before claiming any smooth infinite-dimensional
+Lie group or PDE well-posedness.
+
+STATUS = EXACT_B_TIER.
+
+THEOREM NXG-02: COMPONENTWISE_LIE_ALGEBRA.
+
+For finite X,
+  g_X=Product_{a in X} g,
+  [u,v]_X=( [u_a,v_a] )_{a in X}.
+
+The bracket is bilinear, antisymmetric, satisfies Jacobi,
+and preserves divergence-free constraints componentwise.
+
+For arbitrary X the same operations define a pointwise
+abstract Lie algebra; a functional-analytic Lie algebra
+compatible with a chosen group topology requires additional
+continuous-operation and domain hypotheses.
+
+STATUS = EXACT_B_TIER, INFINITE TOPOLOGY EXPLICITLY OPEN.
+
+THEOREM NXG-03: DIAGONAL_GROUP_HOMOMORPHISM.
+
+Define
+  Delta:G->G_X,  Delta(phi)=(phi)_{a in X},
+  delta:g->g_X,  delta(u)=(u)_{a in X}.
+
+Then
+  Delta(phi circle psi)=Delta(phi)*Delta(psi),
+  delta([u,v])=[delta(u),delta(v)]_X.
+
+These are injective for X nonempty.
+
+A diagonal common diffeomorphism is a legitimate common
+Eulerian-coordinate symmetry of all layers.
+
+STATUS = EXACT_B_TIER.
+
+THEOREM NXG-04: PROJECTIONS_ARE_HOMOMORPHISMS.
+
+For any a0 in X, the projection
+  pr_a0:G_X->G,  pr_a0(phi)=phi_a0
+is a group homomorphism, and its derivative
+  pr_a0:g_X->g
+is a Lie algebra homomorphism.
+
+STATUS = EXACT_B_TIER.
+
+2. WEIGHTED AVERAGING IS NOT A GROUP MAP
+----------------------------------------
+THEOREM NXG-05: WEIGHTED_AVERAGE_LIE_NO_GO.
+
+For finite |X|>=2, choose real weights w_a, and define
+  A_w(u)=sum_a w_a u_a.
+
+Then
+  A_w([u,v]_X)=sum_a w_a[u_a,v_a],
+
+but
+  [A_w(u),A_w(v)]
+     =sum_{a,b} w_a w_b [u_a,v_b].
+
+For indices i != j with w_i w_j != 0, choose u supported
+only in layer i and v only in layer j, with
+[u_i,v_j] != 0 in g (such solenoidal fields exist).
+Then
+  A_w([u,v]_X)=0
+while
+  [A_w(u),A_w(v)]=w_i w_j[u_i,v_j] != 0.
+
+Hence a genuine multiweight sum is not a Lie-algebra
+homomorphism on the independent layer algebra.
+
+Special homomorphisms do exist: projection to a single
+coordinate (weight 1 at that coordinate, zero elsewhere),
+or restriction to a diagonal subalgebra with normalized
+weights sum_a w_a=1.
+
+THIS IS THE DECISIVE OBSTRUCTION to treating a weighted
+mean velocity as an automatically defined common
+spatial/gauge representation of the X-fold fluid group.
+
+STATUS = EXACT_B_TIER COUNTEREXAMPLE.
+
+3. THE STANDARD MODEL GAUGE FACTOR
+----------------------------------
+THEOREM NXG-06: INDEPENDENT_INTERNAL_GAUGE_SYMMETRY.
+
+Fix a principal K-bundle P->Y, where for a
+Standard Model choice
+  Lie(K)=su(3)_C + su(2)_L + u(1)_Y,
+  K=[SU(3)xSU(2)xU(1)]/Gamma
+with a compatible declared global quotient Gamma.
+
+Gauge transformations Gau(P) and volume-preserving
+material-label group G_X are DISTINCT notions.
+
+On a trivial bundle and a chosen common physical
+spatial diffeomorphism group G, the gauge and spatial
+symmetries may be combined using a specified
+semidirect action (pullbacks), and locally the Lie
+algebra has the familiar bracket
+
+  [(u,xi),(v,eta)]
+   =([u,v],u dot grad eta-v dot grad xi+[xi,eta]_K).
+
+The above semidirect action uses ONE common spatial
+diffeomorphism. It cannot automatically be extended
+to independent components of G_X acting on a SINGLE
+shared gauge connection via a weighted-average
+homomorphism, by NXG-05.
+
+For nontrivial P, use compatible bundle automorphisms
+Aut(P), and restrict to base diffeomorphisms admitting
+lifts. Its Atiyah sequence is
+
+  0 -> ad(P) -> At(P)=TP/K -> TY -> 0,
+
+with a connection split and a curvature-corrected
+Lie bracket. The global bundle need not split.
+
+STATUS = B_TIER WITH EXPLICIT BUNDLE PREMISES.
+
+THEOREM NXG-07: REPRESENTATION_ADMISSIBILITY.
+
+An admissible matter port requires:
+ (i) a representation rho:K->GL(V) or appropriate
+     unitary representation on an associated bundle,
+(ii) a connection A and its covariant derivative,
+(iii) invariant local matter and coupling actions,
+(iv) spin/tetrad and Grassmann/chiral structure
+     where appropriate, and
+ (v) on-shell classical Ward identities; quantum anomaly
+     cancellation if a quantum assertion is made.
+
+The internal gauge representation must not be confused
+with a real-valued incompressible velocity field.
+
+STATUS = CONDITIONAL_B_TIER TYPE PORT.
+
+4. SPECTRAL SUBGROUP STRUCTURE
+------------------------------
+THEOREM NXG-08: FOURIER_LAYER_LIE_SUBALGEBRA.
+
+For additive subgroup Gamma of (2pi/L)Z^3,
+define
+  g_Gamma={u in g: supp(uhat) subset Gamma}.
+
+The Lie bracket of single Fourier modes has wave number
+k+ell. Hence g_Gamma is a Lie subalgebra; Fourier
+multiplication, Leray projection and the Laplacian
+preserve support in Gamma.
+
+For distinct layers Gamma_a the smallest common
+additive subgroup is
+  Gamma_X=span_Z( union_{a in X} Gamma_a ).
+
+The individual Gamma_a may not be preserved after a
+cross-layer interaction, while the common Gamma_X is
+preserved for local polynomial fluid terms and a
+graph-drag coupling without additional external
+field wave numbers.
+
+STATUS = EXACT_B_TIER FOR SMOOTH CLASSICAL OPERATIONS.
+
+THEOREM NXG-09: COMMON_TWO_DIRECTIONAL_INVARIANCE.
+
+For finite X, if Gamma_X has real linear rank <=2,
+there is a nonzero common spatial direction n such
+that for every initial layer
+  (n dot grad)u_a(0)=0.
+
+The unforced NSE self-advection, viscosity, pressure
+and pairwise pointwise drag preserve this common
+translation symmetry. Thus a coupled model with
+only those forces stays within a 2D3C geometry as
+long as its solution exists. Global smoothness for
+smooth data and positive viscosities follows by
+the finite coupled 2D vorticity/passive-scalar
+argument, detailed in the second-stage composition
+document.
+
+If Gamma_X has rank 3, this argument does not
+certify full 3D regularity (even though special
+three-dimensional Beltrami configurations remain
+globally regular).
+
+STATUS = B_TIER ON THE FINITE LAYER MODEL.
+
+5. GROUP COMPATIBILITY CONTRACT
+-------------------------------
+A future (NSE)^X x Standard Model coupling must
+declare a separate interface:
+
+  GROUP_BASE = (G_X, g_X, Delta G, Gau(P), At(P)),
+  FIELD_BASE = (P, A, representations, invariant action),
+  COMPOSITION = (typed forces, graph weights,
+                 reciprocal field power, reservoir),
+  ANALYTIC_BASE = (regularity, positivity, summability).
+
+The group base does not itself supply an interaction
+force, viscosity, microscopic coarse graining,
+a Standard Model Lagrangian, or global 3D PDE regularity.
+
+6. EXACT ROOT THEOREM
+--------------------
+THEOREM NSE_POWER_X_GROUP_STRUCTURE.
+
+ASSUME:
+ H1 smooth periodic oriented M;
+ H2 nonempty X, finite X for smooth product Lie-group claims;
+ H3 a globally valid principal gauge bundle P and
+    declared gauge representation/connection if
+    Standard Model coupling is requested.
+
+THEN:
+ R1 componentwise SDiff product group and Lie algebra;
+ R2 diagonal and coordinate projection homomorphisms;
+ R3 non-homomorphic genuine weighted velocity averaging;
+ R4 distinct fluid and gauge structure with the
+    correct separate common spatial action;
+ R5 additive Fourier subgroup closure and
+    common two-directional invariant geometry under
+    compatible NSE forces.
+
+Proof: NXG-01..09.
+
+STATUS = B_TIER; no A-tier compilation/audit.
+
+7. ENDPOINTS
+------------
+[x] NXG-01 PRODUCT_SDIFF_GROUP
+[x] NXG-02 COMPONENTWISE_LIE_ALGEBRA
+[x] NXG-03 DIAGONAL_GROUP_HOMOMORPHISM
+[x] NXG-04 PROJECTIONS_ARE_HOMOMORPHISMS
+[x] NXG-05 WEIGHTED_AVERAGE_LIE_NO_GO
+[x] NXG-06 INDEPENDENT_INTERNAL_GAUGE_SYMMETRY
+[x] NXG-07 REPRESENTATION_ADMISSIBILITY
+[x] NXG-08 FOURIER_LAYER_LIE_SUBALGEBRA
+[x] NXG-09 COMMON_TWO_DIRECTIONAL_INVARIANCE
+[x] NXG-10 NSE_POWER_X_GROUP_STRUCTURE
+
+[ ] NXG-11 ANALYTIC_INFINITE_PRODUCT_LIE_GROUP
+[ ] NXG-12 NONTRIVIAL_BUNDLE_GLOBAL_ACTION_AND_LIFT
+[ ] NXG-13 PHYSICAL_STANDARD_MODEL_COARSE_GRAINING
+[ ] NXG-14 A_TIER_EXTERNAL_COMPILER_AND_AXIOM_AUDIT
+
+SOURCE ANCHORS:
+Holm/Marsden/Ratiu (1998), Euler-Poincare and semidirect
+products: https://www.sciencedirect.com/science/article/pii/S0001870898917212
+Atiyah / principal connection: 
+https://www.math.toronto.edu/mein/teaching/moduli.pdf
+
+FINAL:
+  ! B_TIER, complete exact scoped group calculation.
+  No claim of unconditional physical NSE/SM equivalence.
