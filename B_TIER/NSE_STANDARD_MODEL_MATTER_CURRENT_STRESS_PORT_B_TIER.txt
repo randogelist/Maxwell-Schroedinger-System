@@ -1,0 +1,686 @@
+NSE -> STANDARD MODEL: MATTER REPRESENTATIONS, WARD FORCE, AND CURRENT RESIDUAL
+B-TIER MATHEMATICAL DERIVATION
+========================================================================
+
+STATUS
+------
+THEOREM = NSE_STANDARD_MODEL_MATTER_CURRENT_STRESS_PORT
+MARKER = !
+TIER = CONDITIONAL_B_TIER
+SOURCE_BRANCH = b-tier-hull
+DEPENDENCY = NSE_STANDARD_MODEL_GROUP_BASE_B_TIER
+LEAN_STATUS = NOT_EMITTED
+A_TIER_STATUS = NOT_ESTABLISHED
+FORMAL_CLOSURE = NOT_ESTABLISHED
+UNCONDITIONAL_SM_NSE_EQUIVALENCE = NOT_ESTABLISHED
+LOCAL_LEAN_EXECUTIONS = 0
+
+SCOPE
+-----
+Extend the frozen Lie-group base from SDiff(M), the gauge automorphism
+algebra, and field-curvature identities to:
+  (i) actual Standard Model matter representations;
+ (ii) gauge-invariant Yukawa contractions and anomaly test sums;
+(iii) on-shell gauge Ward and stress exchange identities;
+ (iv) a typed NSE Leray-force adapter;
+  (v) an exact current residual that distinguishes the full electron
+      current from the projected NSE velocity;
+ (vi) electromagnetic energy closure with the missing current stress
+      explicitly carried by a separate matter/interaction sector.
+
+The result is a mathematically scoped force-and-conservation interface.
+It does not derive NSE as the microscopic Standard Model, identify
+classical electron probability current with physical fluid mass
+transport, or establish quantum EMD/SM dynamics.
+
+0. FIXED GEOMETRY / CONVENTIONS
+-------------------------------
+Spatial M=T_L^3, L>0, volume V=L^3; spacetime X=R x M, with
+specified flat Lorentz metric and spin structure for the simplest
+example, and c=1 in the relativistic Ward identities.
+Physical c, hbar, e, m_e, epsilon_0 are retained where needed.
+
+Let K be a compact internal gauge group with Lie algebra k and
+an Ad-invariant nondegenerate pairing < , >_k.
+Let P->X be a principal K bundle, A a connection, F_A its curvature,
+and rho_R a declared representation on associated matter fields.
+Assume all fields in the derivations are smooth and periodic,
+or have enough Sobolev regularity to justify variations and
+integration by parts. All identities are local/on shell as stated.
+
+There are two conceptually different models:
+ (A) GAUGE+FLUID REPLACEMENT: fluid is the effective carrier of
+     gauge charge; the source is J_fluid+J_res and microscopic
+     charged matter removed/replaced in the effective description;
+ (B) FULL SM+EXTRA FLUID: microscopic fields remain, so any added
+     fluid force must come from a separate invariant interaction
+     action, not from counting the same microscopic charge twice.
+
+A choice between (A) and (B) is an explicit model input.
+
+1. REPRESENTATION-TYPED FIELDS
+------------------------------
+THEOREM SMP-01: SM_MATTER_REPRESENTATION_SIGNATURE.
+
+The local internal Standard Model Lie algebra is
+
+  k_SM=su(3)_C direct_sum su(2)_L direct_sum u(1)_Y.
+
+Fix the convention Q_electric=T3+Y.
+Per minimal generation, the classical field types are
+
+  Q_L: (3,2,+1/6),
+  u_R: (3,1,+2/3),
+  d_R: (3,1,-1/3),
+  L_L: (1,2,-1/2),
+  e_R: (1,1,-1),
+  H:   (1,2,+1/2).
+
+The spinor representations carry chirality and are sections of
+spinor bundles tensored with the associated gauge bundles.
+Three generations differ by flavor labels and Yukawa couplings.
+Minimal SM has no dynamical right-handed neutrino.
+
+The global gauge group may be
+  [SU(3)xSU(2)xU(1)]/Gamma
+with a compatible integer hypercharge normalization and
+Gamma=1,Z2,Z3,Z6; the group form and bundle topologies must
+be declared for global rather than local statements.
+
+STATUS: EXACT_B_TIER REPRESENTATION TABLE, NOT GAUGE GROUP DERIVATION.
+
+THEOREM SMP-02: YUKAWA_HYPERCHARGE_NEUTRALITY.
+
+Write Htilde=i sigma_2 conjugate(H), so Y(Htilde)=-1/2.
+The gauge-invariant Yukawa terms are, schematically,
+
+  y_d conjugate(Q_L) H d_R,
+  y_u conjugate(Q_L) Htilde u_R,
+  y_e conjugate(L_L) H e_R.
+
+The U1_Y hypercharge checks are exactly
+
+  d: -1/6+1/2-1/3=0,
+  u: -1/6-1/2+2/3=0,
+  e: +1/2+1/2-1=0.
+
+Color indices are contracted between the Q_L conjugate and
+the right-handed quark, and the doublet conjugate with H/Htilde.
+The interaction terms are gauge singlets with the stated
+representations.
+
+STATUS: EXACT_B_TIER ALGEBRAIC CHECK.
+
+THEOREM SMP-03: MINIMAL_GENERATION_ANOMALY_SUMS.
+
+With right-handed chiral fermions subtracted in the
+left-minus-right convention:
+
+  SU(2)^2 U(1):   3(1/6)+(-1/2)=0,
+
+  SU(3)^2 U(1):   2(1/6)-(2/3)-(-1/3)=0,
+
+  grav^2 U(1):    6(1/6)+2(-1/2)-3(2/3)
+                   -3(-1/3)-(-1)=0,
+
+  U(1)^3:         6(1/6)^3+2(-1/2)^3
+                   -3(2/3)^3-3(-1/3)^3-(-1)^3=0.
+
+The number of left-handed weak SU(2) doublets per generation
+counting three color copies is 3+1=4, even.
+
+These are basic anomaly-coefficient / Witten-parity arithmetic
+checks. They are not by themselves a fully rigorous chiral
+gauge-quantization/anomaly audit or a proof of anomaly absence
+for an arbitrary additional matter representation.
+
+STATUS: EXACT_B_TIER FINITE ARITHMETIC.
+
+2. COVARIANT CONNECTION AND ACTION
+-----------------------------------
+THEOREM SMP-04: COVARIANT_MATTER_DERIVATIVE.
+
+For matter section Phi in representation rho_R,
+
+  D_mu^A Phi = nabla_mu^spin Phi+rho_R(A_mu)Phi,
+
+where the spin term is omitted for scalar fields and coordinate
+Christoffel terms are included as appropriate.
+
+With D^A=d+rho(A) convention,
+
+  [D_mu^A,D_nu^A]Phi = rho_R(F_{mu nu})Phi
+
+after subtracting the separate Riemann/spin curvature
+commutator when Phi has nontrivial spacetime tensor/spin
+indices. Equivalently the complete commutator has
+gauge and Riemann curvature components.
+
+For a pure internal associated scalar bundle the displayed
+gauge identity is exact without the spin-curvature addition.
+
+Define
+  F_A=dA+(1/2)[A wedge A].
+
+The Bianchi identity is
+  D^A F_A=0.
+
+STATUS: EXACT_B_TIER WITH EXPLICIT GEOMETRIC TYPE.
+
+THEOREM SMP-05: GAUGE_INVARIANT_ACTION_PORT.
+
+On a local trivializing chart, a symbolic gauge-invariant
+Standard Model action is
+
+  S_SM=S_YM+S_fermion+S_Higgs+S_Yukawa.
+
+The gauge field part includes
+  -1/4 G^a_{mu nu}G^{a mu nu},
+  -1/4 W^I_{mu nu}W^{I mu nu},
+  -1/4 B_{mu nu}B^{mu nu},
+
+with couplings g_s,g,g' in the covariant derivatives or
+connection convention. The fermionic terms are chiral
+and the Higgs potential and Yukawa terms use SMP-01/SMP-02.
+This is an admissible classical schematic action.
+Quantum fermion determinants/regularization, EWSB and
+renormalized composite operators remain additional inputs.
+
+In particular the photon A_EM is the appropriate
+electroweak-broken combination of W^3 and hypercharge B;
+hypercharge B alone must not be silently identified with
+the physical photon prior to symmetry breaking.
+
+STATUS: B_TIER TYPED ACTION SIGNATURE.
+
+3. CURRENT, WARD IDENTITY, STRESS
+---------------------------------
+THEOREM SMP-06: GAUGE_CURRENT_WARD_IDENTITY.
+
+For a classical matter action S_m[Phi,A,g] that is gauge
+invariant under
+
+  delta_xi Phi =rho(xi)Phi,
+  delta_xi A =-D^A xi,
+
+define its current J by the consistent source convention
+in the first variation
+
+  delta S_m
+   =int sqrt(|g|)
+      [<E_Phi,delta Phi>+<J^mu,delta A_mu>
+       +(1/2)T_m^{mu nu}delta g_{mu nu}].
+
+Under a compactly supported infinitesimal gauge
+transformation, integration by parts gives
+
+  0= <E_Phi,rho(xi)Phi>
+       +<D_mu^A J^mu,xi>
+
+with the pairing signs fixed by the chosen dual representation.
+Therefore
+
+  E_Phi=0 implies D_mu^A J^mu=0
+
+for total gauge current, subject to gauge/anomaly premises.
+
+For nonabelian currents, D_mu J^mu=0 means *covariant*,
+not componentwise ordinary, conservation. J^a by itself
+is gauge-covariant, not gauge-invariant.
+
+Yukawa terms can exchange currents between fermionic
+species; only the appropriate TOTAL gauge current obeys
+the closed gauge Ward identity.
+
+STATUS: CONDITIONAL_B_TIER ON ACTION SYMMETRY / ON-SHELL.
+
+THEOREM SMP-07: DIFFEOMORPHISM_STRESS_WARD_IDENTITY.
+
+For S_m[Phi,A,g] invariant under diffeomorphisms,
+assume the matter E-L equations and absence of extra
+spatially varying external scalar sources or anomalies.
+Using the gauge-covariant Lie derivative of A,
+
+  Lie_X A=i_X F_A+D^A(i_X A),
+
+and the gauge Ward identity to remove the pure
+gauge term, metric variation yields
+
+  nabla_mu T_m^{mu}{}_{nu}
+    =<F_{nu mu},J^mu>_k.
+
+If spacetime-dependent scalar sources or anomalous
+terms are present, their Ward contributions must be
+added explicitly.
+
+STATUS: CONDITIONAL_B_TIER ON DIFF + GAUGE SYMMETRY / EOM.
+
+THEOREM SMP-08: YANG_MILLS_STRESS_EXCHANGE.
+
+For the Yang-Mills field with equation
+  D_mu F^{mu nu}=J^nu
+in the chosen source convention and invariant pairing,
+the symmetric gauge stress satisfies
+
+  nabla_mu T_YM^{mu}{}_{nu}
+    =-<F_{nu mu},J^mu>_k.
+
+Thus
+  nabla_mu (T_YM^{mu}{}_{nu}+T_m^{mu}{}_{nu})=0
+for the closed source theory, with correctly accounted
+interaction contributions.
+
+The force 4-vector density
+  Q_nu=<F_{nu mu},J^mu>_k
+is gauge-invariant after the invariant internal pairing.
+For U(1), this is the ordinary Lorentz force density.
+
+STATUS: CONDITIONAL_B_TIER ON CLASSICAL FIELD EQUATIONS.
+
+4. NSE FORCE PORT AND ELECTROMAGNETIC TEST
+-------------------------------------------
+THEOREM SMP-09: TYPED_NSE_FORCE_PORT.
+
+Suppose a particular field-to-fluid matching prescription
+C provides a smooth real spatial force density f_i(x,t)
+for each incompressible layer i. Define
+
+  ForcePort_C(L,fields,u_i):=P_sigma f_i,
+
+where P_sigma is the orthogonal Leray projection to
+divergence-free vector fields on M. The dynamical equation is
+
+  rho_i [partial_t u_i+(u_i dot grad)u_i]
+    =-grad p_i+eta_i Delta u_i
+      +f_i-sum_j kappa_ij(u_i-u_j).
+
+Then
+  partial_t u_i
+   =-P_sigma((u_i dot grad)u_i)
+      +(eta_i/rho_i)Delta u_i
+      +(1/rho_i)P_sigma f_i
+      -(1/rho_i)sum_j kappa_ij(u_i-u_j).
+
+This is an exact equivalence between the NSE pressure and
+projected forms FOR THE SPECIFIED BODY FORCE.
+It is not a unique map L -> f_i; C is essential.
+
+The general covariant force density
+  <F^{nu}{}_{mu},J^mu>_k
+must be converted into nonrelativistic variables with
+specified densities and a hydrodynamic limit before
+feeding into the incompressible NSE forcing term.
+
+STATUS: CONDITIONAL_B_TIER ON THE MATCHING LAW.
+
+THEOREM SMP-10: ABELIAN_LORENTZ_POWER_IDENTITY.
+
+For electromagnetic fields E,B and a charged incompressible
+fluid with a smooth charge density rho_q and its assigned
+transport current J_fluid=rho_q u, set
+
+  f_fluid=rho_q E+J_fluid cross B.
+
+Then
+  u dot f_fluid=J_fluid dot E,
+
+because u dot (u cross B)=0.
+
+On a periodic box, Maxwell's Poynting theorem is
+
+  dot E_EM =-int E dot J_source dx,
+
+for the TOTAL source J_source used in Maxwell equations.
+For a field-coupled fluid to conserve electric charge require
+
+  partial_t rho_q + div J_fluid=0
+
+for each closed charge-carrier species, up to specified
+conversion/interaction terms. On a compact torus, total
+charge must be zero or a physically modeled compensating
+background is required by Gauss law.
+
+STATUS: EXACT_B_TIER ENERGY IDENTITIES GIVEN MAXWELL PDE.
+
+5. ELECTRON CURRENT ADAPTER RESIDUAL
+-------------------------------------
+THEOREM SMP-11: ELECTRON_TO_NSE_CURRENT_RESIDUAL.
+
+Let psi be a normalized Pauli/Dirac electron state, with
+nonvanishing number density n_psi>0 and physical electric
+charge q_e=-e. Let j_num be its number current and
+
+  v_psi := j_num/n_psi,
+  J_e :=q_e j_num=q_e n_psi v_psi.
+
+Define a mean-zero divergence-free NSE velocity via the
+previously frozen projection:
+
+  a_psi:=P_{sigma,0}v_psi.
+
+Define the residual electric current by
+
+  J_res:=J_e-q_e n_psi a_psi
+        =q_e n_psi(I-P_{sigma,0})v_psi.
+
+Then exactly
+
+  J_e=q_e n_psi a_psi + J_res.
+
+No assumption that J_res=0 is justified by projection.
+When n_psi is spatially constant, J_res contains the
+removed mean velocity and (if present) a longitudinal
+component. With nonconstant density, multiplying
+P_sigma v by n_psi need not preserve charge continuity.
+
+This is a necessary additional port for any Maxwell
+source meant to be exactly the electron current.
+
+STATUS: EXACT_B_TIER BY DEFINITION AND PROJECTION.
+
+THEOREM SMP-12: HELICAL_ELECTRON_RESIDUAL_EXACT.
+
+For the previously frozen one-electron helical state
+
+  psi_e(t,z)
+    = (1/sqrt(2L^3)) *
+      (1,exp(i(kz+alpha-omega_e t)))^T,
+
+  omega_e=hbar*k^2/(2m_e),
+  U_e=hbar*k/(2m_e),
+  s_t=(cos(kz+alpha-omega_e t),
+       sin(kz+alpha-omega_e t),0),
+
+its full Pauli number-current velocity is
+
+  v_e(t,z)=U_e e_3-U_e s_t,
+
+with constant number density
+  n_e=1/L^3.
+
+Its mean-zero projected NSE velocity at t=0 is
+  a_e=-U_e s_0.
+
+The first exact current residual is already nonzero:
+
+  J_e(0)-q_e n_e a_e
+    =q_e n_e U_e e_3.
+
+In the laboratory frame, compare the full electron
+current to the FULL mean-plus-fluctuation NSE solution
+
+  u_NSE(t,z)=U_e e_3
+              -U_e exp(-nu*k^2*t)s_t.
+
+The phase frequencies agree because omega_e=kU_e.
+However
+
+  J_e(t)-q_e n_e u_NSE(t)
+    =q_e n_e U_e
+       (exp(-nu*k^2*t)-1)s_t.
+
+This residual vanishes at t=0, but is NONZERO for
+t>0 whenever nu>0 and U_e !=0.
+
+Hence the free-electron current is not the viscously
+decaying NSE current for all times. The residual
+must be assigned to a microscopic matter, interaction,
+or reservoir channel, or a different open-system
+electron dynamics must be constructed.
+
+STATUS: EXACT_B_TIER COUNTEREXAMPLE TO UNSUPPORTED
+        FULL-TIME FREE-ELECTRON/NSE CURRENT EQUALITY.
+
+6. EXACT POWER-RESIDUAL CLOSURE
+--------------------------------
+THEOREM SMP-13: ELECTROMAGNETIC_NSE_CURRENT_POWER_RESIDUAL.
+
+For a Maxwell gauge field sourced by
+
+  J_source =sum_i J_fluid,i +J_res,
+
+and fluid forces
+  f_i =rho_q,i E+J_fluid,i cross B,
+
+smooth periodic energy balance gives
+
+  dot E_EM =-int E dot(sum_i J_fluid,i+J_res)dx,
+
+  dot E_fluid
+    =-D_visc-D_drag
+       +int E dot sum_i J_fluid,i dx,
+
+where
+  D_visc=sum_i eta_i||grad u_i||_2^2,
+  D_drag=sum_{i<j}kappa_ij||u_i-u_j||_2^2.
+
+Consequently,
+
+  dot(E_EM+E_fluid)
+    =-D_visc-D_drag
+      -int E dot J_res dx.
+
+If separate sectors satisfy
+
+  dot E_thermal =D_visc+D_drag,
+  dot E_extra   =int E dot J_res dx,
+
+then exactly
+
+  dot(E_EM+E_fluid+E_thermal+E_extra)=0.
+
+D_visc+D_drag is nonnegative. The residual-current
+power can have EITHER SIGN, so the extra matter sector
+must not be mislabeled as a positive heat reservoir
+without independent constitutive proof.
+
+This theorem is an algebraic conservation identity from
+the stated Maxwell and fluid energy equations; it does
+not construct a fundamental microscopic interaction
+action for E_extra.
+
+STATUS: CONDITIONAL_B_TIER ON DECLARED RESIDUAL ENERGY LAW.
+
+7. TWO PHYSICALLY DISTINCT INSERTION PATHS
+-------------------------------------------
+THEOREM SMP-14: NO_DOUBLE_COUNTING_PARTITION.
+
+PATH A - EFFECTIVE CHARGED-FLUID REPLACEMENT:
+  Choose charged fluid currents as effective carriers
+  replacing coarse-grained matter currents, and
+  keep any unrepresented current J_res in a separately
+  modeled sector. Maxwell source is
+    J_source=J_fluid+J_res.
+  The full microscopic matter energy is NOT counted again
+  unless the coarse-grained subtraction is explicit.
+
+PATH B - FULL SM PLUS EXTRA FLUID:
+  Retain full microscopic S_SM, including all matter
+  currents/stresses. Add an independent interaction action
+    S_int[Phi,A,g,u_i,...]
+  that is gauge/diffeomorphism invariant.
+  Derive exchange currents Q_i^nu by variation, and
+  include interaction stress/reservoir as required.
+  Do not simply append F J_SM to the fluid while
+  retaining unchanged SM stress, because this would
+  count the same exchange twice.
+
+Both paths are valid TYPED designs. Neither derives
+a unique physical matching without its constitutive
+or interaction-action data.
+
+STATUS: EXACT_B_TIER TYPE/ACCOUNTING DISTINCTION.
+
+8. COVARIANT NONABELIAN EXTENSION
+----------------------------------
+THEOREM SMP-15: NONABELIAN_GAUGE_INVARIANT_FORCE.
+
+For a compact gauge Lie algebra with invariant pairing,
+
+  f_nu^YM:=<F_{nu mu},J^mu>_k
+
+is gauge invariant provided F and J transform in the
+adjoint/coadjoint representations, with pairing
+invariant under Ad.
+
+The current conservation law is D_mu^A J^mu=0,
+not partial_mu J^a mu=0 in arbitrary gauge.
+Nonabelian fluid charge densities require their own
+gauge-covariant transport / Wong or kinetic closure;
+there is no universal physical identification with
+a real scalar incompressible velocity field.
+
+In the electroweak theory, SU(2)xU(1)_Y is broken by
+the Higgs vacuum, and physical electromagnetic charge
+and photon fields are the appropriate combinations.
+Strong SU(3) color currents cannot be interpreted as
+gauge-invariant individual color-charge observables
+without additional gauge-invariant constructions.
+
+STATUS: CONDITIONAL_B_TIER ON REPRESENTATION/TRANSPORT DATA.
+
+9. ROOT CONDITIONAL THEOREM
+----------------------------
+THEOREM NSE_STANDARD_MODEL_MATTER_CURRENT_STRESS_PORT.
+
+ASSUME:
+ H1. The frozen SDiff and gauge group base with a
+     chosen compatible Standard Model representation.
+ H2. Gauge-invariant classical matter and field
+     actions with field equations and Ward identities;
+     quantum anomaly cancellation when quantum fields
+     rather than classical symbols are claimed.
+ H3. A typed partition into either effective fluid
+     replacement or extra-fluid sector, with no
+     double-counted matter currents/stresses.
+ H4. A gauge-covariant current matching law
+     J_source=sum_i J_fluid,i+J_res.
+ H5. Incompressible smooth periodic fluid equations,
+     with f_i matched from a field force law.
+ H6. Symmetric nonnegative interlayer drag, viscosities
+     eta_i>=0, and reciprocal power bookkeeping.
+ H7. An extra-sector residual energy law and
+     a thermal dissipation reservoir.
+
+THEN:
+ R1. The representation tables and classical
+     gauge-invariant Yukawa terms are well typed.
+ R2. Classical on-shell currents obey the proper
+     covariant Ward identity.
+ R3. Gauge and matter stress exchange oppositely via
+     <F,J>.
+ R4. The fluid momentum force is given by the
+     declared force and Leray projection.
+ R5. The electron-current projection has the
+     exact algebraic residual J_res.
+ R6. Maxwell, fluid, extra and thermal energy satisfy
+       dot E_total=0
+     and thermal dissipation is nonnegative.
+ R7. For the free helical electron the current
+     residual is nonzero at positive time under
+     viscous NSE evolution, so a direct full-time
+     identification of free-electron and NSE currents
+     is not established by initial-profile equality.
+
+DERIVATION:
+ SMP-01..03 -> matter representation interface;
+ SMP-04..08 -> covariant Ward and stress exchange;
+ SMP-09..10 -> force and Poynting/kinetic power;
+ SMP-11..12 -> current discrepancy;
+ SMP-13..15 -> corrected full energy and nonabelian
+                coupling conditions.
+
+STATUS=CONDITIONAL_B_TIER COMPLETE IMPLICATION.
+NO CLAIM OF UNCONDITIONAL SM/NSE DYNAMICAL EQUIVALENCE.
+NO CLAIM OF GENERAL 3D NSE GLOBAL REGULARITY.
+
+10. ENDPOINT REGISTER FOR FOLLOW-UP LEAN WORK
+-----------------------------------------------
+[x] SMP-01 SM_MATTER_REPRESENTATION_SIGNATURE
+[x] SMP-02 YUKAWA_HYPERCHARGE_NEUTRALITY
+[x] SMP-03 MINIMAL_GENERATION_ANOMALY_SUMS
+[x] SMP-04 COVARIANT_MATTER_DERIVATIVE
+[x] SMP-05 GAUGE_INVARIANT_ACTION_PORT
+[x] SMP-06 GAUGE_CURRENT_WARD_IDENTITY
+[x] SMP-07 DIFFEOMORPHISM_STRESS_WARD_IDENTITY
+[x] SMP-08 YANG_MILLS_STRESS_EXCHANGE
+[x] SMP-09 TYPED_NSE_FORCE_PORT
+[x] SMP-10 ABELIAN_LORENTZ_POWER_IDENTITY
+[x] SMP-11 ELECTRON_TO_NSE_CURRENT_RESIDUAL
+[x] SMP-12 HELICAL_ELECTRON_RESIDUAL_EXACT
+[x] SMP-13 EM_NSE_CURRENT_POWER_RESIDUAL
+[x] SMP-14 NO_DOUBLE_COUNTING_PARTITION
+[x] SMP-15 NONABELIAN_GAUGE_INVARIANT_FORCE
+[x] SMP-16 NSE_STANDARD_MODEL_MATTER_CURRENT_STRESS_PORT
+
+[ ] SMP-17 ACTUAL_STANDARD_MODEL_QUANTUM_WARD_AUDIT
+       OPEN_QUANTUM_FIELD_REGULARIZATION / ANOMALIES
+[ ] SMP-18 ELECTRON_DISSIPATIVE_DYNAMICS_DERIVATION
+       OPEN_MICROSCOPIC / OPEN-SYSTEM PHYSICS
+[ ] SMP-19 NONABELIAN_COLOR_FLUID_CLOSURE
+       OPEN_CONSTITUTIVE / GAUGE_COVARIANCE
+[ ] SMP-20 FULL_ELECTRON_TO_NSE_SEMICONJUGACY
+       OPEN_PHYSICAL_DYNAMICS
+[ ] SMP-21 GENERAL_3D_COUPLED_GLOBAL_REGULARITY
+       OPEN_PDE
+[ ] SMP-22 EXTERNAL_LEAN_BUILD_AND_AXIOM_AUDIT
+       NOT_PERFORMED
+
+The 16 checked entries are B-TIER DERIVATIONS OR EXPLICITLY
+CONDITIONAL MATHEMATICAL IDENTITIES, not Lean kernel proofs.
+
+11. PROPOSED LEAN PROOF SPINE (NO LOCAL LEAN RUN)
+--------------------------------------------------
+MODULE A: Representation/hypercharge arithmetic
+  - finite direct sum algebra and exact rational identities
+  - Yukawa hypercharge neutralities
+  - finite anomaly sums, with explicit normalization
+
+MODULE B: Abstract covariant current and stress
+  - linear actions of gauge Lie algebras
+  - antisymmetric field strength as an input type
+  - abstract source current and invariant pairing
+  - Ward/stress laws named premises where full PDE is absent
+  - scalar/vector finite Fourier abelian test case
+
+MODULE C: Leray/linear projections and electron current
+  - linear projection P0, contractivity
+  - residual identity J=q n P0(v)+q n(I-P0)(v)
+  - exact circular helical current temporal residual
+
+MODULE D: Energy and exchange
+  - fluid drag Laplacian positive form (reuse prior NGL endpoints)
+  - Abelian power identity and Poynting ports
+  - exact full conservation from residual plus thermal law
+
+MODULE E: Deterministic root
+  - combine opaque independently proved endpoints
+  - audit theorem-level axioms on a matching external compiler
+
+Mathlib/Methlib DECLARATION NAMES ARE NOT PRETENDED VERIFIED.
+NO local Lean execution. No A-tier promotion without
+matching native compiler and theorem-level axiom audit.
+
+REFERENCES
+----------
+CERN Nir Standard Model representation and Yukawa notes:
+ https://indico.cern.ch/event/71330/contributions/1240734/attachments/1034287/1473499/Nir_notes.pdf
+University of Illinois SM representations:
+ https://courses.physics.illinois.edu/phys575/sp2020/lecture_notes/Standard%20Model%20Lagrangian%20%282-12-20%29.pdf
+Yang-Mills equations and covariant current:
+ https://qft.org/gauge-theories-standard-model/yang-mills-theory/yang-mills-equations-constraints-observables/
+Standard Model group global quotient:
+ https://qft.org/gauge-theories-standard-model/standard-model-assembly-consistency/standard-model-global-form-charge-quantization/
+Stress–current diffeo Ward identity:
+ https://adscft.org/course/holographic-renormalization/ward-identities-and-anomalies/
+NSE_GROUP_BASE prior source:
+ https://raw.githubusercontent.com/randogelist/Maxwell-Schroedinger-System/b-tier-hull/B_TIER/NSE_STANDARD_MODEL_GROUP_BASE_B_TIER.txt
+
+FINAL CLASSIFICATION
+--------------------
+MARKER=!
+TIER=CONDITIONAL_B_TIER
+EXACT ALGEBRAIC PORTS=ESTABLISHED UNDER STATED DATA
+SM_TO_NSE_MICROSCOPIC_IDENTIFICATION=OPEN
+A_TIER=NOT_ESTABLISHED
+FORMAL_CLOSURE=NOT_ESTABLISHED
