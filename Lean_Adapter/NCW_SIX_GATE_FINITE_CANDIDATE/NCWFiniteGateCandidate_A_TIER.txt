@@ -1,0 +1,90 @@
+NCW FINITE ALGEBRA LEAN CANDIDATE — STATUS AND EXACT SCOPE
+=========================================================
+
+STATUS = A_TIER_CANDIDATE (PREPARED SOURCE ONLY)
+COMPILER = NOT EXECUTED
+THEOREM_LEVEL_AXIOM_AUDIT = NOT OBTAINED
+A_TIER = NOT ESTABLISHED
+FORMAL_CLOSURE = NOT ESTABLISHED
+ALL_SIX_PHYSICAL_NCW_GATES_CLOSED = NO
+
+B_TIER SOURCE
+https://raw.githubusercontent.com/randogelist/Maxwell-Schroedinger-System/b-tier-hull/B_TIER/NCW_SIX_GATE_FINITE_TWO_ELECTRON_DEPHASING_BRIDGE_B_TIER.txt
+
+LEAN SOURCE
+NCWFiniteGateCandidate.lean
+
+EXTERNAL NATIVE WINDOWS RUNNER
+run.cmd
+
+REQUIRES AN EXISTING CACHED MATHLIB CHECKOUT
+Set MATHLIB_ROOT to the root of an existing cached Mathlib Lake project
+with the user's selected compatible Lean 4.33/4.34.0-rc1 toolchain.
+No Mathlib package was downloaded and no Lean compiler was executed
+during this preparation. The project repo itself has no pinned
+lean-toolchain/lakefile in its current b-tier-hull root.
+
+EXACT THEOREMS PREPARED IN LEAN
+-------------------------------
+1. su3_squared_u1_anomaly:
+   2*(1/6)-2/3+1/3=0 in Q.
+
+2. su2_squared_u1_anomaly:
+   3*(1/6)-1/2=0 in Q.
+
+3. grav_squared_u1_anomaly:
+   6*(1/6)+3*(-2/3)+3*(1/3)+2*(-1/2)+1=0.
+
+4. u1_cubed_anomaly:
+   6*(1/6)^3+3*(-2/3)^3+3*(1/3)^3
+     +2*(-1/2)^3+1=0.
+
+5. current_residual_split:
+   source=fluid+(source-fluid).
+
+6. reciprocal_edge_force_cancel:
+   -kappa*(u-v)-kappa*(v-u)=0.
+
+7. graph_edge_nonnegative:
+   kappa>=0 -> kappa*(u-v)^2>=0.
+
+8. dephasing_offdiag_algebra:
+   (gamma/2)*(-z-z)=-gamma*z in C.
+
+9. coherence_current_energy_identity:
+   (gap/8)*r^2=(gap/4)*((1+r^2)/2-1/2).
+
+10. coulomb_angular_slip:
+    (DE+DC)/h - DE/h=DC/h.
+
+11. field_fluid_reservoir_power_cancel:
+    -work+(work-visc-drag)+visc+drag=0.
+
+All are algebraic finite subtheorems only, not operator/Hilbert/PDE
+formalizations of the selected two-electron GKSL semiconjugacy.
+
+AUDIT
+-----
+Source contains #print axioms for all 11 exact theorem names.
+The runner captures run-build.log and run-audit.log. Compilation success
+and an axiom audit must both be externally confirmed before any of
+these theorems receives an A_TIER marker. The runner also explicitly
+states FULL_NCW_SIX_GATE_ROOT=NOT_FORMALIZED.
+
+A subsequent external theorem-level axiom audit must verify no
+sorryAx or unapproved axioms and that the audited source/compiled file
+matches the exact committed theorem names and compiler version.
+
+OUTSTANDING PHYSICAL GATES
+--------------------------
+NCW-13 full renormalized Standard Model current.
+NCW-14 full chiral quantum/global anomaly/Ward audit.
+NCW-15 microscopic dephasing-rate and full Coulomb dynamics.
+NCW-16 genuine Maxwell backreaction force matching.
+NCW-17 full quantum field/matter/reservoir stress operator.
+NCW-18 exact complete NCW root Lean source and external audit.
+
+This candidate only advances the finite rational/scalar algebra subset
+of NCW-18; it is not a claim to close the root theorem.
+
+IMPORTANT: NO_LOCAL_LEAN respected.
