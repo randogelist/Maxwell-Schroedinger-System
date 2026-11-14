@@ -118,3 +118,14 @@ For a pure scalar Newtonian acceleration in constant-density flat incompressible
 **References:** [Gourgoulhon 3+1 GR](https://arxiv.org/abs/gr-qc/0703035) · [Bojowald–Duque–Shah hypersurface algebra](https://arxiv.org/abs/2410.18807) · [Carlotto relativistic constraints](https://link.springer.com/article/10.1007/s41114-020-00030-z).
 
 **Next scoped objective:** `GR_SPATIAL_HAMILTONIAN_CONSTRAINT_CLOSURE_PORT` under a declared matter stress, not all quantum/Einstein/NSE gates at once.
+
+## Stage 3 — concrete sourced GR initial data
+
+**Root:** `GR_HELICAL_SOURCED_ADM_CONSTRAINT_WITNESS`
+
+- [B-tier TXT — sourced Einstein–Maxwell helical constraint witness](./GR_HELICAL_SOURCED_ADM_CONSTRAINT_WITNESS_B_TIER.txt)
+- [Endpoint index — 12 scoped subresults](./GR_HELICAL_SOURCED_ADM_CONSTRAINT_WITNESS_ENDPOINT_INDEX.md)
+
+This stage upgrades the earlier structural ADM interface to explicit nonvacuum `h,K,E,B` initial data satisfying the Einstein Hamiltonian and momentum constraints plus both source-free Maxwell spatial constraints. It also proves the flat-torus zero-total-mean-momentum requirement, identifies the nonzero mean momentum of the selected antisymmetric two-electron state, and derives the gravitational quadratic interlayer-helicity/phase coupling.
+
+**Remaining:** physical quantum two-electron stress source; relativistic viscous-fluid matching; coupled Einstein/SM/NSE dynamics; external Lean compilation and theorem audit.
