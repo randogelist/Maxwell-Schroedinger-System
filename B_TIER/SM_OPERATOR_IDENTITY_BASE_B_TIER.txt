@@ -1,0 +1,376 @@
+STANDARD MODEL OPERATOR BASE FOR (NSE)^X ADAPTER
+B-TIER STRUCTURAL DERIVATION
+=====================================================
+
+STATUS
+------
+ROOT = SM_OPERATOR_IDENTITY_BASE
+MARKER = !
+TIER = CONDITIONAL_B_TIER
+SOURCE_BRANCH = b-tier-hull
+PARENTS:
+  NSE_STANDARD_MODEL_GROUP_BASE_B_TIER
+  NSE_STANDARD_MODEL_MATTER_CURRENT_STRESS_PORT_B_TIER
+  NSE_POWER_X_REGULARITY_PRESERVING_INTERACTION_PORT_B_TIER
+A_TIER = NOT_ESTABLISHED
+FORMAL_CLOSURE = NOT_ESTABLISHED
+LOCAL_LEAN_EXECUTIONS = 0
+
+OBJECTIVE
+---------
+Identify a minimal, noncanonical set of operator *types* and algebraic
+identities sufficient to describe a Standard Model input port for a
+gauge-compatible, regularity-controlled (NSE)^X layering.
+
+NOT an assertion that a unique finite operator basis generates the
+entire nonperturbative Standard Model quantum field theory.
+NOT an assertion that bare NSE group identities determine all
+Standard Model parameters or its quantum representations.
+NOT a proof that an SM-derived interaction obeys NSE regularity.
+
+The final operator collection is minimal in ROLE for this proposed
+adapter, NOT proven mathematically smallest or unique.
+
+0. DECLARE THE STANDARD MODEL DATA
+-----------------------------------
+Physical spacetime Y=R x T_L^3, with spin/tetrad data.
+Choose
+  K_Gamma=(SU(3)_C x SU(2)_L x U(1)_Y)/Gamma
+and its compatible global quotient Gamma, or work locally with
+  k_SM=su(3)+su(2)+u(1).
+Hypercharge convention Q_electric=T3+Y.
+
+Per minimal family, field representations:
+  Q_L=(3,2,+1/6),
+  u_R=(3,1,+2/3),
+  d_R=(3,1,-1/3),
+  L_L=(1,2,-1/2),
+  e_R=(1,1,-1),
+  H=(1,2,+1/2).
+Choose the number of generations, Yukawa matrices,
+gauge couplings (g_s,g,g'), Higgs parameters, theta angle,
+the chosen renormalization scheme/scale mu_R, and an admissible
+state rho or expectation functional omega.
+
+These are DATA, not deducible from NSE Lie algebra identities.
+
+The operator algebra may be taken in a finite gauge-consistent
+regularization, a perturbatively renormalized local-field algebra
+on a common invariant domain, or a suitable algebraic-QFT setting.
+Interacting 4D quantum gauge fields should not be claimed to
+possess an explicitly constructed universal nonperturbative
+Hilbert-space realization merely from the following formal
+identities.
+
+1. GRADED LOCAL FIELD ALGEBRA
+------------------------------
+THEOREM SMO-01: GRADED_FIELD_AND_STATISTICS_BASE.
+
+Form the Z2-graded algebra of local field polynomials, smeared
+against test functions, with bosonic gauge/Higgs operators and
+fermionic quark/lepton operators.
+
+For regulated equal-time fermionic operators,
+  {psi_A(x),psi_B^dagger(y)}
+     =delta_AB delta^3(x-y)
+when the chosen canonical field coordinates permit it.
+
+Bosonic canonical pairs obey corresponding regulated CCR
+before imposing gauge constraints. A longitudinal gauge
+potential is not automatically a physical canonical
+observable after Dirac constraints/gauge fixing.
+
+For spacelike-separated gauge-invariant local observables,
+graded locality reduces to ordinary commutation of
+physical bosonic observables.
+Precise domains, ghost signs, distributional smearing
+and renormalization are part of this endpoint.
+
+STATUS = FORMAL/REGULATED_STANDARD_QFT_INPUT.
+
+THEOREM SMO-02: GAUGE_GENERATOR_LIE_ACTION.
+
+Choose self-adjoint regulated generators Q_a in a
+representation for which the infinitesimal action is
+  delta_a O =-(i/hbar)[Q_a,O].
+
+Fix
+  [Q_a,Q_b]= i*hbar f_ab^c Q_c
+with generator normalization chosen compatibly.
+
+Then Jacobi of operator commutators implies
+  [delta_a,delta_b]O = f_ab^c delta_c O.
+
+For local transformations use smeared Gauss generators
+G(xi) with
+  [G(xi),G(eta)] = i*hbar G([xi,eta])
+modulo constraints, boundary terms, and any quantum
+central extension/anomaly. An anomaly-free realization
+must discharge such obstructions.
+
+STATUS = EXACT ALGEBRA GIVEN REGULATED FIRST-CLASS
+GAUGE GENERATOR REPRESENTATION.
+
+2. CONNECTION, CURVATURE AND CONSTRAINT IDENTITIES
+--------------------------------------------------
+THEOREM SMO-03: COVARIANT_DERIVATIVE_CURVATURE.
+
+For an internal scalar representation rho_R,
+  D_mu=d_mu+rho_R(A_mu),
+  F_mu nu=d_mu A_nu-d_nu A_mu+[A_mu,A_nu],
+and
+  [D_mu,D_nu]Phi =rho_R(F_mu nu) Phi.
+
+For a spinor or tangent-tensor field, the complete
+covariant derivative commutator ALSO includes its
+spacetime/spin curvature action. The displayed
+identity is only the INTERNAL gauge contribution.
+
+Bianchi:
+  D^A_[lambda F_mu nu] =0.
+
+STATUS = EXACT OPERATOR IDENTITY ON SMOOTH FIELDS
+WITH FIXED CONNECTION CONVENTION.
+
+THEOREM SMO-04: FIRST_CLASS_GAUSS_CONSTRAINT.
+
+In an anomaly-free canonically regularized gauge sector,
+  G_a := (D_i E^i)_a-rho_a^matter
+is constrained to zero on physical states (up to
+sign and coupling conventions and nonabelian electric
+momentum normalization). The smeared constraints
+close under commutators:
+
+  [G(xi),G(eta)] =i*hbar G([xi,eta]).
+
+An anomalous closure, nonzero boundary charge, or
+unaddressed gauge fixing would invalidate the
+naive first-class statement.
+
+STATUS = CONDITIONAL ON THE CANONICAL CONSTRAINT SYSTEM.
+
+THEOREM SMO-05: BRST_NILPOTENT_PHYSICAL_COHOMOLOGY.
+
+If a gauge-fixed anomaly-free BRST complex is available,
+let Q_B be its odd charge, with ghost number +1 and
+
+  Q_B^2=0.
+
+The physical state space is represented by BRST
+cohomology at ghost number zero:
+
+  H_phys=ker(Q_B)/im(Q_B),
+
+followed by the physical positivity/completion step
+appropriate to the chosen quantization.
+
+A mathematical NSE fluid forcing must be gauge-invariant
+or consistently descend to the BRST physical sector.
+BRST cohomology by itself supplies no viscosity.
+
+STATUS = CONDITIONAL_STANDARD_QFT_INPUT.
+
+3. HAMILTONIAN AND LOCAL VARIATIONAL OPERATORS
+----------------------------------------------
+THEOREM SMO-06: QUANTUM_TIME_GENERATOR.
+
+A chosen renormalized, self-adjoint Hamiltonian H_SM
+on the physical Hilbert space generates unitary
+evolution. For any suitably domain-compatible
+time-independent observable O,
+
+  dO_H/dt=(i/hbar)[H_SM,O_H].
+
+For an explicitly time-dependent observable,
+add (partial_t O)_explicit.
+For a closed time-independent H_SM,
+
+  d< H_SM >/dt=0.
+
+The H_SM sector includes:
+ gauge kinetic terms, chiral fermion kinetic terms,
+ Higgs kinetic/potential and gauge-invariant Yukawa
+ terms, with the chosen couplings and renormalization.
+
+A Lie algebra or representation table alone does NOT
+determine these numeric couplings or a state.
+
+STATUS = CONDITIONAL ON SELF-ADJOINT HAMILTONIAN.
+
+THEOREM SMO-07: ACTION_OPERATOR_BASIS_EQUIVALENCE.
+
+For renormalized local EFT or perturbative operators,
+integrated actions differing by total derivatives
+are equivalent under appropriate boundary conditions.
+Operators related by integration by parts, equations
+of motion and invertible local field redefinitions
+must be handled modulo the chosen perturbative
+order and admissibility assumptions; Fierz identities
+are additional fermionic operator reductions.
+
+Therefore there is generally NO UNIQUE monomial
+operator basis even when the underlying EFT is
+specified. A basis is only unique relative to
+declared independent representatives and conventions.
+
+For the dimension<=4 minimal SM, the standard
+gauge-invariant local terms are a compact generating
+action set, but infinitely many composite
+observables and renormalization counterterm
+composites remain relevant.
+
+STATUS = B_TIER OPERATOR BASIS NON-UNIQUENESS.
+
+4. NOETHER AND FIELD-TO-FLUID EXCHANGE PORTS
+---------------------------------------------
+THEOREM SMO-08: COVARIANT_CURRENT_WARD.
+
+From an admissible gauge-invariant matter action
+S_matter[Phi,A,g], define J^mu by variation of A.
+
+On matter equations of motion and in the absence of
+a relevant gauge anomaly,
+
+  D_mu^A J^mu=0.
+
+Individual flavor or chiral currents may fail to
+be separately conserved because of Yukawa terms,
+masses or anomalies. The closed total gauge current
+is the correct input.
+
+STATUS = CONDITIONAL ON ACTION/EOM/ANOMALY CONTROL.
+
+THEOREM SMO-09: STRESS_EXCHANGE_FORCE.
+
+Define gauge/matter stress from a fixed
+metric/tetrad variation and correctly allocate
+interaction stress. On shell, when the matter
+action has no other independently varying sources,
+
+  nabla_mu T_matter^{mu}{}_{nu}
+     = <F_{nu mu},J^mu>_k,
+
+  nabla_mu T_gauge^{mu}{}_{nu}
+     =-<F_{nu mu},J^mu>_k,
+
+so the total closed stress is covariantly conserved.
+
+The invariant paired quantity
+  Q_nu := <F_{nu mu},J^mu>_k
+is a covariant energy-momentum EXCHANGE PORT.
+For U(1), its spatial components reproduce the
+Lorentz force under a specified nonrelativistic
+limit.
+
+Interaction terms, Higgs/gravity sectors and
+renormalized operator anomalies can add explicitly
+declared stress contributions.
+
+STATUS = CONDITIONAL_B_TIER ON FIELD EQUATIONS
+AND WARD/VARIATION PREMISES.
+
+THEOREM SMO-10: GAUGE_INVARIANT_OBSERVABLE_ALGEBRA.
+
+The fluid matching must be built from physical
+gauge-invariant (or otherwise properly
+covariant) operators/expectation values.
+A connection A_mu itself transforms affinely;
+it is not a gauge-invariant local observable.
+
+The gauge-invariant field energy/stress and
+contracted force <F,J> are natural interface
+objects, whereas a colored one-point function
+J_a^mu cannot be treated as an observer-independent
+scalar without a gauge-consistent representation.
+
+STATUS = EXACT TYPE REQUIREMENT.
+
+5. REQUIRED UNIQUE-IDENTIFICATION DATA
+----------------------------------------
+THEOREM SMO-11: OPERATOR_SIGNATURE_DATA_REQUIREMENTS.
+
+The operator relations above become a
+UNIQUE (up to gauge, admissible field redefinitions,
+basis changes, and stress improvements) SELECTED
+MODEL only AFTER all of the following are chosen:
+  (a) global group/bundle and representations;
+  (b) complete local action and numerical couplings;
+  (c) quantum/gauge regularization and renormalization;
+  (d) Hamiltonian realization, constraint/BRST domain;
+  (e) physical initial density operator or state;
+  (f) boundary and spacetime geometry;
+  (g) operator bases and stress improvement convention.
+
+Even this does not uniquely specify a fluid
+transport law because coarse-graining map,
+closure approximation and environment state
+have not been fixed.
+
+STATUS = B_TIER UNDERDETERMINATION IDENTITY.
+
+6. ROOT
+-------
+THEOREM SM_OPERATOR_IDENTITY_BASE.
+
+ASSUME:
+ H1 globally and locally admissible SM gauge group,
+     representations, spin data and action;
+ H2 anomaly-free regulated canonical/BRST operator
+     realization and domains;
+ H3 renormalized Hamiltonian plus state;
+ H4 on-shell gauge/diffeomorphism Ward identities.
+
+THEN:
+ R1 graded field statistics and locality form a valid
+    operator-type interface;
+ R2 gauge commutator and covariant curvature identities
+    supply the independent internal field algebra;
+ R3 first-class Gauss and BRST constraints select
+    physical states/observables;
+ R4 H_SM generates the reversible quantum evolution;
+ R5 Ward currents and stresses produce gauge-invariant
+    exchange force ports;
+ R6 these identities do NOT uniquely fix the hydrodynamic
+    reduction, viscosity or NSE interaction graph.
+
+The statement is a CONDITIONAL B_TIER structural assembly,
+not a nonperturbative 4D SM construction and not A_TIER.
+
+7. REGISTER
+-----------
+[x] SMO-01 GRADED_FIELD_AND_STATISTICS_BASE
+[x] SMO-02 GAUGE_GENERATOR_LIE_ACTION
+[x] SMO-03 COVARIANT_DERIVATIVE_CURVATURE
+[x] SMO-04 FIRST_CLASS_GAUSS_CONSTRAINT
+[x] SMO-05 BRST_NILPOTENT_PHYSICAL_COHOMOLOGY
+[x] SMO-06 QUANTUM_TIME_GENERATOR
+[x] SMO-07 ACTION_OPERATOR_BASIS_EQUIVALENCE
+[x] SMO-08 COVARIANT_CURRENT_WARD
+[x] SMO-09 STRESS_EXCHANGE_FORCE
+[x] SMO-10 GAUGE_INVARIANT_OBSERVABLE_ALGEBRA
+[x] SMO-11 OPERATOR_SIGNATURE_DATA_REQUIREMENTS
+[x] SMO-12 SM_OPERATOR_IDENTITY_BASE
+
+[ ] SMO-13 RENORMALIZED_NONPERTURBATIVE_QFT_REALIZATION
+[ ] SMO-14 ACTUAL_STRESS_CURRENT_OPERATOR_PRODUCT_AUDIT
+[ ] SMO-15 RENORMALIZATION_SCALE_SPECIFICATION
+[ ] SMO-16 FULL_GAUGE_ANOMALY_AND_BRST_OPERATOR_AUDIT
+[ ] SMO-17 NATIVE_LEAN_EXTERNAL_COMPILER_AND_AXIOM_AUDIT
+
+8. SOURCES
+----------
+ETH Zurich QFT II BRST physical cohomology:
+https://people.phys.ethz.ch/~nbeisert/lectures/QFT2-17FS-Notes.pdf
+
+SMEFT operator redundancy: EOM, IBP and field redefinitions:
+https://cp3.irmp.ucl.ac.be/phd/94/display
+
+Standard Model action/representation source:
+https://courses.physics.illinois.edu/phys575/sp2020/lecture_notes/Standard%20Model%20Lagrangian%20%282-12-20%29.pdf
+
+Non-Abelian current and stress Ward identities:
+https://adscft.org/course/holographic-renormalization/ward-identities-and-anomalies/
+
+CLASSIFICATION
+--------------
+! CONDITIONAL_B_TIER. No Lean A-tier evidence.
