@@ -1,0 +1,445 @@
+GENERAL RELATIVITY ADM ALGEBRA AND NSE^X SPATIAL GROUP BRIDGE
+B-TIER MATHEMATICAL DERIVATION — GR STAGE 1
+========================================================
+
+STATUS
+------
+ROOT = GR_ADM_CONSTRAINT_ALGEBRA_NSE_GROUP_BRIDGE
+MARKER = !
+MODE = B_TIER_DERIVATION
+SOURCE_BRANCH = b-tier-hull
+PARENTS:
+  FROZEN_SM_NSE_OPERATOR_MATCH_REGISTER_B_TIER
+  NSE_LIE_GROUP_FOUNDATIONS_B_TIER
+  NSE_POWER_X_GROUP_STRUCTURE_B_TIER
+  NSE_STANDARD_MODEL_GROUP_BASE_B_TIER
+  NSE_CONNECTION_COVARIANT_CURVATURE_PORT_B_TIER
+
+LEAN_SOURCE = NOT_PREPARED
+A_TIER = NOT_ESTABLISHED
+FORMAL_CLOSURE = NOT_ESTABLISHED
+LOCAL_LEAN_EXECUTIONS = ZERO
+
+SCOPE
+-----
+Identify the MINIMUM classical GR algebra needed to join
+the previously frozen NSE/Standard Model structural interfaces.
+
+It has:
+ (1) spatial diffeomorphisms Diff(M), which CONTAIN SDiff(M,mu);
+ (2) Hamiltonian and momentum ADM constraints, with a
+     hypersurface-deformation ALGEBROID (metric-dependent
+     structure functions);
+ (3) local spin/Lorentz connection and gravitational curvature;
+ (4) a tensor-product combined GR+internal-gauge covariant derivative;
+ (5) contracted Bianchi and conservation requirements;
+ (6) a foliation-dependent clock (lapse and shift).
+
+Do not assert:
+  - that SDiff equals the entire GR gauge algebra;
+  - that ADM hypersurface deformations form a fixed
+    finite-dimensional Lie algebra with constant structure constants;
+  - that the auxiliary NSE U(1) curvature IS Riemann curvature;
+  - that bare NSE stress is a relativistic stress tensor;
+  - that a selected vacuum GR metric can be kept fixed
+    after new physical matter is added;
+  - a quantum GR Hilbert-space/BRST operator is constructed;
+  - a universal NSE/SM/GR dynamical equivalence.
+
+0. GR ADM DATA
+--------------
+Let spacetime Y=I x M, M=T_L^3 smooth closed spatial manifold,
+with Lorentzian metric signature (-,+,+,+). Set c=1.
+
+Choose a smooth ADM foliation:
+  g_4=-N^2 dt^2+
+        h_ij(dx^i+beta^i dt)(dx^j+beta^j dt),
+
+with N>0 (lapse), shift beta^i, positive Riemannian
+spatial metric h_ij, extrinsic curvature K_ij.
+
+The normal n is future unit timelike; for sign convention
+  K_ij=-(1/2) Lie_n h_ij.
+
+Then
+  (partial_t-Lie_beta)h_ij=-2 N K_ij.             (G1)
+
+Take the canonical momentum pi^ij conjugate to h_ij,
+with standard ADM phase-space symplectic pairing.
+Let kappa_GR=8 pi G (c=1).
+
+1. SPATIAL DIFFEOMORPHISM INTERFACE
+-----------------------------------
+GRA-01: NSE_SDIFF_TO_GR_DIFF_INCLUSION.
+
+For a chosen smooth spatial volume form mu (for example
+the flat dx of the original NSE torus),
+  SDiff(M,mu) subset Diff(M).
+
+At Lie-algebra level
+  X_sigma(M,mu) subset X(M)
+
+with the same vector-field bracket
+  [u,v]=u dot grad v-v dot grad u.
+
+The inclusion preserves the Jacobi identity and
+Lie bracket EXACTLY. This is the first GR/NSE
+operator-algebra match.
+
+CRITICAL DISTINCTION:
+  - SDiff(M,mu) is a FLUID CONFIGURATION group,
+    not the complete spacetime-diffeomorphism gauge group.
+  - In ADM, spatial D[xi] acts also on h,pi, lapse/shift
+    (as appropriate), SM connections and matter tensors;
+    fluid velocity Lie transport alone is insufficient.
+  - If the physical volume form mu_h(t) changes,
+    SDiff(M,mu_h(t)) is a TIME-DEPENDENT family.
+    A stable group SDiff(M,mu0) requires a chosen fixed
+    reference material volume mu0 and consistent map
+    between its divergence and physical div_h.
+
+STATUS = EXACT B_TIER GROUP INCLUSION, SEMANTIC GATE EXPLICIT.
+
+2. ADM CONSTRAINTS AND THEIR ALGEBRA
+-------------------------------------
+GRA-02: ADM_HAMILTONIAN_MOMENTUM_CONSTRAINTS.
+
+Define the pure-gravitational scalar constraint density
+  C_perp^GR =
+    (2*kappa_GR/sqrt(h))*
+      (pi_ij pi^ij-(1/2) pi^2)
+    -(sqrt(h)/(2*kappa_GR))*(R_h-2 Lambda),
+
+where pi=h_ij pi^ij and pi_ij=h_ik h_jl pi^kl.
+
+Define the spatial momentum constraint density
+  C_i^GR=-2 h_ik nabla_j pi^jk.
+
+For generally covariant matter with canonical
+constraints C_perp^mat,C_i^mat, define total
+  C_perp=C_perp^GR+C_perp^mat,
+  C_i=C_i^GR+C_i^mat.
+
+SM matter may also carry separate GAUGE Gauss
+constraints, which must be treated consistently
+rather than silently omitted.
+
+Smear:
+  H[N]=int_M N C_perp dx,
+  D[xi]=int_M xi^i C_i dx.
+
+The standard canonical ADM constraints
+H[N]=0, D[xi]=0 describe admissible
+Einstein initial data, given appropriate
+boundary conditions and gauge/matter
+constraint assumptions.
+
+STATUS = STANDARD B_TIER ADM DEFINITION/PREMISES.
+
+GRA-03: HYPERSURFACE_DEFORMATION_BRACKETS.
+
+Choose the ADM signs convention satisfying
+
+  {D[xi],D[eta]}=D[[xi,eta]],
+  {D[xi],H[N]}=H[Lie_xi N],
+  {H[N],H[M]}
+      =D[h^ij(N partial_j M-M partial_j N)].
+
+All smearings are fixed, field-independent
+test functions/fields; the formula is
+subject to standard canonical bracket
+conventions. Other K/D conventions can
+flip the overall sign of individual lines.
+
+The vector field in the last bracket
+  v_h^i=h^ij(N d_j M-M d_j N)
+depends on the ADM PHASE SPACE variable h.
+
+Thus the constraints form a first-class
+hypersurface-deformation algebra with
+STRUCTURE FUNCTIONS; it is more naturally
+described as an algebroid-type structure
+than an ordinary fixed Lie algebra.
+
+For generally covariant canonical matter
+the TOTAL constraints close with the same
+hypersurface-deformation structure after
+appropriate gauge constraints/improved
+spatial generators and boundary terms are
+handled.
+
+A naive product
+  (SDiff(M))^X x SU(3) x SU(2) x U(1)
+does NOT reproduce this algebra.
+
+STATUS = B_TIER WITH STANDARD ADM CANONICAL THEOREM.
+
+3. TETRAD + SPIN + INTERNAL GAUGE
+---------------------------------
+GRA-04: GR_SPIN_CONNECTION_CURVATURE.
+
+When spinor matter is present, select a
+spin structure and tetrad e_mu^a, with
+  g_mu nu=e_mu^a e_nu^b eta_ab.
+
+Fix a torsion-free metric-compatible
+spin connection omega_mu^ab and its
+curvature R_mu nu^ab.
+
+For a spinor psi with gamma_ab=(1/2)[gamma_a,gamma_b],
+the connection derivative is, in one standard convention,
+
+  nabla_mu^spin psi
+    =partial_mu psi+(1/4)omega_mu^ab gamma_ab psi.
+
+On spinors,
+
+  [nabla_mu^spin,nabla_nu^spin] psi
+    =(1/4) R_mu nu^ab gamma_ab psi.
+
+The relation includes independent
+spacetime Riemann curvature and must not
+be identified with the NSE velocity-curl
+curvature d(u^flat-b dt).
+
+STATUS = B_TIER STANDARD GEOMETRIC IDENTITY.
+
+GRA-05: SPIN_PLUS_SM_GAUGE_CURVATURE.
+
+For a matter field psi in a selected
+Standard Model representation rho_R, let
+  mathcalD_mu
+    =nabla_mu^spin+rho_R(A_mu).
+
+Assuming spin and internal representations
+act on different tensor factors,
+
+  [mathcalD_mu,mathcalD_nu] psi
+    =[(1/4) R_mu nu^ab gamma_ab
+         +rho_R(F_mu nu)]psi,
+
+where F=dA+A wedge A (representation
+normalization fixed by rho_R).
+The two curvature contributions commute
+as actions on independent factors.
+
+This is a DIRECT NATURAL JOIN of GR and
+the frozen SM-02 covariant-derivative row
+without identifying their gauge groups.
+
+STATUS = EXACT GEOMETRIC B_TIER
+FOR DECLARED SPIN/BUNDLE CONNECTIONS.
+
+4. BIANCHI AND STRESS EXCHANGE
+------------------------------
+GRA-06: EINSTEIN_CONTRACTED_BIANCHI.
+
+The geometric identity is
+
+  nabla_mu (R^mu_nu-(1/2)delta^mu_nu R)=0,
+
+i.e.
+  nabla_mu G^mu_nu=0.
+
+If the Einstein field equation holds
+  G_mu nu+Lambda g_mu nu
+    =kappa_GR T_total,mu nu,
+
+with constant G and Lambda, then
+
+  nabla_mu T_total^mu_nu=0.
+
+This total stress conservation is an
+on-shell compatibility condition.
+It does not imply separately conserved
+SM matter, electromagnetic, fluid and
+reservoir stresses when they exchange
+momentum/energy.
+
+STATUS = EXACT B_TIER GEOMETRIC/ON-SHELL IDENTITY.
+
+GRA-07: WARD_FORCE_PORT_IN_GR.
+
+For a matter action with a properly
+defined gauge-invariant current/stress
+and a common spin/gauge covariant
+derivative, the classical gauge-force
+exchange has the schematic form
+
+  nabla_mu T_matter^mu_nu
+     =<F_nu mu,J^mu>_k
+         +other declared interaction terms,
+
+  nabla_mu T_gauge^mu_nu
+     =-<F_nu mu,J^mu>_k
+         +other declared interaction terms.
+
+For an additional fluid stress sector
+and reciprocal field force Q_i^nu,
+a self-consistent partition needs
+
+  nabla_mu T_SM^mu_nu =-sum_i Q_i,nu
+                         -reservoir/interaction transfers,
+  nabla_mu T_fluid,i^mu_nu = Q_i,nu+...,
+  nabla_mu T_total^mu_nu =0.
+
+The fluid stress is NOT provided
+automatically by the nonrelativistic
+incompressible NSE kinetic energy.
+One must choose a relativistic
+imperfect-fluid constitutive stress
+and an appropriate nonrelativistic
+limit that recovers NSE.
+
+STATUS = CONDITIONAL B_TIER ON PHYSICAL STRESS PORT.
+
+5. ADM CLOCK / CANONICAL HAMILTONIAN
+-------------------------------------
+GRA-08: LAPSE_SHIFT_TIME_PORT.
+
+The ADM Hamiltonian is
+  H_ADM[N,beta]=H[N]+D[beta]+gauge/boundary terms.
+
+On a compact closed manifold, the bulk
+Hamiltonian is a sum of constraints,
+so its on-shell numerical value
+vanishes. This is not a claim that
+local physical observables have zero
+energy, or that the physical electron
+Hamiltonian H_SM is zero.
+
+Along the unit normal congruence,
+  d tau=N(t,x(t))dt
+when c=1, with coordinate drift
+  dx^i/dt=-beta^i for a pure normal
+observer in adapted coordinates.
+
+Thus an electron local proper-time
+frequency omega_loc produces phase
+  phi(t)-phi(0)
+    =-int_0^t omega_loc(t') N(t',x(t'))dt'
+subject to connection/transport terms
+for a general observer and gauge.
+
+The previous QS/NSE reduced phase rate
+DeltaE/hbar measured in coordinate time
+is therefore NOT universally equal to
+an arbitrary GR observer's proper-time
+frequency without lapse/shift and
+worldline data.
+
+STATUS = EXACT B_TIER KINEMATIC CLOCK DISTINCTION.
+
+6. GR MATERIAL CONSTRAINT NO-GO
+---------------------------------
+GRA-09: VACUUM_INITIAL_DATA_CANNOT_KEEP_SOURCED_GR_UNCHANGED.
+
+The Einstein initial-data scalar constraint is
+  R_h+K^2-K_ij K^ij
+    =2 Lambda+16 pi G rho_energy
+in c=1 units, with normal observer
+  rho_energy=T_mu nu n^mu n^nu.
+
+For vacuum flat-torus initial data
+  h=delta, K=0, Lambda=0,
+
+the left side vanishes. If one adds
+nonzero positive physical matter/EM
+energy density rho_energy>0 but keeps
+h,K unchanged, the constraint becomes
+
+  0=16 pi G rho_energy,
+
+which is impossible at points with
+nonzero positive rho_energy.
+
+Therefore an existing VACUUM GR metric
+cannot simply be retained after adding
+a genuinely sourcing electron/Maxwell/NSE
+stress sector; the Einstein constraints
+must be resolved with the new sources.
+
+This is a first exact obstruction in the
+proposed GR+SM+NSE joining program.
+
+STATUS = EXACT B_TIER CONTRADICTION.
+
+7. ROOT
+-------
+THEOREM GR_ADM_CONSTRAINT_ALGEBRA_NSE_GROUP_BRIDGE.
+
+Under a smooth ADM foliation, standard
+Einstein canonical constraint/geometry
+identities, a compatible spin structure
+when spinors are present, and explicitly
+separate internal gauge fields:
+
+ R1 NSE spatial SDiff Lie algebra embeds
+    into the GR spatial Diff Lie algebra.
+ R2 GR's Hamiltonian/diffeomorphism
+    constraints obey the metric-dependent
+    HDA, not a fixed internal SM gauge
+    algebra.
+ R3 GR spin curvature and SM gauge
+    curvature add as independent actions
+    on appropriately represented spinors.
+ R4 contracted Bianchi imposes total
+    source stress compatibility.
+ R5 lapse/shift fix the physical
+    normal-proper-time comparison.
+ R6 adding matter to vacuum GR without
+    updating constraint data is invalid
+    when sourced energy is positive.
+
+CLASSIFICATION:
+  ! B_TIER base identities from standard
+    classical GR results with exact
+    hypotheses and sign conventions;
+  full GR+SM+NSE coupled dynamics and
+  global regularity = OPEN;
+  A_TIER = NOT_ESTABLISHED.
+
+8. ENDPOINT REGISTER
+---------------------
+[x] GRA-01 NSE_SDIFF_TO_GR_DIFF_INCLUSION
+[x] GRA-02 ADM_HAMILTONIAN_MOMENTUM_CONSTRAINTS
+[x] GRA-03 HYPERSURFACE_DEFORMATION_BRACKETS
+[x] GRA-04 GR_SPIN_CONNECTION_CURVATURE
+[x] GRA-05 SPIN_PLUS_SM_GAUGE_CURVATURE
+[x] GRA-06 EINSTEIN_CONTRACTED_BIANCHI
+[x] GRA-07 WARD_FORCE_PORT_IN_GR [CONDITIONAL]
+[x] GRA-08 LAPSE_SHIFT_TIME_PORT
+[x] GRA-09 VACUUM_INITIAL_DATA_CANNOT_KEEP_SOURCED_GR_UNCHANGED
+[x] GRA-10 GR_ADM_CONSTRAINT_ALGEBRA_NSE_GROUP_BRIDGE_ROOT
+
+[ ] GRA-11 FULL_ADM_PLUS_SM_AND_FLUID_CONSTRAINT_CLOSURE
+[ ] GRA-12 ACTUAL_RELATIVISTIC_VISCOUS_STRESS_AND_THERMODYNAMICS
+[ ] GRA-13 GLOBAL_SOURCED_EINSTEIN_FIELD_INITIAL_DATA
+[ ] GRA-14 FULL_COUPLED_SMOOTH_EXISTENCE_AND_UNIQUENESS
+[ ] GRA-15 PHYSICAL_GR_NSE_CLOCK_AND_OBSERVABLE_MATCH
+[ ] GRA-16 EXTERNAL_LEAN_COMPILER_THEOREM_AXIOM_AUDIT
+
+9. LITERATURE AND SOURCES
+-------------------------
+Gourgoulhon, 3+1 Formalism and Bases of Numerical Relativity:
+https://arxiv.org/abs/gr-qc/0703035
+
+Bojowald-Duque-Shah, Hypersurface deformations:
+https://arxiv.org/abs/2410.18807
+
+Canonical hypersurface-deformation brackets:
+https://adscft.org/gr/hamiltonian-constraints/
+
+Carlotto, general relativistic constraint equations:
+https://link.springer.com/article/10.1007/s41114-020-00030-z
+
+Curved spinor and gauge connections:
+https://jyx.jyu.fi/bitstreams/1fc81e6a-f698-4090-8009-6a6e364c876b/download
+
+FINAL:
+  MARKER = !
+  TIER = B_TIER, SELECTED CLASSICAL/CONDITIONAL
+  GR_ADM_BASE_IDENTIFIED = YES
+  SPATIAL_NSE_GR_LIE_MATCH = EXACT ABSTRACT INCLUSION
+  PHYSICAL_EINSTEIN_SM_NSE_JOIN = OPEN
+  A_TIER = NOT_ESTABLISHED
