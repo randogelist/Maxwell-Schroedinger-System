@@ -1,0 +1,516 @@
+NSE^X ROUGH CORE FINITE ENTRY, 3D SWITCHED INTERACTION, AND QFB REFINEMENT
+B-TIER MATHEMATICAL DERIVATION
+========================================================================
+
+STATUS
+------
+ROOT = NSE_POWER_X_ROUGH_CORE_INTERACTION_FINITE_ENTRY
+MARKER = !
+MODE = B_TIER_DERIVATION
+BRANCH = b-tier-hull
+PARENTS:
+  NSE_POWER_X_ADMISSIBLE_COMPOSITION_B_TIER
+  NSE_POWER_X_REGULARITY_PRESERVING_INTERACTION_PORT_B_TIER
+  NSE_DECOMP_EXT (frozen background class, not yet imported as theorem)
+LEAN_SOURCE = NOT_EMITTED
+LOCAL_LEAN_EXECUTION = NONE
+A_TIER = NOT_ESTABLISHED
+FORMAL_CLOSURE = NOT_ESTABLISHED
+UNCONDITIONAL_STANDARD_MODEL_MATCHING = NOT_ESTABLISHED
+
+MAIN OUTPUTS:
+ (I) Improved energy-weighted Leray-Hopf inequality for finite graph NSE^X.
+ (II) Quantitative QFB_X finite regularity-entry time for arbitrary
+      L2 inputs (conditional on standard local critical-class restart).
+(III) Positive-time rough L2 2D3C core -> smooth reference with a finite
+      computable/a posteriori stability integral.
+ (IV) Fully 3D interaction, switched on AFTER a positive regularization
+      time, preserving global regularity under an explicit forcing norm.
+  (V) A single pure 3D Fourier forcing test with a scalar amplitude bound.
+
+CRITICAL SCOPE:
+No immediate-at-t=0 full-3D leakage is proved harmless for a generic
+rough L2 2D3C core. No claim of global 3D regularity for arbitrary data.
+
+0. FINITE NSE^X SETUP
+---------------------
+Let M=T_L^3, X={1,...,N}, N finite nonempty, with periodic
+unnormalized integration. All fluid layers have COMMON nu>0,
+unit densities and zero spatial means. Fix a constant symmetric
+nonnegative graph kappa_ij=kappa_ji>=0.
+
+On product H_X=(L2_sigma,0)^N and product dot H^s, define
+
+  A=-P_sigma Delta, B(u,v)=P_sigma[(u dot grad)v],
+  (L_kappa u)_i=sum_j kappa_ij(u_i-u_j).
+
+The unforced coupled system is
+
+  partial_t u_i+B(u_i,u_i)+nu A u_i
+      +(L_kappa u)_i=0.                                    (E1)
+
+Smooth solutions satisfy exactly
+
+  E'(t)+2 nu D(t)+2 Q(t)=0,                          (E2)
+
+where
+  E(t)=sum_i ||u_i(t)||_2^2,
+  D(t)=sum_i ||grad u_i(t)||_2^2,
+  Q(t)=sum_{i<j} kappa_ij ||u_i(t)-u_j(t)||_2^2>=0.
+
+For graph Leray-Hopf solutions assume the standard energy
+inequality from t=0:
+
+  E(t)+2nu int_0^t D(s)ds+2int_0^t Q(s)ds<=E0   (E3)
+
+for all admissible times and almost every t, where E0=E(0).
+The required weak-solution existence and energy inequality follow
+from standard Galerkin estimates for finite symmetric graph systems,
+but kernel-level formalization is not asserted.
+
+1. IMPROVED QUARTIC ENERGY BUDGET
+---------------------------------
+THEOREM FR-01: ENERGY_WEIGHTED_QUARTIC_LERAY_BOUND.
+
+Let A_D(t):=int_0^t D(s)ds. From (E3),
+
+  E(t)<=E0-2nu A_D(t)
+
+for almost every t. Since A_D is nondecreasing and
+A_D'(t)=D(t) for almost every t,
+
+  int_0^T E(t)D(t)dt
+   <=int_0^T (E0-2nu A_D(t))A_D'(t)dt
+   = E0 A_D(T)-nu[A_D(T)]^2
+   <= E0^2/(4nu).
+
+Thus, also over the full half line,
+
+  int_0^infty E(t)D(t)dt<=E0^2/(4nu).              (Q1)
+
+The coefficient 1/4 is sharper than 1/2 from the naive
+inequality E(t)<=E0 combined with the total dissipation.
+
+For the critical Sobolev scalar
+
+  H(t):=sum_i||u_i(t)||_(dot H^(1/2))^2,
+
+the Fourier/Cauchy interpolation yields
+
+  H(t)
+    <= sqrt(E(t))*sqrt(D(t)),
+
+  H(t)^2<=E(t)D(t).
+
+Therefore
+
+  int_0^infty H(t)^2 dt <= E0^2/(4nu).           (Q2)
+
+Proof relies only on (E3), P_sigma energy cancellation,
+nonnegative graph drag, and homogeneous spectral
+interpolation on a mean-zero periodic torus. It does
+NOT require smoothness at time t=0.
+
+STATUS = EXACT_B_TIER CONDITIONAL ON LERAY-HOPF
+ENERGY INEQUALITY (standard analytic input).
+
+2. SHARPENED QFB PERIODIC CUTOFF / GENERAL PRODUCT CUTOFF
+----------------------------------------------------------
+THEOREM FR-02: QFB_REFINED_SINGLE_LAYER_PERIODIC.
+
+Assume the FROZEN SINGLE-LAYER admission:
+
+  (||b||_(dot H^(1/2))^2<2pi nu^2)
+    -> global regular strong NSE trajectory from b
+
+and weak-strong uniqueness after the restarting time.
+
+For N=1 define
+  Theta=2pi nu^2.
+
+Take
+  T > E0^2/(4nu Theta^2)
+    = ||a||_2^4/(16 pi^2 nu^5).                  (Q3)
+
+Then from (Q2) there exists an admissible Lebesgue
+time s in (0,T) with
+
+  H(s)^2 < Theta^2, hence H(s)<Theta.
+
+At such a time, apply the small-data admission and
+weak-strong uniqueness. The original Leray-Hopf
+trajectory is smooth for every t>T_cut, where
+
+  T_cut=||a||_2^4/(16 pi^2 nu^5).
+
+This improves the earlier 1/(8pi^2) coarse cutoff
+for the periodic problem itself under exactly the
+same frozen small-data admission. It does not
+create a lower bound on singularity time or an
+independent physical uncertainty time.
+
+This reopens/corrects the PREVIOUS artifact's
+statement that 1/(16pi^2) could only be imported
+from a distinct QFA whole-space branch; the sharper
+energy-weighted inequality is valid directly on
+the periodic torus.
+
+STATUS = CONDITIONAL_B_TIER ON FROZEN QFB_ADMISSION.
+
+THEOREM FR-03: COUPLED_GRAPH_QFB_X_ENTRY.
+
+For N finite, let C_NL>0 satisfy the standard
+critical trilinear estimate
+
+  |<Lambda^(1/2) B(v,v),Lambda^(1/2)v>|
+  <=C_NL ||v||_(dot H^(1/2))
+           ||v||_(dot H^(3/2))^2.
+
+For the product system with symmetric nonnegative
+graph, a sufficient small-data threshold is
+
+  sqrt(H(s)) < delta,
+  delta:=nu/(2 C_NL).
+
+This follows from the graph-positive critical
+energy estimate and standard local critical
+H^(1/2) continuation. Define
+
+  Theta_X:=delta^2=nu^2/(4 C_NL^2).
+
+By (Q2), for any
+
+  T> E0^2/(4nu Theta_X^2)
+    = 4 C_NL^4 E0^2/nu^5,                       (Q4)
+
+some admissible s<T satisfies H(s)<Theta_X.
+
+The graph-coupled system is then globally regular
+from s, by the small critical restart. Weak-strong
+uniqueness identifies every Leray-Hopf solution
+with this strong continuation for t>s.
+
+Hence the finite graph system has an explicit
+eventual-regulator cutoff
+
+  T_graph <= 4 C_NL^4 E0^2/nu^5,
+
+under the standard analytic restart theorems.
+No claim that C_NL has been identified with the
+specific single-layer 2pi constant.
+
+STATUS = COMPLETE CONDITIONAL_B_TIER.
+
+3. ROUGH 2D3C PRODUCT CORE
+--------------------------
+THEOREM FR-04: ROUGH_2D3C_GRAPH_FINITE_ENTRY.
+
+Assume the initial core a=(a_i) satisfies
+
+  a_i in L2_sigma,0(M),  partial_y a_i=0
+  in distributions,  i=1,...,N.
+
+Let U(t) denote the unforced coupled graph solution
+(E1) restricted to the y-invariant sector. Decompose
+
+  U_i=(w_i^x,b_i,w_i^z),
+  w_i=(w_i^x,w_i^z),  b_i=U_i^y.
+
+The planar fields solve a FINITE coupled two-dimensional
+Navier-Stokes system with symmetric nonnegative linear
+drag; the b_i solve linear advection-diffusion with
+the same drag and the prescribed planar velocities.
+
+The 2D kinetic energy and planar vorticity estimates
+are global. With L2 initial data, standard 2D
+parabolic smoothing plus the passive-scalar regularity
+give
+
+  U in C([0,infinity);H_X)
+       intersection C^infty((0,infinity)xM)^N.
+
+For EVERY t0>0,
+
+  U(t0) in C^infty_sigma,0(M)^N.
+
+Moreover on the zero-mean torus, the unforced
+graph-coupled system has Poincare decay in L2.
+Standard 2D higher-regularity and parabolic
+long-time estimates imply for each fixed t0>0
+
+  B_U(t0)
+    :=(2 C_mix^2/nu)
+      int_{t0}^infinity
+          sum_i ||U_i(t)||_(W^(2,infinity))^2 dt
+    < infinity,                                         (R1)
+
+where C_mix is a fixed critical product estimate
+constant. The integral may grow without bound as
+t0 downarrow 0 for a rough L2 core, so no
+UNIFORM B_U(0) is claimed.
+
+The existence of the smooth globally regular
+2D3C core is standard PDE input, not a newly
+proved full 3D rough-data theorem.
+
+STATUS = B_TIER BASED ON STANDARD 2D3C PDE INPUT.
+
+4. SMOOTHLY SWITCHED FULLY 3D INTERACTION
+-----------------------------------------
+THEOREM FR-05: POST_ENTRY_CRITICAL_3D_FORCE.
+
+Fix t0>0 and the U from FR-04. Let h=(h_i) be a
+smooth divergence-free mean-zero interaction
+acceleration, with
+
+  h_i(t,x)=0 for t<=t0,
+
+and with finite critical force budget
+
+  F_*:=sum_i int_{t0}^infinity
+            ||h_i(t)||_(dot H^(-1/2))^2 dt.
+
+Let
+  delta_w=nu/(4 C_NL).
+
+Assume the strict admission
+
+  exp(B_U(t0)) * (2/nu) F_* < delta_w^2.         (R2)
+
+Define the forced graph equation for t>=0:
+
+  partial_t u_i+B(u_i,u_i)+nu A u_i
+       +(L_kappa u)_i=h_i(t).
+
+Set u(t)=U(t) for t<=t0. On t>t0 set
+  u=U+w, w(t0)=0.
+
+The perturbation w solves
+
+  partial_t w_i+nu A w_i+(L_kappa w)_i
+       +B(U_i,w_i)+B(w_i,U_i)+B(w_i,w_i)=h_i.
+
+Let
+  H_w(t)=sum_i||w_i(t)||_(dot H^(1/2))^2,
+  D_w(t)=sum_i||w_i(t)||_(dot H^(3/2))^2,
+  F(t)=sum_i||h_i(t)||_(dot H^(-1/2))^2.
+
+Assume the standard critical multiplication estimate
+  ||B(U_i,w_i)+B(w_i,U_i)||_(dot H^(-1/2))
+   <= C_mix ||U_i||_(W^(2,infinity))
+            ||w_i||_(dot H^(1/2)).
+
+Pairing with Lambda w_i, and using positive
+graph dissipation, Young's inequality gives
+on the bootstrap interval sqrt(H_w)<=delta_w:
+
+  H_w' <= beta_U(t) H_w +(2/nu)F(t),
+
+where
+  beta_U(t)
+   =(2 C_mix^2/nu)sum_i||U_i(t)||_(W^(2,infinity))^2.
+
+Gronwall and H_w(t0)=0 yield
+
+  sup_{t>=t0} H_w(t)
+    <= exp(B_U(t0))*(2/nu)*F_*
+    < delta_w^2.
+
+Thus w cannot exit the critical smallness regime.
+Local forced critical strong-solution continuation
+extends it for all t>=t0, with u smooth whenever
+the force is smooth; on (0,t0] it equals the
+original 2D3C smooth U.
+
+CONCLUSION:
+  u in C([0,infinity);H_X)
+       intersection C^infty((0,infinity)xM)^N.
+
+It has a fully THREE-DIMENSIONAL velocity for
+suitable h and U, despite its arbitrarily rough
+2D3C L2 initial data. Interaction magnitude is
+restricted by (R2), not by a bound on E(0).
+
+The construction does NOT prove regularity for a
+three-dimensional perturbation already present at
+t=0 for arbitrarily rough U(0). Switching at
+positive time is an explicit necessary premise
+of this particular proof.
+
+STATUS = COMPLETE CONDITIONAL_B_TIER WITH EXPLICIT
+SMOOTH-FORCING AND STANDARD LOCAL-CONTINUATION INPUTS.
+
+5. EXPLICIT INJECTABLE THIRD-DIRECTION FOURIER TEST
+----------------------------------------------------
+THEOREM FR-06: THREE_DIMENSIONAL_FORCING_AMPLITUDE.
+
+Suppose U has x- and z-dependent Fourier modes
+but is independent of y. Let q=2pi r/L, r in Z\{0},
+and fix a selected layer i0.
+
+Let chi in C_c^infty((t0,infinity);R), not identically
+zero, and choose the divergence-free mean-zero test
+
+  h_i(t,x,y,z)
+     = 1_{i=i0} * alpha*chi(t)*sin(qy)*e_x.
+
+Its divergence is zero because the x component
+is independent of x. It lies outside the y-invariant
+sector. Its homogeneous critical forcing norm is
+
+  F_* =alpha^2 [L^3/(2 |q|)] *||chi||_(L2_t)^2.
+
+Sufficient interaction amplitude:
+
+  |alpha|
+   < [nu^(3/2)*sqrt(|q|)/
+      (4 C_NL L^(3/2)||chi||_L2)]
+        *exp(-B_U(t0)/2).                       (R3)
+
+This is algebraically equivalent to (R2), because
+  delta_w^2=nu^2/(16 C_NL^2).
+
+Under (R3), the forced solution remains smooth
+for all t>0. New y-dependence is generated
+for t after the support begins.
+
+NOTE:
+The force is a mathematical external interaction.
+Representing it as an actual Standard Model
+current/stress force requires the previously frozen
+Ward, charge and energy-exchange gates.
+
+STATUS = EXACT CONDITIONAL_B_TIER SCALAR TEST.
+
+6. CONNECTION TO NSE_DECOMP_EXT, NSE_NOH AND OUTSIDER
+-----------------------------------------------------
+THEOREM FR-07: REGULARITY_CLASS_PORT_INTERPRETATION.
+
+The rough core U(0) may be any L2_sigma,0 2D3C datum,
+including known explicit rough shears outside every
+positive Sobolev H^s at t=0. It is smoothed for t>0.
+
+This contains an arbitrary-energy 2D3C class but
+does NOT claim a general OUTSIDER_CLASS_L1 datum
+which may fail to lie in L2.
+
+The perturbative stage shares the exponential
+admission structure of the frozen NSE_DECOMP_EXT:
+
+  ||r||_critical *exp(C*background_size/nu^2)<c nu.
+
+Here the explicit stability input is B_U(t0),
+not a proved replacement solely by ||U(0)||_2^2/nu^2.
+
+To remove t0 and admit 3D interaction immediately
+from rough initial time, a NEW anisotropic bilinear
+estimate/integrable near-zero background bound is
+required (Iftimie-style analysis), not the formal
+group structure alone.
+
+For nonzero coherent electron/SM fields,
+independent microscopic force matching and gauge
+current-stress audits remain mandatory.
+
+STATUS = EXACT SCOPE BOUNDARY.
+
+7. EXPLICIT MATHEMATICAL AND PHYSICAL LIMITS
+---------------------------------------------
+The finite-entry theorem does not establish:
+ (i) full rank-3 NSE regularity without force control;
+(ii) arbitrary energy quantized 2-electron dynamics;
+(iii) physical NSE-electron current equality;
+(iv) a universal energy-time uncertainty principle;
+ (v) an intrinsic time delay before electron interaction;
+(vi) any necessity for interactions to switch on late
+     in nature; it is a mathematical sufficient design.
+(vii) full coupling to Standard Model quantum fields.
+
+The cutoff QFB/refined is a general certificate horizon,
+not the actual singularity time of the regular classes.
+No recursive time halving is derived.
+
+8. ROOT THEOREM
+---------------
+THEOREM NSE_POWER_X_ROUGH_CORE_INTERACTION_FINITE_ENTRY.
+
+Under the finite symmetric graph NSE^X model and
+the standard 2D3C positive-time smoothing theorem,
+for every zero-mean L2 initial datum sharing a common
+2D3C symmetry and every t0>0, there exists a
+positive epsilon_force(t0,U,nu,C_NL,C_mix) such that
+all smooth mean-zero solenoidal forces h supported
+after t0 with
+
+  ||h||_(L2((t0,infinity);dot H^(-1/2))^X)
+     <epsilon_force
+
+produce globally smooth positive-time solutions.
+One explicit admissible choice is
+
+  epsilon_force
+   =nu^(3/2)/(sqrt(32)*C_NL)
+     *exp(-B_U(t0)/2).
+
+Additionally any finite graph Leray-Hopf solution
+has an eventual critical smallness restart time
+bounded by (Q4). For N=1 with the frozen threshold
+2pi nu^2, (Q3) gives the improved periodic QFB
+certificate 1/(16pi^2).
+
+DERIVATION:
+  FR-01 -> FR-02/FR-03,
+  FR-04 -> FR-05 -> FR-06,
+  FR-07 controls exact scope.
+
+CLASSIFICATION = CONDITIONAL_B_TIER, with
+the stated standard PDE and forcing assumptions.
+
+9. ENDPOINT INDEX
+-----------------
+[x] FRI-01 ENERGY_WEIGHTED_QUARTIC_LERAY_BOUND
+[x] FRI-02 QFB_REFINED_SINGLE_LAYER_PERIODIC
+[x] FRI-03 COUPLED_GRAPH_QFB_X_ENTRY
+[x] FRI-04 ROUGH_2D3C_GRAPH_FINITE_ENTRY
+[x] FRI-05 POST_ENTRY_CRITICAL_3D_FORCE
+[x] FRI-06 THREE_DIMENSIONAL_FORCING_AMPLITUDE
+[x] FRI-07 REGULARITY_CLASS_PORT_INTERPRETATION
+[x] FRI-08 NSE_POWER_X_ROUGH_CORE_INTERACTION_FINITE_ENTRY
+
+[ ] FRI-09 NEAR_ZERO_ANISOTROPIC_BACKGROUND_BOUND
+[ ] FRI-10 IMMEDIATE_ROUGH_CORE_3D_LEAKAGE
+[ ] FRI-11 COUPLED_DECOMP_EXT_EXACT_EXPONENTIAL_CONSTANT
+[ ] FRI-12 BMO_MINUS_ONE_FORCE_PORT
+[ ] FRI-13 PHYSICAL_SM_INTERACTION_WARD_ADMISSIBILITY
+[ ] FRI-14 EXTERNAL_LEAN_COMPILER_THEOREM_AXIOM_AUDIT
+
+10. FUTURE LEAN SPINE
+---------------------
+A. Product energy inequality, nonnegative graph.
+B. Abstract scalar A_D integral/chain rule and quadratic maximum.
+C. Fourier interpolation H^2<=E D.
+D. Measurable good-restart time + critical admission signature.
+E. Graph-coupled 2D3C smoothing/signature (standard PDE premise).
+F. Finite-entry background norm and forcing critical estimate.
+G. Scalar Young/Gronwall bootstrap and explicit test-force norm.
+H. Conditional root assembly; no local Lean execution.
+
+Mathematical proof steps should use existing Mathlib/Mathlib
+endpoints where VERIFIED later. None have been asserted checked
+in this document, and no external A-tier compilation exists.
+
+11. LITERATURE
+--------------
+Iftimie 1999, 3D NSE as perturbation of 2D NSE:
+https://archive.numdam.org/articles/10.24033/bsmf.2358/
+
+Classical Leray-Hopf energy inequalities, 2D3C global smoothing,
+Fujita-Kato critical H^(1/2) local/global theory, and standard
+weak-strong uniqueness are analytic inputs used by name.
+
+FINAL STATUS
+------------
+MARKER = !
+TIER = CONDITIONAL_B_TIER
+A_TIER = NOT_ESTABLISHED
+FORMAL_CLOSURE = NOT_ESTABLISHED
