@@ -57,7 +57,36 @@ s_epsilon = s*exp(-epsilon^2 k^2/4)
 tr K = +/-sqrt(3/2)*s_epsilon.
 ```
 
-They satisfy the full vacuum constraint equations pointwise.  The explicit family has fixed spatial metric, so its ADM symplectic pullback is zero.  Therefore exact nonlinear constraint existence and nonzero `CP1` action area are distinct endpoints.
+They satisfy the full vacuum constraint equations pointwise. The explicit family has fixed spatial metric, so its ADM symplectic pullback is zero. Therefore exact nonlinear constraint existence and nonzero `CP1` action area are distinct endpoints.
+
+## Vacuum development and Weyl-curvature bridge
+
+- [`GR_VACUUM_DEVELOPMENT_CURVATURE_BRIDGE_B_TIER.txt`](GR_VACUUM_DEVELOPMENT_CURVATURE_BRIDGE_B_TIER.txt) — exact Gaussian-normal metric jets, intrinsic electric/magnetic Weyl tensors, explicit circular curvature formulas, Bel-Robinson density, Gaussian-length monotonicity, and the vacuum Cauchy-development composition.
+- [`GR_VACUUM_DEVELOPMENT_CURVATURE_ENDPOINT_INDEX.md`](GR_VACUUM_DEVELOPMENT_CURVATURE_ENDPOINT_INDEX.md) — spacetime-development endpoint register.
+
+For the circular sector,
+
+```text
+E_GR = h*sigma_epsilon
+       + (s_epsilon^2/6)*diag(-1,-1,2)
+
+H_GR = -k*sigma_epsilon
+
+W_GR = |E_GR|^2+|H_GR|^2
+     = s_epsilon^4/3+k^2*s_epsilon^2.
+```
+
+The source amplitude is
+
+```text
+s_epsilon=s*exp(-epsilon^2*k^2/4),
+```
+
+so `W_GR(epsilon)` is strictly decreasing for `epsilon>0` when `s>0` and `k!=0`.
+
+Composing the exact constraint data with the standard vacuum Cauchy theorem gives a unique isometry class of maximal globally hyperbolic four-dimensional vacuum developments. This does not imply geodesic completeness or all-time coordinate existence.
+
+The bridge is explicitly transverse-only: `rho_chi` and `E_chi` are not inserted into the vacuum Einstein stress tensor. The sourced Einstein–Maxwell–Schrodinger completion remains open.
 
 The decisive continuation is
 
@@ -74,7 +103,7 @@ Only after this endpoint and same-orbit matching does
 epsilon = l_P/sqrt(kappa_GR)
 ```
 
-follow.  The historical value `epsilon=2l_P` still requires `kappa_GR=1/4`.
+follow. The historical value `epsilon=2l_P` still requires `kappa_GR=1/4`.
 
 ## Validation and obligations
 
@@ -82,4 +111,4 @@ follow.  The historical value `epsilon=2l_P` still requires `kappa_GR=1/4`.
 - [`OBLIGATION_GRAPH.md`](OBLIGATION_GRAPH.md)
 - [`VALIDATION_ENDPOINTS.md`](VALIDATION_ENDPOINTS.md)
 
-The nonlinear reduced symplectic orbit, same-orbit matching, geometric selection of the coefficient `1/4`, general source imports, and cross-adapter `MS_TO_NSE_GERM` remain explicit unresolved premises. Prepared mathematics does not establish A-tier status.
+The nonlinear reduced symplectic orbit, same-orbit matching, geometric selection of the coefficient `1/4`, sourced Einstein–Maxwell–Schrodinger completion, four-dimensional/five-dimensional adapter interface, and cross-adapter `MS_TO_NSE_GERM` remain explicit unresolved premises. Prepared mathematics does not establish A-tier status.
