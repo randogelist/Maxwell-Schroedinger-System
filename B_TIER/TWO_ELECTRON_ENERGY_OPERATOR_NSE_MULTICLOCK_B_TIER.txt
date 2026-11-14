@@ -1,0 +1,449 @@
+TWO-ELECTRON QUANTUM ENERGY OPERATORS AND NSE MULTICLOCK EVOLUTION
+B-TIER DERIVATION
+===============================================================
+
+STATUS
+------
+MARKER = !
+TIER = B_TIER (MATHEMATICAL), WITH EXPLICIT OPEN PHYSICAL BRIDGES
+ARTIFACT = TWO_ELECTRON_ENERGY_OPERATOR_NSE_MULTICLOCK_B_TIER
+ROOT_ENDPOINT = TWO_ELECTRON_NSE_ENERGY_OPERATOR_MULTICLOCK
+SOURCE_BRANCH = b-tier-hull
+A_TIER = NOT ESTABLISHED
+LEAN_STATUS = NOT EMITTED
+EXTERNAL COMPILER / THEOREM-LEVEL AXIOM AUDIT = NOT PROVIDED
+LOCAL LEAN RUNS = 0
+
+PURPOSE
+-------
+Distinguish the interacting two-electron Hamiltonian from the kinetic
+energy of the current-adapted NSE velocity. Construct exact finite
+operator representations of both, identify energy-variance corrections,
+derive the NSE energy/Koopman commutator, and isolate three independent
+clock scales. Do not identify a classical NSE time parameter with a
+self-adjoint quantum time operator.
+
+The construction uses the frozen electron-current two-helix NSE data;
+its smooth 2D3C global solution is already established at B-tier.
+
+1. QUANTUM TWO-ELECTRON ENERGY OPERATOR
+---------------------------------------
+Let
+
+  h := L2(T_L^3; C^2),
+  H_2e := exterior_square h.
+
+With electron mass m_e>0, charge -e, and external A=0, define formally
+on the natural periodic Coulomb Hamiltonian form domain
+
+  H_C := [-hbar^2/(2m_e)] (Delta_1 + Delta_2)
+         + (e^2/epsilon_0) G_L(x_1-x_2),
+
+where the periodic neutral-background Green kernel solves
+
+  -Delta G_L=delta_0-1/L^3,  integral_{T_L^3} G_L=0.
+
+The green kernel includes a declared background convention. Add Pauli
+magnetic terms or a quantized electromagnetic field only if their
+degrees of freedom have actually been modeled.
+
+For a rigorous, entirely finite numerical endpoint, choose d
+orthonormal one-electron Pauli orbitals {chi_1,...,chi_d}, project to
+
+  H_d := exterior_square span{chi_1,...,chi_d},
+  dim H_d = d(d-1)/2,
+
+and define the Hermitian matrix
+
+  H_d^C := P_d H_C P_d
+
+with exact or numerically approximated matrix elements
+
+  (H_d^C)_{IJ}=<chi_i wedge chi_j,H_C (chi_k wedge chi_l)>.
+
+The finite matrix is self-adjoint without unbounded-operator domain
+issues. Its energy and variance for normalized Psi in H_d are
+
+  E_Q(Psi) := <Psi,H_d^C Psi>,
+
+  Delta_H(Psi)^2
+    := <Psi,(H_d^C)^2 Psi>-E_Q(Psi)^2.
+
+This variance, not a classical kinetic-energy value and not merely
+a difference of selected eigenvalues, governs the quantum energy-time
+speed bound.
+
+IMPORTANT MINIMUM DIMENSION:
+  d=2 -> dim H_d=1; H_d^C acts as a scalar and Delta_H=0.
+  d=3 -> dim H_d=3; nontrivial transitions can occur.
+  d=4 -> dim H_d=6; recommended first two-electron interaction matrix.
+
+An interaction expectation on a single Slater determinant is not the
+same thing as nontrivial dynamics inside a one-dimensional truncation.
+
+2. QUANTUM MANDELSTAM-TAMM TIME
+-------------------------------
+Under time-independent self-adjoint H_d^C, if A is a self-adjoint
+time-independent observable, on states with nonzero derivative set
+
+  tau_A(Psi_t)
+    := Delta_{Psi_t} A / |d<E_A>_t/dt|.
+
+The Heisenberg equation and Robertson inequality imply
+
+  Delta_{Psi_t} H_d^C * tau_A(Psi_t) >= hbar/2.
+
+This time depends on the chosen observable A and quantum state.
+It is not a universal self-adjoint time operator, and it is not
+T_QFB. In d=2 there is no nontrivial quantum clock in the truncated
+two-electron antisymmetric space because H_d^C is a scalar.
+
+3. QUANTUM CURRENT ENERGY: ONE-COPY VERSUS TWO-COPY OPERATORS
+-------------------------------------------------------------
+The mean-zero projected velocity defined from the electron number
+current j_Psi and number density n_Psi is
+
+  a(Psi) = P_{sigma,0}(j_Psi/n_Psi).
+
+As a function of Psi this is nonlinear due to division by density.
+Its NSE energy
+
+  E_NSE[a(Psi)] = rho_f/2 * ||a(Psi)||_2^2
+
+is not generally the expectation of one fixed linear operator on the
+two-electron Hilbert space.
+
+For an exact finite endpoint, freeze a spatially constant number
+density n0>0 at the state under examination (the frozen two-orbital
+state has n0=2/L^3). Fix a real orthonormal basis {e_mu}_{mu=1}^N
+of mean-zero divergence-free vector fields. Let Jhat_mu be Hermitian
+finite-matrix operators whose expectations are the coefficients of the
+ONE-BODY total electron number current:
+
+  J_mu(rho) = Tr(rho Jhat_mu)
+            = integral <j(x)>_rho dot e_mu(x) dx.
+
+Then the finite-mode current-adapted NSE velocity and its kinetic
+energy are
+
+  a_N(rho)=n0^(-1) sum_mu J_mu(rho) e_mu,
+
+  E_cur,N(rho)=C sum_mu [J_mu(rho)]^2,
+  C:=rho_f/(2 n0^2).
+
+There are two DIFFERENT exact operatorizations.
+
+(A) ONE-COPY POSITIVE SELF-ADJOINT OPERATOR:
+
+  Ehat_J^(1)=C sum_mu (Jhat_mu)^2.
+
+Its expectation satisfies
+
+  Tr(rho Ehat_J^(1))
+   =E_cur,N(rho) + C sum_mu Var_rho(Jhat_mu).
+
+Therefore the classical squared-current energy is the expectation
+of this positive operator MINUS a nonnegative quantum current
+fluctuation correction.
+
+(B) TWO-COPY SELF-ADJOINT OPERATOR:
+
+  Ehat_J^(2)=C sum_mu Jhat_mu tensor Jhat_mu.
+
+Then, on product copies of the same quantum density matrix,
+
+  Tr[(rho tensor rho) Ehat_J^(2)] = E_cur,N(rho).
+
+This is an exact representation of the nonlinear squared-mean
+functional using two COPIES of the entire two-electron Hilbert
+space. These copies are mathematical replicas, NOT two more
+physical electrons. The operator is self-adjoint; it need not be
+positive on arbitrary correlated states of the two copies.
+
+The constant-density gate n_Psi=n0 is an initial-state gate for the
+frozen helical construction, not a theorem that an interacting
+Coulomb-evolved state preserves uniform density. A variable-density
+adapter requires a separate regularization or quotient treatment.
+
+4. CLASSICAL NSE ENERGY MULTIPLICATION OPERATOR
+-----------------------------------------------
+Fix a divergence-free real Fourier Galerkin space X_N with smooth
+velocity u_N(z) parameterized by z in R^d. The unforced NSE Galerkin
+ODE is
+
+  zdot=b_N(z).
+
+Define the physical kinetic-energy function
+
+  E_N(z):=rho_f/2 ||u_N(z)||_2^2,
+
+and dissipation function
+
+  D_N(z):=rho_f*nu ||grad u_N(z)||_2^2.
+
+The Galerkin cancellation of the incompressible quadratic convection
+gives the exact identity
+
+  DE_N(z)[b_N(z)] = -D_N(z).
+
+On L2(X_N,mu) for a declared measure mu, multiplication by E_N
+
+  (Ehat_N F)(z):=E_N(z)F(z)
+
+is a self-adjoint nonnegative multiplication operator with domain
+
+  {F in L2(mu): E_N F in L2(mu)}.
+
+On differentiable test observables define the first-order Koopman
+(Liouville) generator
+
+  L_N F := DF(z)[b_N(z)].
+
+Then the exact COMMUTATOR IDENTITY is
+
+  [L_N,Ehat_N]F
+    = (L_N E_N)F
+    = -D_N(z)F.
+
+Hence
+
+  [L_N,Ehat_N] = -Dhat_N
+
+on the common test-function domain.
+
+WARNING: L_N need not be self-adjoint, and this is NOT
+[X,P]=i hbar I or [T,H]=i hbar I. It is the operator form of
+deterministic viscous dissipation. The Hilbert space of classical
+Galerkin ensemble observables differs from the two-electron
+quantum Hilbert space.
+
+5. NONLINEAR NSE MULTICLOCK SCALES
+----------------------------------
+For a nonzero smooth mean-zero NSE trajectory set
+
+  E(t):=rho_f/2 ||u(t)||_2^2,
+  D(t):=rho_f*nu ||grad u(t)||_2^2.
+
+Then
+
+  Edot(t)=-D(t).
+
+(A) INSTANTANEOUS ENERGY DISSIPATION TIME:
+
+  tau_D(t):=E(t)/D(t),
+
+when D(t)>0.
+
+(B) INSTANTANEOUS NONLINEAR TRANSFER TIME:
+
+  tau_NL(t):=||u(t)||_2
+            /||P_sigma[(u(t) dot grad)u(t)]||_2,
+
+when denominator>0; otherwise define tau_NL=+infinity.
+
+(C) FROZEN QUASI-FEFFERMAN-B CERTIFICATE TIME:
+
+  T_QFB(a,nu):=||a||_2^4/(8pi^2 nu^5)
+              =E(0)^2/(2pi^2 rho_f^2 nu^5).
+
+This is a sufficient regularity waiting/certification bound
+and not a physical or quantum uncertainty time.
+
+(D) QUANTUM CHARACTERISTIC TIME:
+
+  tau_A(Psi) >= hbar/(2 Delta_H(Psi)).
+
+No equality between A, B, C, D follows from the current adapter.
+
+(E) ENERGY THRESHOLD HITTING TIME:
+
+  T_{E*}(a):=inf{t>=0 : E[u(t)]<=E*},
+
+for E*>0. For a SINGLE circular Laplace-eigenmode,
+E(t)=E(0) exp(-2nu k^2t) and
+
+  T_{E*}(a)=max(0, ln(E(0)/E*)/(2nu k^2)).
+
+For interacting 2D3C profiles energy transfer makes this
+generally nonexponential. This is a deterministic hitting time,
+not a canonical self-adjoint time observable.
+
+Because the operator Ehat_N is multiplication, so is the optional
+
+  That_QFB:=(1/(2pi^2 rho_f^2 nu^5)) Ehat_N^2.
+
+Thus [Ehat_N,That_QFB]=0: operatorizing the QFB cutoff by itself
+does NOT create a Heisenberg energy-time commutator.
+
+6. EXACT INITIAL TIMES FOR THE TWO-HELIX ELECTRON ADAPTER
+---------------------------------------------------------
+Use the frozen two-electron current datum
+
+  a(x,z)=A s_1(z)+B s_2(x),
+
+  s_1=(cos(kz+alpha),sin(kz+alpha),0),
+  s_2=(0,cos(ell x+beta),sin(ell x+beta)),
+
+  A=-hbar k/(4m_e), B=-hbar ell/(4m_e).
+
+The input is y-independent, so the global 2D3C NSE solution is
+smooth for all t>=0.
+
+At t=0,
+
+  ||a||_2^2=V(A^2+B^2),
+
+  ||grad a||_2^2=V(k^2 A^2+ell^2 B^2),
+
+  tau_D(0)
+    =(A^2+B^2)/(2nu(k^2 A^2+ell^2 B^2))
+    =(k^2+ell^2)/(2nu(k^4+ell^4)).
+
+The solenoidal cross-interaction has exact norm
+
+  ||P_sigma[(a dot grad)a]||_2^2
+    = V A^2 B^2/4 *
+       [ (ell^2-k^2)^2/(k^2+ell^2) + (k-ell)^2 ].
+
+Hence, if k != ell,
+
+  tau_NL(0)
+   =2 sqrt(A^2+B^2)/(
+        |AB| sqrt((ell^2-k^2)^2/(k^2+ell^2)+(k-ell)^2)
+     ),
+
+and if k=ell, tau_NL(0)=infinity.
+
+The QFB certificate is
+
+  T_QFB
+    = V^2 (A^2+B^2)^2/(8pi^2 nu^5)
+    = L^6 hbar^4(k^2+ell^2)^2
+      /(2048pi^2 m_e^4 nu^5).
+
+All three quantities are computable from (L,n,m,nu),
+but generally differ. In this 2D3C regime the actual NSE
+regularity gap is ZERO despite T_QFB>0.
+
+7. FINITE-DIMENSIONAL CLOSED-CLOCK NO-GO
+----------------------------------------
+Suppose H is a time-independent Hermitian matrix on a finite quantum
+Hilbert space, A is a bounded self-adjoint observable, and Psi_t
+=exp(-iHt/hbar) Psi_0. Then
+
+  <A>_t
+    =sum_{i,j} c_i* c_j A_ij
+       exp(i(E_i-E_j)t/hbar).
+
+This is a finite trigonometric polynomial. It cannot equal
+
+  C exp(-gamma t)  (C !=0, gamma>0)
+
+for every t>=0: the latter converges to zero, whereas a finite
+trigonometric polynomial with such a limit must be identically zero.
+
+Therefore a finite closed two-electron Hamiltonian with a fixed
+bounded current-energy readout cannot EXACTLY reproduce the nonzero
+NSE viscous exponential-energy law for all t>=0.
+
+Separately, if one identifies
+
+  E_NSE[u(t)] = <Psi_t,H Psi_t>
+
+with a time-independent self-adjoint total quantum Hamiltonian H,
+the right-hand side is constant while E_NSE[u(t)] strictly decreases
+for any nonconstant mean-zero viscous NSE velocity. The proposed
+identity then contradicts the dissipation law. A time-dependent drive,
+an environment/reservoir, a local subsystem energy, or another
+nonconserved readout is necessary for a full physical bridge.
+
+This no-go does NOT prevent oscillatory/decaying subsystem observables
+for infinite-dimensional quantum systems with continuous spectra
+and suitable limits; it identifies the limits of the frozen finite
+closed two-electron truncation.
+
+8. NUMERICAL TEST CASE
+----------------------
+Illustrative nonrelativistic scale, not a derivation of physical viscosity:
+
+  L=1.0e-9 m,
+  n=1, m=2,
+  epsilon=0,
+  nu=nu_e=hbar/(2m_e) approximately 5.7884e-5 m^2/s.
+
+Then
+
+  A approximately -1.81847e5 m/s,
+  B approximately -3.63695e5 m/s,
+
+  tau_D(0) approximately 6.43538e-17 s,
+  tau_NL(0) approximately 1.16955e-15 s,
+  T_QFB approximately 5.32835e-13 s.
+
+There is no finite tau_A number yet because no nontrivial
+d>=3 orbital, quantum Coulomb Hamiltonian matrix and initial
+state were fixed. All NSE numbers are exact formulas evaluated
+at declared parameters, not physical predictions for electrons.
+
+9. ENDPOINTS
+------------
+[x] ENOP-01 TWO_ELECTRON_FERMIONIC_HAMILTONIAN
+    B_TIER formal finite-matrix definition
+
+[x] ENOP-02 MINIMUM_THREE_ORBITAL_QUANTUM_DYNAMICS
+    EXACT_B_TIER dimension argument
+
+[x] ENOP-03 ONE_COPY_CURRENT_ENERGY_VARIANCE_SPLIT
+    EXACT_B_TIER finite matrix identity
+
+[x] ENOP-04 TWO_COPY_EXPECTATION_CURRENT_ENERGY
+    EXACT_B_TIER finite matrix identity
+
+[x] ENOP-05 NSE_GALERKIN_MULTIPLICATION_ENERGY_OPERATOR
+    EXACT_B_TIER
+
+[x] ENOP-06 NSE_KOOPMAN_ENERGY_DISSIPATION_COMMUTATOR
+    EXACT_B_TIER on cylinder tests
+
+[x] ENOP-07 TWO_HELIX_NSE_INITIAL_MULTICLOCK
+    EXACT_B_TIER
+
+[x] ENOP-08 FINITE_CLOSED_QUANTUM_VISCOUS_DECAY_NO_GO
+    EXACT_B_TIER
+
+[ ] ENOP-09 CHOOSE_AND_COMPUTE_d4_COULOMB_MATRIX
+    OPEN_NUMERICAL_INPUT
+
+[ ] ENOP-10 PROVE_PERSISTENCE_OF_UNIFORM_ELECTRON_DENSITY
+    OPEN / GENERICALLY FALSE WITHOUT ADDITIONAL STRUCTURE
+
+[ ] ENOP-11 INTERTWINE_QUANTUM_CURRENT_EVOLUTION_WITH_NSE
+    OPEN_DECISIVE_PHYSICAL_ADAPTER
+
+[ ] ENOP-12 DISSIPATIVE_RESERVOIR_OR_INFINITE_SPECTRAL_DILATION
+    OPEN_PHYSICAL_DYNAMICS
+
+10. CLASSIFICATION
+------------------
+B_TIER: finite-matrix energy/operator statements, current fluctuation
+correction, classical NSE Galerkin generator relation, explicit
+multiclock formulas and finite closed-system decay obstruction.
+
+CONDITIONAL PHYSICAL BRIDGE:
+  identifying the particular quantum current-derived velocity with
+  an actual fluid velocity and matching its future dynamics.
+
+NOT ESTABLISHED:
+  a physical quantum time operator canonically conjugate to a
+  semibounded electron Hamiltonian;
+  a new universal energy-time uncertainty principle;
+  full EMD/Maxwell-to-NSE dynamical equivalence;
+  general 3D NSE regularity;
+  A_TIER or FORMAL_CLOSURE.
+
+SOURCE NOTES
+------------
+Navier-Stokes energy equality for smooth solutions: classical
+Leray-Hopf/Temam energy estimate.
+Mandelstam-Tamm time bound: standard Robertson/Heisenberg derivation.
+The remaining identities are finite-dimensional algebra.
