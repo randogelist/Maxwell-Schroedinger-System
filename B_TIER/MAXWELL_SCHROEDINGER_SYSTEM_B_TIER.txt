@@ -1,0 +1,594 @@
+MAXWELL–SCHROEDINGER SYSTEM — B-TIER HULL
+==========================================
+
+STATUS
+------
+MARKER = !
+TIER = B_TIER
+LEAN_STATUS = NOT_PREPARED
+A_TIER_STATUS = NOT_ESTABLISHED
+
+Prepared mathematics in this file does not establish A-tier status.
+
+
+0. FROZEN SCOPE
+---------------
+
+Domain:
+
+  T^3 := (R/Z)^3,
+
+with normalized volume |T^3| = 1.
+
+Constants:
+
+  m > 0,  hbar > 0,  epsilon0 > 0,  mu0 > 0,
+  q != 0,  c^2 = 1/(epsilon0 mu0).
+
+Unknowns:
+
+  psi : R x T^3 -> C,
+  A   : R x T^3 -> R^3,
+  Phi : R x T^3 -> R.
+
+Coulomb gauge:
+
+  div A = 0,
+  mean(A) = 0,
+  mean(Phi) = 0.
+
+Definitions:
+
+  D_A := -i hbar grad - q A,
+
+  rho_psi := q (|psi|^2 - 1),
+
+  J_{psi,A} := (q/m) Re(conj(psi) D_A psi),
+
+  E := -partial_t A - grad Phi,
+
+  B := curl A.
+
+The subtraction 1 is the uniform neutralizing reference. Since |T^3| = 1,
+
+  integral rho_psi = q (||psi||_2^2 - 1).
+
+For normalized matter, the periodic Poisson compatibility condition is exact.
+
+
+1. THE MAXWELL–SCHROEDINGER SYSTEM
+----------------------------------
+
+For a real, time-independent binding potential W : T^3 -> R:
+
+(MS1)
+
+  i hbar partial_t psi
+    = [ (1/(2m)) D_A^2 + W + q Phi ] psi.
+
+(MS2)
+
+  -Delta Phi = rho_psi / epsilon0.
+
+(MS3)
+
+  partial_t^2 A - c^2 Delta A
+    = (1/epsilon0) P J_{psi,A},
+
+where P is the periodic Leray projection.
+
+Equivalent first-order Maxwell equations:
+
+(MS4)
+
+  div E = rho_psi / epsilon0,
+  div B = 0,
+  partial_t B + curl E = 0,
+  partial_t E - c^2 curl B = -J_{psi,A}/epsilon0.
+
+
+2. BASIC IDENTITIES
+-------------------
+
+THEOREM MS_CONTINUITY_IDENTITY.
+
+Assume psi, A, Phi are sufficiently regular, A and Phi are real, and psi
+satisfies (MS1). Then
+
+  partial_t |psi|^2
+    + div [ (1/m) Re(conj(psi) D_A psi) ] = 0.
+
+Therefore
+
+  partial_t rho_psi + div J_{psi,A} = 0.
+
+DERIVATION.
+
+Multiply (MS1) by conj(psi), subtract its complex conjugate, and use that
+W and Phi are real. The zeroth-order terms cancel. The covariant kinetic
+term becomes the divergence of the minimal-coupling probability current.
+
+COROLLARIES.
+
+  d/dt ||psi(t)||_2^2 = 0.
+
+If ||psi(0)||_2 = 1, then mean(rho_psi(t)) = 0 for every t.
+
+
+THEOREM MS_CONSTRAINT_PROPAGATION.
+
+Define
+
+  G_E := div E - rho_psi/epsilon0,
+  G_B := div B.
+
+If the Ampere, Faraday, and continuity equations hold, then
+
+  partial_t G_E = 0,
+  partial_t G_B = 0.
+
+Hence Gauss constraints imposed at one time persist.
+
+DERIVATION.
+
+Take divergence of Ampere and use div(curl B)=0 and continuity. Take
+divergence of Faraday and use div(curl E)=0.
+
+
+3. STATIONARY PROFILE CONSTRUCTION
+----------------------------------
+
+Fix
+
+  chi in C^infinity(T^3; R),
+  chi(x) > 0,
+  ||chi||_2 = 1,
+  lambda in R.
+
+Define
+
+  rho_chi := q (chi^2 - 1),
+
+  -Delta Phi_chi = rho_chi/epsilon0,
+  mean(Phi_chi) = 0,
+
+  E_chi := -grad Phi_chi,
+
+and
+
+  W_chi
+    := lambda
+       + (hbar^2/(2m)) (Delta chi)/chi
+       - q Phi_chi.
+
+THEOREM MS_STATIONARY_PROFILE.
+
+The fields
+
+  psi_*(t,x) = exp(-i lambda t/hbar) chi(x),
+  A_*(t,x)   = 0,
+  Phi_*(t,x) = Phi_chi(x),
+  E_*(x)     = E_chi(x),
+  B_*(x)     = 0
+
+solve (MS1)–(MS4), with
+
+  J_{psi_*,0} = 0,
+  partial_t |psi_*|^2 = 0,
+  partial_t rho_chi = 0.
+
+DERIVATION.
+
+Because chi is real,
+
+  J_{psi_*,0} = (q/m) Re(chi (-i hbar grad chi)) = 0.
+
+The Schrödinger right-hand side is
+
+  -(hbar^2/(2m)) Delta chi
+  + W_chi chi
+  + q Phi_chi chi
+  = lambda chi.
+
+The Maxwell equations reduce to the Poisson equation for Phi_chi.
+
+
+4. EXACT ENERGY GAP
+-------------------
+
+An admissible configuration is a tuple (psi,A,E,B) satisfying
+
+  psi in H^1(T^3; C),
+  ||psi||_2 = 1,
+
+  A in H^1_{sigma,0}(T^3; R^3),
+  B = curl A,
+
+  E in L^2(T^3; R^3),
+  div E = q(|psi|^2 - 1)/epsilon0.
+
+Define
+
+  H_MS(psi,A,E,B)
+    := (1/(2m)) ||D_A psi||_2^2
+       + integral W_chi |psi|^2
+       + (epsilon0/2) ||E||_2^2
+       + (1/(2 mu0)) ||B||_2^2.
+
+THEOREM MS_GROUND_STATE_TRANSFORM.
+
+For f := psi/chi,
+
+  (1/(2m)) ||D_A psi||_2^2
+  + (hbar^2/(2m)) integral (Delta chi/chi) |psi|^2
+
+  = (1/(2m)) integral chi^2 |D_A f|^2.
+
+DERIVATION.
+
+Expand D_A(chi f). The magnetic cross term with A is purely imaginary.
+Integrate the remaining cross term by parts. The scalar remainder is
+-hbar^2 chi Delta chi |f|^2.
+
+
+THEOREM MS_EXACT_ENERGY_GAP.
+
+Every admissible configuration satisfies
+
+  H_MS(psi,A,E,B) - H_MS(chi,0,E_chi,0)
+
+  = (1/(2m)) integral chi^2 |D_A(psi/chi)|^2
+    + (epsilon0/2) ||E - E_chi||_2^2
+    + (1/(2 mu0)) ||B||_2^2.
+
+DERIVATION.
+
+Step 1. The constant lambda cancels because ||psi||_2=||chi||_2=1.
+
+Step 2. Apply MS_GROUND_STATE_TRANSFORM.
+
+Step 3. From Gauss law,
+
+  div(E-E_chi) = q(|psi|^2-chi^2)/epsilon0.
+
+Since E_chi=-grad Phi_chi,
+
+  epsilon0 <E_chi,E-E_chi>
+    = q integral Phi_chi (|psi|^2-chi^2).
+
+This exactly cancels the linear term generated by -q Phi_chi in W_chi.
+Completing the electric square gives the stated identity.
+
+
+COROLLARY MS_GLOBAL_MINIMIZER.
+
+  H_MS(psi,A,E,B) >= H_MS(chi,0,E_chi,0).
+
+In the frozen Coulomb gauge, equality implies
+
+  B = 0,
+  E = E_chi,
+  A = 0,
+  psi = exp(i theta) chi
+
+for a constant theta.
+
+Thus the stationary profile is a global energy minimizer modulo phase.
+
+
+COROLLARY MS_ENERGY_TRAPPING.
+
+For every sufficiently regular global solution with conserved energy, define
+
+  delta := H_MS(psi(0),A(0),E(0),B(0))
+           - H_MS(chi,0,E_chi,0).
+
+Then for every t,
+
+  (epsilon0/2) ||E(t)-E_chi||_2^2 <= delta,
+
+  (1/(2 mu0)) ||B(t)||_2^2 <= delta,
+
+  (1/(2m)) integral chi^2
+    |D_{A(t)}(psi(t)/chi)|^2 <= delta.
+
+A full orbital-distance estimate is a separate coercivity endpoint.
+
+
+5. NUMBER-PRESERVING PROFILE TRANSFER
+------------------------------------
+
+Let
+
+  H_1 := L^2(T^3; C),
+  e_0(x) := 1,
+  ||e_0||_2 = ||chi||_2 = 1.
+
+On fermionic Fock space define
+
+  C_chi := a^dagger(chi) a(e_0),
+  C_chi^dagger := a^dagger(e_0) a(chi).
+
+THEOREM PROFILE_TRANSFER_ONE_PARTICLE.
+
+On the one-particle sector H_1,
+
+  C_chi = |chi><e_0|,
+  C_chi^dagger = |e_0><chi|,
+
+  C_chi C_chi^dagger = P_chi,
+  C_chi^dagger C_chi = P_0,
+
+  [C_chi,C_chi^dagger] = P_chi-P_0.
+
+The integral kernel diagonal is
+
+  diag(P_chi-P_0)(x) = |chi(x)|^2 - 1.
+
+Therefore
+
+  rho_chi(x)
+    = q diag([C_chi,C_chi^dagger])(x)
+
+on the one-particle sector.
+
+The operator is number preserving:
+
+  [N_hat,C_chi] = 0.
+
+Interpretation: annihilation from the uniform reference mode followed by
+creation into the profile mode; net particle number is unchanged.
+
+
+For a test function f define the rigorous smeared relative charge operator
+
+  rho_hat_rel(f)
+    := q [ dGamma(M_f) - (integral f) N_hat ].
+
+Then
+
+  <chi|rho_hat_rel(f)|chi>
+    = q integral f(x)(|chi(x)|^2-1) dx.
+
+The uniform term is a fixed neutralizing reference, not pair annihilation.
+
+
+6. STATIC a_DAGGER MAGNETIC EXTENSION
+-------------------------------------
+
+Let a_dagger be a specified mean-zero divergence-free distribution. For
+regularization parameter epsilon>0 define
+
+  a_epsilon := exp((epsilon^2/4) Delta) a_dagger.
+
+Assume
+
+  a_epsilon in C^infinity_{sigma,0}(T^3),
+  a_epsilon != 0.
+
+For lambda in R define
+
+  B_lambda := lambda a_epsilon,
+  A_lambda := K B_lambda,
+  K := curl (-Delta)_0^{-1}.
+
+Then
+
+  div A_lambda = 0,
+  mean(A_lambda)=0,
+  curl A_lambda = B_lambda.
+
+
+Weighted phase equation:
+
+  div[ chi^2 (hbar grad theta_lambda - q A_lambda) ] = 0,
+  mean(theta_lambda)=0.
+
+Because chi is positive on compact T^3, this uniformly elliptic equation has
+a unique weak solution modulo constants.
+
+Define
+
+  p_lambda := hbar grad theta_lambda - q A_lambda,
+
+  J_lambda^mat := (q/m) chi^2 p_lambda,
+
+  J_lambda^Max := (1/mu0) curl B_lambda,
+
+  J_lambda^ext := J_lambda^Max - J_lambda^mat,
+
+and
+
+  W_{chi,lambda}
+    := E_lambda
+       + (hbar^2/(2m)) (Delta chi)/chi
+       - |p_lambda|^2/(2m)
+       - q Phi_chi,
+
+where E_lambda is an arbitrary real phase eigenvalue.
+
+THEOREM A_DAGGER_STATIC_WITH_CURRENT_DEFECT.
+
+The tuple
+
+  psi_lambda(t,x)
+    = exp(-i E_lambda t/hbar)
+      chi(x) exp(i theta_lambda(x)),
+
+  A = A_lambda,
+  Phi = Phi_chi,
+  E = E_chi,
+  B = B_lambda,
+
+with total current
+
+  J_total = J_lambda^mat + J_lambda^ext
+
+solves the stationary Maxwell–Schrödinger equations.
+
+The charge is independent of lambda:
+
+  rho_lambda = q(chi^2-1).
+
+The entire magnetic incompatibility is isolated in J_lambda^ext.
+
+
+7. STATIC SPINLESS MAGNETIC NO-GO
+---------------------------------
+
+THEOREM STATIC_SPINLESS_MAGNETIC_NO_GO.
+
+Assume
+
+  div[chi^2 p] = 0,
+
+  p = hbar grad theta - q A,
+
+  B = curl A,
+  div A = 0,
+  mean(A)=0,
+
+and exact spinless self-consistency
+
+  (1/mu0) curl B = (q/m) chi^2 p.
+
+Then
+
+  B = 0,
+  p = 0,
+  A = 0,
+  theta = constant.
+
+DERIVATION.
+
+Pair Ampere's equation with A:
+
+  (1/mu0)||B||_2^2
+    = (q/m) integral chi^2 p dot A.
+
+Use
+
+  q A = hbar grad theta - p.
+
+The continuity condition gives
+
+  integral chi^2 p dot grad theta = 0.
+
+Therefore
+
+  (1/mu0)||B||_2^2
+    = -(1/m) integral chi^2 |p|^2.
+
+Both sides have opposite sign, so both vanish.
+
+COROLLARY.
+
+If lambda != 0 and a_epsilon != 0, then
+
+  J_lambda^ext != 0.
+
+Thus a nonzero static a_dagger magnetic dressing requires an external current,
+a spin current, additional matter species, or time dependence.
+
+
+8. CONDITIONAL REGULARITY / PHOTON-RADIUS BRIDGE
+------------------------------------------------
+
+This section is conditional on two independent premises.
+
+PREMISE NSE_CERTIFICATE(nu,epsilon).
+
+There exist K2>0 and p(a_epsilon)>0 such that
+
+  |lambda| < lambda_crit
+    := sqrt(2) nu / [K2 p(a_epsilon)]
+
+implies the separately specified NSE regularity predicate
+
+  Reg_nu(lambda a_epsilon).
+
+PREMISE COHERENT_RAY_LAWS(epsilon).
+
+There are positive constants N_1 and E_1 such that the coherent state attached
+to lambda a_epsilon satisfies
+
+  N_gamma(lambda) = lambda^2 N_1,
+  E_gamma(lambda) = lambda^2 E_1.
+
+Define
+
+  N_crit := lambda_crit^2 N_1,
+  E_crit := lambda_crit^2 E_1.
+
+THEOREM CERTIFICATE_RADIUS_TRANSLATION.
+
+Under the two premises,
+
+  |lambda| < lambda_crit
+    iff N_gamma(lambda) < N_crit
+    iff E_gamma(lambda) < E_crit.
+
+This is only a translation of a sufficient classical certificate along one
+coherent ray. It does not establish a physical phase transition at the
+boundary.
+
+
+9. ROOT B-TIER HULL
+-------------------
+
+THEOREM MAXWELL_SCHROEDINGER_B_TIER_HULL.
+
+From the frozen scope and explicit definitions above:
+
+  (A) the normalized Maxwell–Schrödinger system has exact continuity and
+      constraint-propagation identities;
+
+  (B) every positive normalized smooth profile chi determines an exact
+      stationary electrostatic solution;
+
+  (C) the associated binding potential produces the exact nonnegative energy
+      gap identity MS_EXACT_ENERGY_GAP;
+
+  (D) the density defect chi^2-1 is the one-particle diagonal of the
+      number-preserving profile-transfer commutator;
+
+  (E) every smooth regularized a_dagger profile defines an exact stationary
+      magnetic extension with an explicit external-current defect;
+
+  (F) exact static self-consistency of a nonzero magnetic dressing is
+      obstructed in the spinless one-state system;
+
+  (G) an imported NSE regularity radius converts algebraically to a coherent
+      photon-number and photon-energy radius, conditional on the two named
+      premises.
+
+
+10. CLOSURE CLASSIFICATION
+--------------------------
+
+UNCONDITIONAL WITHIN THE B-TIER DERIVATION:
+
+  MS_CONTINUITY_IDENTITY
+  MS_CONSTRAINT_PROPAGATION
+  MS_STATIONARY_PROFILE
+  MS_GROUND_STATE_TRANSFORM
+  MS_EXACT_ENERGY_GAP
+  MS_GLOBAL_MINIMIZER
+  PROFILE_TRANSFER_ONE_PARTICLE
+  A_DAGGER_STATIC_WITH_CURRENT_DEFECT
+  STATIC_SPINLESS_MAGNETIC_NO_GO
+
+CONDITIONAL:
+
+  global well-posedness for arbitrary energy data;
+  full orbital stability in a fixed strong metric;
+  raw a_dagger membership and outsider properties;
+  NSE_CERTIFICATE(nu,epsilon);
+  COHERENT_RAY_LAWS(epsilon) with fixed normalization conventions;
+  physical significance of lambda_crit;
+  spin, pair creation, radiative corrections, and relativistic QED.
+
+FORMAL STATUS:
+
+  B_TIER only.
+  No Lean theorem has been emitted or externally audited in this repository.
