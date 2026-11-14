@@ -1,0 +1,803 @@
+GR TWO-ELECTRON DIRAC HELICAL STRESS -> SOURCED EINSTEIN ADM CONSTRAINTS
+B-TIER DERIVATION — GR STAGE 4, MICROSCOPIC SOURCE READOUT
+=======================================================================
+
+STATUS
+------
+ROOT = GR_TWO_ELECTRON_DIRAC_HELICAL_STRESS_ADM
+MARKER = !
+MODE = B_TIER_DERIVATION
+BRANCH = b-tier-hull
+PARENTS:
+  GR_HELICAL_SOURCED_ADM_CONSTRAINT_WITNESS_B_TIER
+  GR_ADM_CONSTRAINT_ALGEBRA_NSE_GROUP_BRIDGE_B_TIER
+  NCW_SIX_GATE_FINITE_TWO_ELECTRON_DEPHASING_BRIDGE_B_TIER
+TIER = B_TIER FOR EXACT FREE-DIRAC FOCK/CLASSICAL-INITIAL-DATA ALGEBRA
+PHYSICAL_SEMICLASSICAL_GR_STRESS = CONDITIONAL
+SM_QED_BACKREACTION = OPEN
+LEAN = NOT EMITTED
+A_TIER = NOT ESTABLISHED
+LOCAL_LEAN_RUNS = ZERO
+FORMAL_CLOSURE = NOT ESTABLISHED
+
+CENTRAL ADVANCE
+---------------
+Construct a DIFFERENT, counterpropagating two-electron Slater state
+from the earlier two-electron dephasing model. The new state has
+
+  total spatial momentum = 0,
+  pointwise normal energy density = (E_p+m)/V constant,
+  local symmetric Belinfante stress momentum
+       j_grav(z)=(p/(2V)) (cos kz,-sin kz,0),
+
+which is a nonzero divergence-free helical curl eigenfield.
+This is the local gravitational stress momentum, NOT simply
+mass times the electric/Pauli current.
+
+Insert these non-arbitrarily assigned source profiles into
+the already constructed flat-torus sourced ADM constraint
+theorem and solve the constraints in closed form.
+
+There are TWO DISTINCT PHYSICAL INTERPRETATIONS:
+(A) EXACT CLASSICAL Einstein–two-Dirac-field + charged-dust
+    INITIAL CONSTRAINTS in an adapted 3+1 tetrad, using the
+    standard initial Dirac normal stress formulas.
+(B) CONDITIONAL SEMICLASSICAL Einstein gravity sourced by a
+    two-electron Fock state, depending on a renormalization
+    prescription and vacuum/curvature stress subtraction.
+
+The selected finite dephasing model also produces a
+constraint-family compatible NSE current readout,
+but this family is NOT an Einstein time evolution.
+
+0. NATURAL UNITS AND MODE LABELS
+---------------------------------
+Take hbar=c=1, metric signature (+---) in the flat Dirac
+calculation, and translate normal source densities to
+the standard positive-energy 3+1 ADM convention used in
+previous files. Einstein gravitational constant G>0,
+kappa_G=8*pi*G.
+
+Spatial M=T_L^3, L>0, volume V=L^3.
+Choose nonzero EVEN integer n and
+  k=2*pi*n/L,  p=k/2!=0.
+Even n makes p a periodic Fourier wave number.
+Let electron Dirac mass m>0 and
+  E_p=sqrt(m^2+p^2)>0.
+
+In the standard Dirac gamma-matrix representation define
+  a=sqrt((E_p+m)/(2E_p))>0,
+  b=(p/(E_p+m))*a.
+
+Then
+  a^2+b^2=1,
+  2 a b=p/E_p.
+
+The signed b accommodates either sign of k.
+
+Define the positive-energy normalized constant Dirac spinors
+
+  u_plus  = (a,0,b,0)^T,
+  u_minus = (0,a,0,b)^T,
+  u_rest  = (1,0,0,0)^T.
+
+These solve the free Dirac eigen-spinor equations
+  (alpha_z p+beta m)u_plus=E_p u_plus,
+  (alpha_z (-p)+beta m)u_minus=E_p u_minus,
+  beta m u_rest=m u_rest.
+
+The spinors u_plus,u_minus are orthogonal pointwise.
+The spatial plane-wave Fourier modes plus/minus are
+orthogonal to the rest mode on T_L^3.
+
+1. EXACT NORMALIZED ANTISYMMETRIC TWO-ELECTRON STATE
+----------------------------------------------------
+G2D-01: DIRAC_TWO_ELECTRON_SLATER_ORTHONORMALITY.
+
+Define the normalized one-electron solutions
+
+  phi_plus(t,z)=V^(-1/2) exp(i p z-i E_p t)*u_plus,
+  phi_minus(t,z)=V^(-1/2) exp(-i p z-i E_p t)*u_minus,
+  phi_rest(t,z)=V^(-1/2) exp(-i m t)*u_rest.
+
+Each solves the free massive Dirac equation on flat
+R x T_L^3 with periodic spin structure.
+
+They are pairwise orthonormal for all t.
+Define
+  phi_h=(phi_plus+phi_minus)/sqrt(2),
+  Psi_2=phi_h wedge phi_rest.
+
+Then
+  ||Psi_2||=1,
+  Psi_2 in wedge^2 L2(T_L^3;C^4),
+  N_e Psi_2=2 Psi_2.
+
+This state is a FREE two-electron eigenstate with energy
+  H_2 Psi_2=(E_p+m) Psi_2
+because plus and minus modes are energy degenerate.
+
+No wavepacket localization is asserted: it is
+a periodic finite-volume normalizable state.
+
+STATUS = EXACT B_TIER FREE-DIRAC TWO-FERMION STATE.
+
+2. NUMBER/ELECTRIC CURRENT FROM AN ACTUAL DIRAC OPERATOR
+---------------------------------------------------------
+G2D-02: HELICAL_DIRAC_NUMBER_CURRENT.
+
+In the free (A=0) sector the standard number-current
+operator density is the normal-ordered Dirac bilinear
+
+  jhat^mu(x)=:bar(Psi_hat(x)) gamma^mu Psi_hat(x):,
+
+and selected electron electric current is
+  Jhat_e^mu=q_e jhat^mu,  q_e=-e<0.
+
+For a finite Slater state the expectation of every
+number-preserving one-body bilinear equals the sum of
+the corresponding bilinears of the occupied orbitals.
+The number density is
+
+  n_2(z)=phi_h^dag phi_h+
+             phi_rest^dag phi_rest=2/V.
+
+The free Dirac velocity matrices are
+  alpha_i=gamma^0 gamma^i.
+
+Direct spinor algebra gives
+  u_plus^dag alpha_x u_minus=2ab=p/E_p,
+  u_plus^dag alpha_y u_minus=-2iab=-i p/E_p,
+  u_plus^dag alpha_z u_minus=0,
+
+  u_plus^dag alpha_z u_plus=p/E_p,
+  u_minus^dag alpha_z u_minus=-p/E_p.
+
+The diagonal z-current cancels and the offdiagonal
+transverse interference gives
+
+  j_num(z)
+    =(p/(E_p V))h_minus(z),
+
+where
+  h_minus(z)=(cos(kz),-sin(kz),0).
+
+The spectator rest orbital contributes zero spatial current.
+Thus
+
+  J_e^0 = -2e/V,
+  J_e^space= -(e p/(E_p V))h_minus.
+
+These satisfy
+  partial_t J_e^0+div J_e^space=0
+for the free stationary state.
+
+In particular:
+  mean(j_num)=0,
+  div j_num=0,
+  |j_num|=|p|/(E_p V).
+
+This is the actual selected FREE DIRAC charge current,
+not an independently assigned fluid source.
+It is not the full renormalized interacting Standard
+Model current at arbitrary gravitational curvature.
+
+STATUS = EXACT B_TIER FINITE FREE-FERMION OPERATOR READOUT.
+
+3. BELINFANTE STRESS AND ZERO GLOBAL MOMENTUM
+----------------------------------------------
+G2D-03: ACTUAL_FREE_DIRAC_BELINFANTE_STRESS_READOUT.
+
+For free Dirac spinors the symmetric Belinfante tensor is
+
+  T^{mu nu}
+   =(i/4) bar phi[
+        gamma^mu <->partial^nu
+        +gamma^nu <->partial^mu
+     ]phi,
+
+with sign/metric convention fixed as above.
+For a finite two-electron Slater state, its
+normal-ordered one-body expectation is the
+sum of the two occupied-orbital tensors.
+
+Because every phi_plus/phi_minus term has the SAME
+positive energy E_p, the helical orbital has
+
+  T_h^{00}=E_p/V.
+
+The rest orbital has
+  T_rest^{00}=m/V.
+
+The canonical spatial momentum density of phi_h,
+  P_can^i=Im(phi_h^dag partial_i phi_h),
+vanishes IDENTICALLY:
+  - the two opposite z-mode diagonal currents
+    cancel;
+  - cross terms vanish due to pointwise
+    orthogonality u_plus^dag u_minus=0.
+
+The symmetric momentum density is
+
+  T_h^{0i}
+   =(1/2)[P_can^i+E_p*j_num^i]
+   =(p/(2V))h_minus^i.
+
+The rest orbital has T_rest^{0i}=0.
+Hence total gravitational normal stress readout
+
+  rho_2(z)=T_2^{00}=(E_p+m)/V =constant,
+  j_2(z)=T_2^{0space}
+         =(p/(2V))h_minus(z).
+
+The remaining flat stress components satisfy
+  T_2^{zz}=p^2/(E_p V),
+  T_2^{xx}=T_2^{yy}=0,
+  T_2^{iz}=0 for i=x,y.
+They are constant and the free stress is conserved:
+  partial_mu T_2^{mu nu}=0.
+
+The total quantum mechanical momentum expectation is
+  <Psi_2,P_total Psi_2>
+     =int_M j_2(z)dx=0.
+
+IMPORTANT:
+  j_2=(E_p/2)*j_num,
+  but it is NOT generally m*j_num.
+This is a direct manifestation of the
+spin/Belinfante local momentum contribution.
+Its zero spatial integral is compatible
+with the integrated flat-torus ADM momentum
+constraint despite nonzero local j_2.
+
+The initial normal energy/momentum satisfy
+  rho_2>|j_2|
+because E_p+m>|p|/2.
+This inequality is on the NORMAL source pair;
+it is not a proof of a universal dominant
+energy condition for all quantum Dirac states.
+
+STATUS = COMPLETE B_TIER FREE-DIRAC STRESS ALGEBRA.
+
+4. CURVED 3+1 DIRAC NORMAL-SOURCE CONSISTENCY
+----------------------------------------------
+G2D-04: CURVED_DIRAC_INITIAL_NORMAL_PROJECTIONS.
+
+For a smooth Einstein initial slice with h=delta,
+adopt an orthonormal spatial triad and a
+Fermi–Walker transported adapted tetrad.
+The covariant spinor normal derivative is
+
+  Pi=n^mu D_mu phi.
+
+The 3+1 covariant Dirac equation gives schematically,
+in the standard adapted conventions,
+
+  Pi=-gamma^T[lambda^i D_i phi+i m phi]+(tr K/2)phi.
+
+The real scalar (tr K/2)phi term cancels in the
+normal-energy antisymmetric pairing
+
+  rho_D=(i/2)(phi^dag Pi-Pi^dag phi),
+
+so rho_D can be evaluated from intrinsic
+spatial Dirac data and the mass.
+
+For the normal momentum density, the spatial
+spin-connection K terms also cancel in the
+symmetrized Dirac stress formula. Thus the
+normal source pair (rho_2,j_2) from section 3
+is compatible with the chosen flat initial
+spatial metric and nonzero K in this adapted
+classical 3+1 Dirac formulation, provided
+no initial spatial gauge potential is added.
+
+FULL CURVED QUANTUM CAVEAT:
+The renormalized expectation of the quantized
+interacting Standard Model stress in a
+nontrivial spacetime is NOT just the
+normal-ordered flat positive-energy bilinear.
+A Hadamard/renormalization prescription,
+state choice and vacuum/curvature terms are
+independent physical analytic data.
+Consequently "actual two-electron quantum
+gravity source" remains CONDITIONAL on
+those missing terms being fixed and included.
+
+Source:
+Miguel Alcubierre, The Dirac equation in
+general relativity and the 3+1 formalism,
+General Relativity and Gravitation 57:122
+(2025), sections VII–VIII, especially
+the formulas for normal Dirac energy,
+momentum and the spin-connection cancellation.
+
+STATUS = B_TIER CLASSICAL 3+1 DIRAC INITIAL STRESS;
+SEMICLASSICAL/RENORMALIZED GR SOURCE STILL OPEN.
+
+5. CHARGE-NEUTRALISING CLASSICAL BACKGROUND
+-------------------------------------------
+G2D-05: MAXWELL_TORUS_GAUSS_REPAIR.
+
+The two electrons have uniform electric charge
+density
+  rho_q,e=-2e/V.
+The Maxwell torus charge constraint
+  div E=rho_q,total
+forces total integrated charge zero.
+
+Choose independently declared classical charged
+dust at REST on the initial spatial slice,
+with constant positive charge density
+  rho_q,bg=+2e/V,
+positive normal energy density
+  rho_bg>=0,
+and zero initial momentum density
+  j_bg=0.
+
+Take initial Maxwell fields
+  E_EM=B_EM=0.
+
+Then
+  div E_EM=0=rho_q,e+rho_q,bg,
+  div B_EM=0
+hold exactly.
+
+The charge compensator is a PHYSICAL MATTER
+SECTOR, not merely a number inserted into
+Maxwell Gauss law. It contributes rho_bg
+to the Einstein Hamiltonian constraint.
+Its subsequent current, mechanical stress,
+Lorentz acceleration and possible pressure
+are independent evolution obligations.
+
+The nonzero spatial electron electric
+current will drive Maxwell Ampere evolution
+away from zero EM fields at later time.
+Thus E=B=0 is INITIAL DATA only, not a
+time-independent full coupled solution.
+
+STATUS = EXACT B_TIER INITIAL MAXWELL/CHARGE REPAIR.
+
+6. EXACT EINSTEIN CONSTRAINT SOLUTION FROM DIRAC STRESS
+--------------------------------------------------------
+G2D-06: DIRAC_SOURCED_ADM_EXPLICIT_WITNESS.
+
+Fix G>0, Lambda>=0, k=2p !=0,
+and kappa_G=8 pi G.
+
+Define total initial source energy and momentum
+  rho_total=(E_p+m)/V+rho_bg,
+  j_total=(p/(2V))h_minus.
+
+These source densities are constructed from
+the actual selected free Dirac two-spinor
+stress readout plus the declared zero-momentum
+background, not arbitrary helical profiles.
+
+Let
+  h_perp(z)=(sin kz,cos kz,0),
+so
+  partial_z h_perp=k h_minus,
+  |h_perp|=1.
+
+Set
+  w(z)=(kappa_G/(4V))*h_perp(z),
+  S=e_z tensor w+w tensor e_z,
+  K=H delta+S.
+
+Then
+  div S=(kappa_G*k/(4V))h_minus
+       =kappa_G*(p/(2V))h_minus
+       =kappa_G*j_total,
+
+  tr S=0,
+  |S|^2= kappa_G^2/(8V^2).
+
+Define H as either real square root:
+
+  H^2=(kappa_G/3)*rho_total
+        +Lambda/3
+        +kappa_G^2/(48V^2).
+
+Because Lambda>=0, rho_total>0,
+H is real and nonzero.
+
+Momentum constraint:
+  div(K-(tr K)delta)
+   =div S=kappa_G*j_total.
+
+Hamiltonian constraint:
+  R(h)+(tr K)^2-|K|^2
+    =0+6H^2-kappa_G^2/(8V^2)
+    =2 kappa_G*rho_total+2 Lambda.
+
+Maxwell charge/flux constraints from G2D-05
+also hold.
+
+Therefore all FOUR Einstein–Maxwell SPATIAL
+INITIAL CONSTRAINTS hold exactly for the
+declared classical charged-Dirac-plus-dust
+source construction.
+
+The Dirac spinor field initial data are
+smooth on the periodic spin-structure slice
+and have a standard first-order Dirac
+initial-value specification. Independent
+matter equations and physical stress matching
+are not derived from ADM constraint algebra.
+
+STATUS = COMPLETE EXACT B_TIER
+CLASSICAL/FINITE INITIAL-CONSTRAINT WITNESS.
+
+7. NONTRIVIAL SPECTRAL CANCELLATION
+------------------------------------
+G2D-07: SPIN_MOMENTUM_INVERSE_DIVERGENCE_CANCELLATION.
+
+The local gravitating momentum amplitude is
+  |j_2|=|p|/(2V)=|k|/(4V).
+
+Solving the ADM momentum constraint requires
+a single inverse Fourier derivative:
+
+  |w|=(kappa_G/|k|)*|j_2|
+      =kappa_G/(4V).
+
+Thus the anisotropic extrinsic curvature
+norm is INDEPENDENT of k:
+
+  |S|^2=kappa_G^2/(8V^2).
+
+Its contribution to H^2 is precisely
+  kappa_G^2/(48V^2).
+
+The TOTAL H depends on k through
+  rho_2=(sqrt(m^2+k^2/4)+m)/V,
+but the isolated SHEAR TERM is independent
+of the nonzero wavenumber k.
+
+This cancellation is exact for the
+specially normalized two-mode positive-
+energy Dirac state; it is not a universal
+GR or Standard Model coupling constant,
+and one cannot continuously take k->0
+inside the nonzero periodic mode family.
+
+STATUS = EXACT B_TIER.
+
+8. NEW FREE DIRAC / NSE CURRENT INTERFACE
+------------------------------------------
+G2D-08: HELICAL_DIRAC_GRAVITY_NSE_READOUT.
+
+Define the natural *chosen readout*
+of gravitational momentum density relative
+to the (constant) electron energy density:
+
+  u_0(z):=j_2(z)/rho_2
+     =[p/(2(E_p+m))]h_minus(z).
+
+This is dimensionless in c=1 units;
+it is NOT automatically the physical
+relativistic Landau-frame velocity of
+the Dirac stress tensor, because the
+anisotropic spatial stress is nonzero.
+
+It satisfies
+  div u_0=0,
+  (u_0 dot grad)u_0=0,
+  curl u_0=k u_0,
+  Delta u_0=-k^2 u_0.
+
+Therefore u_0 is a smooth stationary
+solution of unforced incompressible EULER.
+
+For arbitrary nu>0, its viscously decaying
+profile
+  u(t,z)=exp(-nu*k^2*t)u_0(z)
+
+is an exact global smooth unforced NSE
+solution with constant pressure.
+
+The free two-electron Dirac stress readout
+is time independent, so it matches
+the EULER (nu=0) member WITHOUT dephasing,
+not the positive-viscosity NSE evolution
+without additional open-system dynamics.
+
+STATUS = EXACT B_TIER SELECTED CLASSICAL READOUT;
+PHYSICAL QUANTUM_HYDRODYNAMIC VELOCITY = OPEN.
+
+9. FINITE TWO-ELECTRON DEPHASING -> NSE SEMICONJUGACY
+------------------------------------------------------
+G2D-09: DEGENERATE_TWO_ELECTRON_GKSL_TO_NSE.
+
+Let the degenerate two-determinant basis be
+
+  D_plus=phi_plus wedge phi_rest,
+  D_minus=phi_minus wedge phi_rest.
+
+Both have the SAME free energy E_p+m.
+Define the mixed two-fermion density matrix
+rho(t) by
+
+  dot rho=(gamma/2)(Z rho Z-rho),
+
+  Z=diag(1,-1), gamma>=0,
+
+with
+  rho(0)=(1/2)[[1,1],[1,1]].
+
+Then
+  rho(t)=(1/2)[[1,exp(-gamma*t)],
+               [exp(-gamma*t),1]],
+
+which is completely positive, trace-preserving
+and particle-number preserving, with
+  eigenvalues (1+e^-gamma t)/2,
+              (1-e^-gamma t)/2.
+
+The one-body normal-ordered Dirac source becomes
+  rho_2(t)=(E_p+m)/V (constant),
+  j_2(t,z)=exp(-gamma*t)*(p/(2V))h_minus(z).
+
+The selected readout
+  u(t,z)=j_2(t,z)/rho_2
+        =exp(-gamma*t)u_0(z)
+
+solves unforced incompressible NSE precisely
+when
+  gamma=nu*k^2
+on its nonzero-helicity sector.
+
+The current electric charge also has:
+  rho_q,e=-2e/V,
+  J_e(t,z)=-e*exp(-gamma*t)*
+              (p/(E_p V))h_minus(z),
+  div J_e=0.
+
+Thus the finite number-preserving, two-electron
+open-system semigroup is EXACTLY SEMICONJUGATE
+to the scalar helical NSE amplitude-decay
+semigroup on the equal-population Bloch disk,
+under the explicitly selected rate equality.
+
+This is a new zero-mean-momentum version
+of the earlier quantum-dephasing-to-NSE
+semiconjugacy, with a direct gravitating
+Belinfante stress readout.
+
+The dephasing rate is an ASSIGNED parameter.
+It is not derived from Coulomb exchange,
+QED, GR, SM field equations or a physical bath.
+
+STATUS = EXACT FINITE B_TIER SEMICONJUGACY,
+PHYSICAL MICROSCOPIC RATE = OPEN.
+
+10. TIME-DEPENDENT ADM CONSTRAINT TRACK IS NOT EVOLUTION
+---------------------------------------------------------
+G2D-10: GKSL_INSTANTANEOUS_ADM_TRACK_NO_GO.
+
+For each fixed t>=0, take the dephased
+normal-energy and momentum source:
+  rho_total(t)=rho_total constant,
+  j_total(t)=exp(-gamma*t)j_2(0).
+
+Keeping h_t=delta as a PARAMETRIC initial-data
+choice, construct
+
+  w_t=(kappa_G/(4V))*exp(-gamma*t)h_perp,
+  S_t=e_z tensor w_t+w_t tensor e_z,
+
+  H_t^2=(kappa_G/3)*rho_total+Lambda/3
+         +(kappa_G^2/(48V^2))*exp(-2gamma*t).
+
+Then (h=delta,K_t=H_t delta+S_t)
+satisfies the ADM Hamiltonian and momentum
+constraints at EACH t algebraically.
+
+However the collection t->(h=delta,K_t)
+is NOT in general an actual Einstein evolution.
+
+Indeed the ADM metric evolution equation requires
+
+  partial_t h=-2 N K +Lie_beta h.
+
+If h is identically delta over an interval,
+take the spatial trace, integrate over T_L^3:
+
+  0=-2 int_M N tr K dx
+       +2 int_M div beta dx
+   =-6 H_t int_M N dx.
+
+For any smooth positive lapse N>0 and
+nonzero H_t of fixed sign this is IMPOSSIBLE.
+
+Because rho_total>0 and Lambda>=0, H_t!=0.
+Therefore the instantaneous constraint
+track cannot be an Einstein evolution
+with the same fixed flat h_t and positive
+lapse, regardless of periodic shift beta.
+
+This is an exact FORMAL NO-GO that prevents
+a false GR–GKSL–NSE time-synchronization claim.
+A true GR evolution must let the spatial
+metric evolve and solve the remaining
+Einstein and matter field equations.
+
+STATUS = COMPLETE EXACT B_TIER NO-GO.
+
+11. CURVED QUANTUM/CLASSICAL SOURCE SEPARATION
+-----------------------------------------------
+G2D-11: SEMICLASSICAL_RENORMALIZED_STRESS_GATE.
+
+The exact source pair computed in Sections 1–3
+is a *finite free Fock state* expectation
+of the NORMAL-ORDERED flat Dirac stress.
+
+The classical two-spinor initial data
+correspond to the SAME algebraic normal-source
+bilinears in a 3+1 adapted flat spatial
+triad, using the classical covariant
+Dirac normal energy/momentum formulas.
+
+A fully coupled **quantum** Einstein equation
+would require a well-defined renormalized
+stress expectation
+  <T_mu nu>_ren[g,A,rho],
+
+and generally differs from just the finite
+positive-energy two-orbital sum by:
+  * curvature/vacuum renormalization,
+  * state-dependent polarization,
+  * electromagnetic connection/source terms,
+  * bath/ion interaction and stress,
+  * quantum constraints, anomalies and
+    causal/state consistency.
+
+No proof is supplied that these corrections
+vanish or can always be absorbed into a
+constant Lambda or rho_bg. Such an
+absorption would itself be a new premise.
+
+A full two-electron quantum state on
+curved GR geometry is not a classical
+spinor c-number field, even though the
+selected one-body bilinear expectations
+coincide in the flat free theory.
+
+Thus the Einstein–Dirac **classical**
+initial constraint calculation is exact
+under the declared classical source model,
+but true semiclassical/Standard-Model
+Einstein-source equality remains OPEN.
+
+STATUS = EXACT MODEL/PHYSICAL TYPE BOUNDARY.
+
+12. ROOT MATHEMATICAL THEOREM
+------------------------------
+THEOREM GR_TWO_ELECTRON_DIRAC_HELICAL_STRESS_ADM.
+
+For all L>0, m>0, G>0, nonzero EVEN integer n,
+p=k/2 and Lambda>=0, define the explicit
+two-electron Slater state Psi_2 of Sections 0–1.
+
+CONCLUDE:
+ (R1) Psi_2 is normalized, antisymmetric,
+      with free two-electron energy E_p+m;
+ (R2) free normal-ordered Dirac charge and
+      stress have constant local number and
+      energy densities and helical zero-
+      spatial-mean current/momentum;
+ (R3) the local Belinfante gravitational
+      momentum is p/(2V)h_minus, not merely
+      m times the number current;
+ (R4) with an explicitly declared
+      charge-neutralising positive charged
+      classical dust background, initial
+      E=B=0 Maxwell divergence constraints
+      are satisfied;
+ (R5) the 3+1 classical Dirac normal
+      source construction and the
+      explicit (h,K) above satisfy
+      sourced Einstein initial constraints;
+ (R6) the gravitational shear contribution
+      is spectrally independent of k
+      within this nonzero-mode family;
+ (R7) the selected stress-momentum/energy
+      readout is a stationary Euler
+      helical field and its exponential
+      damping is an exact NSE solution;
+ (R8) a chosen number-preserving finite
+      GKSL dephasing sector semiconjugates
+      to viscous NSE under gamma=nu k^2;
+ (R9) an instantaneous ADM source/constraint
+      family obtained from that GKSL
+      damping is NOT a full Einstein
+      evolution at fixed h=delta for
+      positive lapse and rho_total>0;
+ (R10) full quantum Einstein/SM/QED/NSE
+       source equality remains open.
+
+The root is B_TIER as a finite explicit
+mathematical construction and its
+properly scoped classical ADM application.
+
+PHYSICAL SEMICLASSICAL GR INTERPRETATION
+REQUIRES NAMED UNRESOLVED PREMISES.
+A_TIER IS NOT ESTABLISHED.
+
+13. ENDPOINT REGISTER
+----------------------
+[x] G2D-01 DIRAC_TWO_ELECTRON_SLATER_ORTHONORMALITY
+[x] G2D-02 HELICAL_DIRAC_NUMBER_CURRENT
+[x] G2D-03 ACTUAL_FREE_DIRAC_BELINFANTE_STRESS_READOUT
+[x] G2D-04 CURVED_DIRAC_INITIAL_NORMAL_PROJECTIONS
+[x] G2D-05 MAXWELL_TORUS_GAUSS_REPAIR
+[x] G2D-06 DIRAC_SOURCED_ADM_EXPLICIT_WITNESS
+[x] G2D-07 SPIN_MOMENTUM_INVERSE_DIVERGENCE_CANCELLATION
+[x] G2D-08 HELICAL_DIRAC_GRAVITY_NSE_READOUT
+[x] G2D-09 DEGENERATE_TWO_ELECTRON_GKSL_TO_NSE
+[x] G2D-10 GKSL_INSTANTANEOUS_ADM_TRACK_NO_GO
+[x] G2D-11 SEMICLASSICAL_RENORMALIZED_STRESS_GATE
+[x] G2D-12 GR_TWO_ELECTRON_DIRAC_HELICAL_STRESS_ADM_ROOT
+
+[ ] G2D-13 RENORMALIZED_SEMICLASSICAL_EINSTEIN_SOURCE
+[ ] G2D-14 DYNAMIC_MAXWELL_DIRAC_DUST_BACKREACTION
+[ ] G2D-15 MICROSCOPIC_GKSL_DEPHASING_RATE_DERIVATION
+[ ] G2D-16 GR_INITIAL_DATA_FULL_EINSTEIN_MATTER_EVOLUTION
+[ ] G2D-17 RELATIVISTIC_NSE_STRESS_AND_REGULARITY
+[ ] G2D-18 EXTERNAL_NATIVE_LEAN_COMPILER_AXIOM_AUDIT
+
+14. FUTURE LEAN/FORMAL PROOF SPINE
+-----------------------------------
+A. Finite complex Dirac gamma matrix algebra
+   with signed momentum p and E=sqrt(m^2+p^2).
+B. Fourier torus normalization and Slater
+   antisymmetrizer/finite Fock one-body bilinears.
+C. Independent charge, canonical momentum
+   and Belinfante momentum identities.
+D. Helical Fourier curl/Laplacian/divergence
+   and positive source inequality.
+E. Symmetric tensor S derivative, norm,
+   extrinsic curvature and 4 ADM/Maxwell
+   spatial constraints.
+F. Finite 2x2 GKSL matrix positivity,
+   stress dephasing, NSE helix.
+G. ADM instantaneous-track trace integral no-go.
+H. Deterministic conditional GR-Dirac root.
+   Standard curved spinor stress and
+   physical renormalized quantum source are
+   separate analytic/semantic endpoints.
+I. Matching external native Lean compiler
+   and theorem-level axiom audit.
+
+NO LOCAL LEAN EXECUTION.
+
+15. SOURCE ANCHORS
+-------------------
+M. Alcubierre (2025), "The Dirac equation in general
+relativity and the 3+1 formalism", General Relativity
+and Gravitation 57:122. See Eqs VIII.94, VIII.105,
+VIII.111 and VIII.112:
+https://link.springer.com/article/10.1007/s10714-025-03460-8
+
+Symmetric Dirac/Belinfante stress and spin momentum:
+https://www.mdpi.com/2412-382x/10/2/8
+
+Canonical ADM sourced initial constraints:
+https://pmc.ncbi.nlm.nih.gov/articles/PMC5660886/
+
+For spin momentum as a localized solenoidal
+Belinfante contribution:
+https://www.nature.com/articles/ncomms4300
+
+FROZEN FINAL STATUS
+--------------------
+MARKER = !
+TIER = B_TIER
+FREE_TWO_ELECTRON_STRESS = EXACT
+CLASSICAL_INITIAL_EINSTEIN_CONSTRAINTS = EXACT
+TWO_ELECTRON_CURRENT_NSE_DEPHASING = EXACT_WITH_ASSIGNED_RATE
+QUANTUM_EINSTEIN_GR_SM_SOURCE = OPEN
+FULL_GR_NSE_EVOLUTION = OPEN
+A_TIER = NOT_ESTABLISHED
