@@ -1,0 +1,645 @@
+MAXWELL-SCHROEDINGER / QM-GR PLANCK-KERNEL BRIDGE
+B-TIER DERIVATION
+=================================================
+
+STATUS
+------
+
+MARKER = !
+TIER = B_TIER
+ARTIFACT = MS_GR_PLANCK_KERNEL_ENDPOINT_B_TIER
+ROOT_ENDPOINT = MS_GR_PLANCK_KERNEL_ENDPOINT
+SOURCE_BRANCH = b-tier-hull
+LEAN_STATUS = NOT_EMITTED
+A_TIER_STATUS = NOT_ESTABLISHED
+FORMAL_CLOSURE = NOT_ESTABLISHED
+LOCAL_LEAN_EXECUTIONS = 0
+
+This document derives the exact implication
+
+  GR_GAUSSIAN_SYMPLECTIC_PULLBACK(epsilon)
+  and SYMPLECTIC_MATCHING(epsilon)
+  imply
+  epsilon = 2 sqrt(G hbar / c^3).
+
+The conclusion is conditional. The Maxwell-Schrodinger system supplies the
+quantum action coefficient hbar and the Gaussian kernel convention. It does
+not supply the gravitational pullback law or select epsilon internally.
+
+
+0. FROZEN NOTATION
+------------------
+
+Let
+
+  G > 0,
+  c > 0,
+  hbar > 0,
+  epsilon > 0.
+
+Define the Planck length
+
+  l_P := sqrt(G hbar / c^3).
+
+Let
+
+  T^3 := (R/Z)^3
+
+with normalized volume. Let Delta denote the periodic Laplacian. For a
+periodic distribution a_dagger define
+
+  a_epsilon := exp((epsilon^2/4) Delta) a_dagger.
+
+Define the historical kernel and operator scales
+
+  a_* := epsilon,
+  l_* := epsilon/2.
+
+Define the gravitational action-scale candidate
+
+  S_epsilon := c^3 epsilon^2 / (4 G)
+             = c^3 l_*^2 / G.
+
+Define the dimensionless diagnostic
+
+  Xi_epsilon := S_epsilon / hbar
+              = c^3 epsilon^2 / (4 G hbar).
+
+
+1. EXACT GAUSSIAN KERNEL SCALE
+------------------------------
+
+THEOREM A_DAGGER_KERNEL_SCALE_IDENTIFICATION.
+
+On the physical Fourier wave vector xi, the operator
+
+  exp((epsilon^2/4) Delta)
+
+has multiplier
+
+  exp(-epsilon^2 |xi|^2 / 4).
+
+The historical Gaussian gravitational kernel has multiplier
+
+  exp(-a_*^2 |xi|^2 / 4)
+  = exp(-l_*^2 |xi|^2).
+
+Therefore equality of the two multiplier conventions is equivalent to
+
+  a_* = epsilon,
+  l_* = epsilon/2.
+
+DERIVATION.
+
+On the unit torus, mode k in Z^3 has physical wave vector
+
+  xi_k = 2 pi k,
+
+and
+
+  Delta exp(2 pi i k dot x)
+    = -|xi_k|^2 exp(2 pi i k dot x).
+
+Hence
+
+  exp((epsilon^2/4) Delta)
+
+multiplies that mode by
+
+  exp(-epsilon^2 |xi_k|^2/4)
+  = exp(-pi^2 epsilon^2 |k|^2).
+
+On R^3, the corresponding convolution kernel is
+
+  K_epsilon(x)
+    = (pi epsilon^2)^(-3/2)
+      exp(-|x|^2/epsilon^2).
+
+Its Fourier multiplier is exactly
+
+  exp(-epsilon^2 |xi|^2/4).
+
+The periodic kernel is the lattice periodization of K_epsilon. Therefore the
+kernel parameter appearing in exp(-a_*^2|xi|^2/4) is exactly epsilon.
+
+STATUS = EXACT_B_TIER.
+
+SCOPE NOTE.
+
+This theorem identifies conventions. It does not identify the physical origin
+of epsilon and does not imply epsilon is a Planck-scale quantity.
+
+
+2. THE QUANTUM TWO-MODE ORBIT
+-----------------------------
+
+Let
+
+  H_m := L^2(T^3; C).
+
+Let e_0(x)=1 and let chi in H_m satisfy
+
+  ||e_0||_2 = ||chi||_2 = 1.
+
+Assume chi is not a complex scalar multiple of e_0. Define
+
+  c_0 := |<e_0,chi>|,
+  s_0 := sqrt(1-c_0^2),
+
+and choose a unit vector xi orthogonal to e_0 such that, after a constant phase
+choice,
+
+  chi = c_0 e_0 + s_0 xi.
+
+The projective two-mode orbit is
+
+  O_chi := P(span_C{e_0,xi})
+         isomorphic to CP^1.
+
+A normalized representative is
+
+  psi(theta,phi)
+    := cos(theta/2) e_0
+       + exp(i phi) sin(theta/2) xi,
+
+where
+
+  0 <= theta <= pi,
+  phi in R/(2 pi Z).
+
+THEOREM MS_PROFILE_TRANSFER_CP1.
+
+The number-preserving profile-transfer unitary generated in the two-mode
+sector acts within O_chi, and chi is represented by
+
+  theta_chi = 2 arccos(c_0)
+
+with the appropriate relative phase.
+
+STATUS = EXACT_B_TIER.
+
+
+3. FUBINI-STUDY ACTION SCALE
+----------------------------
+
+Define the normalized Fubini-Study two-form on O_chi by
+
+  omega_FS
+    := (1/2) sin(theta) dtheta wedge dphi.
+
+Then
+
+  integral_{O_chi} omega_FS = 2 pi.
+
+The Schrödinger action one-form on the unit sphere is
+
+  Theta_QM := hbar Im <psi,d psi>.
+
+THEOREM MS_FUBINI_STUDY_ACTION_SCALE.
+
+On the two-mode chart,
+
+  Theta_QM
+    = hbar sin^2(theta/2) dphi
+    = (hbar/2)(1-cos theta) dphi,
+
+and therefore
+
+  Omega_MS := d Theta_QM
+            = hbar omega_FS.
+
+Consequently,
+
+  integral_{O_chi} Omega_MS = 2 pi hbar.
+
+DERIVATION.
+
+Differentiate psi(theta,phi). Orthogonality of e_0 and xi gives
+
+  <psi,d psi>
+    = i sin^2(theta/2) dphi.
+
+Taking the imaginary part and differentiating yields
+
+  d Theta_QM
+    = (hbar/2) sin(theta) dtheta wedge dphi.
+
+STATUS = EXACT_B_TIER.
+
+NORMALIZATION AUDIT.
+
+The coefficient hbar depends on the explicit convention
+
+  integral_{CP^1} omega_FS = 2 pi.
+
+If a different normalization is used, both the GR coefficient and the quantum
+coefficient must be transformed by the same convention before comparison.
+
+
+4. GRAVITATIONAL ACTION-SCALE PREMISE
+-------------------------------------
+
+Let P_GR be a reduced gravitational phase space carrying a symplectic form
+
+  Omega_GR.
+
+PREMISE GR_GAUSSIAN_SYMPLECTIC_PULLBACK(epsilon).
+
+There exists a map
+
+  iota_epsilon : O_chi -> P_GR
+
+such that
+
+  iota_epsilon^* Omega_GR
+    = S_epsilon omega_FS
+    = [c^3 epsilon^2/(4G)] omega_FS.
+
+This premise contains the complete unresolved gravitational content. It must
+specify:
+
+  (a) the gravitational phase space P_GR;
+  (b) its quotient and gauge conditions;
+  (c) the precise symplectic form Omega_GR;
+  (d) the map iota_epsilon;
+  (e) the Gaussian geometric family carrying the scale epsilon;
+  (f) the proof of the coefficient c^3 epsilon^2/(4G);
+  (g) the Fubini-Study normalization used on the source orbit.
+
+STATUS = NAMED_UNRESOLVED_PREMISE.
+
+DIMENSION CHECK.
+
+  [G]       = L^3 M^(-1) T^(-2),
+  [c^3]     = L^3 T^(-3),
+  [epsilon] = L.
+
+Therefore
+
+  [c^3 epsilon^2/G]
+    = M L^2 T^(-1),
+
+which is the dimension of action.
+
+
+5. SYMPLECTIC MATCHING PREMISE
+------------------------------
+
+PREMISE SYMPLECTIC_MATCHING(epsilon).
+
+The gravitational embedding represents the same reduced dynamical orbit as
+the Maxwell-Schrodinger quantum orbit, with
+
+  iota_epsilon^* Omega_GR = Omega_MS.
+
+Equivalently,
+
+  iota_epsilon^* Omega_GR
+    = hbar omega_FS.
+
+STATUS = NAMED_UNRESOLVED_PREMISE.
+
+This premise is stronger than dimensional agreement. It asserts equality of
+two actual symplectic structures on the same source orbit.
+
+
+6. CONDITIONAL PLANCK-KERNEL ENDPOINT
+-------------------------------------
+
+THEOREM MS_GR_PLANCK_KERNEL_ENDPOINT.
+
+Assume:
+
+  H1. G>0, c>0, hbar>0, epsilon>0;
+
+  H2. MS_FUBINI_STUDY_ACTION_SCALE:
+
+        Omega_MS = hbar omega_FS;
+
+  H3. GR_GAUSSIAN_SYMPLECTIC_PULLBACK(epsilon):
+
+        iota_epsilon^* Omega_GR
+          = [c^3 epsilon^2/(4G)] omega_FS;
+
+  H4. SYMPLECTIC_MATCHING(epsilon):
+
+        iota_epsilon^* Omega_GR = Omega_MS;
+
+  H5. omega_FS is nonzero.
+
+Then
+
+  epsilon = 2 sqrt(G hbar/c^3).
+
+Equivalently,
+
+  epsilon = 2 l_P,
+  a_*     = 2 l_P,
+  l_*     = l_P,
+  S_epsilon = hbar,
+  Xi_epsilon = 1.
+
+DERIVATION.
+
+From H2-H4,
+
+  [c^3 epsilon^2/(4G)] omega_FS
+    = hbar omega_FS.
+
+Since omega_FS is nonzero,
+
+  c^3 epsilon^2/(4G) = hbar.
+
+Therefore
+
+  epsilon^2 = 4G hbar/c^3.
+
+Because epsilon>0,
+
+  epsilon = 2 sqrt(G hbar/c^3)
+          = 2 l_P.
+
+The remaining identities follow from
+
+  a_*=epsilon,
+  l_*=epsilon/2,
+  S_epsilon=c^3 epsilon^2/(4G),
+  Xi_epsilon=S_epsilon/hbar.
+
+STATUS = CONDITIONAL_B_TIER.
+
+CLOSURE CLASSIFICATION.
+
+  Exact implication from H1-H5 to the conclusion: B_TIER.
+
+  GR_GAUSSIAN_SYMPLECTIC_PULLBACK: unresolved.
+
+  SYMPLECTIC_MATCHING: unresolved.
+
+  Therefore this endpoint is not unconditional closure.
+
+
+7. EQUIVALENT DIAGNOSTIC FORMS
+------------------------------
+
+THEOREM MS_GR_PLANCK_KERNEL_EQUIVALENCES.
+
+Under G,c,hbar,epsilon>0, the following are equivalent:
+
+  (i)   S_epsilon = hbar;
+
+  (ii)  Xi_epsilon = 1;
+
+  (iii) epsilon = 2 l_P;
+
+  (iv)  a_* = 2 l_P;
+
+  (v)   l_* = l_P.
+
+DERIVATION.
+
+Each statement is obtained by substituting
+
+  S_epsilon=c^3 epsilon^2/(4G),
+  Xi_epsilon=S_epsilon/hbar,
+  l_P^2=G hbar/c^3,
+  a_*=epsilon,
+  l_*=epsilon/2,
+
+and using positivity to choose the positive square root.
+
+STATUS = EXACT_B_TIER.
+
+
+8. PARAMETRICITY AND NON-SELECTION
+----------------------------------
+
+THEOREM MS_EPSILON_PARAMETRICITY.
+
+For every epsilon>0 and every periodic distribution a_dagger,
+
+  a_epsilon=exp((epsilon^2/4)Delta)a_dagger
+
+is smooth. If a_dagger is solenoidal and mean-zero, then a_epsilon is
+solenoidal and mean-zero. Consequently, every positive epsilon defines the
+regularized transverse datum used by the Maxwell-Schrodinger a_dagger
+extension.
+
+Therefore the existing Maxwell-Schrodinger and heat-regularization structure
+forms an epsilon-parametrized family. The existence of this family alone does
+not distinguish epsilon=2l_P from any other positive epsilon.
+
+STATUS = EXACT_B_TIER.
+
+LOGICAL SCOPE.
+
+This is a structural non-selection statement: the currently declared
+construction is available for all epsilon>0. It is not a model-theoretic
+independence theorem concerning every possible extension of the theory.
+
+
+9. INTERACTION WITH THE a_DAGGER AMPLITUDE RADIUS
+-------------------------------------------------
+
+The regularity certificate uses
+
+  lambda_crit(epsilon,nu)
+    = sqrt(2) nu/[K2 p(a_epsilon)].
+
+This quantity selects an amplitude radius lambda along the fixed epsilon ray.
+It does not select epsilon itself.
+
+Thus the parameters have separate roles:
+
+  epsilon : Gaussian smoothing length;
+  lambda  : transverse field amplitude;
+  nu      : imported NSE viscosity parameter;
+  hbar    : quantum action scale;
+  G       : gravitational coupling.
+
+No algebraic manipulation of lambda_crit alone yields
+
+  epsilon=2l_P.
+
+STATUS = EXACT_B_TIER_SEPARATION_STATEMENT.
+
+
+10. VALIDATION ENDPOINTS
+------------------------
+
+V-QMGR-01 KERNEL MULTIPLIER.
+
+For Fourier mode k verify
+
+  a_epsilon_hat(k)
+    = exp(-pi^2 epsilon^2 |k|^2) a_dagger_hat(k).
+
+V-QMGR-02 PHYSICAL WAVE-VECTOR NORMALIZATION.
+
+Verify xi_k=2pi k and
+
+  exp(-pi^2 epsilon^2|k|^2)
+    = exp(-epsilon^2|xi_k|^2/4).
+
+V-QMGR-03 FS AREA.
+
+Verify
+
+  integral_{CP^1} omega_FS=2pi,
+  integral_{CP^1} Omega_MS=2pi hbar.
+
+V-QMGR-04 FACTOR-OF-TWO AUDIT.
+
+Verify simultaneously
+
+  tau_epsilon=epsilon^2/4,
+  l_*=sqrt(tau_epsilon)=epsilon/2,
+  a_*=epsilon.
+
+V-QMGR-05 DIMENSIONAL ACTION.
+
+Verify
+
+  [S_epsilon]=action.
+
+V-QMGR-06 GR PULLBACK.
+
+Construct iota_epsilon and compute
+
+  iota_epsilon^*Omega_GR.
+
+The target coefficient is
+
+  c^3 epsilon^2/(4G).
+
+V-QMGR-07 NORMALIZATION INVARIANCE.
+
+Repeat the symplectic calculation under any alternate FS convention and verify
+that the final physical equality is unchanged after consistently transforming
+both sides.
+
+V-QMGR-08 PARAMETRICITY.
+
+Confirm that all current Maxwell-Schrodinger regularized constructions remain
+well-defined for a range of positive epsilon values. This detects accidental
+implicit scale fixing.
+
+V-QMGR-09 PLANCK ENDPOINT.
+
+After V-QMGR-06 and symplectic matching, compute
+
+  Xi_epsilon=c^3 epsilon^2/(4G hbar)
+
+and verify Xi_epsilon=1.
+
+
+11. ENDPOINT REGISTER
+---------------------
+
+[x] QMGR-01  MS_PROFILE_TRANSFER_CP1
+              EXACT_B_TIER
+
+[x] QMGR-02  MS_FUBINI_STUDY_ACTION_SCALE
+              EXACT_B_TIER
+
+[x] QMGR-03  A_DAGGER_KERNEL_SCALE_IDENTIFICATION
+              EXACT_B_TIER
+
+[ ] QMGR-04  GR_GAUSSIAN_SYMPLECTIC_PULLBACK
+              NAMED_UNRESOLVED_PREMISE
+
+[x] QMGR-05  MS_GR_PLANCK_KERNEL_ENDPOINT
+              CONDITIONAL_B_TIER
+
+[x] QMGR-06  MS_EPSILON_PARAMETRICITY
+              EXACT_B_TIER
+
+[x] QMGR-07  MS_GR_PLANCK_KERNEL_EQUIVALENCES
+              EXACT_B_TIER
+
+[ ] QMGR-08  SYMPLECTIC_MATCHING
+              NAMED_UNRESOLVED_PREMISE
+
+
+12. DEPENDENCY SPINE
+--------------------
+
+  PROFILE_TRANSFER_UNITARY_ROTATION
+    -> QMGR-01
+    -> QMGR-02.
+
+  A_DAGGER_HEAT_REGULARIZATION
+    -> QMGR-03
+    -> QMGR-06.
+
+  QMGR-02
+  + QMGR-03
+  + QMGR-04
+  + QMGR-08
+    -> QMGR-05.
+
+  positivity and definitions
+    -> QMGR-07.
+
+
+13. LEAN ADAPTER PLAN
+---------------------
+
+Planned modules:
+
+  MaxwellSchroedingerSystem/QuantumProjective.lean
+  MaxwellSchroedingerSystem/FubiniStudyScale.lean
+  MaxwellSchroedingerSystem/GaussianKernelScale.lean
+  MaxwellSchroedingerSystem/GRSymplecticBridge.lean
+  MaxwellSchroedingerSystem/PlanckKernel.lean
+
+Planned theorem signatures:
+
+  MS_PROFILE_TRANSFER_CP1
+
+  MS_FUBINI_STUDY_ACTION_SCALE
+
+  A_DAGGER_KERNEL_SCALE_IDENTIFICATION
+
+  GR_GAUSSIAN_SYMPLECTIC_PULLBACK
+
+  SYMPLECTIC_MATCHING
+
+  MS_GR_PLANCK_KERNEL_ENDPOINT
+
+  MS_GR_PLANCK_KERNEL_EQUIVALENCES
+
+  MS_EPSILON_PARAMETRICITY.
+
+Prepared declarations remain A_TIER_CANDIDATE until a matching external cached
+compiler and theorem-level axiom audit pass. The GR premises must remain
+explicit unless independently discharged.
+
+
+14. ROOT CLASSIFICATION
+-----------------------
+
+EXACT_B_TIER:
+
+  A_DAGGER_KERNEL_SCALE_IDENTIFICATION
+  MS_PROFILE_TRANSFER_CP1
+  MS_FUBINI_STUDY_ACTION_SCALE
+  MS_GR_PLANCK_KERNEL_EQUIVALENCES
+  MS_EPSILON_PARAMETRICITY.
+
+CONDITIONAL_B_TIER:
+
+  MS_GR_PLANCK_KERNEL_ENDPOINT.
+
+UNRESOLVED PREMISES:
+
+  GR_GAUSSIAN_SYMPLECTIC_PULLBACK(epsilon)
+  SYMPLECTIC_MATCHING(epsilon).
+
+FORMAL STATUS:
+
+  B_TIER only.
+  Lean files are not emitted.
+  A_TIER is not established.
+  FORMAL_CLOSURE is not established.
+  UNCONDITIONAL_CLOSURE is not established.
