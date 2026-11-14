@@ -129,3 +129,33 @@ For a pure scalar Newtonian acceleration in constant-density flat incompressible
 This stage upgrades the earlier structural ADM interface to explicit nonvacuum `h,K,E,B` initial data satisfying the Einstein Hamiltonian and momentum constraints plus both source-free Maxwell spatial constraints. It also proves the flat-torus zero-total-mean-momentum requirement, identifies the nonzero mean momentum of the selected antisymmetric two-electron state, and derives the gravitational quadratic interlayer-helicity/phase coupling.
 
 **Remaining:** physical quantum two-electron stress source; relativistic viscous-fluid matching; coupled Einstein/SM/NSE dynamics; external Lean compilation and theorem audit.
+
+## Stage 4 — explicit two-electron Dirac stress and ADM source
+
+**Root:** `GR_TWO_ELECTRON_DIRAC_HELICAL_STRESS_ADM`  
+**Type:** `! B_TIER` free-Dirac two-electron Fock stress + exact classical two-spinor/dust initial-constraint model. Full renormalized curved quantum source and GR evolution open.
+
+- [Direct B-tier derivation](./GR_TWO_ELECTRON_DIRAC_HELICAL_STRESS_ADM_B_TIER.txt)
+- [12-endpoint index and six physical/formal gates](./GR_TWO_ELECTRON_DIRAC_HELICAL_STRESS_ADM_ENDPOINT_INDEX.md)
+
+For the newly chosen counterpropagating, positive-energy Dirac spinors and a rest spectator,
+
+```text
+rho_2=(sqrt(m²+k²/4)+m)/V,
+j_2=(k/(4V))*(cos kz,-sin kz,0),
+mean(j_2)=0.
+```
+
+The exact classical sourced constraints on a flat spatial torus with a charge-neutralizing positive-energy classical dust background admit
+
+```text
+w=(8*pi*G/(4V))*(sin kz,cos kz,0)
+K=H*delta + e_z⊗w + w⊗e_z
+H²=(8*pi*G/3)*(rho_2+rho_bg)
+    +Lambda/3
+    +(8*pi*G)²/(48V²).
+```
+
+The inverse derivative in the ADM momentum constraint cancels the wavenumber factor in the selected Dirac Belinfante momentum; the isolated gravitational shear term is independent of `k≠0`. An assigned two-electron GKSL dephasing rate `gamma=nu*k²` also yields the previously regular helical NSE motion through the **chosen momentum/energy readout**.
+
+**Essential no-go:** the resulting time-parametrized family of flat-metric ADM constraint surfaces is not an Einstein spacetime evolution with fixed `h=delta` and positive lapse. A true joined evolution must evolve the metric and include the full physical matter, electromagnetic, environment and renormalized stress sources.
