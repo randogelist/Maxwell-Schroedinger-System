@@ -92,7 +92,13 @@ Then
 These are injective for X nonempty.
 
 A diagonal common diffeomorphism is a legitimate common
-Eulerian-coordinate symmetry of all layers.
+geometric change of spatial coordinates when the metric and
+other tensor fields are transformed along with the fields.
+It is NOT generally an active symmetry of the Euclidean
+viscous NSE PDE with the flat metric and Laplacian held fixed:
+the full SDiff group is the fluid configuration group,
+whereas only a smaller set of transformations preserves
+the fixed flat differential operators.
 
 STATUS = EXACT_B_TIER.
 
