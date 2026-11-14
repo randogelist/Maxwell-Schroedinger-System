@@ -1,0 +1,584 @@
+GR HELICAL SOURCED ADM CONSTRAINT WITNESS
+EXACT EINSTEIN–MAXWELL INITIAL DATA AND LAYER MOMENTUM MIXING
+B-TIER DERIVATION — GR STAGE 3
+===============================================================
+
+STATUS
+------
+ROOT_THEOREM = GR_HELICAL_SOURCED_ADM_CONSTRAINT_WITNESS
+MARKER = !
+MODE = B_TIER_DERIVATION
+SOURCE_BRANCH = b-tier-hull
+PARENTS:
+  GR_ADM_CONSTRAINT_ALGEBRA_NSE_GROUP_BRIDGE_B_TIER
+  GR_NSE_POWER_X_SM_COVARIANT_JOIN_B_TIER
+  NSE_POWER_X_ADMISSIBLE_COMPOSITION_B_TIER
+  HELICAL_ELECTRON_NSE_GLOBAL_REGULARITY_B_TIER
+LEAN_SOURCE = NOT_PREPARED
+LOCAL_LEAN_EXECUTIONS = 0
+A_TIER = NOT_ESTABLISHED
+FORMAL_CLOSURE = NOT_ESTABLISHED
+FULL_GR_SM_NSE_EQUIVALENCE = NOT_ESTABLISHED
+
+ROOT SCOPE
+----------
+Construct exact, smooth, nonvacuum Einstein–Maxwell initial data
+on a FLAT spatial torus with a helical magnetic field,
+a constant longitudinal electric field, and nonzero
+Poynting momentum. Explicitly solve BOTH Einstein constraints
+and BOTH Maxwell divergence constraints.
+
+Generalize the constraint solution to any source having
+CONSTANT normal energy density and zero-mean helical
+momentum density. If an NSE^X matter sector is subsequently
+assigned such stress data, an algebraically explicit pairwise
+momentum-angle term appears in the gravitational Hamiltonian
+constraint. This is a CONSTRAINT-LEVEL interaction, not a
+derived Einstein–NSE evolution equation.
+
+No claim is made of future geodesic completeness,
+arbitrary sourced GR global regularity, a physical electron
+QFT source, or microscopic NSE/SM gravitational matching.
+
+0. UNITS, DOMAINS AND SIGN CONVENTIONS
+---------------------------------------
+Spatial M=T_L^3 with Euclidean flat metric h_ij=delta_ij,
+volume V=L^3. Time-normal orientation and ADM momentum
+convention are fixed by
+
+  R(h)+(tr_h K)^2-|K|_h^2
+    =2 Lambda+2 kappa_G rho,           (HC)
+
+  nabla^j(K_ij-h_ij tr_h K)
+    =kappa_G j_i,                      (MC)
+
+with
+  kappa_G=8 pi G>0,
+  c=1.
+
+EM electromagnetic units are normalized by the action
+  S_EM=-1/4 int F_mu nu F^mu nu sqrt(-g) d^4 x.
+
+Then the normal-observer EM energy/momentum densities are
+  rho_EM=(|E|^2+|B|^2)/2,
+  j_EM=E cross B
+in an oriented orthonormal spatial frame. Restoring SI
+units requires the separate epsilon_0, mu_0, c factors.
+
+Maxwell source-free spatial constraints:
+  div_h E=0,  div_h B=0.
+
+The gravitational ADM Hamiltonian parameter H used below
+is a constant multiple of the spatial metric in K_ij.
+It is NOT the electron quantum Hamiltonian H_SM.
+
+Take integer n!=0 and
+  k=2 pi n/L.
+
+Define
+  h_1(z)=(cos(kz),sin(kz),0),
+  h_2(z)=(-sin(kz),cos(kz),0),
+  e_z=(0,0,1).
+
+Their exact identities:
+  partial_z h_1=k h_2,
+  partial_z h_2=-k h_1,
+  div h_1=div h_2=0,
+  curl h_1=-k h_1, curl h_2=-k h_2,
+  |h_1|=|h_2|=1,
+  h_1 dot h_2=0,
+  mean h_1=mean h_2=0,
+  e_z cross h_1=h_2.
+
+1. EXPLICIT VACUUM-MAXWELL FIELD DATA
+--------------------------------------
+THEOREM GRH-01: HELICAL_ELECTROMAGNETIC_MAXWELL_CONSTRAINTS.
+
+Choose any real constants E0,B0 and set
+  E(z)=E0 e_z,
+  B(z)=B0 h_1(z).
+
+Then
+  div E=0, div B=0
+and the classical EM normal source densities are
+
+  rho_EM=(E0^2+B0^2)/2,
+  j_EM=E0 B0 h_2(z).
+
+Thus rho_EM is spatially constant and j_EM is
+zero-mean, helical, with constant magnitude |E0 B0|.
+
+The pointwise electromagnetic dominant-energy bound
+is exact:
+  rho_EM-|j_EM|
+    =(E0^2+B0^2)/2-|E0 B0|
+    =(|E0|-|B0|)^2/2>=0.
+
+A globally periodic vector potential for this spatial B is
+  A_spatial=-(B0/k) h_1^flat,
+because curl A_spatial=B0 h_1.
+A constant E_z is allowed as nonzero electric flux;
+a time component/harmonic spatial potential provides
+its initial electric canonical data.
+
+No compensating CHARGE density is required here:
+  rho_charge=div E=0.
+These Maxwell fields nevertheless have nonzero
+stress-energy and angular/linear momentum density.
+
+STATUS = EXACT B_TIER.
+
+2. EXACT SOLUTION OF THE GR MOMENTUM CONSTRAINT
+------------------------------------------------
+THEOREM GRH-02: HELICAL_INVERSE_DIVERGENCE_TENSOR.
+
+For any fixed real J1,J2 choose the source momentum
+  j(z)=J1 h_1(z)+J2 h_2(z).
+
+Define the tangential vector
+  w(z)=(kappa_G/k)*(J2 h_1(z)-J1 h_2(z))
+and the symmetric 2-tensor
+  S=e_z tensor w+w tensor e_z.
+
+Then:
+  tr_h S=0,
+  S_iz= w_i (for i=x,y),
+  S_zz=0,
+  partial_z w=kappa_G j,
+  div_h S=kappa_G j.
+
+The norm is spatially constant:
+  |w|^2=(kappa_G^2/k^2)*(J1^2+J2^2),
+  |S|^2=2|w|^2
+       =2*kappa_G^2*(J1^2+J2^2)/k^2.
+
+This construction is unique within the restricted
+mean-zero, only-(iz) mixed-tensor ansatz;
+it is not asserted unique among arbitrary ADM
+extrinsic curvature fields due to possible
+transverse-traceless homogeneous additions.
+
+STATUS = EXACT B_TIER.
+
+3. SIMULTANEOUS HAMILTONIAN AND MOMENTUM CONSTRAINTS
+----------------------------------------------------
+THEOREM GRH-03: GENERAL_HELICAL_ENERGY_MOMENTUM_CONSTRAINTS.
+
+Assume a physical source with constant normal
+energy density rho_* and helical momentum j as
+in GRH-02, with its source sector's own
+initial constraints satisfied.
+
+Set
+  h=delta,
+  K=H delta+S,
+where H is constant and S is GRH-02.
+
+The momentum constraint is:
+  div(K-(tr K)h)
+   =div(S-2H h)
+   =div S=kappa_G j.
+
+For the Hamiltonian constraint,
+  R(h)=0,
+  tr K=3H,
+  |K|^2=3H^2+|S|^2.
+
+Hence
+  (tr K)^2-|K|^2=6H^2-|S|^2.
+
+Choose
+  H^2=(kappa_G/3)*rho_*
+       +Lambda/3
+       +(kappa_G^2/(3*k^2))*(J1^2+J2^2).
+
+Then
+  6H^2-|S|^2=2 kappa_G rho_*+2 Lambda,
+so HC and MC both hold exactly.
+
+H is real whenever the right side is nonnegative.
+For Lambda>=0, rho_*>=0 and any finite J1,J2,
+one may take either sign of the square root.
+In a physical Einstein source, rho_* and j
+must be realizable by a consistent stress tensor,
+not merely arbitrary unrelated functions.
+
+STATUS = EXACT B_TIER CONSTRAINT IMPLICATION
+WITH SOURCE REALIZABILITY EXPLICIT.
+
+4. UNCONDITIONAL CLASSICAL EINSTEIN–MAXWELL DATA
+------------------------------------------------
+THEOREM GRH-04: PURE_EINSTEIN_MAXWELL_HELICAL_WITNESS.
+
+Use actual Maxwell field data of GRH-01:
+  rho_* =rho_EM=(E0^2+B0^2)/2,
+  J1=0,
+  J2=E0 B0.
+
+Thus
+  w=(kappa_G E0 B0/k)h_1,
+  S=e_z tensor w+w tensor e_z,
+  K=H delta+S.
+
+The exact value of H^2 is
+
+  H^2=(kappa_G/6)*(E0^2+B0^2)
+       +Lambda/3
+       +(kappa_G^2/(3*k^2))*E0^2*B0^2.
+
+Equivalently, using kappa_G=8 pi G,
+
+  H^2=(4 pi G/3)*(E0^2+B0^2)
+       +Lambda/3
+       +(8 pi G)^2 E0^2 B0^2/(3 k^2).
+
+For Lambda>=0, this is a smooth real solution
+for every finite pair E0,B0 and k!=0.
+
+No unknown matter stress is needed.
+The data (M,h,K,E,B) satisfy:
+  Einstein Hamiltonian constraint,
+  Einstein momentum constraint,
+  Maxwell electric divergence constraint,
+  Maxwell magnetic divergence constraint.
+
+If E0 B0!=0, both the Maxwell momentum and
+the gravitational off-diagonal extrinsic
+curvature are nonzero.
+
+This is an exact classical sourced GR
+initial-data witness. Standard local
+Einstein–Maxwell hyperbolic Cauchy theory
+yields a smooth spacetime development from
+these data. A maximal globally hyperbolic
+development exists under the usual
+well-posed Einstein–Maxwell matter hypotheses.
+No geodesic completeness or existence
+for infinite coordinate/proper time follows.
+
+STATUS = COMPLETE B_TIER CONSTRUCTIVE EINSTEIN–MAXWELL
+INITIAL CONSTRAINT SOLUTION; CLASSICAL LOCAL DEVELOPMENT
+REQUIRES STANDARD CAUCHY THEORY.
+
+5. THE EXACT NSE^X MOMENTUM LAYER JOIN
+---------------------------------------
+THEOREM GRH-05: HELICAL_SOURCE_SUPERPOSITION_AND_GRAM_MATRIX.
+
+Suppose finitely many additional source sectors
+(NSE-like effective matter, classical perfect fluids,
+or other admissible matter fields) furnish:
+
+  constant nonnegative normal energy densities rho_a,
+  transverse momentum densities
+    j_a=J1_a h_1 +J2_a h_2,
+
+all with the SAME k and compatible spatial metric h=delta.
+
+Let the actual physical source partition avoid
+double counting matter and field stresses.
+Define
+  rho_total=rho_EM+sum_a rho_a,
+  J1_total=sum_a J1_a,
+  J2_total=E0 B0+sum_a J2_a.
+
+Then exactly
+  j_total=J1_total h_1+J2_total h_2.
+
+Substituting in GRH-03 yields the SOURCE-WISE
+gravitational constraint solution
+
+  H^2=(kappa_G/3)*rho_total+Lambda/3
+       +(kappa_G^2/(3k^2))*
+          (J1_total^2+J2_total^2).
+
+The last term has explicit pairwise mixed contributions:
+  |j_total|^2
+     =sum_a |j_a|^2
+       +2 sum_{a<b} j_a dot j_b
+       +2 j_EM dot sum_a j_a
+       +|j_EM|^2.
+
+These dot products are CONSTANT in z for
+same-k helices with fixed relative phases.
+
+For two layer momenta with amplitudes A,B
+and phases alpha,beta,
+  j_A=A(cos(kz+alpha),sin(kz+alpha),0),
+  j_B=B(cos(kz+beta),sin(kz+beta),0),
+
+one has
+  j_A dot j_B=A B cos(alpha-beta)
+and
+  |j_A+j_B|^2
+    =A^2+B^2+2 A B cos(alpha-beta).
+
+Hence the exact gravitational H^2 contains
+the pairwise angle-dependent term
+  (2 kappa_G^2/(3 k^2))*A B*cos(alpha-beta).
+
+This is a nontrivial CONSTRAINT-LEVEL momentum
+INTERSECTION law. It does NOT prove that
+the physical fluid layers remain dynamically
+aligned as a fixed-k helical family or that
+GR equations themselves generate the specified
+NSE^X drag force.
+
+STATUS = EXACT B_TIER CONDITIONAL ON SOURCE STRESS
+AND COMMON-HELICITY DATA.
+
+6. EXPLICIT POSITIVE RELATIVISTIC MATTER SOURCE EXAMPLE
+--------------------------------------------------------
+THEOREM GRH-06: RELATIVISTIC_DUST_HELICAL_SOURCE_ADMISSIBILITY.
+
+As one possible additional physical matter source,
+choose a relativistic pressureless dust with
+positive proper rest-energy density rho_rest>0 and
+normal-frame spatial speed
+  v(z)=v0*h_1(z),
+  0<=v0<1.
+
+Its Lorentz factor gamma=(1-v0^2)^(-1/2)
+is spatially constant. The dust stress has
+  rho_dust=rho_rest gamma^2,
+  j_dust=rho_rest gamma^2 v0 h_1.
+
+Thus its initial normal energy and momentum
+fit GRH-03 and satisfy
+  rho_dust>=|j_dust|.
+The initial number flux is spatially divergence-free.
+
+Adding this stress to the Maxwell source yields
+  J1=rho_rest gamma^2 v0,
+  J2=E0 B0,
+
+and H^2 as above with the dust energy added.
+
+This demonstrates an actual conventional
+RELATIVISTIC MATTER INITIAL-STRESS realization
+in addition to electromagnetic momentum.
+
+It does NOT mean the relativistic dust evolves
+according to viscous incompressible NSE, nor
+guarantee dust evolution avoids caustics. Local
+Einstein–Maxwell–dust development requires
+its own well-posedness assumptions.
+
+STATUS = EXACT B_TIER INITIAL STRESS REALIZATION,
+WITH EVOLUTION NOT CLAIMED.
+
+7. TORUS TOTAL MOMENTUM NO-GO
+-----------------------------
+THEOREM GRH-07: FLAT_TORUS_MEAN_MOMENTUM_OBSTRUCTION.
+
+For ANY periodic smooth symmetric K_ij on a
+flat spatial torus h=delta satisfying
+  div(K-(tr K)delta)=kappa_G j,
+
+integrate each component over M. Periodic
+integration kills total spatial derivatives:
+
+  kappa_G int_M j_i dx=0.
+
+Therefore
+  int_M j dx=0
+is NECESSARY for flat spatial metric ADM
+momentum constraints with smooth periodic K.
+
+The helical Maxwell momentum j_EM=E0 B0 h_2
+has zero spatial mean and passes this test.
+
+The previously constructed free helical
+electron-current model has a nonzero spatial
+mean drift/current. If its physical
+STRESS MOMENTUM density has corresponding
+nonzero spatial mean, it cannot be inserted
+alone into flat-torus GR initial data
+with every other momentum source set to zero.
+
+Allowed repairs:
+  - a specified compensating matter/field
+    momentum sector with opposite mean;
+  - nonflat spatial metric so that the
+    coordinate-integrated covariant
+    divergence is not the same simple
+    componentwise integral;
+  - a different, e.g. noncompact, geometry.
+
+An electric CHARGE-neutralizing background
+does not automatically cancel MECHANICAL
+momentum: the two constraints are separate.
+
+STATUS = EXACT B_TIER OBSTRUCTION.
+
+8. GR RESPONSE LENGTH AND TIME SCALE
+--------------------------------------
+THEOREM GRH-08: MODE_RESOLVED_GR_SHEAR_RESPONSE.
+
+For the fixed helicity k subspace,
+  div S=kappa_G j
+is solved by a single inverse derivative,
+with
+  |S|=sqrt(2)*kappa_G |j|/|k|.
+
+The geometrical initial extrinsic-curvature
+anisotropy therefore depends on the
+spatial Fourier inverse wave number 1/|k|.
+
+The isotropic expansion parameter is
+  H=+/-sqrt(kappa_G rho/3+
+             Lambda/3+
+             kappa_G^2|j|^2/(3k^2)).
+
+With K sign convention, normal expansion
+is theta=-tr K=-3H.
+One may define a local initial geometric
+volume expansion time 1/(3|H|) when H!=0.
+This is a FOLIATION-DEPENDENT INITIAL
+GEOMETRIC SCALE, not a universal quantum
+time operator, an NSE dissipation time,
+or a proof of global spacetime behavior.
+
+For fixed nonzero j at k->0, the
+required shear grows as 1/|k|.
+On a fixed torus k is discrete, with
+minimal nonzero magnitude 2 pi/L.
+The constant k=0 mean momentum sector
+cannot be treated by the inverse formula:
+the obstruction GRH-07 applies.
+
+STATUS = EXACT B_TIER SPECTRAL/INITIAL SCALE.
+
+9. GR CLOCK / ELECTRON / NSE LIMITS
+-----------------------------------
+GRH-09: PHYSICAL_COUPLING_GATE.
+
+At the level of source profiles,
+the helical NSE eigenfield and the
+Maxwell magnetic field both belong
+to the same finite Fourier eigenspace.
+The gravitational shear w is aligned
+with that magnetic field in GRH-04.
+
+However, setting B0 proportional to
+electron-derived NSE velocity amplitude
+requires a new dimensional/gauge-aware
+constitutive map, not supplied by the
+ADM constraints.
+
+The ADM data do NOT imply the physical
+electron wavefunction is a solution of
+the coupled Einstein–Maxwell–Dirac model,
+do not quantify a Standard Model charge
+current, and do not infer any global
+GR+SM+NSE^X regularity theorem.
+
+The vacuum GR development from earlier
+projects cannot simply be reused with
+these Maxwell sources; the constraints
+give NEW nonvacuum K and H.
+
+A standard local smooth Einstein–Maxwell
+development exists but its spacetime
+may be dynamically nontrivial and future
+geodesic completeness is not established.
+
+STATUS = EXPLICIT PHYSICAL MATCHING LIMIT.
+
+10. ROOT THEOREM / FORMAL SCOPE
+--------------------------------
+THEOREM GR_HELICAL_SOURCED_ADM_CONSTRAINT_WITNESS.
+
+For all L>0, integer n!=0, G>0,
+Lambda>=0 and finite E0,B0 real,
+there exist explicitly defined
+smooth periodic Einstein–Maxwell initial
+data (h,K,E,B) with h=delta,
+B=B0 h_1, E=E0 e_z,
+K=H delta+S given by sections 2-4,
+satisfying all four Einstein–Maxwell
+initial constraints.
+
+If E0 B0!=0, the Maxwell source has
+nonzero Poynting momentum j and the
+gravitational K has nonzero helical shear.
+
+For any finite family of ADDITIONAL
+physically admissible constant-energy,
+same-k helical momentum sources, the
+same construction satisfies ADM
+constraints with the total source,
+and the explicit quadratic term in H^2
+includes the pairwise momentum-angle
+interactions. Their actual matter
+field constraints and dynamics must
+be solved independently.
+
+The proof is direct Fourier calculus
+and algebra combined with the standard
+Einstein–Maxwell initial constraint
+formulas. A smooth development follows
+from the standard well-posed Cauchy
+theorem, not from a new PDE global
+regularity argument.
+
+STATUS = ! B_TIER MATHEMATICAL THEOREM.
+A_TIER = NOT ESTABLISHED.
+
+11. ENDPOINT REGISTER
+----------------------
+[x] GRH-01 HELICAL_ELECTROMAGNETIC_MAXWELL_CONSTRAINTS
+[x] GRH-02 HELICAL_INVERSE_DIVERGENCE_TENSOR
+[x] GRH-03 GENERAL_HELICAL_ENERGY_MOMENTUM_CONSTRAINTS
+[x] GRH-04 PURE_EINSTEIN_MAXWELL_HELICAL_WITNESS
+[x] GRH-05 HELICAL_SOURCE_SUPERPOSITION_AND_GRAM_MATRIX
+[x] GRH-06 RELATIVISTIC_DUST_HELICAL_SOURCE_ADMISSIBILITY
+[x] GRH-07 FLAT_TORUS_MEAN_MOMENTUM_OBSTRUCTION
+[x] GRH-08 MODE_RESOLVED_GR_SHEAR_RESPONSE
+[x] GRH-09 PHYSICAL_COUPLING_GATE
+[x] GRH-10 GR_HELICAL_SOURCED_ADM_CONSTRAINT_WITNESS_ROOT
+
+[ ] GRH-11 TWO_ELECTRON_EMD_ACTUAL_STRESS_REALIZATION
+[ ] GRH-12 RELATIVISTIC_VISCOUS_NSE_STRESS_MICROSCOPIC_MATCH
+[ ] GRH-13 COUPLED_GR_SM_NSE_EVOLUTION_AND_REGULARITY
+[ ] GRH-14 SM_GAUGE_AND_GRAVITATIONAL_WARD_AUDIT
+[ ] GRH-15 NATIVE_EXTERNAL_LEAN_COMPILER_THEOREM_AUDIT
+
+12. POSSIBLE FUTURE A-TIER PROOF SPINE
+---------------------------------------
+A. Exact finite Fourier helix derivative, curl and cross products.
+B. Constant EM rho and helical Poynting vector plus DEC bound.
+C. Symmetric tensor S and divergence/trace/norm identities.
+D. Independent Hamiltonian and momentum constraint algebra.
+E. Explicit Maxwell-source substitution.
+F. Layer momentum Gram/angle formula and flat-torus mean no-go.
+G. Real H square-root witness and deterministic root assembly.
+H. External Lean compiler and theorem-level axiom audit,
+   with PDE Cauchy development only via properly named
+   separately discharged analytic premise.
+
+NO_LOCAL_LEAN: no Lean compilation was performed.
+
+13. SOURCES
+------------
+ADM constraint normal energy and momentum equations:
+  https://academic.oup.com/epl/article/154/1/ae58cf/8766538
+
+Einstein–Maxwell constraint initial data formulations:
+  https://www.math.stonybrook.edu/alumni/2019-Jaroslaw-Jaracz.pdf
+
+Einstein–Maxwell(-scalar) well-posed Cauchy development:
+  https://inspirehep.net/files/e907be17856b80ae59f671610eb124b1
+
+Smooth GR Cauchy development and its distinction
+from global regularity:
+  https://pmc.ncbi.nlm.nih.gov/articles/PMC5256071/
+
+FINAL CLASSIFICATION
+--------------------
+MARKER = !
+TIER = B_TIER
+EINSTEIN_MAXWELL_INITIAL_CONSTRAINTS = EXACTLY_SOLVED
+HELICAL_NSE_X_LAYER_MOMENTUM_JOIN = CONDITIONAL
+FULL_QUANTUM_TWO_ELECTRON_GR_NSE = OPEN
+GLOBAL_SPACETIME_REGULARITY = OPEN
+A_TIER = NOT ESTABLISHED
