@@ -1,0 +1,37 @@
+# QM–GR Planck-kernel endpoint index
+
+`! = B_TIER`; no endpoint below is A-tier.
+
+| ID | Endpoint | Status | Derivation folder |
+|---|---|---|---|
+| QMGR-01 | `MS_PROFILE_TRANSFER_CP1` | `EXACT_B_TIER` | [`derivation_of_MS_PROFILE_TRANSFER_CP1/`](../derivation_of_MS_PROFILE_TRANSFER_CP1/) |
+| QMGR-02 | `MS_FUBINI_STUDY_ACTION_SCALE` | `EXACT_B_TIER` | [`derivation_of_MS_FUBINI_STUDY_ACTION_SCALE/`](../derivation_of_MS_FUBINI_STUDY_ACTION_SCALE/) |
+| QMGR-03 | `A_DAGGER_KERNEL_SCALE_IDENTIFICATION` | `EXACT_B_TIER` | [`derivation_of_A_DAGGER_KERNEL_SCALE_IDENTIFICATION/`](../derivation_of_A_DAGGER_KERNEL_SCALE_IDENTIFICATION/) |
+| QMGR-04 | `GR_GAUSSIAN_SYMPLECTIC_PULLBACK` | `NAMED_UNRESOLVED_PREMISE` | [`derivation_of_GR_GAUSSIAN_SYMPLECTIC_PULLBACK/`](../derivation_of_GR_GAUSSIAN_SYMPLECTIC_PULLBACK/) |
+| QMGR-05 | `MS_GR_PLANCK_KERNEL_ENDPOINT` | `CONDITIONAL_B_TIER` | [`derivation_of_MS_GR_PLANCK_KERNEL_ENDPOINT/`](../derivation_of_MS_GR_PLANCK_KERNEL_ENDPOINT/) |
+| QMGR-06 | `MS_EPSILON_PARAMETRICITY` | `EXACT_B_TIER` | [`derivation_of_MS_EPSILON_PARAMETRICITY/`](../derivation_of_MS_EPSILON_PARAMETRICITY/) |
+| QMGR-07 | `MS_GR_PLANCK_KERNEL_EQUIVALENCES` | `EXACT_B_TIER` | [`derivation_of_MS_GR_PLANCK_KERNEL_EQUIVALENCES/`](../derivation_of_MS_GR_PLANCK_KERNEL_EQUIVALENCES/) |
+| QMGR-08 | `SYMPLECTIC_MATCHING` | `NAMED_UNRESOLVED_PREMISE` | [`derivation_of_SYMPLECTIC_MATCHING/`](../derivation_of_SYMPLECTIC_MATCHING/) |
+
+## Root implication
+
+```text
+MS_FUBINI_STUDY_ACTION_SCALE
++ A_DAGGER_KERNEL_SCALE_IDENTIFICATION
++ GR_GAUSSIAN_SYMPLECTIC_PULLBACK
++ SYMPLECTIC_MATCHING
+-> MS_GR_PLANCK_KERNEL_ENDPOINT
+```
+
+## Conclusion
+
+```text
+epsilon = a_* = 2 l_P
+l_* = l_P
+S_epsilon = hbar
+Xi_epsilon = 1
+```
+
+The conclusion is conditional on `QMGR-04` and `QMGR-08`.
+
+[Canonical B-tier derivation](MS_GR_PLANCK_KERNEL_ENDPOINT_B_TIER.txt)
