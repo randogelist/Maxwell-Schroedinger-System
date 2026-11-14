@@ -1,0 +1,692 @@
+ONE-ELECTRON EINSTEIN-MAXWELL-DIRAC / QR CLOCK SYNCHRONIZATION
+B-TIER DERIVATION
+=============================================================
+
+STATUS
+------
+
+MARKER = !
+TIER = CONDITIONAL_B_TIER
+ARTIFACT = ONE_ELECTRON_EMD_QR_CLOCK_SYNCHRONIZATION_B_TIER
+ROOT_ENDPOINT = ONE_ELECTRON_EMD_QR_CLOCK_SYNCHRONIZATION
+SOURCE_BRANCH = b-tier-hull
+LEAN_STATUS = NOT_EMITTED
+A_TIER_STATUS = NOT_ESTABLISHED
+FORMAL_CLOSURE = NOT_ESTABLISHED
+LOCAL_LEAN_EXECUTIONS = 0
+
+This document freezes the clock-matching problem for the one-electron
+Einstein-Maxwell-Dirac sector and the reduced geometrical/relativistic sector
+labelled QR.
+
+The exact distinction is:
+
+  action-cell matching does not imply clock matching;
+
+  coordinate-time sharing does not imply proper-time equality;
+
+  a stationary global Dirac phase does not define an observable clock;
+
+  exact clock synchronization requires a common time normalization and an
+  intertwining of the reduced Hamiltonian flows.
+
+The structural implications are exact B-tier.  Existence of the required
+reduced one-electron clock orbit, the QR Hamiltonian realization, the
+same-orbit embedding, and global sourced evolution remain explicit premises.
+
+
+0. FROZEN ONE-ELECTRON SCOPE
+----------------------------
+
+Let
+
+  (M,g)
+
+be an oriented, time-oriented, globally hyperbolic four-dimensional
+Lorentzian spin manifold.  Let Sigma_t be a spacelike foliation with future
+unit normal n, lapse N>0, and shift beta.  The coordinate evolution vector is
+
+  T = partial_t = N n + beta.
+
+Let A be a real U(1) potential, F=dA, and Psi a Dirac spinor satisfying the
+Einstein-Maxwell-Dirac equations with
+
+  q_e = -e,
+  m = m_e.
+
+The sector is frozen by
+
+  N_Sigma[Psi] = 1,
+  Q_Sigma = -e.
+
+No positron, pair-creation, or variable-particle-number sector is admitted.
+The QR label denotes a reduced gravitational action sector; it is not an
+electric charge and it is not identified with the quantum sector before an
+explicit matching theorem.
+
+
+1. COMMON SPACETIME FOLIATION CLOCK
+-----------------------------------
+
+The Einstein, Maxwell, and Dirac fields are sections over the same spacetime.
+After one 3+1 decomposition, their evolution derivatives are all taken along
+T:
+
+  Dirac:    D_T^A Psi,
+  Maxwell:  L_T F,
+  Einstein: L_T h and L_T K.
+
+THEOREM COMMON_EMD_FOLIATION_CLOCK.
+
+Fixing one time function t, one lapse N, and one shift beta supplies one common
+coordinate-evolution parameter for the Dirac, Maxwell, and Einstein sectors.
+
+Thus, at the coordinate level,
+
+  t_Dirac = t_Maxwell = t_Einstein = t.
+
+STATUS = EXACT_B_TIER_FROM_COMMON_3P1_SPLIT.
+
+SCOPE NOTE.
+
+This is a gauge choice on the generally covariant system.  It does not assert
+that every observer measures the same proper time.
+
+
+2. PROPER-TIME NORMALIZATION
+----------------------------
+
+Let gamma be a selected future-directed observer worldline.  If gamma is an
+Eulerian normal observer and the shift vanishes along gamma, then
+
+  d tau_gamma = N|_gamma dt.
+
+For a stationary Killing generator xi and a stationary observer tangent to
+xi,
+
+  d tau_gamma
+    = sqrt(-g(xi,xi))/c dt.
+
+THEOREM REFERENCE_PROPER_TIME_NORMALIZATION.
+
+A common coordinate clock becomes a normalized reference proper-time clock
+only after one condition such as
+
+  N|_gamma = 1,
+
+or, in a stationary asymptotically flat sector,
+
+  g(xi,xi) -> -c^2
+
+at spatial infinity.
+
+STATUS = EXACT_B_TIER.
+
+On a compact torus no asymptotic normalization exists.  A reference worldline
+or an averaged lapse condition must be supplied.  Such a condition fixes time
+gauge; it is not a new dynamical prediction.
+
+
+3. STATIONARY ONE-LEVEL SECTOR HAS NO OBSERVABLE TICK
+-----------------------------------------------------
+
+Suppose
+
+  Psi(t) = exp(-i E t/hbar) Psi_0
+
+in a stationary background.  Then every gauge-invariant quadratic bilinear is
+stationary, including
+
+  bar(Psi) gamma^mu Psi,
+  T_Dirac,
+  j_e.
+
+THEOREM ONE_LEVEL_GLOBAL_PHASE_IS_NOT_A_CLOCK.
+
+The global phase exp(-iEt/hbar) does not by itself define an observable clock
+inside the stationary one-level sector.
+
+STATUS = EXACT_B_TIER.
+
+The one-electron condition N_Sigma=1 does not change this conclusion.
+
+
+4. MINIMAL ONE-ELECTRON RELATIVE-PHASE CLOCK
+--------------------------------------------
+
+PREMISE ONE_ELECTRON_TWO_MODE_INVARIANT_SECTOR.
+
+There exists a reduced one-electron invariant subspace with orthonormal modes
+Psi_0,Psi_1 and an effective self-adjoint Hamiltonian H_1e satisfying
+
+  H_1e Psi_a = E_a Psi_a,
+  E_0 != E_1,
+
+while the complete state remains normalized to one electron.
+
+For
+
+  Psi(t)
+    = c_0 exp(-iE_0 t/hbar) Psi_0
+      + c_1 exp(-iE_1 t/hbar) Psi_1,
+
+  |c_0|^2+|c_1|^2=1,
+
+define the relative phase
+
+  phi_QM(t)
+    = arg(c_1/c_0) - (E_1-E_0)t/hbar
+
+modulo 2pi, whenever c_0 c_1 != 0.
+
+Define
+
+  omega_QM = -(E_1-E_0)/hbar.
+
+THEOREM ONE_ELECTRON_RELATIVE_PHASE_CLOCK.
+
+Under the invariant two-mode premise,
+
+  d phi_QM/dt = omega_QM,
+
+and the state remains in the one-electron sector.
+
+STATUS = EXACT_CONDITIONAL_B_TIER.
+
+OBSERVABILITY CONDITION.
+
+The phase is detected through a gauge-invariant interference observable O with
+
+  <Psi_0,O Psi_1> != 0.
+
+A common U(1) gauge phase cancels from such an observable.
+
+NONLINEARITY AUDIT.
+
+The full Einstein-Maxwell-Dirac system is nonlinear.  A linear superposition
+of two arbitrary coupled solutions is not generally a coupled solution.  The
+invariant two-mode sector is therefore a named premise, not an automatic
+property of the full field equations.
+
+
+5. QR REDUCED HAMILTONIAN CLOCK
+-------------------------------
+
+PREMISE QR_REDUCED_HAMILTONIAN_REALIZATION.
+
+There exists a reduced QR symplectic manifold
+
+  (O_QR, Omega_QR)
+
+with a Hamiltonian H_QR.  On an action-angle chart write
+
+  Omega_QR = dJ_QR wedge d phi_QR.
+
+Hamilton's equation gives
+
+  d phi_QR/dt
+    = partial H_QR / partial J_QR
+    =: omega_QR.
+
+THEOREM QR_ACTION_ANGLE_CLOCK.
+
+Every regular action-angle chart of the reduced QR Hamiltonian system supplies
+a QR angular clock with rate omega_QR.
+
+STATUS = EXACT_CONDITIONAL_B_TIER.
+
+The global existence of such a chart and the physical identification of the
+angle remain part of the QR realization premise.
+
+
+6. ACTION MATCHING IS NOT CLOCK MATCHING
+----------------------------------------
+
+Define the one-electron quantum action cell
+
+  K_QM
+    := (1/(2pi)) integral_{O_QM} Omega_QM
+    = hbar.
+
+Define the reduced QR action cell
+
+  K_QR
+    := (1/(2pi)) integral_{O_QR} Omega_QR.
+
+The action mismatch is
+
+  C_action := K_QR-hbar.
+
+THEOREM ACTION_MATCHING_DOES_NOT_FIX_RATE.
+
+The equation
+
+  C_action = 0
+
+fixes equality of total symplectic action cells but does not imply
+
+  omega_QR = omega_QM.
+
+STATUS = EXACT_B_TIER.
+
+Indeed, two Hamiltonians on the same symplectic manifold may generate distinct
+vector fields while having the same symplectic form and action cell.
+
+
+7. FLOW-INTERTWINING THEOREM
+----------------------------
+
+Let
+
+  (O_1e,Omega_1e,H_1e)
+
+be the reduced one-electron EMD clock system, and let
+
+  (O_QR,Omega_QR,H_QR)
+
+be the reduced QR system.
+
+Assume a smooth embedding
+
+  iota_clock : O_1e -> O_QR
+
+such that:
+
+  C1. iota_clock^* Omega_QR = Omega_1e;
+
+  C2. iota_clock(O_1e) is invariant under X_{H_QR};
+
+  C3. H_QR o iota_clock = H_1e + C
+      for a constant C.
+
+THEOREM SYMPLECTIC_HAMILTONIAN_FLOW_INTERTWINING.
+
+Under C1-C3,
+
+  d iota_clock (X_{H_1e})
+    = X_{H_QR} o iota_clock.
+
+Consequently, on every common interval of existence,
+
+  iota_clock o Phi_t^{1e}
+    = Phi_t^{QR} o iota_clock.
+
+DERIVATION.
+
+For every tangent vector Y on O_1e,
+
+  Omega_QR(
+    X_{H_QR}, d iota_clock Y)
+
+  = dH_QR(d iota_clock Y)
+  = dH_1e(Y)
+  = Omega_1e(X_{H_1e},Y)
+  = Omega_QR(
+      d iota_clock X_{H_1e},
+      d iota_clock Y).
+
+Invariance makes both vectors tangent to the embedded symplectic submanifold.
+Nondegeneracy of the restricted form gives equality of the vector fields.
+The flow identity follows by uniqueness of integral curves.
+
+STATUS = EXACT_CONDITIONAL_B_TIER.
+
+
+8. RELATIVE CLOCK-RATE FACTOR
+-----------------------------
+
+Replace C3 by
+
+  H_QR o iota_clock = alpha H_1e + C,
+
+where alpha>0 is constant.
+
+THEOREM CLOCK_RATE_RESCALE.
+
+Then
+
+  X_{H_QR} o iota_clock
+    = alpha d iota_clock(X_{H_1e}),
+
+and
+
+  Phi_t^{QR} o iota_clock
+    = iota_clock o Phi_{alpha t}^{1e}.
+
+Thus alpha is the relative clock-rate factor.  Exact synchronization requires
+
+  alpha = 1.
+
+STATUS = EXACT_CONDITIONAL_B_TIER.
+
+
+9. SCALAR CLOCK-MATCHING CONDITIONS
+-----------------------------------
+
+On compatible action-angle charts define
+
+  C_rate
+    := omega_QR-omega_QM,
+
+  C_phase(t_0)
+    := phi_QR(t_0)-phi_QM(t_0)
+
+modulo 2pi.
+
+THEOREM ACTION_RATE_PHASE_SYNCHRONIZATION.
+
+If
+
+  C_action = 0,
+  C_rate = 0,
+  C_phase(t_0) = 0,
+
+and both rates remain constant on the declared orbit, then
+
+  phi_QR(t)=phi_QM(t)
+
+modulo 2pi for every common time t.
+
+STATUS = EXACT_B_TIER.
+
+This scalar theorem is a chart-level consequence.  The global invariant
+statement is the flow-intertwining theorem.
+
+
+10. GRAVITATIONAL REDSHIFT IS COMPATIBLE WITH SYNCHRONIZATION
+-------------------------------------------------------------
+
+Let xi be the stationary time generator.  The quantum phase rate with respect
+to coordinate time t is omega_QM.  A stationary observer measures
+
+  omega_local
+    = c omega_QM / sqrt(-g(xi,xi)).
+
+THEOREM REDSHIFTED_CLOCK_COMPATIBILITY.
+
+Two sectors synchronized with respect to the same coordinate generator remain
+synchronized for the same observer's proper time after both rates are
+multiplied by the same redshift factor.
+
+STATUS = EXACT_B_TIER.
+
+Different observers may measure different proper-time frequencies.  This is
+gravitational redshift, not a failure of sector synchronization.
+
+
+11. QR ACTION LEVEL AND PLANCK-KERNEL RELATION
+----------------------------------------------
+
+Assume the QR Gaussian action law
+
+  K_QR
+    = kappa_GR c^3 epsilon^2/G.
+
+The frozen one-electron profile orbit has
+
+  K_QM = hbar.
+
+Action matching gives
+
+  kappa_GR c^3 epsilon^2/G = hbar,
+
+hence
+
+  epsilon = l_P/sqrt(kappa_GR),
+
+where
+
+  l_P = sqrt(G hbar/c^3).
+
+For
+
+  kappa_GR = 1/4,
+
+one obtains
+
+  epsilon = 2 l_P.
+
+THEOREM PLANCK_ACTION_MATCHING_IS_CLOCK_INCOMPLETE.
+
+The Planck-kernel relation follows from action matching alone, but complete
+dynamical unification additionally requires C1-C3 of the flow-intertwining
+theorem.
+
+STATUS = EXACT_CONDITIONAL_B_TIER.
+
+Thus the scale equation and the clock equation are independent gates:
+
+  SCALE_GATE:
+    K_QR = hbar;
+
+  CLOCK_GATE:
+    iota_clock o Phi_t^{1e}
+      = Phi_t^{QR} o iota_clock.
+
+
+12. CLOCK RIGGING DEFECT
+------------------------
+
+Let omega_* > 0 be a fixed reference frequency.  Define dimensionless defects
+
+  r_action := (K_QR-hbar)/hbar,
+
+  r_rate := (omega_QR-omega_QM)/omega_*.
+
+For tau>0 define the positive Gaussian clock filter
+
+  Q_tau^{clock}
+    := exp[-tau(r_action^2+r_rate^2)].
+
+THEOREM CLOCK_FILTER_POINTWISE_LIMIT.
+
+For fixed scalar defects,
+
+  lim_{tau->infinity} Q_tau^{clock}
+    = 1
+
+if r_action=r_rate=0, and equals 0 otherwise.
+
+STATUS = EXACT_B_TIER.
+
+This is a scalar matching filter.  It is not a physical projector until a
+self-adjoint operator realization and spectral theorem hypotheses are supplied.
+
+
+13. ROOT ENDPOINT
+-----------------
+
+THEOREM ONE_ELECTRON_EMD_QR_CLOCK_SYNCHRONIZATION.
+
+Assume:
+
+  H1. one-electron Einstein-Maxwell-Dirac sector with N_Sigma=1 and Q=-e;
+
+  H2. one common 3+1 foliation and a fixed reference proper-time
+      normalization;
+
+  H3. an invariant reduced one-electron clock orbit
+      (O_1e,Omega_1e,H_1e);
+
+  H4. a reduced QR Hamiltonian system
+      (O_QR,Omega_QR,H_QR);
+
+  H5. a symplectic embedding iota_clock whose image is QR-flow invariant;
+
+  H6. Hamiltonian matching
+
+        H_QR o iota_clock = H_1e+C.
+
+Then
+
+  iota_clock o Phi_t^{1e}
+    = Phi_t^{QR} o iota_clock
+
+on every common interval of existence.
+
+If the one-electron orbit is represented by a two-mode relative phase, then
+
+  phi_QR(t)=phi_QM(t)
+
+modulo the selected initial phase convention.
+
+If in addition
+
+  K_QR=hbar,
+
+then the action cells and clocks are simultaneously matched.
+
+If further
+
+  K_QR=kappa_GR c^3 epsilon^2/G,
+
+then
+
+  epsilon=l_P/sqrt(kappa_GR).
+
+For kappa_GR=1/4,
+
+  epsilon=2l_P.
+
+STATUS = CONDITIONAL_B_TIER.
+
+
+14. ENDPOINT REGISTER
+---------------------
+
+[x] CLOCK-01  COMMON_EMD_FOLIATION_CLOCK
+               EXACT_B_TIER
+
+[x] CLOCK-02  REFERENCE_PROPER_TIME_NORMALIZATION
+               EXACT_B_TIER
+
+[x] CLOCK-03  ONE_LEVEL_GLOBAL_PHASE_IS_NOT_A_CLOCK
+               EXACT_B_TIER
+
+[x] CLOCK-04  ONE_ELECTRON_RELATIVE_PHASE_CLOCK
+               EXACT_CONDITIONAL_B_TIER
+
+[x] CLOCK-05  QR_ACTION_ANGLE_CLOCK
+               EXACT_CONDITIONAL_B_TIER
+
+[x] CLOCK-06  ACTION_MATCHING_DOES_NOT_FIX_RATE
+               EXACT_B_TIER
+
+[x] CLOCK-07  SYMPLECTIC_HAMILTONIAN_FLOW_INTERTWINING
+               EXACT_CONDITIONAL_B_TIER
+
+[x] CLOCK-08  CLOCK_RATE_RESCALE
+               EXACT_CONDITIONAL_B_TIER
+
+[x] CLOCK-09  ACTION_RATE_PHASE_SYNCHRONIZATION
+               EXACT_B_TIER
+
+[x] CLOCK-10  REDSHIFTED_CLOCK_COMPATIBILITY
+               EXACT_B_TIER
+
+[x] CLOCK-11  PLANCK_ACTION_MATCHING_IS_CLOCK_INCOMPLETE
+               EXACT_CONDITIONAL_B_TIER
+
+[x] CLOCK-12  CLOCK_FILTER_POINTWISE_LIMIT
+               EXACT_B_TIER
+
+[x] CLOCK-13  ONE_ELECTRON_EMD_QR_CLOCK_SYNCHRONIZATION
+               CONDITIONAL_B_TIER
+
+[ ] CLOCK-14  ONE_ELECTRON_TWO_MODE_INVARIANT_SECTOR
+               OPEN_ANALYTIC
+
+[ ] CLOCK-15  QR_REDUCED_HAMILTONIAN_REALIZATION
+               OPEN_DECISIVE
+
+[ ] CLOCK-16  EMD_QR_SAME_ORBIT_IDENTIFICATION
+               OPEN_DECISIVE
+
+[ ] CLOCK-17  GLOBAL_SOURCED_CLOCK_GAUGE
+               OPEN_ANALYTIC
+
+
+15. DEPENDENCY SPINE
+--------------------
+
+  common EMD spacetime
+    -> CLOCK-01
+    -> CLOCK-02.
+
+  stationary one-level ansatz
+    -> CLOCK-03.
+
+  two-mode invariant premise
+    -> CLOCK-04.
+
+  QR Hamiltonian realization
+    -> CLOCK-05.
+
+  action-cell definitions
+    -> CLOCK-06.
+
+  symplectic embedding
+  + invariant image
+  + Hamiltonian matching
+    -> CLOCK-07
+    -> CLOCK-08.
+
+  constant action-angle rates
+    -> CLOCK-09.
+
+  common stationary observer
+    -> CLOCK-10.
+
+  QR Gaussian action law
+  + action matching
+    -> CLOCK-11.
+
+  scalar defects
+    -> CLOCK-12.
+
+  CLOCK-01
+  + CLOCK-02
+  + CLOCK-04
+  + CLOCK-05
+  + CLOCK-07
+    -> CLOCK-13.
+
+
+16. CLOSURE CLASSIFICATION
+--------------------------
+
+EXACT_B_TIER:
+
+  COMMON_EMD_FOLIATION_CLOCK
+  REFERENCE_PROPER_TIME_NORMALIZATION
+  ONE_LEVEL_GLOBAL_PHASE_IS_NOT_A_CLOCK
+  ACTION_MATCHING_DOES_NOT_FIX_RATE
+  ACTION_RATE_PHASE_SYNCHRONIZATION
+  REDSHIFTED_CLOCK_COMPATIBILITY
+  CLOCK_FILTER_POINTWISE_LIMIT.
+
+EXACT_CONDITIONAL_B_TIER:
+
+  ONE_ELECTRON_RELATIVE_PHASE_CLOCK
+  QR_ACTION_ANGLE_CLOCK
+  SYMPLECTIC_HAMILTONIAN_FLOW_INTERTWINING
+  CLOCK_RATE_RESCALE
+  PLANCK_ACTION_MATCHING_IS_CLOCK_INCOMPLETE
+  ONE_ELECTRON_EMD_QR_CLOCK_SYNCHRONIZATION.
+
+OPEN DECISIVE ENDPOINTS:
+
+  ONE_ELECTRON_TWO_MODE_INVARIANT_SECTOR
+  QR_REDUCED_HAMILTONIAN_REALIZATION
+  EMD_QR_SAME_ORBIT_IDENTIFICATION
+  HAMILTONIAN_MATCHING
+  GLOBAL_SOURCED_CLOCK_GAUGE
+  global common-interval existence.
+
+FORMAL STATUS:
+
+  B_TIER only.
+  Lean files are not emitted.
+  A_TIER is not established.
+  FORMAL_CLOSURE is not established.
+  UNCONDITIONAL_CLOSURE is not established.
