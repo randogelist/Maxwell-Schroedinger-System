@@ -1,0 +1,792 @@
+QR ELECTRON SECTOR — REDUCED GR ACTION AND MATCHING
+B-TIER DERIVATION
+===================================================
+
+STATUS
+------
+
+MARKER = !
+TIER = CONDITIONAL_B_TIER
+ARTIFACT = QR_ELECTRON_REDUCED_ACTION_B_TIER
+ROOT_ENDPOINT = EMD_QR_REDUCED_MATCHING_HULL
+SOURCE_BRANCH = b-tier-hull
+LEAN_STATUS = NOT_EMITTED
+A_TIER_STATUS = NOT_ESTABLISHED
+FORMAL_CLOSURE = NOT_ESTABLISHED
+LOCAL_LEAN_EXECUTIONS = 0
+
+In this document, `QR` is a project label for the reduced geometrical/
+relativistic action sector.  It is not a Standard Model charge and it is not
+identified with the quantum-mechanical action coordinate before an explicit
+matching theorem is imposed.
+
+The exact chain is
+
+  Einstein-Maxwell-Dirac electron sector
+  -> 3+1 stress decomposition
+  -> sourced GR constraints
+  -> reduced gravitational symplectic two-cycle
+  -> QR action coordinate
+  -> conditional prequantization integer
+  -> integer mismatch with the one-particle quantum orbit
+  -> Gaussian spectral filter onto the matched shell
+  -> conditional discrete gravitational length spectrum.
+
+The source/constraint part is structural B-tier.  The reduced orbit,
+prequantum line bundle, coefficient kappa_GR, and same-orbit identification
+remain explicit premises.
+
+
+0. FROZEN DATA AND CONVENTIONS
+------------------------------
+
+Let
+
+  (M,g)
+
+be an oriented, time-oriented, globally hyperbolic four-dimensional
+Lorentzian spin manifold with signature (-,+,+,+).  Let Sigma be a spacelike
+Cauchy hypersurface with future unit normal n, induced Riemannian metric h,
+and extrinsic curvature convention
+
+  K_ij := -(1/2) L_n h_ij
+
+in unit lapse and zero shift.
+
+Freeze
+
+  q_e := -e < 0,
+  m := m_e > 0,
+  hbar > 0,
+  c > 0,
+  G > 0,
+  epsilon0 > 0,
+  mu0 > 0,
+  epsilon0 mu0 c^2 = 1.
+
+Let Psi be a Dirac spinor and A a real U(1) potential.  Define
+
+  F := dA,
+
+  D_mu Psi
+    := nabla_mu^S Psi + i q_e A_mu Psi/(hbar c),
+
+  j_e^mu := q_e c bar(Psi) gamma^mu Psi.
+
+Let
+
+  T_mu_nu := T_mu_nu^D + T_mu_nu^EM
+
+be the total Dirac-plus-electromagnetic stress tensor of the frozen
+Einstein-Maxwell-Dirac sector.
+
+The coupled equations are
+
+  (i hbar c gamma^mu D_mu - m_e c^2) Psi = 0,
+
+  nabla_mu F^{mu nu} = mu0 j_e^nu,
+
+  nabla_[alpha F_beta_gamma] = 0,
+
+  G_mu_nu = (8 pi G/c^4) T_mu_nu.
+
+The one-electron normalization is
+
+  N_Sigma[Psi]
+    := -(1/c) integral_Sigma n_mu
+         (c bar(Psi) gamma^mu Psi) dmu_h
+     = 1,
+
+and therefore
+
+  Q_Sigma = q_e N_Sigma = -e.
+
+The cosmological constant is frozen to zero in this artifact.
+
+
+1. QR SOURCE MAP: 3+1 STRESS DECOMPOSITION
+------------------------------------------
+
+Define the spatial projector
+
+  h_mu^nu := delta_mu^nu + n_mu n^nu.
+
+Define
+
+  rho_QR := T_mu_nu n^mu n^nu,
+
+  j_i^QR := -h_i^mu n^nu T_mu_nu,
+
+  S_ij^QR := h_i^mu h_j^nu T_mu_nu,
+
+  S_QR := h^{ij} S_ij^QR.
+
+THEOREM EMD_STRESS_3P1_DECOMPOSITION.
+
+The total stress tensor decomposes uniquely as
+
+  T_mu_nu
+    = rho_QR n_mu n_nu
+      + n_mu j_nu^QR
+      + n_nu j_mu^QR
+      + S_mu_nu^QR,
+
+where
+
+  n^mu j_mu^QR = 0,
+  n^mu S_mu_nu^QR = 0.
+
+DERIVATION.
+
+Insert
+
+  delta_mu^alpha = h_mu^alpha - n_mu n^alpha
+
+on both tensor indices and collect the normal-normal, normal-spatial, and
+spatial-spatial components.  The definitions above are exactly the resulting
+coefficients.
+
+STATUS = EXACT_B_TIER.
+
+INTERPRETATION BOUNDARY.
+
+The electron enters GR through
+
+  (rho_QR, j_QR, S_QR),
+
+not through one scalar mass charge alone.
+
+
+2. SOURCED QR CONSTRAINTS
+-------------------------
+
+Define
+
+  K := tr_h K,
+
+  |K|_h^2 := K_ij K^{ij}.
+
+THEOREM EMD_QR_CONSTRAINTS.
+
+Every sufficiently regular Einstein-Maxwell-Dirac solution induces on every
+Cauchy hypersurface the constraints
+
+  R(h) + K^2 - |K|_h^2
+    = (16 pi G/c^4) rho_QR,
+
+  D^j(K_ij - K h_ij)
+    = (8 pi G/c^4) j_i^QR.
+
+DERIVATION.
+
+The first identity is the double-normal projection of the Einstein equation
+combined with the Gauss equation.  The second is the normal-spatial projection
+combined with the Codazzi equation.
+
+STATUS = EXACT_B_TIER_CONDITIONAL_ON_SUFFICIENT_REGULARITY.
+
+Define the residuals
+
+  C_H
+    := R(h)+K^2-|K|_h^2-(16 pi G/c^4)rho_QR,
+
+  C_M_i
+    := D^j(K_ij-Kh_ij)-(8 pi G/c^4)j_i^QR.
+
+THEOREM EMD_QR_CONSTRAINT_PROPAGATION.
+
+Assume the Einstein evolution equations, the Dirac and Maxwell equations, and
+sufficient regularity.  If
+
+  C_H = 0,
+  C_M = 0
+
+on one Cauchy hypersurface, then the constraints vanish throughout the domain
+of dependence.
+
+DERIVATION SPINE.
+
+  Dirac + Maxwell
+    -> nabla_mu T^{mu nu}=0;
+
+  contracted Bianchi
+    -> nabla_mu G^{mu nu}=0;
+
+  evolution equations
+    -> a homogeneous first-order propagation system for (C_H,C_M).
+
+Zero initial residuals imply zero propagated residuals by uniqueness.
+
+STATUS = CONDITIONAL_B_TIER.
+
+
+3. QR CURVATURE CARRIER
+-----------------------
+
+Let C_alpha_beta_gamma_delta be the Weyl tensor.  Define
+
+  E_ij^QR
+    := C_i_mu_j_nu n^mu n^nu,
+
+  H_ij^QR
+    := (*C)_i_mu_j_nu n^mu n^nu.
+
+Define the QR curvature-energy observable
+
+  W_QR[Sigma]
+    := integral_Sigma
+       (|E_QR|_h^2 + |H_QR|_h^2) dmu_h.
+
+THEOREM QR_WEYL_CURVATURE_CARRIER.
+
+For a sufficiently regular solution, E_QR and H_QR are spatial, symmetric,
+and trace-free.  The scalar W_QR is invariant under changes of spatial
+coordinates on Sigma and is nonnegative.
+
+STATUS = EXACT_B_TIER_FROM_WEYL_SYMMETRIES.
+
+SCOPE NOTE.
+
+W_QR is a curvature diagnostic.  It is not the reduced symplectic action
+coordinate defined below.
+
+
+4. REDUCED QR ACTION COORDINATE
+-------------------------------
+
+PREMISE QR_REDUCED_ORBIT_EXISTENCE.
+
+There exists a reduced gravitational phase space
+
+  P_GR^red
+
+with symplectic form
+
+  Omega_GR^red,
+
+and an oriented embedded closed two-cycle
+
+  iota_QR : O_QR -> P_GR^red,
+
+where
+
+  O_QR is diffeomorphic to CP1.
+
+Freeze the orientation by requiring positive symplectic area.
+
+Define
+
+  K_QR
+    := (1/(2 pi)) integral_{O_QR} iota_QR^*Omega_GR^red.
+
+THEOREM QR_REDUCED_ACTION_COORDINATE.
+
+  [K_QR] = action.
+
+Moreover K_QR is invariant under orientation-preserving reparametrization of
+O_QR and under symplectomorphisms of the reduced phase space.
+
+DERIVATION.
+
+A symplectic form has action dimension.  Integration over a dimensionless
+closed two-cycle preserves that dimension.  Invariance follows from pullback
+functoriality and change of variables.
+
+STATUS = EXACT_B_TIER_CONDITIONAL_ON_QR_REDUCED_ORBIT_EXISTENCE.
+
+TOPOLOGICAL AUDIT.
+
+The unreduced ADM cotangent symplectic form is exact and has zero integral over
+closed two-cycles.  Therefore a nonzero K_QR must arise after genuine
+reduction, from boundary/edge data, or from another non-exact reduced sector.
+
+
+5. QR PREQUANTIZATION INTEGER
+-----------------------------
+
+PREMISE QR_PREQUANTUM_LINE_BUNDLE.
+
+There exists a Hermitian line bundle
+
+  L_QR -> O_QR
+
+with unitary connection whose curvature satisfies
+
+  F_nabla = -(i/hbar) iota_QR^*Omega_GR^red.
+
+THEOREM QR_PREQUANTIZATION_INTEGER.
+
+Under the premise,
+
+  m_QR
+    := K_QR/hbar
+     = (1/(2 pi hbar))
+       integral_{O_QR} iota_QR^*Omega_GR^red
+
+is an integer.  For the positive orientation and nondegenerate symplectic
+form,
+
+  m_QR in Z_{>0}.
+
+DERIVATION.
+
+By Chern-Weil theory,
+
+  (i/(2 pi)) integral_{O_QR} F_nabla
+
+is the first Chern number of L_QR on O_QR and therefore belongs to Z.  The
+curvature convention gives exactly m_QR.
+
+STATUS = CONDITIONAL_B_TIER.
+
+SEMANTIC SEPARATION.
+
+  m_QR is a symplectic Chern number.
+
+It is not electron number, electric charge, winding of the Dirac phase, or a
+photon occupation number.
+
+
+6. QUANTUM PROFILE ORBIT HAS LEVEL ONE
+--------------------------------------
+
+The existing one-particle profile-transfer orbit is
+
+  O_QM = CP1,
+
+with
+
+  Omega_QM = hbar omega_FS,
+
+  integral_{CP1} omega_FS = 2 pi.
+
+Define
+
+  K_QM
+    := (1/(2 pi)) integral_{O_QM} Omega_QM.
+
+THEOREM QM_PROFILE_ACTION_LEVEL_ONE.
+
+  K_QM = hbar,
+
+and therefore
+
+  m_QM := K_QM/hbar = 1.
+
+STATUS = EXACT_B_TIER.
+
+GENERALIZATION NOTE.
+
+A level-n orbit would carry
+
+  Omega_QM^(n) = n hbar omega_FS
+
+and K_QM^(n)=n hbar.  The presently frozen normalized one-particle orbit is
+level one.
+
+
+7. INTEGER MISMATCH SHELL
+-------------------------
+
+Assume QR prequantization.  Define
+
+  r := m_QR - m_QM = m_QR - 1.
+
+THEOREM QR_QM_INTEGER_MISMATCH.
+
+  r in Z,
+
+and
+
+  r = 0
+
+if and only if
+
+  K_QR = K_QM = hbar.
+
+STATUS = EXACT_CONDITIONAL_B_TIER.
+
+Define the matched shell
+
+  H_match := {states or sectors with r=0}.
+
+The root matching statement is therefore an integer-shell condition rather
+than an equality between two unfixed real labels.
+
+
+8. QR GAUSSIAN RIGGING FILTER
+-----------------------------
+
+Let
+
+  qfrak := exp(-tau+i phi),
+
+with
+
+  tau>0,
+  phi in R/(2 pi Z).
+
+For r in Z define
+
+  Q_qfrak(r)
+    := exp(-tau r^2) exp(i phi r).
+
+Then
+
+  |Q_qfrak(r)| = exp(-tau r^2) <= 1.
+
+THEOREM QR_RIGGING_FILTER_POINTWISE_LIMIT.
+
+As tau -> +infinity,
+
+  Q_qfrak(r) -> 1  if r=0,
+  Q_qfrak(r) -> 0  if r!=0.
+
+STATUS = EXACT_B_TIER.
+
+OPERATOR FORM.
+
+Let R_hat be a self-adjoint operator with integer spectrum.  Define
+
+  Q_qfrak(R_hat)
+    := exp(-tau R_hat^2) exp(i phi R_hat)
+
+by functional calculus.
+
+THEOREM QR_RIGGING_FILTER_PROJECTOR_LIMIT.
+
+  ||Q_qfrak(R_hat)|| <= 1,
+
+and, as tau -> +infinity,
+
+  Q_qfrak(R_hat)
+
+converges strongly to the spectral projector
+
+  1_{ {0} }(R_hat).
+
+DERIVATION.
+
+On every spectral value r in Z the multiplier converges to delta_{r0} and is
+uniformly bounded by one.  Dominated convergence in the spectral measure gives
+strong convergence.
+
+STATUS = EXACT_B_TIER_CONDITIONAL_ON_R_HAT.
+
+INTERPRETATION BOUNDARY.
+
+For finite tau this is a bounded spectral filter, not an exact projector and
+not a dynamical law.
+
+
+9. DISCRETE QR LENGTH SPECTRUM
+------------------------------
+
+PREMISE QR_GAUSSIAN_ACTION_LAW(kappa_GR,epsilon).
+
+For constants
+
+  kappa_GR>0,
+  epsilon>0,
+
+one has
+
+  iota_QR^*Omega_GR^red
+    = kappa_GR (c^3 epsilon^2/G) omega_FS.
+
+Since integral omega_FS=2pi,
+
+  K_QR
+    = kappa_GR c^3 epsilon^2/G.
+
+THEOREM QR_LENGTH_SPECTRUM_FROM_PREQUANTIZATION.
+
+If QR_PREQUANTUM_LINE_BUNDLE also holds, then
+
+  kappa_GR c^3 epsilon^2/G
+    = m_QR hbar,
+
+and therefore
+
+  epsilon
+    = sqrt(m_QR/kappa_GR) l_P,
+
+where
+
+  l_P := sqrt(G hbar/c^3).
+
+STATUS = CONDITIONAL_B_TIER.
+
+Thus, for fixed independently derived kappa_GR, prequantization produces the
+conditional length ladder
+
+  epsilon_m = sqrt(m/kappa_GR) l_P,
+  m=1,2,3,... .
+
+NONSELECTION AUDIT.
+
+The ladder is not predictive if kappa_GR is adjustable or if the reduction
+level is freely chosen.  kappa_GR must be derived independently from the QR
+geometry.
+
+
+10. ONE-ELECTRON MATCHED SHELL
+------------------------------
+
+THEOREM ONE_ELECTRON_QR_MATCHED_SHELL.
+
+Assume:
+
+  H1. the Einstein-Maxwell-Dirac one-electron sector N_Sigma=1;
+
+  H2. QR_REDUCED_ORBIT_EXISTENCE;
+
+  H3. QR_PREQUANTUM_LINE_BUNDLE;
+
+  H4. QR_GAUSSIAN_ACTION_LAW(kappa_GR,epsilon);
+
+  H5. same-orbit matching to the frozen level-one quantum profile orbit.
+
+Then
+
+  m_QR = m_QM = 1,
+
+and
+
+  epsilon = l_P/sqrt(kappa_GR).
+
+STATUS = CONDITIONAL_B_TIER.
+
+THEOREM QR_ONE_QUARTER_ELECTRON_SCALE.
+
+Under the same assumptions,
+
+  kappa_GR = 1/4
+
+implies
+
+  epsilon = 2 l_P,
+  a_* = 2 l_P,
+  l_* = l_P.
+
+STATUS = CONDITIONAL_B_TIER.
+
+The conclusion does not follow from electron number N_Sigma=1 alone.  The
+particle number and the QR Chern number belong to distinct structures and are
+identified only by H5.
+
+
+11. SOURCED QR VERSUS VACUUM TT BRIDGE
+--------------------------------------
+
+THEOREM SOURCED_QR_VS_VACUUM_TT_SEPARATION.
+
+The EMD QR sector satisfies sourced constraints with
+
+  (rho_QR,j_QR,S_QR)
+
+computed from the Dirac and electromagnetic stress tensors.
+
+The previously constructed circular TT/CMC bridge satisfies vacuum
+constraints with zero stress tensor and uses only a transverse Maxwell-derived
+profile as geometric seed.
+
+Therefore the two constructions are not identical.  A bridge between them
+requires one of the following explicit endpoints:
+
+  (a) a controlled zero-source limit;
+  (b) an Einstein-Maxwell-Dirac constraint solve containing the same
+      transverse seed;
+  (c) a decomposition theorem separating sourced and vacuum radiative sectors;
+  (d) an adapter proving equality in the reduced quotient.
+
+STATUS = EXACT_B_TIER_STRUCTURAL_SEPARATION.
+
+
+12. ROOT ENDPOINT
+-----------------
+
+THEOREM EMD_QR_REDUCED_MATCHING_HULL.
+
+Under the frozen Einstein-Maxwell-Dirac electron equations:
+
+  (A) the total stress tensor determines the exact 3+1 QR source data
+      (rho_QR,j_QR,S_QR);
+
+  (B) the Einstein equation yields the sourced Hamiltonian and momentum
+      constraints;
+
+  (C) total stress conservation and the Bianchi identity supply the constraint
+      propagation spine;
+
+  (D) a supplied compact reduced gravitational two-cycle defines the QR action
+      coordinate K_QR;
+
+  (E) a supplied prequantum line bundle forces K_QR/hbar to be an integer
+      m_QR;
+
+  (F) the frozen one-particle quantum profile orbit has action level m_QM=1;
+
+  (G) the mismatch r=m_QR-1 is integer-valued and a Gaussian functional-calculus
+      filter converges strongly to the matched-shell projector;
+
+  (H) under the Gaussian QR action law, prequantization gives the conditional
+      length spectrum
+
+        epsilon_m = sqrt(m/kappa_GR) l_P;
+
+  (I) same-orbit matching to the one-electron level selects m=1 and gives
+
+        epsilon=l_P/sqrt(kappa_GR);
+
+  (J) kappa_GR=1/4 then gives epsilon=2l_P;
+
+  (K) the sourced EMD QR sector remains distinct from the existing vacuum TT
+      bridge until a separate sourced/vacuum adapter is proved.
+
+STATUS = CONDITIONAL_B_TIER.
+
+
+13. ENDPOINT REGISTER
+---------------------
+
+[x] QR-01  EMD_STRESS_3P1_DECOMPOSITION
+             EXACT_B_TIER
+
+[x] QR-02  EMD_QR_CONSTRAINTS
+             EXACT_B_TIER_CONDITIONAL_ON_REGULARITY
+
+[x] QR-03  EMD_QR_CONSTRAINT_PROPAGATION
+             CONDITIONAL_B_TIER
+
+[x] QR-04  QR_WEYL_CURVATURE_CARRIER
+             EXACT_B_TIER
+
+[x] QR-05  QR_REDUCED_ACTION_COORDINATE
+             EXACT_B_TIER_CONDITIONAL_ON_REDUCED_ORBIT
+
+[x] QR-06  QR_PREQUANTIZATION_INTEGER
+             CONDITIONAL_B_TIER
+
+[x] QR-07  QM_PROFILE_ACTION_LEVEL_ONE
+             EXACT_B_TIER
+
+[x] QR-08  QR_QM_INTEGER_MISMATCH
+             EXACT_CONDITIONAL_B_TIER
+
+[x] QR-09  QR_RIGGING_FILTER_PROJECTOR_LIMIT
+             EXACT_CONDITIONAL_B_TIER
+
+[x] QR-10  QR_LENGTH_SPECTRUM_FROM_PREQUANTIZATION
+             CONDITIONAL_B_TIER
+
+[x] QR-11  ONE_ELECTRON_QR_MATCHED_SHELL
+             CONDITIONAL_B_TIER
+
+[x] QR-12  QR_ONE_QUARTER_ELECTRON_SCALE
+             CONDITIONAL_B_TIER
+
+[x] QR-13  QR_CERN_NUMBER_NOT_PARTICLE_NUMBER
+             EXACT_B_TIER_SEMANTIC_SEPARATION
+
+[x] QR-14  SOURCED_QR_VS_VACUUM_TT_SEPARATION
+             EXACT_B_TIER_STRUCTURAL_SEPARATION
+
+[x] QR-15  EMD_QR_REDUCED_MATCHING_HULL
+             CONDITIONAL_B_TIER
+
+[ ] QR-16  QR_REDUCED_ORBIT_EXISTENCE
+             OPEN_DECISIVE
+
+[ ] QR-17  QR_PREQUANTUM_LINE_BUNDLE_REALIZATION
+             OPEN_GEOMETRIC
+
+[ ] QR-18  QR_GAUSSIAN_ACTION_LAW
+             OPEN_DECISIVE
+
+[ ] QR-19  QR_COEFFICIENT_ONE_QUARTER
+             OPEN_DECISIVE
+
+[ ] QR-20  SOURCED_VACUUM_REDUCED_ADAPTER
+             OPEN_DECISIVE
+
+
+14. DEPENDENCY SPINE
+--------------------
+
+  Einstein-Maxwell-Dirac equations
+    -> QR-01
+    -> QR-02
+    -> QR-03.
+
+  Weyl decomposition
+    -> QR-04.
+
+  QR-16
+    -> QR-05.
+
+  QR-05 + QR-17
+    -> QR-06.
+
+  quantum profile-transfer CP1
+    -> QR-07.
+
+  QR-06 + QR-07
+    -> QR-08
+    -> QR-09.
+
+  QR-06 + QR-18
+    -> QR-10.
+
+  QR-07 + QR-10 + same-orbit matching
+    -> QR-11.
+
+  QR-11 + QR-19
+    -> QR-12.
+
+  sourced EMD constraints + vacuum TT constraints
+    -> QR-14
+    -> QR-20.
+
+
+15. CLOSURE CLASSIFICATION
+--------------------------
+
+EXACT_B_TIER:
+
+  EMD_STRESS_3P1_DECOMPOSITION
+  QR_WEYL_CURVATURE_CARRIER
+  QM_PROFILE_ACTION_LEVEL_ONE
+  QR_RIGGING_FILTER_POINTWISE_LIMIT
+  QR_CERN_NUMBER_NOT_PARTICLE_NUMBER
+  SOURCED_QR_VS_VACUUM_TT_SEPARATION.
+
+CONDITIONAL_B_TIER:
+
+  EMD_QR_CONSTRAINTS
+  EMD_QR_CONSTRAINT_PROPAGATION
+  QR_REDUCED_ACTION_COORDINATE
+  QR_PREQUANTIZATION_INTEGER
+  QR_QM_INTEGER_MISMATCH
+  QR_RIGGING_FILTER_PROJECTOR_LIMIT
+  QR_LENGTH_SPECTRUM_FROM_PREQUANTIZATION
+  ONE_ELECTRON_QR_MATCHED_SHELL
+  QR_ONE_QUARTER_ELECTRON_SCALE
+  EMD_QR_REDUCED_MATCHING_HULL.
+
+OPEN DECISIVE:
+
+  construction of the sourced reduced gravitational CP1 orbit;
+  construction of its prequantum line bundle from the physical QR geometry;
+  independent derivation of kappa_GR;
+  proof kappa_GR=1/4;
+  sourced/vacuum reduced-sector adapter;
+  nonlinear existence and stability of a matched one-electron solution.
+
+FORMAL STATUS:
+
+  B_TIER only.
+  Lean files are not emitted.
+  A_TIER is not established.
+  FORMAL_CLOSURE is not established.
+  UNCONDITIONAL_CLOSURE is not established.
