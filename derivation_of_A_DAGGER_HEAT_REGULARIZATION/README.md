@@ -4,33 +4,75 @@
 ENDPOINT_ID = AD-01
 ENDPOINT = A_DAGGER_HEAT_REGULARIZATION
 GROUP = D. a_dagger magnetic extension
-STATUS = PENDING_SOURCE_THEOREM
-TIER = B_TIER_HULL
+STATUS = B_TIER_DERIVED
+MARKER = !
+LEAN_STATUS = NOT_EMITTED
 ```
 
-## Exact target
+## Exact theorem
 
-**Inputs:** Raw `a_dagger`; `ε > 0`
+Let `a_dagger` be a periodic vector-valued distribution and let `ε>0`. Define
 
-**Output:** Smooth solenoidal `a_ε`
+```text
+a_ε = exp((ε²/4)Delta) a_dagger.
+```
 
-## Dependency boundary
+Then
 
-Definition of raw `a_dagger`; heat-semigroup smoothing
+```text
+a_ε in C^infinity(T³;R³).
+```
+
+If distributionally
+
+```text
+div a_dagger = 0
+mean a_dagger = 0,
+```
+
+then
+
+```text
+div a_ε = 0
+mean a_ε = 0.
+```
+
+## Fourier derivation
+
+For Fourier mode `k in Z³`,
+
+```text
+hat(a_ε)(k)
+  = exp(-pi² ε² |k|²) hat(a_dagger)(k).
+```
+
+A periodic distribution has at most polynomial Fourier growth. Multiplication by the Gaussian factor gives rapid decay, hence smoothness. The multiplier is scalar and commutes with `k dot` and with the zero-mode projection; therefore solenoidality and mean zero are preserved.
+
+## Scope boundary
+
+This theorem requires no prior `L²`, Sobolev, or `BMO^{-1}` membership of the raw datum. It does not establish the separate claims
+
+```text
+a_dagger in L²
+a_dagger notin BMO^{-1}
+precise Sobolev threshold.
+```
+
+Those remain `RAW_A_DAGGER_OUTSIDER_PROPERTIES`.
 
 ## Endpoint checklist
 
 - [x] Exact scoped statement frozen.
-- [ ] Complete B-tier derivation recorded in the current hull.
-- [ ] Every external source theorem or semantic premise pinned.
-- [ ] Edge cases, sign conventions, zero modes, and gauge assumptions audited.
-- [ ] Numerical or symbolic validation attached when applicable.
+- [x] Complete B-tier Fourier derivation recorded.
+- [x] Distributional domain explicit.
+- [x] Multiplier, zero-mode, and divergence audits completed.
+- [ ] Numerical spectral-smoothing check attached.
 - [ ] Exact Lean theorem signature emitted.
 - [ ] Matching cached external compiler PASS.
 - [ ] Theorem-level axiom audit PASS.
-- [ ] Promotion status assigned.
+- [ ] Promotion above B-tier assigned.
 
-## Planned artifacts
+## Artifacts
 
 ```text
 A_DAGGER_HEAT_REGULARIZATION_B_TIER.txt
@@ -39,6 +81,6 @@ A_DAGGER_HEAT_REGULARIZATION_A_TIER.txt
 run.cmd
 ```
 
-Prepared Lean code does not establish A-tier status. The theorem, premises, domain, gauge, constants, and endpoint may not change during promotion.
+[Canonical branch B-tier TXT](../B_TIER/MAXWELL_SCHROEDINGER_BRANCH_B_TIER.txt)
 
 [Return to root checklist](../README.md)
