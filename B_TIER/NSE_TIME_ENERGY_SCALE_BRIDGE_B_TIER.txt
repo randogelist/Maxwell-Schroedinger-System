@@ -1,0 +1,613 @@
+ONE-ELECTRON QM-MAXWELL-GR TO NAVIER-STOKES
+TIME AND ENERGY SCALE BRIDGE — B-TIER DERIVATION
+=================================================
+
+STATUS
+------
+
+MARKER = !
+TIER = CONDITIONAL_B_TIER
+ARTIFACT = NSE_TIME_ENERGY_SCALE_BRIDGE_B_TIER
+ROOT_ENDPOINT = ONE_ELECTRON_QM_MAXWELL_GR_TO_NSE_TIME_ENERGY_SCALE
+SOURCE_BRANCH = b-tier-hull
+LEAN_STATUS = NOT_EMITTED
+A_TIER_STATUS = NOT_ESTABLISHED
+FORMAL_CLOSURE = NOT_ESTABLISHED
+LOCAL_LEAN_EXECUTIONS = 0
+
+This document identifies the minimum additional structure required to assign
+an exact Navier-Stokes time scale and a physical kinetic-energy scale to the
+frozen synchronized one-electron QM-Maxwell-GR reduced object.
+
+The decisive distinction is:
+
+  the existing merged CP1 evolution is Hamiltonian and phase preserving;
+
+  viscous Navier-Stokes evolution is dissipative and requires an additional
+  radial amplitude coordinate.
+
+The exact special-mode chain is
+
+  circular transverse profile
+  + physical torus length L
+  + viscosity nu
+  + density rho_f
+  + optional constant transport velocity U0
+  -> exact advected circular NSE solution
+  -> phase rate omega_NSE = k U0
+  -> viscous decay rate gamma_NSE = nu k^2
+  -> exact kinetic-energy decay law
+  -> contractive phase-radius semigroup
+  -> conditional matching to the merged one-electron clock.
+
+No general equivalence between the full Einstein-Maxwell-Dirac system and the
+full Navier-Stokes equation is asserted.
+
+
+0. FROZEN PHYSICAL DATA
+-----------------------
+
+Let the physical spatial torus be
+
+  T_L^3 := (R/LZ)^3,
+
+with volume
+
+  V := L^3.
+
+Fix
+
+  L > 0,
+  rho_f > 0,
+  nu > 0,
+  n in Z with n != 0,
+  k := 2 pi n/L,
+  epsilon > 0,
+  s > 0,
+  lambda in R,
+  U0 in R.
+
+Here
+
+  rho_f : physical mass density used to convert the NSE L2 norm into energy;
+  nu    : kinematic viscosity;
+  U0    : constant transport velocity in the z direction.
+
+Define the heat-regularized circular amplitude
+
+  r0
+    := |lambda| s exp(-epsilon^2 k^2/4).
+
+The associated transverse profile is
+
+  a_epsilon(z)
+    := r0 (cos(kz+alpha), sin(kz+alpha), 0).
+
+It satisfies
+
+  div a_epsilon = 0,
+  Delta a_epsilon = -k^2 a_epsilon,
+  |a_epsilon(x)| = r0.
+
+The profile is reused as an NSE velocity profile. This is a profile map, not a
+semantic identity between the electromagnetic field and fluid velocity.
+
+
+1. EXACT ADVECTED CIRCULAR NSE SOLUTION
+---------------------------------------
+
+Define
+
+  gamma_NSE := nu k^2,
+  omega_NSE := k U0.
+
+Let
+
+  v(t,z)
+    := r0 exp(-gamma_NSE t)
+       ( cos(k(z-U0 t)+alpha),
+         sin(k(z-U0 t)+alpha),
+         0 ),
+
+and
+
+  u(t,x) := U0 e3 + v(t,z).
+
+THEOREM ADVECTED_CIRCULAR_NSE_SOLUTION.
+
+For constant pressure p, the field u solves the unforced incompressible
+Navier-Stokes equation
+
+  partial_t u + (u dot grad)u + grad p = nu Delta u,
+  div u = 0
+
+for every t >= 0.
+
+DERIVATION.
+
+The transverse field depends only on z and has zero z component. Therefore
+
+  (v dot grad)v = 0.
+
+The constant mean contributes
+
+  (U0 e3 dot grad)v = U0 partial_z v.
+
+Direct differentiation gives
+
+  partial_t v
+    = -nu k^2 v - U0 partial_z v.
+
+Hence
+
+  partial_t u + (u dot grad)u
+    = -nu k^2 v
+    = nu Delta v
+    = nu Delta u.
+
+STATUS = EXACT_B_TIER.
+
+MEAN-ZERO SCOPE.
+
+If the NSE carrier is required to have zero spatial mean, set U0=0 or pass to
+the comoving frame. Then the exact solution remains valid, but the nontrivial
+phase clock disappears and only viscous decay remains.
+
+
+2. EXACT NSE TIME SCALES
+------------------------
+
+The mode has complex temporal exponent
+
+  exp[-(gamma_NSE + i omega_NSE)t].
+
+Define the angular phase time
+
+  T_phase := 1/|omega_NSE|
+
+when omega_NSE != 0, and the full phase period
+
+  P_phase := 2 pi/|omega_NSE|.
+
+Define the amplitude e-folding time
+
+  T_amp := 1/gamma_NSE
+         = 1/(nu k^2).
+
+Define the kinetic-energy e-folding time
+
+  T_energy := 1/(2 gamma_NSE)
+            = 1/(2 nu k^2).
+
+Using k=2pi n/L,
+
+  T_amp
+    = L^2/(4 pi^2 nu n^2),
+
+  T_energy
+    = L^2/(8 pi^2 nu n^2),
+
+and, when U0 != 0,
+
+  P_phase
+    = L/(|n| |U0|).
+
+STATUS = EXACT_B_TIER.
+
+
+3. EXACT NSE ENERGY AND DISSIPATION
+-----------------------------------
+
+Define the fluctuation kinetic energy
+
+  E_NSE(t)
+    := (rho_f/2) integral_{T_L^3} |v(t,x)|^2 dx.
+
+Because |v| is spatially constant,
+
+  E_NSE(t)
+    = (rho_f V/2) r0^2 exp(-2 gamma_NSE t).
+
+Thus
+
+  E_NSE(0)
+    = (rho_f L^3/2)
+      lambda^2 s^2 exp(-epsilon^2 k^2/2).
+
+The viscous dissipation power is
+
+  P_diss(t)
+    := rho_f nu integral |grad v|^2 dx
+     = rho_f nu V k^2 r0^2 exp(-2 gamma_NSE t).
+
+Therefore
+
+  P_diss(t) = 2 gamma_NSE E_NSE(t),
+
+  dE_NSE/dt = -P_diss = -2 gamma_NSE E_NSE.
+
+STATUS = EXACT_B_TIER.
+
+The total kinetic energy also contains the constant mean contribution
+
+  E_mean = (rho_f V/2) U0^2,
+
+which does not dissipate because grad(U0 e3)=0.
+
+
+4. MINIMAL DISSIPATIVE EXTENSION OF THE MERGED ORBIT
+-----------------------------------------------------
+
+The synchronized QM-Maxwell-GR reduced orbit has constant population and a
+rotating phase. It cannot represent viscous amplitude decay without an extra
+coordinate.
+
+Define the extended reduced carrier
+
+  O_ext := CP1 x R_{>=0}.
+
+Use coordinates
+
+  (u,phi,r).
+
+Define the phase-radius flow
+
+  Phi_t^ext(u,phi,r)
+    := (u,
+        phi-omega_NSE t,
+        r exp(-gamma_NSE t)).
+
+THEOREM NSE_PHASE_RADIUS_SEMIGROUP.
+
+The maps Phi_t^ext form a continuous semigroup for t>=0. Its Koopman generator
+on smooth observables is
+
+  G_NSE
+    = -omega_NSE partial_phi
+      -gamma_NSE r partial_r.
+
+For the energy observable
+
+  E(r) := (rho_f V/2) r^2,
+
+one has
+
+  G_NSE E = -2 gamma_NSE E.
+
+STATUS = EXACT_B_TIER.
+
+The old merged Hamiltonian clock is recovered on the phase factor when
+
+  gamma_NSE=0.
+
+For nu>0 the extended evolution is contractive, not unitary. A unitary
+representation would require a dilation by additional reservoir variables.
+
+
+5. MATCH TO THE ONE-ELECTRON CLOCK
+----------------------------------
+
+The frozen merged one-electron clock has angular frequency
+
+  omega_QM := Delta_E/hbar,
+
+where
+
+  Delta_E := E1-E0.
+
+THEOREM NSE_QM_PHASE_CLOCK_MATCHING.
+
+The NSE phase clock and one-electron clock agree if and only if
+
+  k U0 = Delta_E/hbar.
+
+Equivalently,
+
+  U0 = Delta_E/(hbar k).
+
+Under equal initial phases,
+
+  phi_NSE(t)=phi_QM(t)
+
+modulo 2pi on their common interval.
+
+STATUS = EXACT_CONDITIONAL_B_TIER.
+
+This matches only the phase rate. The viscous rate
+
+  gamma_NSE=nu k^2
+
+has no counterpart in the present unitary CP1 generator.
+
+
+6. ENERGY-CALIBRATION OPTIONS
+-----------------------------
+
+A physical energy bridge requires one additional normalization law. Neither
+NSE nor the existing merged sector determines it automatically.
+
+OPTION A: DIRECT KINETIC/GAP CALIBRATION.
+
+Choose a dimensionless constant eta_E>0 and impose
+
+  E_NSE(0) = eta_E |Delta_E|.
+
+Then
+
+  r0^2
+    = 2 eta_E |Delta_E|/(rho_f L^3).
+
+OPTION B: NSE ACTION-SCALE CALIBRATION.
+
+Using the amplitude e-folding time, impose
+
+  E_NSE(0) T_amp = hbar.
+
+Then
+
+  E_NSE(0) = hbar nu k^2,
+
+and
+
+  r0^2
+    = 2 hbar nu k^2/(rho_f L^3).
+
+OPTION C: ENERGY-EFOLD CALIBRATION.
+
+Using T_energy instead gives
+
+  E_NSE(0) T_energy = hbar
+
+if and only if
+
+  E_NSE(0)=2 hbar nu k^2.
+
+The factor two is purely the distinction between amplitude and energy
+e-folding conventions. A frozen bridge must choose one convention explicitly.
+
+STATUS = CONDITIONAL_B_TIER_CALIBRATION.
+
+
+7. TRANSLATION OF THE NSE REGULARITY CERTIFICATE
+-------------------------------------------------
+
+Suppose the pre-existing sufficient certificate gives
+
+  |lambda| < lambda_crit(epsilon,nu)
+
+for regularity of lambda a_epsilon.
+
+The corresponding physical kinetic-energy radius is
+
+  E_crit^NSE(epsilon,nu)
+    := (rho_f L^3/2)
+       lambda_crit(epsilon,nu)^2
+       s^2 exp(-epsilon^2 k^2/2).
+
+Then
+
+  |lambda| < lambda_crit
+
+implies
+
+  E_NSE(0) < E_crit^NSE.
+
+STATUS = EXACT_CONDITIONAL_B_TIER_TRANSLATION.
+
+This is a one-sided certificate image. It is not a singularity threshold, a
+phase transition, or a necessary condition for regularity.
+
+
+8. FULL DYNAMICAL BRIDGE ENDPOINT
+---------------------------------
+
+Let
+
+  S_t^NSE
+
+be the NSE semigroup on the selected exact circular sector, and let
+
+  Phi_t^ext
+
+be the phase-radius semigroup above.
+
+Define the profile readout
+
+  iota_NSE(u,phi,r)
+    := U0 e3
+       + r( cos(kz+phi), sin(kz+phi), 0 ).
+
+THEOREM CIRCULAR_NSE_SEMIGROUP_INTERTWINING.
+
+For t>=0,
+
+  iota_NSE o Phi_t^ext
+    = S_t^NSE o iota_NSE.
+
+STATUS = EXACT_B_TIER.
+
+A bridge from the full dressed one-electron EMD orbit requires an additional
+map
+
+  j_NSE : P_EMD^reduced -> O_ext
+
+such that
+
+  j_NSE o Phi_t^EMD
+    = Phi_t^ext o j_NSE.
+
+This is the open cross-theory endpoint
+
+  EMD_TO_NSE_PHASE_RADIUS_SEMICONJUGACY.
+
+Because NSE is dissipative while the frozen EMD/QR orbit is Hamiltonian, the
+appropriate relation is a semiconjugacy or reservoir dilation, not an ordinary
+symplectic equivalence.
+
+
+9. MINIMUM DATA REQUIRED
+------------------------
+
+To obtain an NSE-relative time and energy scale, the following must be fixed:
+
+  R1. a physical length L;
+
+  R2. a kinematic viscosity nu;
+
+  R3. a physical density rho_f or an effective total mass convention;
+
+  R4. a selected wave number k=2pi n/L;
+
+  R5. a velocity amplitude r0 or an equivalent energy normalization;
+
+  R6. a choice of NSE clock:
+      phase clock, viscous amplitude clock, or energy-decay clock;
+
+  R7. for phase synchronization, the rate equation
+
+        k U0 = Delta_E/hbar;
+
+  R8. for energy synchronization, one explicit calibration law;
+
+  R9. for full dynamical comparison, a dissipative phase-radius extension and
+      a semigroup intertwining map.
+
+Without R1-R5, the NSE equations supply only dimensionless or per-unit-density
+quantities. Without R6-R9, there is no unique map to the merged electron clock.
+
+
+10. ROOT ENDPOINT
+-----------------
+
+THEOREM ONE_ELECTRON_QM_MAXWELL_GR_TO_NSE_TIME_ENERGY_SCALE.
+
+Assume:
+
+  H1. the frozen synchronized one-electron merged clock with
+
+        omega_QM=Delta_E/hbar;
+
+  H2. physical NSE data L,rho_f,nu,n,U0;
+
+  H3. the heat-regularized circular profile with amplitude r0;
+
+  H4. phase matching
+
+        kU0=Delta_E/hbar;
+
+  H5. one declared energy-calibration convention.
+
+Then the exact selected NSE sector has
+
+  phase angular time
+
+    T_phase=hbar/|Delta_E|,
+
+  full phase period
+
+    P_phase=2pi hbar/|Delta_E|,
+
+  viscous amplitude time
+
+    T_amp=1/(nu k^2),
+
+  energy-decay time
+
+    T_energy=1/(2nu k^2),
+
+  initial fluctuation energy
+
+    E_NSE(0)=(rho_f L^3/2)r0^2,
+
+and exact energy law
+
+    E_NSE(t)=E_NSE(0)e^{-2nu k^2 t}.
+
+The phase-radius extension gives the exact generator
+
+  G_NSE
+    = -(Delta_E/hbar)partial_phi
+      -nu k^2 r partial_r.
+
+STATUS = CONDITIONAL_B_TIER_WITH_EXPLICIT_NSE_MODE.
+
+
+11. ENDPOINT REGISTER
+---------------------
+
+[x] NSETE-01  CIRCULAR_NSE_EIGENPROFILE
+               EXACT_B_TIER
+
+[x] NSETE-02  ADVECTED_CIRCULAR_NSE_SOLUTION
+               EXACT_B_TIER
+
+[x] NSETE-03  NSE_PHASE_AMPLITUDE_ENERGY_TIMES
+               EXACT_B_TIER
+
+[x] NSETE-04  CIRCULAR_NSE_ENERGY_DISSIPATION
+               EXACT_B_TIER
+
+[x] NSETE-05  NSE_PHASE_RADIUS_SEMIGROUP
+               EXACT_B_TIER
+
+[x] NSETE-06  NSE_QM_PHASE_CLOCK_MATCHING
+               EXACT_CONDITIONAL_B_TIER
+
+[x] NSETE-07  NSE_ACTION_SCALE_CALIBRATION
+               CONDITIONAL_B_TIER
+
+[x] NSETE-08  NSE_CERTIFICATE_ENERGY_TRANSLATION
+               EXACT_CONDITIONAL_B_TIER
+
+[x] NSETE-09  CIRCULAR_NSE_SEMIGROUP_INTERTWINING
+               EXACT_B_TIER
+
+[x] NSETE-10  ONE_ELECTRON_QM_MAXWELL_GR_TO_NSE_TIME_ENERGY_SCALE
+               CONDITIONAL_B_TIER_WITH_EXPLICIT_NSE_MODE
+
+[ ] NSETE-11  EMD_TO_NSE_PHASE_RADIUS_SEMICONJUGACY
+               OPEN_DECISIVE
+
+[ ] NSETE-12  PHYSICAL_NSE_MASS_DENSITY_IDENTIFICATION
+               OPEN_PHYSICAL_CALIBRATION
+
+[ ] NSETE-13  NSE_ENERGY_TO_ELECTRON_GAP_CALIBRATION
+               OPEN_PHYSICAL_CALIBRATION
+
+[ ] NSETE-14  DISSIPATIVE_RESERVOIR_DILATION
+               OPEN_FUNCTIONAL_ANALYTIC
+
+
+12. CLOSURE CLASSIFICATION
+--------------------------
+
+EXACT_B_TIER:
+
+  CIRCULAR_NSE_EIGENPROFILE
+  ADVECTED_CIRCULAR_NSE_SOLUTION
+  NSE_PHASE_AMPLITUDE_ENERGY_TIMES
+  CIRCULAR_NSE_ENERGY_DISSIPATION
+  NSE_PHASE_RADIUS_SEMIGROUP
+  CIRCULAR_NSE_SEMIGROUP_INTERTWINING.
+
+EXACT_CONDITIONAL_B_TIER:
+
+  NSE_QM_PHASE_CLOCK_MATCHING
+  NSE_ACTION_SCALE_CALIBRATION
+  NSE_CERTIFICATE_ENERGY_TRANSLATION
+  ONE_ELECTRON_QM_MAXWELL_GR_TO_NSE_TIME_ENERGY_SCALE.
+
+OPEN DECISIVE OR CALIBRATION ENDPOINTS:
+
+  EMD_TO_NSE_PHASE_RADIUS_SEMICONJUGACY
+  PHYSICAL_NSE_MASS_DENSITY_IDENTIFICATION
+  NSE_ENERGY_TO_ELECTRON_GAP_CALIBRATION
+  DISSIPATIVE_RESERVOIR_DILATION.
+
+FORMAL STATUS:
+
+  B_TIER only.
+  Lean files are not emitted.
+  A_TIER is not established.
+  FORMAL_CLOSURE is not established.
+  UNCONDITIONAL_CLOSURE is not established.
